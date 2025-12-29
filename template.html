@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Propuesta Partner Tech - Agencias de Aduanas</title>
+    <style>
+        /* Estilos generales para asegurar compatibilidad en Outlook y Gmail */
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f7f9;
+            color: #333333;
+        }
+        table {
+            border-spacing: 0;
+            width: 100%;
+        }
+        td {
+            padding: 0;
+        }
+        .wrapper {
+            width: 100%;
+            table-layout: fixed;
+            background-color: #f4f7f9;
+            padding: 40px 0;
+        }
+        .main {
+            background-color: #ffffff;
+            margin: 0 auto;
+            width: 100%;
+            max-width: 600px;
+            border-spacing: 0;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+        }
+        .header {
+            background-color: #004a99; /* Azul institucional */
+            padding: 35px;
+            text-align: center;
+        }
+        .header h1 {
+            color: #ffffff;
+            margin: 0;
+            font-size: 26px;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+        }
+        .content {
+            padding: 40px 35px;
+            line-height: 1.7;
+        }
+        .content h2 {
+            color: #004a99;
+            font-size: 21px;
+            margin-top: 0;
+            border-bottom: 2px solid #f0f0f0;
+            padding-bottom: 10px;
+        }
+        .features-list {
+            margin: 25px 0;
+            padding-left: 20px;
+        }
+        .features-list li {
+            margin-bottom: 15px;
+        }
+        .cta-container {
+            text-align: center;
+            margin: 35px 0;
+        }
+        .cta-button {
+            display: inline-block;
+            padding: 16px 30px;
+            background-color: #00c853; /* Verde para destacar */
+            color: #ffffff !important;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            font-size: 16px;
+        }
+        .footer {
+            background-color: #fdfdfd;
+            padding: 25px 35px;
+            text-align: center;
+            font-size: 12px;
+            color: #888888;
+            border-top: 1px solid #eeeeee;
+        }
+        .footer a {
+            color: #004a99;
+            text-decoration: underline;
+        }
+        @media screen and (max-width: 600px) {
+            .content { padding: 25px !important; }
+            .header h1 { font-size: 20px !important; }
+        }
+    </style>
+</head>
+<body>
+    <center class="wrapper">
+        <table class="main" width="100%">
+            <!-- Cabecera Corporativa -->
+            <tr>
+                <td class="header">
+                    <img src="cid:Logo_blanco_ver1" alt="Partner Tech" width="200" style="display: block; margin: 0 auto; border: 0;">
+                </td>
+            </tr>
+
+            <!-- Cuerpo del Mensaje Especializado -->
+            <tr>
+                <td class="content">
+                    <p>Estimado/a <strong>{{Contacto_Nombre}}</strong>,</p>
+                    
+                    <p>Le contacto en mi calidad de asociado de la <strong>Cámara de Comercio de Lima (CCL)</strong>. He analizado el perfil de <strong>{{Nombre_Empresa}}</strong> en el directorio de Agencias de Aduanas y considero que nuestra experiencia en <strong>Transformación Digital Resiliente</strong> puede ser un catalizador clave para su eficiencia operativa.</p>
+
+                    <h2>Optimización para el Sector Aduanero</h2>
+                    
+                    <p>En <strong>Partner Tech</strong>, entendemos que las Agencias de Aduanas enfrentan retos críticos de conectividad y gestión de datos en tiempo real. Con más de 8 años en el mercado de <strong>TI</strong> (<em>Tecnologías de la Información</em>), ayudamos a empresas logísticas a democratizar procesos tecnológicos complejos.</p>
+
+                    <p>Nuestra propuesta para el sector aduanero se centra en:</p>
+                    
+                    <ul class="features-list">
+                        <li><strong>Integración con SUNAT:</strong> Modernización de interfaces y conexión fluida de sistemas <strong>Legacy</strong> (sistemas heredados antiguos) con las plataformas actuales de aduanas.</li>
+                        <li><strong>Automatización de Documentación:</strong> Reducción de errores manuales en la gestión de expedientes y manifiestos de carga mediante software a medida.</li>
+                        <li><strong>Continuidad de Negocio:</strong> Garantizamos que su infraestructura crítica sea resiliente ante fallos, asegurando que el despacho aduanero nunca se detenga.</li>
+                    </ul>
+
+                    <p>Me gustaría proponerle una sesión estratégica de 10 minutos para mostrarle cómo hemos ayudado a otras empresas del rubro a incrementar su <strong>ROI</strong> (<em>Retorno de Inversión</em>) mediante la optimización de sus células de desarrollo.</p>
+
+                    <div class="cta-container">
+                        <a href="mailto:tuemail@partnertech.pe?subject=Consulta TI: Agencias de Aduanas - {{Nombre_Empresa}}" class="cta-button">
+                            Agendar Reunión de Diagnóstico
+                        </a>
+                    </div>
+
+                    <p>¿Tendría disponibilidad para conversar el próximo martes o miércoles por la mañana?</p>
+
+                    <p>Atentamente,<br>
+                    <strong>Franco Guerrero</strong><br>
+                    Gerente Comercial | Partner Tech<br>
+                    <img src="cid:Logo_ver1" alt="Partner Tech" width="150" style="display: block; margin-top: 10px; border: 0;"></p>
+                </td>
+            </tr>
+
+            <!-- Pie de Página de Cumplimiento CCL -->
+            <tr>
+                <td class="footer">
+                    <p>Este mensaje se envía de acuerdo con los lineamientos del Directorio de Asociados de la <strong>CCL</strong>.</p>
+                    <p>Tratamos sus datos bajo la Ley de Protección de Datos Personales con fines exclusivamente profesionales.</p>
+                    <p>Si desea ser excluido de futuras comunicaciones, por favor responda con el asunto <strong>"REMOVER"</strong>.</p>
+                </td>
+            </tr>
+        </table>
+    </center>
+</body>
+</html>
