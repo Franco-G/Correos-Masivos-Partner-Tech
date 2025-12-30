@@ -5,11 +5,31 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Desarrollo a Medida - Partner Tech</title>
     <style>
+        /* FUENTES PERSONALIZADAS */
+        /* NOTA IMPORTANTE: La compatibilidad de fuentes personalizadas (.tff, .otf, .woff, etc.)
+           en clientes de correo electrónico es limitada. Muchos clientes ignorarán estas
+           reglas y usarán una fuente genérica de respaldo. Considera usar fuentes web
+           seguras o texto basado en imágenes para elementos críticos si la consistencia
+           visual de la fuente es fundamental. Si las fuentes están alojadas,
+           reemplaza 'url()' con las rutas correctas. */
+        @font-face {
+            font-family: 'Obitron-SemiBold';
+            src: url('Obitron-SemiBold.tff') format('truetype'); /* Reemplaza con la ruta real */
+            font-weight: 600;
+            font-style: normal;
+        }
+        @font-face {
+            font-family: 'Poppins-Regular';
+            src: url('Poppins-Regular.tff') format('truetype'); /* Reemplaza con la ruta real */
+            font-weight: 400;
+            font-style: normal;
+        }
+
         /* RESET Y ESTILOS BASE */
         body {
             margin: 0;
             padding: 0;
-            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            font-family: 'Poppins-Regular', 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
             background-color: #f4f7f6;
             color: #555555;
             -webkit-font-smoothing: antialiased;
@@ -77,12 +97,14 @@
             color: #2c3e50;
             font-weight: 700;
             margin-bottom: 20px;
+            font-family: 'Obitron-SemiBold', sans-serif;
         }
         .text-paragraph {
             font-size: 16px;
             line-height: 1.7;
             color: #666;
             margin-bottom: 25px;
+            font-family: 'Poppins-Regular', sans-serif;
         }
         
         /* TEXTO DESTACADO */
@@ -107,12 +129,14 @@
             font-weight: 700;
             display: block;
             margin-bottom: 5px;
+            font-family: 'Obitron-SemiBold', sans-serif;
         }
         .benefit-text {
             font-size: 14px;
             line-height: 1.5;
             color: #718096;
             margin: 0;
+            font-family: 'Poppins-Regular', sans-serif;
         }
 
         /* SECCIÓN DE BOTONES */
@@ -149,6 +173,7 @@
             font-size: 16px;
             box-shadow: 0 4px 12px rgba(0, 200, 83, 0.3);
             transition: all 0.3s ease;
+            font-family: 'Poppins-Regular', sans-serif;
         }
         .btn-secondary {
             background-color: #ffffff;
@@ -164,6 +189,7 @@
             font-weight: 600;
             font-size: 15px;
             transition: all 0.3s ease;
+            font-family: 'Poppins-Regular', sans-serif;
         }
         /* NUEVO BOTÓN PARA REUNIÓN */
         .btn-meeting {
@@ -180,6 +206,7 @@
             font-size: 15px;
             box-shadow: 0 4px 12px rgba(0, 86, 179, 0.3);
             transition: all 0.3s ease;
+            font-family: 'Poppins-Regular', sans-serif;
         }
         .btn-primary:hover { 
             background-color: #00b34a; 
@@ -199,6 +226,7 @@
             opacity: 0.95;
             display: block;
             margin-top: 3px;
+            font-family: 'Poppins-Regular', sans-serif;
         }
 
         /* CIERRE */
@@ -213,6 +241,7 @@
             color: #0056b3;
             font-weight: 700;
             margin-bottom: 10px;
+            font-family: 'Obitron-SemiBold', sans-serif;
         }
         .signature-img {
             display: block;
@@ -229,6 +258,7 @@
             font-size: 12px;
             color: #a0aec0;
             line-height: 1.6;
+            font-family: 'Poppins-Regular', sans-serif;
         }
         .footer a {
             color: #cbd5e0;
@@ -289,7 +319,7 @@
                     </div>
 
                     <p class="text-paragraph">
-                        Si está evaluando desarrollar una solución propia o busca aplicativos listos para implementar, le invito a revisar nuestro portafolio técnico:
+                        Si está evaluando desarrollar una solución propia o busca aplicativos listos para implementar, le invito a revisar nuestro portafolio:
                     </p>
 
                     <!-- Botones de Descarga -->
@@ -297,7 +327,7 @@
                         <span class="btn-label">📥 Documentación Técnica Disponible:</span>
                         
                         <a href="https://partnertech.pe/brochure-desarrollo" class="btn-primary">
-                            <span style="color: #ffffff;">Descargar Brochure de Fábrica</span>
+                            <span style="color: #ffffff;">Descargar Gratis Brochure Partner</span>
                             <span class="btn-subtext" style="color: #ffffff;">Metodología Ágil, Tarifas y Perfiles TI</span>
                         </a>
                         
@@ -313,17 +343,20 @@
                         
                         <!-- NUEVO BOTÓN: AGENDAR REUNIÓN -->
                         <!-- IMPORTANTE: Reemplaza # por tu enlace de Calendly, Google Calendar o similar -->
-                        <a href="#" class="btn-meeting">
+                        <a href="https://cal.com/negocios-partner-tech/requerimientos-software-desarrollo" class="btn-meeting">
                             <span style="color: #ffffff;">📅 Agendar Reunión de 15 min</span>
                         </a>
+                        <p style="font-size: 14px; color: #777; margin-top: 15px;">
+                            Si lo prefieres, también puedes enviarnos un correo directamente a <a href="mailto:fguerrero@partnertech.pe" style="color: #0056b3; text-decoration: none;">negocios@partnertech.pe</a>
+                        </p>
 
                         <p style="color: #666; font-size: 15px; margin-top: 15px;">
                             Diagnostiquemos si un desarrollo a medida es la inversión correcta para su 2025.
                         </p>
                         
                         <p style="color: #555; margin-top: 25px;">
-                            Atentamente,<br>
-                            <strong>Franco Guerrero</strong><br>
+                            Atentamente,<br><strong>Franco Guerrero</strong><br>
+                            <a href="mailto:fguerrero@partnertech.pe" style="color: #0056b3; text-decoration: none;">fguerrero@partnertech.pe</a><br>
                             <span style="font-size: 14px; color: #888;">Gerencia Comercial | Partner Tech</span>
                         </p>
                     </div>
@@ -334,8 +367,8 @@
             <tr>
                 <td class="footer">
                     <p>Enviado a <strong>{{Email_Destinatario}}</strong> cumpliendo los lineamientos de la <strong>Cámara de Comercio de Lima (CCL)</strong>.</p>
-                    <p>Respetamos su privacidad profesional. <a href="#">Actualizar preferencias</a> o <a href="#">Darse de baja</a>.</p>
-                    <p style="margin-top: 15px; opacity: 0.5;">Partner Tech | Av. Malachowsky 340, San Borja, Lima</p>
+                    <p>Respetamos su privacidad profesional. Si no desea recibir más correos, responda <strong>Remover</strong></p>
+                    <p style="margin-top: 15px; opacity: 0.5;">Partnertech.pe | Av. Malachowsky 340, San Borja, Lima</p>
                 </td>
             </tr>
         </table>
