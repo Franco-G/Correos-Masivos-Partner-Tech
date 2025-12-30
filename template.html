@@ -46,6 +46,7 @@
 
         /* HEADER */
         .header {
+            background-color: #0021a4; /* Color de respaldo para clientes de correo */
             background: linear-gradient(to right, #0021a4, #0033bb);
             padding: 40px 30px;
             text-align: center;
@@ -53,7 +54,7 @@
         /* Estilos específicos para el logo en el header */
         .logo-img {
             display: block;
-            margin: 0 auto 10px auto;
+            margin: 0 auto; /* Centrado y sin margen inferior extra */
             max-width: 220px;
             width: 100%;
             height: auto;
@@ -252,7 +253,6 @@
                 <td class="header">
                     <!-- LOGO INSERTADO -->
                     <img src="cid:Logo_ver1" alt="Partner Tech Logo" class="logo-img">
-                    <p>Fábrica de Software a Medida</p>
                 </td>
             </tr>
 
@@ -262,7 +262,7 @@
                     <p class="greeting">Hola, {{Nombre_Contacto}} 👋</p>
                     
                     <p class="text-paragraph">
-                        He identificado a <strong>{{Nombre_Empresa}}</strong> en el Directorio CCL. Sabemos que a medida que una empresa crece, el software genérico ("enlatado") empieza a quedar chico: procesos lentos, datos desconectados y manuales operativos interminables.
+                        He identificado su contacto en el Directorio CCL. Sabemos que a medida que una empresa crece, el software genérico ("enlatado") empieza a quedar chico: procesos lentos, datos desconectados y manuales operativos interminables.
                     </p>
 
                     <p class="text-paragraph">
@@ -323,9 +323,7 @@
                         
                         <p style="color: #555; margin-top: 25px;">
                             Atentamente,<br>
-                            <!-- FIRMA INSERTADA -->
-                            <img src="cid:Firma_Franco" alt="Firma Franco" class="signature-img">
-                            <strong>Franco [Apellido]</strong><br>
+                            <strong>Franco Guerrero</strong><br>
                             <span style="font-size: 14px; color: #888;">Gerencia Comercial | Partner Tech</span>
                         </p>
                     </div>
