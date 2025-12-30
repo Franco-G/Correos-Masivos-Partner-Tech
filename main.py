@@ -67,8 +67,8 @@ def enviar_correo_ejemplo():
                 print(f"Advertencia: No se encontró la imagen {nombre_archivo}")
 
         # Adjuntar los logos (Asegúrate de que los archivos .png existan en la carpeta)
-        adjuntar_imagen('Logo_blanco_ver1.png', 'Logo_blanco_ver1')
-        adjuntar_imagen('Logo_ver1.png', 'Logo_ver1')
+        adjuntar_imagen('Firma_Franco.png', 'Firma_Franco')
+        adjuntar_imagen('Logo_blanco_ver1.png', 'Logo_ver1')
         
         # Conexión segura SSL
         context = ssl.create_default_context()

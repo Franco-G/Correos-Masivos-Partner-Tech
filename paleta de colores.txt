@@ -1,0 +1,18 @@
+Paleta de Colores de Partner Tech
+#ffffff: Blanco
+#0021a4: Un tono de azul oscuro
+#243a92: Un tono de azul medio oscuro
+#001556: Un tono de azul muy oscuro, cercano al negro
+#1e53dd: Un tono de azul brillante/eléctrico
+#00e0ff: Un tono de cian o turquesa brillante
+#1bde5d: Un tono de verde brillante/lima
+
+Colores del Logo Principal:
+#0021a4: Un tono de azul oscuro
+#243a92: Un tono de azul medio oscuro
+#1e53dd: Un tono de azul brillante/eléctrico
+#00e0ff: Un tono de cian o turquesa brillante
+#1bde5d: Un tono de verde brillante/lima
+
+Variante de Logo:
+#ffffff: Blanco

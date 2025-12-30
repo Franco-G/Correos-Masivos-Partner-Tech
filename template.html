@@ -46,7 +46,7 @@
 
         /* HEADER */
         .header {
-            background: linear-gradient(135deg, #0056b3 0%, #003366 100%);
+            background: linear-gradient(to right, #0021a4, #0033bb);
             padding: 40px 30px;
             text-align: center;
         }
@@ -168,7 +168,10 @@
         .btn-meeting {
             background-color: #0056b3;
             color: #ffffff !important;
-            display: inline-block;
+            display: block;
+            width: 100%;
+            max-width: 380px;
+            margin: 0 auto 15px auto;
             padding: 14px 30px;
             text-decoration: none;
             border-radius: 50px;
@@ -176,7 +179,6 @@
             font-size: 15px;
             box-shadow: 0 4px 12px rgba(0, 86, 179, 0.3);
             transition: all 0.3s ease;
-            margin: 15px 0;
         }
         .btn-primary:hover { 
             background-color: #00b34a; 
@@ -249,7 +251,7 @@
             <tr>
                 <td class="header">
                     <!-- LOGO INSERTADO -->
-                    <img src="Logo_blanco_ver1.png" alt="Partner Tech Logo" class="logo-img">
+                    <img src="cid:Logo_ver1" alt="Partner Tech Logo" class="logo-img">
                     <p>Fábrica de Software a Medida</p>
                 </td>
             </tr>
@@ -295,8 +297,8 @@
                         <span class="btn-label">📥 Documentación Técnica Disponible:</span>
                         
                         <a href="https://partnertech.pe/brochure-desarrollo" class="btn-primary">
-                            Descargar Brochure de Fábrica
-                            <span class="btn-subtext">Metodología Ágil, Tarifas y Perfiles TI</span>
+                            <span style="color: #ffffff;">Descargar Brochure de Fábrica</span>
+                            <span class="btn-subtext" style="color: #ffffff;">Metodología Ágil, Tarifas y Perfiles TI</span>
                         </a>
                         
                         <a href="https://partnertech.pe/catalogo-aplicativos" class="btn-secondary">
@@ -312,7 +314,7 @@
                         <!-- NUEVO BOTÓN: AGENDAR REUNIÓN -->
                         <!-- IMPORTANTE: Reemplaza # por tu enlace de Calendly, Google Calendar o similar -->
                         <a href="#" class="btn-meeting">
-                            📅 Agendar Reunión de 15 min
+                            <span style="color: #ffffff;">📅 Agendar Reunión de 15 min</span>
                         </a>
 
                         <p style="color: #666; font-size: 15px; margin-top: 15px;">
@@ -322,7 +324,7 @@
                         <p style="color: #555; margin-top: 25px;">
                             Atentamente,<br>
                             <!-- FIRMA INSERTADA -->
-                            <img src="firma_franco.png" alt="Firma Franco" class="signature-img">
+                            <img src="cid:Firma_Franco" alt="Firma Franco" class="signature-img">
                             <strong>Franco [Apellido]</strong><br>
                             <span style="font-size: 14px; color: #888;">Gerencia Comercial | Partner Tech</span>
                         </p>
