@@ -3,15 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Propuesta Partner Tech - Agencias de Aduanas</title>
+    <title>Desarrollo a Medida - Partner Tech</title>
     <style>
-        /* Estilos generales para asegurar compatibilidad en Outlook y Gmail */
+        /* RESET Y ESTILOS BASE */
         body {
             margin: 0;
             padding: 0;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #f4f7f9;
-            color: #333333;
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background-color: #f4f7f6;
+            color: #555555;
+            -webkit-font-smoothing: antialiased;
         }
         table {
             border-spacing: 0;
@@ -20,136 +21,321 @@
         td {
             padding: 0;
         }
+        img {
+            border: 0;
+            display: block;
+            max-width: 100%;
+        }
+        
+        /* ESTRUCTURA PRINCIPAL */
         .wrapper {
             width: 100%;
             table-layout: fixed;
-            background-color: #f4f7f9;
+            background-color: #f4f7f6;
             padding: 40px 0;
         }
-        .main {
+        .main-container {
             background-color: #ffffff;
             margin: 0 auto;
             width: 100%;
             max-width: 600px;
-            border-spacing: 0;
-            border-radius: 8px;
+            border-radius: 16px;
             overflow: hidden;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.06);
         }
+
+        /* HEADER */
         .header {
-            background-color: #004a99; /* Azul institucional */
-            padding: 35px;
+            background: linear-gradient(135deg, #0056b3 0%, #003366 100%);
+            padding: 40px 30px;
             text-align: center;
         }
-        .header h1 {
-            color: #ffffff;
-            margin: 0;
-            font-size: 26px;
-            letter-spacing: 1.5px;
-            text-transform: uppercase;
+        /* Estilos específicos para el logo en el header */
+        .logo-img {
+            display: block;
+            margin: 0 auto 10px auto;
+            max-width: 220px;
+            width: 100%;
+            height: auto;
         }
+        .header p {
+            color: #e3f2fd;
+            margin: 0;
+            font-size: 15px;
+            font-weight: 400;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+        }
+
+        /* CONTENIDO */
         .content {
             padding: 40px 35px;
-            line-height: 1.7;
         }
-        .content h2 {
-            color: #004a99;
-            font-size: 21px;
-            margin-top: 0;
-            border-bottom: 2px solid #f0f0f0;
-            padding-bottom: 10px;
+        .greeting {
+            font-size: 20px;
+            color: #2c3e50;
+            font-weight: 700;
+            margin-bottom: 20px;
         }
-        .features-list {
-            margin: 25px 0;
-            padding-left: 20px;
-        }
-        .features-list li {
-            margin-bottom: 15px;
-        }
-        .cta-container {
-            text-align: center;
-            margin: 35px 0;
-        }
-        .cta-button {
-            display: inline-block;
-            padding: 16px 30px;
-            background-color: #00c853; /* Verde para destacar */
-            color: #ffffff !important;
-            text-decoration: none;
-            border-radius: 5px;
-            font-weight: bold;
+        .text-paragraph {
             font-size: 16px;
+            line-height: 1.7;
+            color: #666;
+            margin-bottom: 25px;
         }
+        
+        /* TEXTO DESTACADO */
+        .highlight {
+            color: #0056b3;
+            font-weight: 700;
+        }
+
+        /* CAJAS DE BENEFICIOS (DESARROLLO A MEDIDA) */
+        .benefit-box {
+            background-color: #ffffff;
+            border: 1px solid #e2e8f0;
+            border-left: 5px solid #00c853;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.04);
+        }
+        .benefit-title {
+            color: #2c3e50;
+            font-size: 16px;
+            font-weight: 700;
+            display: block;
+            margin-bottom: 5px;
+        }
+        .benefit-text {
+            font-size: 14px;
+            line-height: 1.5;
+            color: #718096;
+            margin: 0;
+        }
+
+        /* SECCIÓN DE BOTONES */
+        .btn-section {
+            background-color: #f8fafc;
+            border-radius: 12px;
+            padding: 30px 20px;
+            margin: 30px 0;
+            text-align: center;
+            border: 1px solid #edf2f7;
+        }
+        .btn-label {
+            display: block;
+            font-size: 14px;
+            color: #555;
+            margin-bottom: 15px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        /* BOTONES */
+        .btn-primary {
+            background-color: #00c853;
+            color: #ffffff !important;
+            display: block;
+            width: 100%;
+            max-width: 380px;
+            margin: 0 auto 15px auto;
+            padding: 16px 0;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 16px;
+            box-shadow: 0 4px 12px rgba(0, 200, 83, 0.3);
+            transition: all 0.3s ease;
+        }
+        .btn-secondary {
+            background-color: #ffffff;
+            color: #0056b3 !important;
+            display: block;
+            width: 100%;
+            max-width: 380px;
+            margin: 0 auto;
+            padding: 14px 0;
+            text-decoration: none;
+            border: 2px solid #e2e8f0;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 15px;
+            transition: all 0.3s ease;
+        }
+        /* NUEVO BOTÓN PARA REUNIÓN */
+        .btn-meeting {
+            background-color: #0056b3;
+            color: #ffffff !important;
+            display: inline-block;
+            padding: 14px 30px;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 15px;
+            box-shadow: 0 4px 12px rgba(0, 86, 179, 0.3);
+            transition: all 0.3s ease;
+            margin: 15px 0;
+        }
+        .btn-primary:hover { 
+            background-color: #00b34a; 
+            transform: translateY(-2px);
+        }
+        .btn-secondary:hover { 
+            border-color: #0056b3; 
+            background-color: #f0f7ff;
+        }
+        .btn-meeting:hover {
+            background-color: #004494;
+            transform: translateY(-2px);
+        }
+        .btn-subtext {
+            font-size: 12px;
+            font-weight: 400;
+            opacity: 0.95;
+            display: block;
+            margin-top: 3px;
+        }
+
+        /* CIERRE */
+        .closing-box {
+            text-align: center;
+            margin-top: 35px;
+            padding-top: 25px;
+            border-top: 1px dashed #dce5f2;
+        }
+        .call-action {
+            font-size: 17px;
+            color: #0056b3;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+        .signature-img {
+            display: block;
+            margin: 15px auto;
+            max-width: 150px; /* Tamaño controlado de la firma */
+            height: auto;
+        }
+
+        /* FOOTER */
         .footer {
-            background-color: #fdfdfd;
-            padding: 25px 35px;
+            background-color: #2d3748;
+            padding: 30px 30px;
             text-align: center;
             font-size: 12px;
-            color: #888888;
-            border-top: 1px solid #eeeeee;
+            color: #a0aec0;
+            line-height: 1.6;
         }
         .footer a {
-            color: #004a99;
-            text-decoration: underline;
+            color: #cbd5e0;
+            text-decoration: none;
+            border-bottom: 1px dotted #cbd5e0;
         }
+        
+        /* RESPONSIVE */
         @media screen and (max-width: 600px) {
-            .content { padding: 25px !important; }
-            .header h1 { font-size: 20px !important; }
+            .content { padding: 30px 20px !important; }
+            .header { padding: 30px 20px; }
+            .logo-img { max-width: 180px; }
+            .btn-meeting { display: block; width: 100%; box-sizing: border-box; }
         }
     </style>
 </head>
 <body>
     <center class="wrapper">
-        <table class="main" width="100%">
-            <!-- Cabecera Corporativa -->
+        <table class="main-container" width="100%">
+            <!-- Cabecera con Logo Blanco -->
             <tr>
                 <td class="header">
-                    <img src="cid:Logo_blanco_ver1" alt="Partner Tech" width="200" style="display: block; margin: 0 auto; border: 0;">
+                    <!-- LOGO INSERTADO -->
+                    <img src="Logo_blanco_ver1.png" alt="Partner Tech Logo" class="logo-img">
+                    <p>Fábrica de Software a Medida</p>
                 </td>
             </tr>
 
-            <!-- Cuerpo del Mensaje Especializado -->
+            <!-- Cuerpo del Mensaje -->
             <tr>
                 <td class="content">
-                    <p>Estimado/a <strong>{{Contacto_Nombre}}</strong>,</p>
+                    <p class="greeting">Hola, {{Nombre_Contacto}} 👋</p>
                     
-                    <p>Le contacto en mi calidad de asociado de la <strong>Cámara de Comercio de Lima (CCL)</strong>. He analizado el perfil de <strong>{{Nombre_Empresa}}</strong> en el directorio de Agencias de Aduanas y considero que nuestra experiencia en <strong>Transformación Digital Resiliente</strong> puede ser un catalizador clave para su eficiencia operativa.</p>
+                    <p class="text-paragraph">
+                        He identificado a <strong>{{Nombre_Empresa}}</strong> en el Directorio CCL. Sabemos que a medida que una empresa crece, el software genérico ("enlatado") empieza a quedar chico: procesos lentos, datos desconectados y manuales operativos interminables.
+                    </p>
 
-                    <h2>Optimización para el Sector Aduanero</h2>
-                    
-                    <p>En <strong>Partner Tech</strong>, entendemos que las Agencias de Aduanas enfrentan retos críticos de conectividad y gestión de datos en tiempo real. Con más de 8 años en el mercado de <strong>TI</strong> (<em>Tecnologías de la Información</em>), ayudamos a empresas logísticas a democratizar procesos tecnológicos complejos.</p>
+                    <p class="text-paragraph">
+                        En <strong>Partner Tech</strong>, no le pedimos que adapte su negocio al software. <span class="highlight">Nosotros construimos el software exactamente como su operación lo necesita.</span>
+                    </p>
 
-                    <p>Nuestra propuesta para el sector aduanero se centra en:</p>
-                    
-                    <ul class="features-list">
-                        <li><strong>Integración con SUNAT:</strong> Modernización de interfaces y conexión fluida de sistemas <strong>Legacy</strong> (sistemas heredados antiguos) con las plataformas actuales de aduanas.</li>
-                        <li><strong>Automatización de Documentación:</strong> Reducción de errores manuales en la gestión de expedientes y manifiestos de carga mediante software a medida.</li>
-                        <li><strong>Continuidad de Negocio:</strong> Garantizamos que su infraestructura crítica sea resiliente ante fallos, asegurando que el despacho aduanero nunca se detenga.</li>
-                    </ul>
+                    <p class="text-paragraph" style="margin-bottom: 15px;">
+                        ¿Por qué elegir nuestra Fábrica de Software?
+                    </p>
 
-                    <p>Me gustaría proponerle una sesión estratégica de 10 minutos para mostrarle cómo hemos ayudado a otras empresas del rubro a incrementar su <strong>ROI</strong> (<em>Retorno de Inversión</em>) mediante la optimización de sus células de desarrollo.</p>
+                    <!-- Beneficios Clave del Desarrollo a Medida -->
+                    <div class="benefit-box">
+                        <span class="benefit-title">🛠️ Desarrollo 100% Personalizado</span>
+                        <p class="benefit-text">
+                            Diseñamos sistemas que automatizan <strong>sus reglas de negocio</strong> específicas, integrando áreas críticas (Finanzas, Logística, RRHH) sin fricción.
+                        </p>
+                    </div>
 
-                    <div class="cta-container">
-                        <a href="mailto:tuemail@partnertech.pe?subject=Consulta TI: Agencias de Aduanas - {{Nombre_Empresa}}" class="cta-button">
-                            Agendar Reunión de Diagnóstico
+                    <div class="benefit-box" style="border-left-color: #0056b3;">
+                        <span class="benefit-title">🔐 Es su Activo, no un Alquiler</span>
+                        <p class="benefit-text">
+                            A diferencia de las licencias eternas, nosotros <strong>le entregamos el código fuente</strong>. Usted es dueño de su tecnología y de su futuro.
+                        </p>
+                    </div>
+
+                    <p class="text-paragraph">
+                        Si está evaluando desarrollar una solución propia o busca aplicativos listos para implementar, le invito a revisar nuestro portafolio técnico:
+                    </p>
+
+                    <!-- Botones de Descarga -->
+                    <div class="btn-section">
+                        <span class="btn-label">📥 Documentación Técnica Disponible:</span>
+                        
+                        <a href="https://partnertech.pe/brochure-desarrollo" class="btn-primary">
+                            Descargar Brochure de Fábrica
+                            <span class="btn-subtext">Metodología Ágil, Tarifas y Perfiles TI</span>
+                        </a>
+                        
+                        <a href="https://partnertech.pe/catalogo-aplicativos" class="btn-secondary">
+                            Ver Catálogo de Aplicativos
+                            <span class="btn-subtext">Soluciones listas (Gestión Vehicular, ERP)</span>
                         </a>
                     </div>
 
-                    <p>¿Tendría disponibilidad para conversar el próximo martes o miércoles por la mañana?</p>
+                    <!-- Cierre con Firma y Botón de Reunión -->
+                    <div class="closing-box">
+                        <p class="call-action">¿Tiene un cuello de botella operativo que el software actual no resuelve?</p>
+                        
+                        <!-- NUEVO BOTÓN: AGENDAR REUNIÓN -->
+                        <!-- IMPORTANTE: Reemplaza # por tu enlace de Calendly, Google Calendar o similar -->
+                        <a href="#" class="btn-meeting">
+                            📅 Agendar Reunión de 15 min
+                        </a>
 
-                    <p>Atentamente,<br>
-                    <strong>Franco Guerrero</strong><br>
-                    Gerente Comercial | Partner Tech<br>
-                    <img src="cid:Logo_ver1" alt="Partner Tech" width="150" style="display: block; margin-top: 10px; border: 0;"></p>
+                        <p style="color: #666; font-size: 15px; margin-top: 15px;">
+                            Diagnostiquemos si un desarrollo a medida es la inversión correcta para su 2025.
+                        </p>
+                        
+                        <p style="color: #555; margin-top: 25px;">
+                            Atentamente,<br>
+                            <!-- FIRMA INSERTADA -->
+                            <img src="firma_franco.png" alt="Firma Franco" class="signature-img">
+                            <strong>Franco [Apellido]</strong><br>
+                            <span style="font-size: 14px; color: #888;">Gerencia Comercial | Partner Tech</span>
+                        </p>
+                    </div>
                 </td>
             </tr>
 
-            <!-- Pie de Página de Cumplimiento CCL -->
+            <!-- Footer Legal CCL -->
             <tr>
                 <td class="footer">
-                    <p>Este mensaje se envía de acuerdo con los lineamientos del Directorio de Asociados de la <strong>CCL</strong>.</p>
-                    <p>Tratamos sus datos bajo la Ley de Protección de Datos Personales con fines exclusivamente profesionales.</p>
-                    <p>Si desea ser excluido de futuras comunicaciones, por favor responda con el asunto <strong>"REMOVER"</strong>.</p>
+                    <p>Enviado a <strong>{{Email_Destinatario}}</strong> cumpliendo los lineamientos de la <strong>Cámara de Comercio de Lima (CCL)</strong>.</p>
+                    <p>Respetamos su privacidad profesional. <a href="#">Actualizar preferencias</a> o <a href="#">Darse de baja</a>.</p>
+                    <p style="margin-top: 15px; opacity: 0.5;">Partner Tech | Av. Malachowsky 340, San Borja, Lima</p>
                 </td>
             </tr>
         </table>
