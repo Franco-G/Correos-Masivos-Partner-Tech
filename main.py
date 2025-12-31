@@ -6,6 +6,7 @@ import random
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 from email.mime.image import MIMEImage
+from email.utils import formatdate, make_msgid
 import logging
 from email_validator import validate_email, EmailNotValidError
 
@@ -29,7 +30,8 @@ password_email = "Franco001"
 
 def verificar_formato(email):
     try:
-        validate_email(email)
+        # check_deliverability=True verifica que el dominio tenga registros MX (DNS) válidos
+        validate_email(email, check_deliverability=True)
         return True
     except EmailNotValidError:
         return False
@@ -54,11 +56,28 @@ def enviar_correo(nombre, tratamiento, email_destinatario):
         message["Subject"] = f"Invitación de Partner Tech" # Asunto modificado
         message["From"] = sender_email
         message["To"] = email_destinatario
+        message["Date"] = formatdate(localtime=True)
+        message["Message-ID"] = make_msgid(domain="partnertech.pe")
         message["List-Unsubscribe"] = "<mailto:negocios@partnertech.pe?subject=unsubscribe>"
         
         msg_alternative = MIMEMultipart("alternative")
         message.attach(msg_alternative)
         
+        # Versión en texto plano para los filtros de spam
+        text_content = f"""
+Hola {nombre_completo_contacto},
+
+Gracias por tu interés en Partner Tech.
+
+Sabemos que a medida que una empresa crece, el software genérico empieza a quedar chico. Nosotros construimos el software exactamente como su operación lo necesita.
+
+Si desea agendar una reunión, visite: https://cal.com/negocios-partner-tech/requerimientos-software-desarrollo
+
+Atentamente,
+Franco Guerrero
+Partner Tech
+"""
+        msg_alternative.attach(MIMEText(text_content, "plain"))
         msg_alternative.attach(MIMEText(html_content, "html"))
         
         def adjuntar_imagen(nombre_archivo, cid):
@@ -75,8 +94,14 @@ def enviar_correo(nombre, tratamiento, email_destinatario):
         context = ssl.create_default_context()
         with smtplib.SMTP_SSL(smtp_server, smtp_port, context=context) as server:
             server.login(sender_email, password_email)
-            server.sendmail(sender_email, email_destinatario, message.as_string())
+            # sendmail devuelve un diccionario si hay fallos inmediatos
+            errores = server.sendmail(sender_email, email_destinatario, message.as_string())
             
+        if errores:
+            print(f"Advertencia: El servidor rechazó el envío a {email_destinatario}: {errores}")
+            logging.error(f"RECHAZADO POR SERVIDOR: {email_destinatario} - {errores}")
+            return False
+
         print(f"¡Correo enviado exitosamente a {email_destinatario}!")
         logging.info(f"ENVIADO: {email_destinatario}")
         return True
