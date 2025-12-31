@@ -20,6 +20,7 @@ logging.basicConfig(
 # --- CONFIGURACIÓN ---
 # Ajusta el nombre de tu archivo Excel aquí
 archivo_excel = 'Correos.xlsx' 
+archivo_html = 'correo_brochure.html' # Nombre de la plantilla HTML a utilizar
 
 # --- CONFIGURACIÓN CORREO ---
 smtp_server = "mail.partnertech.pe"
@@ -42,7 +43,7 @@ def enviar_correo(nombre, email_destinatario):
     try:
         print(f"Preparando envío de correo a {email_destinatario}...")
         
-        with open('template.html', 'r', encoding='utf-8') as f:
+        with open(archivo_html, 'r', encoding='utf-8') as f:
             html_content = f.read()
             
         # Construir el nombre de contacto completo
@@ -64,6 +65,7 @@ def enviar_correo(nombre, email_destinatario):
         message.attach(msg_alternative)
         
         # Versión en texto plano para los filtros de spam
+        # NOTA: Si cambias el archivo HTML, recuerda actualizar también este texto para que coincida con el mensaje.
         text_content = f"""
 Hola {nombre_completo_contacto},
 
