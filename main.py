@@ -36,7 +36,7 @@ def verificar_formato(email):
     except EmailNotValidError:
         return False
 
-def enviar_correo(nombre, tratamiento, email_destinatario):
+def enviar_correo(nombre, email_destinatario):
 
 
     try:
@@ -46,7 +46,7 @@ def enviar_correo(nombre, tratamiento, email_destinatario):
             html_content = f.read()
             
         # Construir el nombre de contacto completo
-        nombre_completo_contacto = f"{tratamiento} {nombre}" if pd.notna(tratamiento) and tratamiento.strip() else nombre
+        nombre_completo_contacto = nombre
             
         html_content = html_content.replace('{{Nombre_Contacto}}', nombre_completo_contacto)
         # La línea para Nombre_Empresa se eliminará
@@ -118,9 +118,8 @@ def main():
         df = pd.read_excel(archivo_excel)
         
         for index, row in df.iterrows():
-            # Asumimos que las columnas se llaman 'correo', 'nombre', 'tratamiento'
+            # Asumimos que las columnas se llaman 'correo', 'nombre'
             nombre = row['nombre']
-            tratamiento = row['tratamiento']
             email_destinatario = row['correo']
             # La columna 'nombre_empresa' ya no se lee
             
@@ -129,7 +128,7 @@ def main():
                 logging.warning(f"OMITIDO: {email_destinatario} - Formato inválido")
                 continue
             
-            enviar_correo(nombre, tratamiento, email_destinatario) # Se eliminó nombre_empresa
+            enviar_correo(nombre, email_destinatario) # Se eliminó nombre_empresa
             
             # Pausa de entre 30 y 60 segundos entre correos
             time.sleep(random.randint(30, 60))
