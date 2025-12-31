@@ -1,9 +1,20 @@
 import pandas as pd
 import smtplib
 import ssl
+import time
+import random
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 from email.mime.image import MIMEImage
+import logging
+from email_validator import validate_email, EmailNotValidError
+
+# --- CONFIGURACIÓN LOGGING ---
+logging.basicConfig(
+    filename='registro_envios.log',
+    level=logging.INFO,
+    format='%(asctime)s - %(levelname)s - %(message)s'
+)
 
 # --- CONFIGURACIÓN ---
 # Ajusta el nombre de tu archivo Excel aquí
@@ -15,6 +26,13 @@ smtp_port = 465
 sender_email = "fguerrero@partnertech.pe"
 # IMPORTANTE: Coloca aquí la contraseña real de tu correo
 password_email = "Franco001"
+
+def verificar_formato(email):
+    try:
+        validate_email(email)
+        return True
+    except EmailNotValidError:
+        return False
 
 def enviar_correo(nombre, tratamiento, email_destinatario):
 
@@ -36,6 +54,7 @@ def enviar_correo(nombre, tratamiento, email_destinatario):
         message["Subject"] = f"Invitación de Partner Tech" # Asunto modificado
         message["From"] = sender_email
         message["To"] = email_destinatario
+        message["List-Unsubscribe"] = "<mailto:negocios@partnertech.pe?subject=unsubscribe>"
         
         msg_alternative = MIMEMultipart("alternative")
         message.attach(msg_alternative)
@@ -59,14 +78,17 @@ def enviar_correo(nombre, tratamiento, email_destinatario):
             server.sendmail(sender_email, email_destinatario, message.as_string())
             
         print(f"¡Correo enviado exitosamente a {email_destinatario}!")
+        logging.info(f"ENVIADO: {email_destinatario}")
         return True
         
     except Exception as e:
         print(f"Error al enviar el correo a {email_destinatario}: {e}")
+        logging.error(f"FALLO: {email_destinatario} - Error: {e}")
         return False
 
 def main():
     try:
+        logging.info("--- Inicio del proceso de envío masivo ---")
         print(f"Leyendo archivo Excel: {archivo_excel}...")
         df = pd.read_excel(archivo_excel)
         
@@ -77,14 +99,25 @@ def main():
             email_destinatario = row['correo']
             # La columna 'nombre_empresa' ya no se lee
             
+            if not verificar_formato(email_destinatario):
+                print(f"Correo omitido por formato inválido: {email_destinatario}")
+                logging.warning(f"OMITIDO: {email_destinatario} - Formato inválido")
+                continue
+            
             enviar_correo(nombre, tratamiento, email_destinatario) # Se eliminó nombre_empresa
             
+            # Pausa de entre 30 y 60 segundos entre correos
+            time.sleep(random.randint(30, 60))
+            
         print("¡Proceso de envío de correos completado!")
+        logging.info("--- Fin del proceso de envío masivo ---")
 
     except FileNotFoundError:
         print(f"Error: No se encontró el archivo Excel '{archivo_excel}'. Asegúrate de que el archivo existe en la misma carpeta que el script.")
+        logging.critical(f"No se encontró el archivo Excel: {archivo_excel}")
     except Exception as e:
         print(f"Ocurrió un error al procesar el archivo Excel: {e}")
+        logging.critical(f"Error crítico en el proceso: {e}")
 
 if __name__ == "__main__":
     main()
