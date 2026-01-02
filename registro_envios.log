@@ -57,3 +57,26 @@
 2026-01-02 12:06:19,035 - INFO - --- Fin del proceso de envío masivo ---
 2026-01-02 12:21:45,877 - INFO - --- Inicio del proceso de envío masivo ---
 2026-01-02 12:21:47,905 - INFO - ENVIADO: negocios@partnertech.pe
+2026-01-02 12:22:27,632 - INFO - ENVIADO: test-qtkbj0x0k@srv1.mail-tester.com
+2026-01-02 12:23:11,633 - INFO - --- Fin del proceso de envío masivo ---
+2026-01-02 13:40:50,811 - INFO - --- Inicio del proceso de envío masivo ---
+2026-01-02 13:41:50,664 - CRITICAL - Error crítico en el proceso: email must be str or bytes
+2026-01-02 13:42:23,032 - INFO - --- Inicio del proceso de envío masivo ---
+2026-01-02 13:42:57,885 - WARNING - OMITIDO: nan - Valor inválido en Excel
+2026-01-02 13:42:57,885 - INFO - --- Fin del proceso de envío masivo ---
+2026-01-02 13:43:49,979 - INFO - --- Inicio del proceso de envío masivo ---
+2026-01-02 13:44:32,409 - WARNING - OMITIDO: nan - Valor inválido en Excel
+2026-01-02 13:44:32,410 - INFO - --- Fin del proceso de envío masivo ---
+2026-01-02 14:14:15,505 - INFO - --- Inicio del proceso de envío masivo ---
+2026-01-02 14:14:53,586 - WARNING - OMITIDO: nan - Valor inválido en Excel
+2026-01-02 14:14:53,587 - INFO - --- Fin del proceso de envío masivo ---
+2026-01-02 14:16:46,912 - INFO - --- Inicio del proceso de envío masivo ---
+2026-01-02 14:17:20,089 - WARNING - OMITIDO: nan - Valor inválido en Excel
+2026-01-02 14:17:20,089 - INFO - --- Fin del proceso de envío masivo ---
+2026-01-02 14:54:06,730 - INFO - --- Inicio del proceso de envío masivo ---
+2026-01-02 15:08:29,661 - WARNING - OMITIDO: carlos.rubina@corpessa.com.pe - Formato inválido
+2026-01-02 15:08:29,734 - WARNING - OMITIDO: josue.gamarra@corpessa.com.pe - Formato inválido
+2026-01-02 15:16:58,710 - ERROR - FALLO: info@leds1108.pe - Error: {'info@leds1108.pe': (451, b'Temporary local problem - please try later')}
+2026-01-02 15:45:04,404 - WARNING - OMITIDO: administracion@celltronicperu.com - Formato inválido
+2026-01-02 15:45:08,071 - ERROR - FALLO: administracion@sotravelpe.com - Error: {'administracion@sotravelpe.com': (451, b'Temporary local problem - please try later')}
+2026-01-02 16:01:29,689 - INFO - --- Fin del proceso de envío masivo ---

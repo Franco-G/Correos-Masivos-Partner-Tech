@@ -54,7 +54,7 @@ def enviar_correo(nombre, email_destinatario):
         html_content = html_content.replace('{{Email_Destinatario}}', email_destinatario)
         
         message = MIMEMultipart("related")
-        message["Subject"] = f"Invitación de Partner Tech" # Asunto modificado
+        message["Subject"] = f"¿Tu software actual te limita? Hablemos." # Asunto modificado
         message["From"] = sender_email
         message["To"] = email_destinatario
         message["Date"] = formatdate(localtime=True)
@@ -105,7 +105,6 @@ Partner Tech
             return False
 
         print(f"¡Correo enviado exitosamente a {email_destinatario}!")
-        logging.info(f"ENVIADO: {email_destinatario}")
         return True
         
     except Exception as e:
@@ -119,20 +118,32 @@ def main():
         print(f"Leyendo archivo Excel: {archivo_excel}...")
         df = pd.read_excel(archivo_excel)
         
+        log_enviados_file = 'registro_envios.tsv'
+        
         for index, row in df.iterrows():
-            # Asumimos que las columnas se llaman 'correo', 'nombre'
             nombre = row['nombre']
             email_destinatario = row['correo']
-            # La columna 'nombre_empresa' ya no se lee
             
+            # Verificar si el email es un valor válido (no NaN y es string)
+            if pd.isna(email_destinatario) or not isinstance(email_destinatario, str):
+                print(f"Correo omitido por valor inválido en Excel: {email_destinatario}")
+                logging.warning(f"OMITIDO: {email_destinatario} - Valor inválido en Excel")
+                continue
+
             if not verificar_formato(email_destinatario):
                 print(f"Correo omitido por formato inválido: {email_destinatario}")
                 logging.warning(f"OMITIDO: {email_destinatario} - Formato inválido")
                 continue
             
-            enviar_correo(nombre, email_destinatario) # Se eliminó nombre_empresa
+            if enviar_correo(nombre, email_destinatario):
+                try:
+                    with open(log_enviados_file, 'a', encoding='utf-8') as f:
+                        fecha_actual = time.strftime("%Y-%m-%d")
+                        f.write(f"{nombre}	{email_destinatario}	{archivo_html}	{fecha_actual}\n")
+                except Exception as e:
+                    print(f"Error al escribir en el log de envíos exitosos: {e}")
+                    logging.error(f"No se pudo escribir en {log_enviados_file}: {e}")
             
-            # Pausa de entre 30 y 60 segundos entre correos
             time.sleep(random.randint(30, 60))
             
         print("¡Proceso de envío de correos completado!")
