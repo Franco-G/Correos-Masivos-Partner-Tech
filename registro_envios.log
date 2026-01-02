@@ -80,3 +80,9 @@
 2026-01-02 15:45:04,404 - WARNING - OMITIDO: administracion@celltronicperu.com - Formato inválido
 2026-01-02 15:45:08,071 - ERROR - FALLO: administracion@sotravelpe.com - Error: {'administracion@sotravelpe.com': (451, b'Temporary local problem - please try later')}
 2026-01-02 16:01:29,689 - INFO - --- Fin del proceso de envío masivo ---
+2026-01-02 18:27:20,522 - INFO - --- Inicio del proceso de envío masivo ---
+2026-01-02 18:27:53,174 - INFO - --- Fin del proceso de envío masivo ---
+2026-01-02 18:30:54,407 - INFO - --- Inicio del proceso de envío masivo ---
+2026-01-02 18:31:39,725 - INFO - --- Fin del proceso de envío masivo ---
+2026-01-02 18:31:40,736 - INFO - --- Inicio del proceso de envío masivo ---
+2026-01-02 18:32:22,724 - INFO - --- Fin del proceso de envío masivo ---

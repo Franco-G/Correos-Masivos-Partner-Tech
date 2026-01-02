@@ -118,7 +118,7 @@ def main():
         print(f"Leyendo archivo Excel: {archivo_excel}...")
         df = pd.read_excel(archivo_excel)
         
-        log_enviados_file = 'registro_envios.tsv'
+        log_enviados_file = 'registro_envios.csv'
         
         for index, row in df.iterrows():
             nombre = row['nombre']
@@ -139,7 +139,7 @@ def main():
                 try:
                     with open(log_enviados_file, 'a', encoding='utf-8') as f:
                         fecha_actual = time.strftime("%Y-%m-%d")
-                        f.write(f"{nombre}	{email_destinatario}	{archivo_html}	{fecha_actual}\n")
+                        f.write(f"{nombre},{email_destinatario},{archivo_html},{fecha_actual}\n")
                 except Exception as e:
                     print(f"Error al escribir en el log de envíos exitosos: {e}")
                     logging.error(f"No se pudo escribir en {log_enviados_file}: {e}")
