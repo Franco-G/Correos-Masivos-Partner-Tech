@@ -98,3 +98,7 @@
 2026-01-06 12:37:25,784 - WARNING - OMITIDO: contabilidad@southshipping.com - Formato inválido
 2026-01-06 13:08:42,517 - WARNING - OMITIDO: gabrielamanriquesalinas@gmail.ocm - Formato inválido
 2026-01-06 13:15:54,270 - INFO - --- Fin del proceso de envío masivo ---
+2026-01-07 08:39:21,019 - INFO - --- Inicio del proceso de envío masivo ---
+2026-01-07 09:33:44,963 - ERROR - FALLO: bjm@mahecor.com - Error: {'bjm@mahecor.com': (550, b'The mail server could not deliver mail to bjm@mahecor.com.  The account or\ndomain may not exist, they may be blacklisted, or missing the proper dns\nentries.')}
+2026-01-07 09:37:26,724 - WARNING - OMITIDO: gperalta@socpur.com - Formato inválido
+2026-01-07 09:56:08,370 - INFO - --- Fin del proceso de envío masivo ---
