@@ -144,7 +144,7 @@ def main():
                     print(f"Error al escribir en el log de envíos exitosos: {e}")
                     logging.error(f"No se pudo escribir en {log_enviados_file}: {e}")
             
-            time.sleep(random.randint(30, 60))
+            time.sleep(random.randint(60, 65)) # Espera entre 60 y 65 segundos para evitar filtros de spam
             
         print("¡Proceso de envío de correos completado!")
         logging.info("--- Fin del proceso de envío masivo ---")
