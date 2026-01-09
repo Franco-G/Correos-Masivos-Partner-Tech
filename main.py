@@ -54,7 +54,7 @@ def enviar_correo(nombre, email_destinatario):
         html_content = html_content.replace('{{Email_Destinatario}}', email_destinatario)
         
         message = MIMEMultipart("related")
-        message["Subject"] = f"¿Tu software actual te limita? Hablemos." # Asunto modificado
+        message["Subject"] = f"{nombre}, ¿tu software actual te limita? Hablemos." # Asunto modificado
         message["From"] = sender_email
         message["To"] = email_destinatario
         message["Date"] = formatdate(localtime=True)
