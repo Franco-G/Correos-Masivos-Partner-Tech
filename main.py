@@ -39,7 +39,6 @@ def verificar_formato(email):
 
 def enviar_correo(nombre, email_destinatario):
 
-
     try:
         print(f"Preparando envío de correo a {email_destinatario}...")
         
