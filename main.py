@@ -342,7 +342,7 @@ class CorreoApp:
             {"tipo": "BENEFICIO", "titulo": "🛠️ Desarrollo 100% Personalizado", "contenido": "Diseñamos sistemas que automatizan <strong>tus reglas de negocio</strong> específicas, integrando áreas críticas (Finanzas, Logística, RRHH) sin fricción.", "color": "#00c853"},
             {"tipo": "BENEFICIO", "titulo": "🔐 Es tu Activo, no un Alquiler", "contenido": "A diferencia de las licencias eternas, nosotros <strong>te entregamos el código fuente</strong>. Tú eres dueño de tu tecnología y de tu futuro.", "color": "#0056b3"},
             {"tipo": "PARRAFO", "contenido": "Si estás evaluando desarrollar una solución propia o buscas aplicativos listos para implementar, te invito a revisar nuestro portafolio:"},
-            {"tipo": "BTN_VERDE", "texto": "Descargar Brochure", "url": "https://drive.google.com/file/d/1bDlvyO8tNbv_yf_QzIZumZ-de6caU-Ey/view?usp=sharing"},
+            {"tipo": "BTN_VERDE", "texto": "Descargar Brochure", "subtexto": "Desarrollo de Software Estratégico", "url": "https://drive.google.com/file/d/1bDlvyO8tNbv_yf_QzIZumZ-de6caU-Ey/view?usp=sharing"},
             {"tipo": "PARRAFO", "contenido": "¿Tienes un cuello de botella operativo que el software actual no resuelve?"},
             {"tipo": "BTN_AZUL", "texto": "📅 Agendar Reunión de 15 min", "url": "https://cal.com/negocios-partner-tech/requerimientos-software-desarrollo"},
             {"tipo": "PARRAFO", "contenido": "Diagnostiquemos si un desarrollo a medida es la inversión correcta para tu año 2026."}
@@ -407,17 +407,22 @@ class CorreoApp:
         ttk.Label(self.frame_propiedades, text=f"Editando Bloque {idx+1}", font=("Segoe UI", 10, "bold")).pack(anchor="w", pady=(0,10))
         
         if bloque["tipo"] in ["TITULO", "PARRAFO", "SALUDO"]:
+            self.crear_toolbar_texto(self.frame_propiedades)
+            
             ttk.Label(self.frame_propiedades, text="Contenido:").pack(anchor="w")
             txt = tk.Text(self.frame_propiedades, height=10, width=30, font=("Segoe UI", 10))
-            txt.insert("1.0", bloque["contenido"])
+            self.configurar_tags_texto(txt)
+            self.insertar_html_en_texto(txt, bloque["contenido"])
             txt.pack(fill="both", expand=True, pady=5)
             # Guardar cambios al soltar tecla
-            txt.bind("<KeyRelease>", lambda e: self.actualizar_bloque_texto_delayed(idx, txt.get("1.0", "end-1c")))
+            txt.bind("<KeyRelease>", lambda e: self.actualizar_bloque_texto_rich(idx, txt))
             
+            self.toolbar_btn_bold.configure(command=lambda: self.toggle_negrilla(txt))
+
             # Botón helper para variable
             ttk.Button(self.frame_propiedades, text="Insertar {{Nombre_Contacto}}", 
-                       command=lambda: [txt.insert(tk.INSERT, "{{Nombre_Contacto}}"), self.actualizar_bloque_texto_delayed(idx, txt.get("1.0", "end-1c"), force=True)]
-                      ).pack(fill="x")
+                        command=lambda: [txt.insert(tk.INSERT, "{{Nombre_Contacto}}"), self.actualizar_bloque_texto_rich(idx, txt, force=True)]
+                        ).pack(fill="x")
 
         elif bloque["tipo"] in ["BTN_VERDE", "BTN_AZUL"]:
             ttk.Label(self.frame_propiedades, text="Texto del Botón:").pack(anchor="w")
@@ -430,6 +435,12 @@ class CorreoApp:
             entry_url.pack(fill="x", pady=5)
             entry_url.bind("<KeyRelease>", lambda e: self.actualizar_bloque_btn_delayed(idx, "url", var_url.get()))
 
+            ttk.Label(self.frame_propiedades, text="Subtexto (Opcional):").pack(anchor="w", pady=(10,0))
+            var_sub = tk.StringVar(value=bloque.get("subtexto", ""))
+            entry_sub = ttk.Entry(self.frame_propiedades, textvariable=var_sub)
+            entry_sub.pack(fill="x", pady=5)
+            entry_sub.bind("<KeyRelease>", lambda e: self.actualizar_bloque_btn_delayed(idx, "subtexto", var_sub.get()))
+
         elif bloque["tipo"] == "BENEFICIO":
             ttk.Label(self.frame_propiedades, text="Título:").pack(anchor="w")
             var_titulo = tk.StringVar(value=bloque["titulo"])
@@ -438,16 +449,88 @@ class CorreoApp:
             entry_titulo.bind("<KeyRelease>", lambda e: self.actualizar_bloque_btn_delayed(idx, "titulo", var_titulo.get()))
 
             ttk.Label(self.frame_propiedades, text="Contenido:").pack(anchor="w", pady=(10,0))
+            self.crear_toolbar_texto(self.frame_propiedades)
+            
             txt = tk.Text(self.frame_propiedades, height=5, width=30, font=("Segoe UI", 10))
-            txt.insert("1.0", bloque["contenido"])
+            self.configurar_tags_texto(txt)
+            self.insertar_html_en_texto(txt, bloque["contenido"])
             txt.pack(fill="both", expand=True, pady=5)
-            txt.bind("<KeyRelease>", lambda e: self.actualizar_bloque_texto_delayed(idx, txt.get("1.0", "end-1c")))
+            txt.bind("<KeyRelease>", lambda e: self.actualizar_bloque_texto_rich(idx, txt))
+            self.toolbar_btn_bold.configure(command=lambda: self.toggle_negrilla(txt))
 
             ttk.Label(self.frame_propiedades, text="Color Borde (Hex):").pack(anchor="w", pady=(10,0))
             var_color = tk.StringVar(value=bloque.get("color", "#00c853"))
             entry_color = ttk.Entry(self.frame_propiedades, textvariable=var_color)
             entry_color.pack(fill="x", pady=5)
             entry_color.bind("<KeyRelease>", lambda e: self.actualizar_bloque_btn_delayed(idx, "color", var_color.get()))
+
+    # --- MÉTODOS RICH TEXT ---
+    def crear_toolbar_texto(self, parent):
+        frame_tools = ttk.Frame(parent)
+        frame_tools.pack(fill="x", pady=(0, 2))
+        self.toolbar_btn_bold = ttk.Button(frame_tools, text="𝗕", width=3, style="Tool.TButton")
+        self.toolbar_btn_bold.pack(side="left")
+
+    def configurar_tags_texto(self, text_widget):
+        text_widget.tag_configure("bold", font=("Segoe UI", 10, "bold"))
+
+    def toggle_negrilla(self, text_widget):
+        try:
+            current_tags = text_widget.tag_names("sel.first")
+            if "bold" in current_tags:
+                text_widget.tag_remove("bold", "sel.first", "sel.last")
+            else:
+                text_widget.tag_add("bold", "sel.first", "sel.last")
+            # Disparar actualización
+            self.actualizar_bloque_texto_rich(None, text_widget) # idx se maneja en el bind original, esto es click manual
+        except tk.TclError:
+            pass # No selection
+
+    def insertar_html_en_texto(self, text_widget, html_content):
+        # Convertir <strong>...</strong> a tags de tkinter
+        parts = html_content.split("<strong>")
+        for i, part in enumerate(parts):
+            if "</strong>" in part:
+                bold_text, normal_text = part.split("</strong>", 1)
+                text_widget.insert(tk.END, bold_text, "bold")
+                text_widget.insert(tk.END, normal_text)
+            else:
+                text_widget.insert(tk.END, part)
+
+    def extraer_html_de_texto(self, text_widget):
+        content = text_widget.get("1.0", "end-1c")
+        # Esta es una implementación simplificada. 
+        # Para hacerlo robusto iteramos rangos:
+        html_out = ""
+        index = "1.0"
+        while True:
+            next_bold = text_widget.tag_nextrange("bold", index)
+            if not next_bold:
+                html_out += text_widget.get(index, "end-1c")
+                break
+            
+            start, end = next_bold
+            if text_widget.compare(start, ">", index):
+                html_out += text_widget.get(index, start)
+            
+            html_out += "<strong>" + text_widget.get(start, end) + "</strong>"
+            index = end
+            
+        return html_out
+
+    def actualizar_bloque_texto_rich(self, idx, text_widget, force=False):
+        # Si viene de toggle_negrilla, idx puede ser None, necesitamos recuperar el idx activo
+        if idx is None:
+            sel = self.listbox_bloques.curselection()
+            if not sel: return
+            idx = sel[0]
+            
+        contenido = self.extraer_html_de_texto(text_widget)
+        self.bloques[idx]["contenido"] = contenido
+        if force:
+            self.actualizar_preview_visual()
+        else:
+            self.programar_actualizacion()
 
     def actualizar_bloque_texto_delayed(self, idx, contenido, force=False):
         self.bloques[idx]["contenido"] = contenido
@@ -620,9 +703,11 @@ class CorreoApp:
                 texto = b["contenido"].replace("\n", "<br>")
                 html += f'                    <p class="text-paragraph">{texto}</p>\n'
             elif b["tipo"] == "BTN_VERDE":
-                html += f'                    <a href="{b["url"]}" class="btn-primary" style="background-color: #00c853; color: #ffffff !important; display: block; width: 100%; max-width: 380px; margin: 0 auto 15px auto; padding: 14px 30px; text-decoration: none; border-radius: 50px; font-weight: 700; font-size: 16px; text-align: center; font-family: \'Poppins\', sans-serif; box-shadow: 0 4px 12px rgba(0, 200, 83, 0.3);"><span style="color: #ffffff;">{b["texto"]}</span></a>\n'
+                sub = f'<span class="btn-subtext" style="font-size: 12px; font-weight: 400; opacity: 0.95; display: block; margin-top: 3px; font-family: \'Poppins\', sans-serif;">{b.get("subtexto", "")}</span>' if b.get("subtexto") else ""
+                html += f'                    <a href="{b["url"]}" class="btn-primary" style="background-color: #00c853; color: #ffffff !important; display: block; width: 100%; max-width: 380px; margin: 0 auto 15px auto; padding: 14px 30px; text-decoration: none; border-radius: 50px; font-weight: 700; font-size: 16px; text-align: center; font-family: \'Poppins\', sans-serif; box-shadow: 0 4px 12px rgba(0, 200, 83, 0.3);"><span style="color: #ffffff;">{b["texto"]}</span>{sub}</a>\n'
             elif b["tipo"] == "BTN_AZUL":
-                html += f'                    <a href="{b["url"]}" class="btn-meeting" style="background-color: #0056b3; color: #ffffff !important; display: block; width: 100%; max-width: 380px; margin: 0 auto 15px auto; padding: 14px 30px; text-decoration: none; border-radius: 50px; font-weight: 700; font-size: 15px; text-align: center; font-family: \'Poppins\', sans-serif; box-shadow: 0 4px 12px rgba(0, 86, 179, 0.3);"><span style="color: #ffffff;">{b["texto"]}</span></a>\n'
+                sub = f'<span class="btn-subtext" style="font-size: 12px; font-weight: 400; opacity: 0.95; display: block; margin-top: 3px; font-family: \'Poppins\', sans-serif;">{b.get("subtexto", "")}</span>' if b.get("subtexto") else ""
+                html += f'                    <a href="{b["url"]}" class="btn-meeting" style="background-color: #0056b3; color: #ffffff !important; display: block; width: 100%; max-width: 380px; margin: 0 auto 15px auto; padding: 14px 30px; text-decoration: none; border-radius: 50px; font-weight: 700; font-size: 15px; text-align: center; font-family: \'Poppins\', sans-serif; box-shadow: 0 4px 12px rgba(0, 86, 179, 0.3);"><span style="color: #ffffff;">{b["texto"]}</span>{sub}</a>\n'
             elif b["tipo"] == "BENEFICIO":
                 color = b.get("color", "#00c853")
                 html += f'''                    <div class="benefit-box" style="border-left-color: {color};">
