@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Innovación a su Medida - Partner Tech</title>
+    <!-- Usamos fuentes web seguras pero declaramos Google Fonts para clientes compatibles -->
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;700&family=Poppins:wght@400;700&display=swap"
+        rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #f4f6f9;
+            font-family: 'Poppins', Helvetica, Arial, sans-serif;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .wrapper {
+            width: 100%;
+            table-layout: fixed;
+            background-color: #f4f6f9;
+            padding-bottom: 40px;
+        }
+
+        /* CONTENEDOR PRINCIPAL */
+        .main-table {
+            background-color: #ffffff;
+            margin: 0 auto;
+            width: 100%;
+            max-width: 600px;
+            border-spacing: 0;
+            color: #666;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06);
+            /* Border radius solo en clientes modernos */
+            border-radius: 16px;
+            overflow: hidden;
+        }
+
+        /* CUERPO */
+        .body-td {
+            padding: 40px 35px;
+        }
+
+        h2 {
+            font-family: 'Orbitron', sans-serif;
+            color: #0021a4;
+            font-size: 20px;
+            margin-top: 0;
+        }
+
+        p {
+            font-size: 16px;
+            line-height: 1.7;
+            margin-bottom: 20px;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .greeting {
+            font-size: 20px;
+            font-weight: 700;
+            color: #2c3e50;
+            margin-bottom: 20px;
+            font-family: 'Orbitron', sans-serif;
+        }
+
+        /* CARD DESTACADA */
+        .cta-card {
+            background-color: #f0f7ff;
+            border-left: 4px solid #1e53dd;
+            padding: 20px;
+            margin: 25px 0;
+            border-radius: 0 4px 4px 0;
+        }
+
+        /* BOTÓN CTA PRINCIPAL */
+        .btn-main {
+            background-color: #0056b3;
+            color: #ffffff !important;
+            display: block;
+            text-align: center;
+            text-decoration: none;
+            padding: 16px 0;
+            border-radius: 50px;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 700;
+            font-size: 16px;
+            max-width: 380px;
+            margin: 30px auto;
+            box-shadow: 0 4px 12px rgba(0, 86, 179, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .btn-main:hover {
+            background-color: #004494;
+            transform: translateY(-2px);
+        }
+
+        /* FOOTER */
+        .footer-td {
+            background-color: #2d3748;
+            padding: 30px 30px;
+            text-align: center;
+            font-size: 13px;
+            color: #555555;
+            line-height: 1.6;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .footer-td a {
+            color: #cbd5e0;
+            text-decoration: none;
+            border-bottom: 1px dotted #cbd5e0;
+        }
+
+        .footer-logo {
+            max-width: 160px;
+            margin: 0 auto 20px;
+            display: block;
+        }
+    </style>
+</head>
+
+<body>
+    <center class="wrapper">
+        <table class="main-table" width="100%" cellpadding="0" cellspacing="0">
+            <!-- Contenido -->
+            <tr>
+                <td class="body-td">
+                    <p class="greeting">Hola {{Nombre_Contacto}},</p>
+
+                    <p>
+                        Te saluda Franco Guerrero, de Partner Tech. En un mercado competitivo, el software que usa su
+                        empresa no
+                        debería ser solo una herramienta
+                        administrativa, sino una <strong>ventaja competitiva</strong>.
+                    </p>
+
+                    <div class="cta-card">
+                        <p style="margin:0; font-weight:600; color:#0021a4;">
+                            "No adapte su empresa al software. Construya software adaptado a su empresa."
+                        </p>
+                    </div>
+
+                    <p>
+                        En <strong>Partner Tech</strong>, nos especializamos en crear ecosistemas digitales a medida que
+                        eliminan ineficiencias y preparan su operación para escalar sin límites.
+                    </p>
+
+                    <a href="https://cal.com/negocios-partner-tech/requerimientos-software-desarrollo" class="btn-main">
+                        AGENDAR CONSULTORÍA GRATUITA
+                    </a>
+
+                    <p style="text-align: center; font-size: 13px; color: #888;">
+                        O si lo prefiere, <a
+                            href="https://drive.google.com/file/d/1bDlvyO8tNbv_yf_QzIZumZ-de6caU-Ey/view?usp=sharing"
+                            style="color: #1e53dd; font-weight: 600;">descargue nuestro brochure corporativo aquí</a>
+                        para conocer nuestros casos de éxito.
+                    </p>
+                    <div
+                        style="text-align: center; margin-top: 35px; padding-top: 25px; border-top: 1px dashed #dce5f2;">
+                        <p style="color: #555; margin-top: 25px;">
+                            Saludos,<br><strong>Franco E. Guerrero</strong><br>
+                            <a href="mailto:fguerrero@partnertech.pe"
+                                style="color: #0056b3; text-decoration: none;">fguerrero@partnertech.pe</a><br>
+                            <span style="font-size: 14px; color: #888;">Sub-Gerencia Comercial | Partner Tech</span>
+                        </p>
+                    </div>
+                </td>
+            </tr>
+
+            <!-- Footer -->
+            <tr>
+                <td class="footer-td">
+                    <img src="cid:Logo_ver1" alt="Partner Tech Logo" class="footer-logo">
+                    <p>Enviado a <strong>{{Email_Destinatario}}</strong> cumpliendo los lineamientos de la
+                        <strong>Cámara de Comercio de Lima (CCL)</strong>.
+                    </p>
+                    <p>Respetamos su privacidad profesional. Si no desea recibir más correos, <a
+                            href="mailto:negocios@partnertech.pe?subject=Remover">haga clic aquí para darse de baja</a>.
+                    </p>
+                    <p style="margin-top: 15px;">RUC 20523799623 | Partnertech.pe | Av. Malachowsky 340, San Borja, Lima
+                    </p>
+                </td>
+            </tr>
+        </table>
+    </center>
+</body>
+
+</html>
