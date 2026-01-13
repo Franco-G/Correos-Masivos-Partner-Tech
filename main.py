@@ -45,11 +45,26 @@ class CorreoApp:
         self.contador_var = tk.StringVar(value="Cargando destinatarios...")
         self.enviando = False
         
-        # Variables de Remitente (Valores por defecto)
+        # Perfiles de Envío
+        self.perfiles = {
+            "Franco Guerrero": {
+                "email": "fguerrero@partnertech.pe",
+                "pass": "Franco001",
+                "cargo": "Sub-Gerente Comercial"
+            },
+            "Alexandra Cardozo": {
+                "email": "acardozo@partnertech.pe",
+                "pass": "acardozo001",
+                "cargo": "Gerente Comercial"
+            }
+        }
+        
+        # Variables de Remitente (Inicializar con el primero)
+        self.perfil_seleccionado = tk.StringVar(value="Franco Guerrero")
         self.nombre_remitente_var = tk.StringVar(value="Franco Guerrero")
-        self.cargo_remitente_var = tk.StringVar(value="Sub-Gerencia Comercial")
-        self.email_remitente_var = tk.StringVar(value="fguerrero@partnertech.pe")
-        self.pass_remitente_var = tk.StringVar(value="Franco001")
+        self.cargo_remitente_var = tk.StringVar(value=self.perfiles["Franco Guerrero"]["cargo"])
+        self.email_remitente_var = tk.StringVar(value=self.perfiles["Franco Guerrero"]["email"])
+        self.pass_remitente_var = tk.StringVar(value=self.perfiles["Franco Guerrero"]["pass"])
         self.asunto_var = tk.StringVar()
 
         # --- UI LAYOUT ---
@@ -71,20 +86,16 @@ class CorreoApp:
         frame_config.pack(fill="x", pady=(0, 10))
 
         # --- SECCIÓN REMITENTE ---
-        frame_remitente = ttk.LabelFrame(frame_config, text="👤 Datos del Remitente", padding=10)
+        frame_remitente = ttk.LabelFrame(frame_config, text="👤 Seleccionar Remitente", padding=10)
         frame_remitente.grid(row=0, column=0, columnspan=2, sticky="ew", pady=(0, 15))
         
-        ttk.Label(frame_remitente, text="Nombre:").grid(row=0, column=0, sticky="w", pady=2)
-        ttk.Entry(frame_remitente, textvariable=self.nombre_remitente_var, width=30).grid(row=0, column=1, sticky="e", pady=2)
+        self.combo_perfil = ttk.Combobox(frame_remitente, textvariable=self.perfil_seleccionado, values=list(self.perfiles.keys()), state="readonly", width=35)
+        self.combo_perfil.pack(fill="x", pady=5)
+        self.combo_perfil.bind("<<ComboboxSelected>>", self.cargar_perfil)
         
-        ttk.Label(frame_remitente, text="Cargo:").grid(row=1, column=0, sticky="w", pady=2)
-        ttk.Entry(frame_remitente, textvariable=self.cargo_remitente_var, width=30).grid(row=1, column=1, sticky="e", pady=2)
-        
-        ttk.Label(frame_remitente, text="Email:").grid(row=2, column=0, sticky="w", pady=2)
-        ttk.Entry(frame_remitente, textvariable=self.email_remitente_var, width=30).grid(row=2, column=1, sticky="e", pady=2)
-
-        ttk.Label(frame_remitente, text="Pass:").grid(row=3, column=0, sticky="w", pady=2)
-        ttk.Entry(frame_remitente, textvariable=self.pass_remitente_var, show="*", width=30).grid(row=3, column=1, sticky="e", pady=2)
+        # Etiquetas informativas (solo lectura)
+        self.lbl_info_remitente = ttk.Label(frame_remitente, text=f"{self.email_remitente_var.get()} | {self.cargo_remitente_var.get()}", font=("Segoe UI", 8), foreground="#666")
+        self.lbl_info_remitente.pack(fill="x")
 
         # --- SECCIÓN ENVÍO ---
         ttk.Label(frame_config, text="Plantilla:", style="Bold.TLabel").grid(row=1, column=0, sticky="w")
@@ -94,11 +105,11 @@ class CorreoApp:
 
         ttk.Label(frame_config, text="Asunto:", style="Bold.TLabel").grid(row=2, column=0, sticky="w")
         opciones_asunto = [
-            "¿Tu software actual te limita? Hablemos.",
-            "Optimiza tus procesos operativos con Partner Tech",
-            "Una pregunta breve sobre tu operación",
-            "Propuesta de desarrollo a medida para tu empresa",
-            "Hola {{Nombre_Contacto}}, una idea para tu gestión"
+            "{{Nombre_Remitente}}: ¿Tu software actual te limita?",
+            "Optimiza tus procesos - {{Nombre_Remitente}} (Partner Tech)",
+            "{{Nombre_Remitente}}: Una pregunta breve sobre tu operación",
+            "Propuesta de desarrollo a medida de {{Nombre_Remitente}}",
+            "Hola {{Nombre_Contacto}}, soy {{Nombre_Remitente}} de Partner Tech"
         ]
         self.combo_asunto = ttk.Combobox(frame_config, textvariable=self.asunto_var, values=opciones_asunto, width=35)
         self.combo_asunto.grid(row=2, column=1, padx=10, pady=5, sticky="ew")
@@ -175,6 +186,19 @@ class CorreoApp:
             self.combo_plantillas['values'] = ["No se encontraron HTMLs"]
             self.btn_iniciar.config(state="disabled")
 
+    def cargar_perfil(self, event=None):
+        nombre = self.perfil_seleccionado.get()
+        if nombre in self.perfiles:
+            datos = self.perfiles[nombre]
+            self.nombre_remitente_var.set(nombre)
+            self.email_remitente_var.set(datos["email"])
+            self.pass_remitente_var.set(datos["pass"])
+            self.cargo_remitente_var.set(datos["cargo"])
+            
+            # Actualizar label info
+            self.lbl_info_remitente.config(text=f"{datos['email']} | {datos['cargo']}")
+            self.actualizar_preview()
+
     def contar_destinatarios(self):
         try:
             if os.path.exists(archivo_excel):
@@ -234,7 +258,8 @@ class CorreoApp:
                                        .replace('{{Cargo_Remitente}}', remitente_cargo)
             
             message = MIMEMultipart("related")
-            message["Subject"] = asunto_template.replace('{{Nombre_Contacto}}', nombre)
+            message["Subject"] = asunto_template.replace('{{Nombre_Contacto}}', nombre)\
+                                                .replace('{{Nombre_Remitente}}', remitente_nombre)
             message["From"] = remitente_email
             message["To"] = email_destinatario
             message["Date"] = formatdate(localtime=True)
