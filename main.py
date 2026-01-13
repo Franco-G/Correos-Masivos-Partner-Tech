@@ -527,9 +527,9 @@ class CorreoApp:
                 texto = b["contenido"].replace("\n", "<br>")
                 html += f'                    <p class="text-paragraph">{texto}</p>\n'
             elif b["tipo"] == "BTN_VERDE":
-                html += f'                    <a href="{b["url"]}" class="btn-primary">{b["texto"]}</a>\n'
+                html += f'                    <a href="{b["url"]}" class="btn-primary" style="background-color: #00c853; color: #ffffff !important; display: block; width: 100%; max-width: 380px; margin: 0 auto 15px auto; padding: 14px 30px; text-decoration: none; border-radius: 50px; font-weight: 700; font-size: 16px; text-align: center; font-family: \'Poppins\', sans-serif; box-shadow: 0 4px 12px rgba(0, 200, 83, 0.3);"><span style="color: #ffffff;">{b["texto"]}</span></a>\n'
             elif b["tipo"] == "BTN_AZUL":
-                html += f'                    <a href="{b["url"]}" class="btn-meeting">{b["texto"]}</a>\n'
+                html += f'                    <a href="{b["url"]}" class="btn-meeting" style="background-color: #0056b3; color: #ffffff !important; display: block; width: 100%; max-width: 380px; margin: 0 auto 15px auto; padding: 14px 30px; text-decoration: none; border-radius: 50px; font-weight: 700; font-size: 15px; text-align: center; font-family: \'Poppins\', sans-serif; box-shadow: 0 4px 12px rgba(0, 86, 179, 0.3);"><span style="color: #ffffff;">{b["texto"]}</span></a>\n'
 
         # Cierre Fijo (Firma + Footer)
         html += """
