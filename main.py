@@ -287,6 +287,9 @@ class CorreoApp:
         btn_add_btn_azul = ttk.Button(frame_left, text="🟦 Botón Reunión", command=lambda: self.agregar_bloque("BTN_AZUL"))
         btn_add_btn_azul.pack(fill="x", pady=2)
         
+        btn_add_beneficio = ttk.Button(frame_left, text="⭐ Beneficio", command=lambda: self.agregar_bloque("BENEFICIO"))
+        btn_add_beneficio.pack(fill="x", pady=2)
+        
         ttk.Separator(frame_left, orient="horizontal").pack(fill="x", pady=10)
         
         # Lista de Bloques Actuales
@@ -325,7 +328,27 @@ class CorreoApp:
         self.editor_preview.pack(fill="both", expand=True)
         
         # Inicializar con un saludo por defecto
-        self.agregar_bloque("SALUDO", inicial=True)
+        # Inicializar con contenido por defecto (Brochure)
+        self.cargar_contenido_por_defecto()
+
+    def cargar_contenido_por_defecto(self):
+        # Recrear la estructura de correo_brochure.html
+        self.bloques = [
+            {"tipo": "SALUDO", "contenido": "Hola {{Nombre_Contacto}},"},
+            {"tipo": "PARRAFO", "contenido": "Te saluda {{Nombre_Remitente}}, de Partner Tech. He identificado tu contacto en el Directorio CCL.\nSabemos que a medida que una empresa crece, el software genérico (\"enlatado\") empieza a quedar chico: procesos lentos, datos desconectados y manuales operativos interminables."},
+            {"tipo": "PARRAFO", "contenido": "En <strong>Partner Tech</strong>, no te pedimos que adaptes tu negocio al software. <span class=\"highlight\">Nosotros construimos el software exactamente como tu operación lo necesita.</span>"},
+            {"tipo": "PARRAFO", "contenido": "Nuestra metodología se basa en un análisis profundo de tus flujos de trabajo actuales para identificar cuellos de botella y oportunidades de automatización, garantizando un retorno de inversión medible desde la primera fase de implementación."},
+            {"tipo": "PARRAFO", "contenido": "¿Por qué elegir nuestra Fábrica de Software?"},
+            {"tipo": "BENEFICIO", "titulo": "🛠️ Desarrollo 100% Personalizado", "contenido": "Diseñamos sistemas que automatizan <strong>tus reglas de negocio</strong> específicas, integrando áreas críticas (Finanzas, Logística, RRHH) sin fricción.", "color": "#00c853"},
+            {"tipo": "BENEFICIO", "titulo": "🔐 Es tu Activo, no un Alquiler", "contenido": "A diferencia de las licencias eternas, nosotros <strong>te entregamos el código fuente</strong>. Tú eres dueño de tu tecnología y de tu futuro.", "color": "#0056b3"},
+            {"tipo": "PARRAFO", "contenido": "Si estás evaluando desarrollar una solución propia o buscas aplicativos listos para implementar, te invito a revisar nuestro portafolio:"},
+            {"tipo": "BTN_VERDE", "texto": "Descargar Brochure", "url": "https://drive.google.com/file/d/1bDlvyO8tNbv_yf_QzIZumZ-de6caU-Ey/view?usp=sharing"},
+            {"tipo": "PARRAFO", "contenido": "¿Tienes un cuello de botella operativo que el software actual no resuelve?"},
+            {"tipo": "BTN_AZUL", "texto": "📅 Agendar Reunión de 15 min", "url": "https://cal.com/negocios-partner-tech/requerimientos-software-desarrollo"},
+            {"tipo": "PARRAFO", "contenido": "Diagnostiquemos si un desarrollo a medida es la inversión correcta para tu año 2026."}
+        ]
+        self.actualizar_lista_bloques()
+        self.programar_actualizacion()
 
     def agregar_bloque(self, tipo, inicial=False):
         bloque = {"tipo": tipo}
@@ -342,6 +365,10 @@ class CorreoApp:
             bloque["url"] = "https://cal.com/..."
         elif tipo == "SALUDO":
             bloque["contenido"] = "Hola {{Nombre_Contacto}},"
+        elif tipo == "BENEFICIO":
+            bloque["titulo"] = "Título del Beneficio"
+            bloque["contenido"] = "Descripción del beneficio..."
+            bloque["color"] = "#00c853"
             
         self.bloques.append(bloque)
         self.actualizar_lista_bloques()
@@ -359,9 +386,10 @@ class CorreoApp:
             elif b["tipo"] == "BTN_VERDE": icon = "🟩 "
             elif b["tipo"] == "BTN_AZUL": icon = "🟦 "
             elif b["tipo"] == "SALUDO": icon = "👋 "
+            elif b["tipo"] == "BENEFICIO": icon = "⭐ "
             else: icon = "?  "
             
-            texto = b.get("contenido", b.get("texto", ""))
+            texto = b.get("contenido", b.get("texto", b.get("titulo", "")))
             if len(texto) > 25: texto = texto[:25] + "..."
             self.listbox_bloques.insert(tk.END, f"{i+1}. {icon} {texto}")
 
@@ -398,11 +426,28 @@ class CorreoApp:
             entry_texto.pack(fill="x", pady=5)
             entry_texto.bind("<KeyRelease>", lambda e: self.actualizar_bloque_btn_delayed(idx, "texto", var_texto.get()))
             
-            ttk.Label(self.frame_propiedades, text="Enlace (URL):").pack(anchor="w", pady=(10,0))
-            var_url = tk.StringVar(value=bloque["url"])
             entry_url = ttk.Entry(self.frame_propiedades, textvariable=var_url)
             entry_url.pack(fill="x", pady=5)
             entry_url.bind("<KeyRelease>", lambda e: self.actualizar_bloque_btn_delayed(idx, "url", var_url.get()))
+
+        elif bloque["tipo"] == "BENEFICIO":
+            ttk.Label(self.frame_propiedades, text="Título:").pack(anchor="w")
+            var_titulo = tk.StringVar(value=bloque["titulo"])
+            entry_titulo = ttk.Entry(self.frame_propiedades, textvariable=var_titulo)
+            entry_titulo.pack(fill="x", pady=5)
+            entry_titulo.bind("<KeyRelease>", lambda e: self.actualizar_bloque_btn_delayed(idx, "titulo", var_titulo.get()))
+
+            ttk.Label(self.frame_propiedades, text="Contenido:").pack(anchor="w", pady=(10,0))
+            txt = tk.Text(self.frame_propiedades, height=5, width=30, font=("Segoe UI", 10))
+            txt.insert("1.0", bloque["contenido"])
+            txt.pack(fill="both", expand=True, pady=5)
+            txt.bind("<KeyRelease>", lambda e: self.actualizar_bloque_texto_delayed(idx, txt.get("1.0", "end-1c")))
+
+            ttk.Label(self.frame_propiedades, text="Color Borde (Hex):").pack(anchor="w", pady=(10,0))
+            var_color = tk.StringVar(value=bloque.get("color", "#00c853"))
+            entry_color = ttk.Entry(self.frame_propiedades, textvariable=var_color)
+            entry_color.pack(fill="x", pady=5)
+            entry_color.bind("<KeyRelease>", lambda e: self.actualizar_bloque_btn_delayed(idx, "color", var_color.get()))
 
     def actualizar_bloque_texto_delayed(self, idx, contenido, force=False):
         self.bloques[idx]["contenido"] = contenido
@@ -448,7 +493,7 @@ class CorreoApp:
     def limpiar_editor(self):
         if messagebox.askyesno("Confirmar", "¿Borrar todo el contenido actual?"):
             self.bloques = []
-            self.agregar_bloque("SALUDO", inicial=True)
+            self.cargar_contenido_por_defecto()
 
     def generar_html_final(self):
         # Base HTML (Header y Estilos)
@@ -508,6 +553,54 @@ class CorreoApp:
         .footer { background-color: #2d3748; padding: 30px; text-align: center; font-size: 13px; color: #555; }
         .footer-logo { max-height: 80px; width: auto; margin: 10px auto 0; display: block; }
         .footer a { color: #cbd5e0; text-decoration: none; border-bottom: 1px dotted #cbd5e0; }
+
+        /* NUEVOS ESTILOS BROCHURE */
+        .highlight { color: #0056b3; font-weight: 700; }
+        
+        .benefit-box {
+            background-color: #ffffff;
+            border: 1px solid #e2e8f0;
+            border-left: 5px solid #00c853;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
+        }
+        .benefit-title {
+            color: #2c3e50;
+            font-size: 16px;
+            font-weight: 700;
+            display: block;
+            margin-bottom: 5px;
+            font-family: 'Orbitron', sans-serif;
+        }
+        .benefit-text {
+            font-size: 14px;
+            line-height: 1.5;
+            color: #718096;
+            margin: 0;
+            font-family: 'Poppins', sans-serif;
+        }
+        .btn-section {
+            background-color: #f8fafc;
+            border-radius: 12px;
+            padding: 30px 20px;
+            margin: 30px 0;
+            text-align: center;
+            border: 1px solid #edf2f7;
+        }
+        .btn-label {
+            display: block; font-size: 14px; color: #555; margin-bottom: 15px;
+            font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px;
+        }
+        .btn-subtext {
+            font-size: 12px; font-weight: 400; opacity: 0.95; display: block;
+            margin-top: 3px; font-family: 'Poppins', sans-serif;
+        }
+        .call-action {
+            font-size: 17px; color: #0056b3; font-weight: 700;
+            margin-bottom: 10px; font-family: 'Orbitron', sans-serif;
+        }
     </style>
 </head>
 <body>
@@ -530,6 +623,12 @@ class CorreoApp:
                 html += f'                    <a href="{b["url"]}" class="btn-primary" style="background-color: #00c853; color: #ffffff !important; display: block; width: 100%; max-width: 380px; margin: 0 auto 15px auto; padding: 14px 30px; text-decoration: none; border-radius: 50px; font-weight: 700; font-size: 16px; text-align: center; font-family: \'Poppins\', sans-serif; box-shadow: 0 4px 12px rgba(0, 200, 83, 0.3);"><span style="color: #ffffff;">{b["texto"]}</span></a>\n'
             elif b["tipo"] == "BTN_AZUL":
                 html += f'                    <a href="{b["url"]}" class="btn-meeting" style="background-color: #0056b3; color: #ffffff !important; display: block; width: 100%; max-width: 380px; margin: 0 auto 15px auto; padding: 14px 30px; text-decoration: none; border-radius: 50px; font-weight: 700; font-size: 15px; text-align: center; font-family: \'Poppins\', sans-serif; box-shadow: 0 4px 12px rgba(0, 86, 179, 0.3);"><span style="color: #ffffff;">{b["texto"]}</span></a>\n'
+            elif b["tipo"] == "BENEFICIO":
+                color = b.get("color", "#00c853")
+                html += f'''                    <div class="benefit-box" style="border-left-color: {color};">
+                        <span class="benefit-title">{b["titulo"]}</span>
+                        <p class="benefit-text">{b["contenido"]}</p>
+                    </div>\n'''
 
         # Cierre Fijo (Firma + Footer)
         html += """
