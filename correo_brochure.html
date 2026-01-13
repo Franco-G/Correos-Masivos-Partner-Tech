@@ -145,22 +145,7 @@
             font-family: 'Poppins', sans-serif;
         }
 
-        .btn-secondary {
-            background-color: #ffffff;
-            color: #0056b3 !important;
-            display: block;
-            width: 100%;
-            max-width: 380px;
-            margin: 0 auto;
-            padding: 14px 0;
-            text-decoration: none;
-            border: 2px solid #e2e8f0;
-            border-radius: 50px;
-            font-weight: 600;
-            font-size: 15px;
-            transition: all 0.3s ease;
-            font-family: 'Poppins', sans-serif;
-        }
+
 
         /* NUEVO BOTÓN PARA REUNIÓN */
         .btn-meeting {
@@ -185,10 +170,7 @@
             transform: translateY(-2px);
         }
 
-        .btn-secondary:hover {
-            border-color: #0056b3;
-            background-color: #f0f7ff;
-        }
+
 
         .btn-meeting:hover {
             background-color: #004494;
@@ -240,8 +222,9 @@
         }
 
         .footer-logo {
-            max-width: 160px;
-            margin: 0 auto 20px;
+            max-height: 80px;
+            width: auto;
+            margin: 10px auto 0;
             display: block;
         }
 
@@ -269,19 +252,20 @@
                     <p class="greeting">Hola {{Nombre_Contacto}},</p>
 
                     <p class="text-paragraph">
-                        Te saluda Franco Guerrero, de Partner Tech. He identificado su contacto en el Directorio CCL.
+                        Te saluda {{Nombre_Remitente}}, de Partner Tech. He identificado tu contacto en el Directorio
+                        CCL.
                         Sabemos que a medida que una empresa crece, el software genérico ("enlatado") empieza a quedar
                         chico: procesos lentos, datos desconectados y manuales operativos interminables.
                     </p>
 
                     <p class="text-paragraph">
-                        En <strong>Partner Tech</strong>, no le pedimos que adapte su negocio al software. <span
-                            class="highlight">Nosotros construimos el software exactamente como su operación lo
+                        En <strong>Partner Tech</strong>, no te pedimos que adaptes tu negocio al software. <span
+                            class="highlight">Nosotros construimos el software exactamente como tu operación lo
                             necesita.</span>
                     </p>
 
                     <p class="text-paragraph">
-                        Nuestra metodología se basa en un análisis profundo de sus flujos de trabajo actuales para
+                        Nuestra metodología se basa en un análisis profundo de tus flujos de trabajo actuales para
                         identificar cuellos de botella y oportunidades de automatización, garantizando un retorno de
                         inversión medible desde la primera fase de implementación.
                     </p>
@@ -294,22 +278,22 @@
                     <div class="benefit-box">
                         <span class="benefit-title">🛠️ Desarrollo 100% Personalizado</span>
                         <p class="benefit-text">
-                            Diseñamos sistemas que automatizan <strong>sus reglas de negocio</strong> específicas,
+                            Diseñamos sistemas que automatizan <strong>tus reglas de negocio</strong> específicas,
                             integrando áreas críticas (Finanzas, Logística, RRHH) sin fricción.
                         </p>
                     </div>
 
                     <div class="benefit-box" style="border-left-color: #0056b3;">
-                        <span class="benefit-title">🔐 Es su Activo, no un Alquiler</span>
+                        <span class="benefit-title">🔐 Es tu Activo, no un Alquiler</span>
                         <p class="benefit-text">
-                            A diferencia de las licencias eternas, nosotros <strong>le entregamos el código
-                                fuente</strong>. Usted es dueño de su tecnología y de su futuro.
+                            A diferencia de las licencias eternas, nosotros <strong>te entregamos el código
+                                fuente</strong>. Tú eres dueño de tu tecnología y de tu futuro.
                         </p>
                     </div>
 
                     <p class="text-paragraph">
-                        Si está evaluando desarrollar una solución propia o busca aplicativos listos para implementar,
-                        le invito a revisar nuestro portafolio:
+                        Si estás evaluando desarrollar una solución propia o buscas aplicativos listos para implementar,
+                        te invito a revisar nuestro portafolio:
                     </p>
 
                     <!-- Botones de Descarga -->
@@ -325,7 +309,8 @@
                     </div>
                     <!-- Cierre con Firma y Botón de Reunión -->
                     <div class="closing-box">
-                        <p class="call-action">¿Tiene un cuello de botella operativo que el software actual no resuelve?
+                        <p class="call-action">¿Tienes un cuello de botella operativo que el software actual no
+                            resuelve?
                         </p>
 
                         <!-- NUEVO BOTÓN: AGENDAR REUNIÓN -->
@@ -335,32 +320,32 @@
                             <span style="color: #ffffff;">📅 Agendar Reunión de 15 min</span>
                         </a>
                         <p style="font-size: 10px; color: #777; margin-top: 15px;">
-                            También puedes enviarnos un correo directamente a <a href="mailto:fguerrero@partnertech.pe"
+                            También puedes enviarnos un correo directamente a <a href="mailto:{{Email_Remitente}}"
                                 style="color: #0056b3; text-decoration: none;">negocios@partnertech.pe</a>
                         </p>
 
                         <p style="color: #666; font-size: 15px; margin-top: 15px;">
-                            Diagnostiquemos si un desarrollo a medida es la inversión correcta para su año 2026.
+                            Diagnostiquemos si un desarrollo a medida es la inversión correcta para tu año 2026.
                         </p>
 
-                        <p style="color: #555; margin-top: 25px;">
-                            Saludos,<br><strong>Franco E. Guerrero</strong><br>
-                            <a href="mailto:fguerrero@partnertech.pe"
-                                style="color: #0056b3; text-decoration: none;">fguerrero@partnertech.pe</a><br>
-                            <span style="font-size: 14px; color: #888;">Sub-Gerencia Comercial | Partner Tech</span>
+                        <p style="color: #555; margin-top: 15px; margin-bottom: 10px;">
+                            Saludos,<br><strong>{{Nombre_Remitente}}</strong><br>
+                            <a href="mailto:{{Email_Remitente}}"
+                                style="color: #0056b3; text-decoration: none;">{{Email_Remitente}}</a><br>
+                            <span style="font-size: 14px; color: #888;">{{Cargo_Remitente}} | Partner Tech</span>
                         </p>
+                        <img src="cid:Logo_ver1" alt="Partner Tech Logo" class="footer-logo">
                     </div>
                 </td>
             </tr>
 
             <!-- Footer Legal CCL -->
             <tr>
-                <td class="footer">
-                    <img src="cid:Logo_ver1" alt="Partner Tech Logo" class="footer-logo">
+                <td class="footer" style="padding-top: 5px;">
                     <p>Enviado a <strong>{{Email_Destinatario}}</strong> cumpliendo los lineamientos de la
                         <strong>Cámara de Comercio de Lima (CCL)</strong>.
                     </p>
-                    <p>Respetamos su privacidad profesional. Si no desea recibir más correos, <a
+                    <p>Respetamos tu privacidad profesional. Si no deseas recibir más correos, <a
                             href="mailto:negocios@partnertech.pe?subject=Remover">haga clic aquí para darse de baja</a>.
                     </p>
                     <p style="margin-top: 15px;">RUC 20523799623 | Partnertech.pe | Av. Malachowsky 340, San Borja, Lima

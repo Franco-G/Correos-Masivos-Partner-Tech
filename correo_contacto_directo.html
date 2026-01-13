@@ -4,26 +4,30 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Reunión Breve - Partner Tech</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <title>Contacto Directo - Franco Guerrero</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;700&family=Poppins:wght@400;700&display=swap"
+        rel="stylesheet">
     <style>
         body {
             margin: 0;
             padding: 0;
             font-family: 'Poppins', sans-serif;
             background-color: #f4f7f6;
-            color: #333;
+            color: #555555;
+            -webkit-font-smoothing: antialiased;
         }
 
         .wrapper {
             width: 100%;
-            padding: 40px 0;
+            table-layout: fixed;
             background-color: #f4f7f6;
+            padding: 40px 0;
         }
 
-        .container {
+        .main-container {
             background-color: #ffffff;
             margin: 0 auto;
+            width: 100%;
             max-width: 600px;
             border-radius: 16px;
             overflow: hidden;
@@ -42,7 +46,7 @@
             font-family: 'Orbitron', sans-serif;
         }
 
-        .text {
+        .text-paragraph {
             font-size: 16px;
             line-height: 1.7;
             color: #666;
@@ -50,44 +54,16 @@
             font-family: 'Poppins', sans-serif;
         }
 
-        /* CIERRE */
+        .highlight {
+            color: #0056b3;
+            font-weight: 700;
+        }
+
         .closing-box {
             text-align: center;
             margin-top: 35px;
             padding-top: 25px;
             border-top: 1px dashed #dce5f2;
-        }
-
-        .btn-meeting {
-            background-color: #0056b3;
-            color: #ffffff !important;
-            display: block;
-            width: 100%;
-            max-width: 380px;
-            margin: 0 auto 15px auto;
-            padding: 14px 30px;
-            text-decoration: none;
-            border-radius: 50px;
-            font-weight: 700;
-            font-size: 15px;
-            box-shadow: 0 4px 12px rgba(0, 86, 179, 0.3);
-            transition: all 0.3s ease;
-            font-family: 'Poppins', sans-serif;
-            text-align: center;
-        }
-
-        .btn-meeting:hover {
-            background-color: #004494;
-            transform: translateY(-2px);
-        }
-
-        .btn-subtext {
-            font-size: 12px;
-            font-weight: 400;
-            opacity: 0.95;
-            display: block;
-            margin-top: 3px;
-            font-family: 'Poppins', sans-serif;
         }
 
         .footer {
@@ -117,24 +93,31 @@
 
 <body>
     <center class="wrapper">
-        <table class="container" width="100%" cellpadding="0" cellspacing="0">
+        <table class="main-container" width="100%" cellpadding="0" cellspacing="0">
             <tr>
                 <td class="content">
                     <p class="greeting">Hola {{Nombre_Contacto}},</p>
-                    <p class="text">
-                        Te saluda {{Nombre_Remitente}}, de Partner Tech. Te escribo brevemente porque ayudo a empresas a
-                        dejar de
-                        depender de software genérico que limita tu crecimiento.
-                        <br><br>
-                        En Partner Tech desarrollamos soluciones a medida que se adaptan 100% a tu operación, no al
-                        revés. Me gustaría tener una charla rápida de 10 minutos para ver si podemos optimizar tus
-                        procesos.
+
+                    <p class="text-paragraph">
+                        Te saluda {{Nombre_Remitente}}. Te escribo de forma directa porque me gustaría saber cómo están
+                        manejando actualmente tus procesos internos y si sientes que hay alguna etapa de tu operación
+                        que podría ser más fluida.
                     </p>
 
-                    <a href="https://cal.com/negocios-partner-tech/requerimientos-software-desarrollo"
-                        class="btn-meeting">
-                        <span style="color: #ffffff;">📅 Agendar Reunión de 15 min</span>
-                    </a>
+                    <p class="text-paragraph">
+                        A veces, un pequeño ajuste tecnológico o una automatización puntual puede liberar horas de
+                        trabajo y eliminar fricciones que a veces pasan desapercibidas.
+                    </p>
+
+                    <p class="text-paragraph">
+                        ¿Te parece si conversamos <span class="highlight">10 o 15 minutos</span> esta semana? No es una
+                        presentación comercial, solo me interesa conocer tus retos actuales y ver si mi experiencia
+                        puede darte alguna idea útil.
+                    </p>
+
+                    <p class="text-paragraph">
+                        Quedo atento a tu respuesta para coordinar.
+                    </p>
 
                     <div class="closing-box">
                         <p style="color: #555; margin-top: 15px; margin-bottom: 10px;">

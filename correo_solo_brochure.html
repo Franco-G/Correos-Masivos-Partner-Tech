@@ -45,23 +45,36 @@
             font-family: 'Orbitron', sans-serif;
         }
 
-        .btn-download {
+        .btn-primary {
             background-color: #00c853;
-            color: white !important;
-            padding: 16px 40px;
+            color: #ffffff !important;
+            display: block;
+            width: 100%;
+            max-width: 380px;
+            margin: 0 auto 15px auto;
+            padding: 16px 0;
             text-decoration: none;
             border-radius: 50px;
             font-weight: 700;
             font-size: 16px;
-            display: inline-block;
             box-shadow: 0 4px 12px rgba(0, 200, 83, 0.3);
             transition: all 0.3s ease;
             font-family: 'Poppins', sans-serif;
+            text-align: center;
         }
 
-        .btn-download:hover {
+        .btn-primary:hover {
             background-color: #00b34a;
             transform: translateY(-2px);
+        }
+
+        .btn-subtext {
+            font-size: 12px;
+            font-weight: 400;
+            opacity: 0.95;
+            display: block;
+            margin-top: 3px;
+            font-family: 'Poppins', sans-serif;
         }
 
         /* CIERRE */
@@ -89,8 +102,9 @@
         }
 
         .footer-logo {
-            max-width: 160px;
-            margin: 0 auto 20px;
+            max-height: 80px;
+            width: auto;
+            margin: 10px auto 0;
             display: block;
         }
     </style>
@@ -103,33 +117,37 @@
                 <p class="greeting">Hola {{Nombre_Contacto}},</p>
                 <p
                     style="font-size: 16px; color: #555; margin-bottom: 30px; text-align: left; line-height: 1.7; font-family: 'Poppins', sans-serif;">
-                    Te saluda Franco Guerrero, de Partner Tech. Adjunto encontrarás el brochure con los detalles de
+                    Te saluda {{Nombre_Remitente}}, de Partner Tech. Adjunto encontrarás el brochure con los detalles de
                     nuestra
                     <strong>Fábrica de Software</strong> y
-                    cómo podemos potenciar su operación.
+                    cómo podemos potenciar tu operación.
                 </p>
 
                 <a href="https://drive.google.com/file/d/1bDlvyO8tNbv_yf_QzIZumZ-de6caU-Ey/view?usp=sharing"
-                    class="btn-download">
-                    📥 Descargar Brochure PDF
+                    class="btn-primary">
+                    <span style="color: #ffffff;">Descargar Brochure</span>
+                    <span class="btn-subtext" style="color: #ffffff;">Desarrollo de Software Estratégico</span>
                 </a>
 
                 <div class="closing-box">
-                    <p style="color: #555; margin-top: 25px; text-align: center;">
-                        Saludos,<br><strong>Franco E. Guerrero</strong><br>
-                        <a href="mailto:fguerrero@partnertech.pe"
-                            style="color: #0056b3; text-decoration: none;">fguerrero@partnertech.pe</a><br>
-                        <span style="font-size: 14px; color: #888;">Sub-Gerencia Comercial | Partner Tech</span>
+                    <p style="color: #555; margin-top: 15px; margin-bottom: 10px; text-align: center;">
+                        Saludos,<br><strong>{{Nombre_Remitente}}</strong><br>
+                        <a href="mailto:{{Email_Remitente}}"
+                            style="color: #0056b3; text-decoration: none;">{{Email_Remitente}}</a><br>
+                        <span style="font-size: 14px; color: #888;">{{Cargo_Remitente}} | Partner Tech</span>
                     </p>
+                    <img src="cid:Logo_ver1" alt="Partner Tech Logo" class="footer-logo">
                 </div>
             </div>
-            <div class="footer">
-                <img src="cid:Logo_ver1" alt="Partner Tech Logo" class="footer-logo">
-                <p>Enviado a <strong>{{Email_Destinatario}}</strong> cumpliendo los lineamientos de la <strong>Cámara de
-                        Comercio de Lima (CCL)</strong>.</p>
-                <p>Respetamos su privacidad profesional. Si no desea recibir más correos, <a
-                        href="mailto:negocios@partnertech.pe?subject=Remover">haga clic aquí para darse de baja</a>.</p>
-                <p style="margin-top: 15px;">RUC 20523799623 | Partnertech.pe | Av. Malachowsky 340, San Borja, Lima</p>
+            <div class="footer" style="padding-top: 5px;">
+                <p>Enviado a <strong>{{Email_Destinatario}}</strong> cumpliendo los lineamientos de la
+                    <strong>Cámara de Comercio de Lima (CCL)</strong>.
+                </p>
+                <p>Respetamos tu privacidad profesional. Si no deseas recibir más correos, <a
+                        href="mailto:negocios@partnertech.pe?subject=Remover">haga clic aquí para darse de baja</a>.
+                </p>
+                <p style="margin-top: 15px;">RUC 20523799623 | Partnertech.pe | Av. Malachowsky 340, San Borja, Lima
+                </p>
             </div>
         </div>
     </div>
