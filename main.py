@@ -260,6 +260,7 @@ class CorreoApp:
     def construir_tab_editor(self):
         # Variables del Constructor
         self.bloques = [] # Lista de dicts {type, content, url, etc}
+        self.timer_preview = None # Variable para debounce
         
         # LAYOUT: 3 COLUMNAS (Bloques, Propiedades, Preview)
         paned = ttk.PanedWindow(self.tab_editor, orient="horizontal")
@@ -348,7 +349,7 @@ class CorreoApp:
             self.listbox_bloques.selection_clear(0, tk.END)
             self.listbox_bloques.selection_set(tk.END)
             self.seleccionar_bloque()
-        self.actualizar_preview_visual()
+        self.programar_actualizacion()
 
     def actualizar_lista_bloques(self):
         self.listbox_bloques.delete(0, tk.END)
@@ -383,11 +384,11 @@ class CorreoApp:
             txt.insert("1.0", bloque["contenido"])
             txt.pack(fill="both", expand=True, pady=5)
             # Guardar cambios al soltar tecla
-            txt.bind("<KeyRelease>", lambda e: self.actualizar_bloque_texto(idx, txt.get("1.0", "end-1c")))
+            txt.bind("<KeyRelease>", lambda e: self.actualizar_bloque_texto_delayed(idx, txt.get("1.0", "end-1c")))
             
             # Botón helper para variable
             ttk.Button(self.frame_propiedades, text="Insertar {{Nombre_Contacto}}", 
-                       command=lambda: [txt.insert(tk.INSERT, "{{Nombre_Contacto}}"), self.actualizar_bloque_texto(idx, txt.get("1.0", "end-1c"))]
+                       command=lambda: [txt.insert(tk.INSERT, "{{Nombre_Contacto}}"), self.actualizar_bloque_texto_delayed(idx, txt.get("1.0", "end-1c"), force=True)]
                       ).pack(fill="x")
 
         elif bloque["tipo"] in ["BTN_VERDE", "BTN_AZUL"]:
@@ -395,23 +396,30 @@ class CorreoApp:
             var_texto = tk.StringVar(value=bloque["texto"])
             entry_texto = ttk.Entry(self.frame_propiedades, textvariable=var_texto)
             entry_texto.pack(fill="x", pady=5)
-            entry_texto.bind("<KeyRelease>", lambda e: self.actualizar_bloque_btn(idx, "texto", var_texto.get()))
+            entry_texto.bind("<KeyRelease>", lambda e: self.actualizar_bloque_btn_delayed(idx, "texto", var_texto.get()))
             
             ttk.Label(self.frame_propiedades, text="Enlace (URL):").pack(anchor="w", pady=(10,0))
             var_url = tk.StringVar(value=bloque["url"])
             entry_url = ttk.Entry(self.frame_propiedades, textvariable=var_url)
             entry_url.pack(fill="x", pady=5)
-            entry_url.bind("<KeyRelease>", lambda e: self.actualizar_bloque_btn(idx, "url", var_url.get()))
+            entry_url.bind("<KeyRelease>", lambda e: self.actualizar_bloque_btn_delayed(idx, "url", var_url.get()))
 
-    def actualizar_bloque_texto(self, idx, contenido):
+    def actualizar_bloque_texto_delayed(self, idx, contenido, force=False):
         self.bloques[idx]["contenido"] = contenido
-        self.actualizar_preview_visual()
-        # No actualizamos lista completa para no perder foco, o solo el item
+        if force:
+            self.actualizar_preview_visual()
+        else:
+            self.programar_actualizacion()
         
-    def actualizar_bloque_btn(self, idx, clave, valor):
+    def actualizar_bloque_btn_delayed(self, idx, clave, valor):
         self.bloques[idx][clave] = valor
-        self.actualizar_preview_visual()
-        self.actualizar_lista_bloques() # Para ver el cambio titulo
+        self.actualizar_lista_bloques() # Título cambia inmediato
+        self.programar_actualizacion()
+
+    def programar_actualizacion(self):
+        if self.timer_preview:
+            self.root.after_cancel(self.timer_preview)
+        self.timer_preview = self.root.after(800, self.actualizar_preview_visual)
 
     def mover_bloque(self, direccion):
         sel = self.listbox_bloques.curselection()
@@ -458,9 +466,44 @@ class CorreoApp:
         .greeting { font-size: 20px; color: #2c3e50; font-weight: 700; margin-bottom: 20px; font-family: 'Orbitron', sans-serif; }
         .text-paragraph { font-size: 16px; line-height: 1.7; color: #666; margin-bottom: 25px; }
         
-        .btn-primary { background-color: #00c853; color: #ffffff !important; display: block; width: 100%; max-width: 380px; margin: 0 auto 15px auto; padding: 16px 0; text-decoration: none; border-radius: 50px; font-weight: 700; font-size: 16px; text-align: center; font-family: 'Poppins', sans-serif; box-shadow: 0 4px 12px rgba(0, 200, 83, 0.3); }
-        .btn-meeting { background-color: #0056b3; color: #ffffff !important; display: block; width: 100%; max-width: 380px; margin: 0 auto 25px auto; padding: 16px 0; text-decoration: none; border-radius: 50px; font-weight: 700; font-size: 16px; text-align: center; font-family: 'Poppins', sans-serif; box-shadow: 0 4px 12px rgba(0, 86, 179, 0.3); }
+        .btn-primary { 
+            background-color: #00c853; 
+            color: #ffffff !important; 
+            display: block; 
+            width: 100%; 
+            max-width: 380px; 
+            margin: 0 auto 15px auto; 
+            padding: 14px 30px; 
+            text-decoration: none; 
+            border-radius: 50px; 
+            font-weight: 700; 
+            font-size: 16px; 
+            text-align: center; 
+            font-family: 'Poppins', sans-serif; 
+            box-shadow: 0 4px 12px rgba(0, 200, 83, 0.3); 
+            transition: all 0.3s ease; 
+        }
+        .btn-meeting { 
+            background-color: #0056b3; 
+            color: #ffffff !important; 
+            display: block; 
+            width: 100%; 
+            max-width: 380px; 
+            margin: 0 auto 15px auto; 
+            padding: 14px 30px; 
+            text-decoration: none; 
+            border-radius: 50px; 
+            font-weight: 700; 
+            font-size: 15px; 
+            text-align: center; 
+            font-family: 'Poppins', sans-serif; 
+            box-shadow: 0 4px 12px rgba(0, 86, 179, 0.3); 
+            transition: all 0.3s ease; 
+        }
         
+        .btn-primary:hover { background-color: #00b34a; transform: translateY(-2px); }
+        .btn-meeting:hover { background-color: #004494; transform: translateY(-2px); }
+
         .closing-box { text-align: center; margin-top: 35px; padding-top: 25px; border-top: 1px dashed #dce5f2; }
         .footer { background-color: #2d3748; padding: 30px; text-align: center; font-size: 13px; color: #555; }
         .footer-logo { max-height: 80px; width: auto; margin: 10px auto 0; display: block; }
