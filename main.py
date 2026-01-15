@@ -15,6 +15,17 @@ from email.utils import formatdate, make_msgid
 import logging
 from email_validator import validate_email, EmailNotValidError
 from tkinterweb import HtmlFrame
+import sys
+
+# --- FUNCIÓN PARA MANEJAR RUTAS EN PYINSTALLER ---
+def resource_path(relative_path):
+    """ Obtiene la ruta absoluta al recurso, funciona para desarrollo y para PyInstaller """
+    try:
+        # PyInstaller crea una carpeta temporal y guarda la ruta en _MEIPASS
+        base_path = sys._MEIPASS
+    except Exception:
+        base_path = os.path.abspath(".")
+    return os.path.join(base_path, relative_path)
 
 # --- CONFIGURACIÓN LOGGING ---
 logging.basicConfig(
@@ -24,7 +35,7 @@ logging.basicConfig(
 )
 
 # --- CONFIGURACIÓN ---
-archivo_excel = 'Correos.xlsx'
+archivo_excel = resource_path('Correos.xlsx')
 smtp_server = "mail.partnertech.pe"
 smtp_port = 465
 sender_email = "fguerrero@partnertech.pe"
@@ -191,10 +202,13 @@ class CorreoApp:
         getattr(logging, nivel.lower())(mensaje)
 
     def cargar_plantillas(self):
-        archivos = glob.glob("*.html")
+        # Usamos resource_path para encontrar los HTMLs dentro del .exe
+        ruta_busqueda = resource_path("*.html")
+        archivos = glob.glob(ruta_busqueda)
         if archivos:
-            self.combo_plantillas['values'] = archivos
-            self.combo_plantillas.current(0)
+            # Mostramos solo el nombre del archivo, no la ruta completa
+            self.combo_plantillas['values'] = [os.path.basename(f) for f in archivos]
+            self.plantilla_var.set(os.path.basename(archivos[0])) # Usar la variable para setear
             self.actualizar_preview()
         else:
             self.combo_plantillas['values'] = ["No se encontraron HTMLs"]
@@ -228,11 +242,14 @@ class CorreoApp:
             return 0
 
     def actualizar_preview(self, event=None):
-        archivo = self.plantilla_var.get()
-        if not archivo or not os.path.exists(archivo): return
+        archivo_nombre = self.plantilla_var.get()
+        if not archivo_nombre: return
+        
+        archivo_path = resource_path(archivo_nombre)
+        if not os.path.exists(archivo_path): return
         
         try:
-            with open(archivo, 'r', encoding='utf-8') as f:
+            with open(archivo_path, 'r', encoding='utf-8') as f:
                 content = f.read()
             
             # Cargar HTML en el visor real y reemplazar placeholders con datos de ejemplo del remitente
@@ -754,9 +771,13 @@ class CorreoApp:
             messagebox.showinfo("Guardado", "Plantilla guardada correctamente.")
             self.cargar_plantillas()
 
-    def enviar_correo(self, nombre, email_destinatario, archivo_html):
+    def enviar_correo(self, nombre, email_destinatario, archivo_html_nombre):
         try:
-            with open(archivo_html, 'r', encoding='utf-8') as f:
+            # Obtener la ruta completa de la plantilla y el logo
+            archivo_html_path = resource_path(archivo_html_nombre)
+            logo_path = resource_path('Logo_blanco_ver1.png')
+
+            with open(archivo_html_path, 'r', encoding='utf-8') as f:
                 html_content = f.read()
             
             # Datos del Remitente desde UI
@@ -790,11 +811,12 @@ class CorreoApp:
             msg_alternative.attach(MIMEText(html_content, "html"))
             
             try:
-                with open('Logo_blanco_ver1.png', 'rb') as f:
+                with open(logo_path, 'rb') as f:
                     img = MIMEImage(f.read())
                     img.add_header('Content-ID', '<Logo_ver1>')
                     message.attach(img)
-            except: pass
+            except Exception as e:
+                self.log_msg(f"No se pudo adjuntar el logo: {e}", "WARNING")
             
             context = ssl.create_default_context()
             with smtplib.SMTP_SSL(smtp_server, smtp_port, context=context) as server:
@@ -811,7 +833,7 @@ class CorreoApp:
         threading.Thread(target=self.proceso_envio, daemon=True).start()
 
     def proceso_envio(self):
-        archivo_html = self.plantilla_var.get()
+        archivo_html_nombre = self.plantilla_var.get() # <-- Solo el nombre del archivo
         log_csv = 'registro_envios.csv'
         
         try:
@@ -830,11 +852,11 @@ class CorreoApp:
                     self.log_msg(f"Omitido (Formato): {correo}", "WARNING")
                     continue
                 
-                exito = self.enviar_correo(nombre, correo, archivo_html)
+                exito = self.enviar_correo(nombre, correo, archivo_html_nombre) # Pasamos solo el nombre
                 estado = "Enviado" if exito else "Fallido"
                 
                 with open(log_csv, 'a', encoding='utf-8') as f:
-                    f.write(f'"{nombre}","{correo}","{archivo_html}","{time.strftime("%Y-%m-%d %H:%M:%S")}","{estado}"\n')
+                    f.write(f'"{nombre}","{correo}","{archivo_html_nombre}","{time.strftime("%Y-%m-%d %H:%M:%S")}","{estado}"\n')
                 
                 # Loguear siempre el resultado
                 resultado_msg = f"OK: {correo}" if exito else f"FALLÓ: {correo}"
