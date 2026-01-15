@@ -2,6 +2,7 @@ import pandas as pd
 import smtplib
 import ssl
 import time
+import random
 import glob
 import os
 import threading
@@ -41,7 +42,6 @@ class CorreoApp:
 
         # Variables de control
         self.plantilla_var = tk.StringVar()
-        self.espera_var = tk.IntVar(value=65)
         self.contador_var = tk.StringVar(value="Cargando destinatarios...")
         self.enviando = False
         
@@ -146,13 +146,8 @@ class CorreoApp:
         ttk.Label(frame_config, text="Destinatarios:", style="Bold.TLabel").grid(row=3, column=0, sticky="w")
         ttk.Label(frame_config, textvariable=self.contador_var).grid(row=3, column=1, padx=10, pady=5, sticky="w")
 
-        ttk.Label(frame_config, text="Espera (seg):", style="Bold.TLabel").grid(row=4, column=0, sticky="w")
-        self.scale_espera = tk.Scale(frame_config, from_=0, to=90, orient="horizontal", variable=self.espera_var, 
-                                     bg="#f4f6f9", highlightthickness=0, troughcolor="#e2e8f0", activebackground="#1e53dd")
-        self.scale_espera.grid(row=4, column=1, padx=10, pady=5, sticky="ew")
-
         self.btn_iniciar = ttk.Button(frame_config, text="🚀 INICIAR ENVÍO", command=self.iniciar_envio_thread, style="Action.TButton")
-        self.btn_iniciar.grid(row=5, column=0, columnspan=2, pady=(15, 0), sticky="ew")
+        self.btn_iniciar.grid(row=4, column=0, columnspan=2, pady=(15, 0), sticky="ew")
 
         # Logs
         frame_logs = ttk.LabelFrame(left_col, text="📝 Registro de Actividad", padding=10)
@@ -811,15 +806,6 @@ class CorreoApp:
             return False
 
     def iniciar_envio_thread(self):
-        num_correos = self.contar_destinatarios()
-        espera_actual = self.espera_var.get()
-
-        if num_correos > 100 and espera_actual < 60:
-            messagebox.showwarning("Seguridad Anti-Spam", 
-                                   f"Has seleccionado {num_correos} destinatarios (>100).\nPor seguridad, el tiempo de espera debe ser al menos 60 segundos.\n\nSe ha ajustado automáticamente.")
-            self.espera_var.set(60)
-            return
-
         self.btn_iniciar.config(state="disabled")
         self.enviando = True
         threading.Thread(target=self.proceso_envio, daemon=True).start()
@@ -827,7 +813,6 @@ class CorreoApp:
     def proceso_envio(self):
         archivo_html = self.plantilla_var.get()
         log_csv = 'registro_envios.csv'
-        espera = self.espera_var.get()
         
         try:
             self.log_msg("--- INICIANDO ENVÍO MASIVO ---")
@@ -856,8 +841,14 @@ class CorreoApp:
                 self.log_msg(resultado_msg)
                 
                 if idx + 1 < total:
-                    self.log_msg(f"Esperando {espera}s...")
-                    time.sleep(espera)
+                    # Lógica de pausas
+                    if (idx + 1) % 50 == 0:
+                        self.log_msg(f"Pausa de lote (5 min) al llegar a {idx+1} correos...")
+                        time.sleep(300) # 5 minutos
+                    else:
+                        tiempo_espera = random.uniform(10, 15)
+                        self.log_msg(f"Esperando {tiempo_espera:.2f}s...")
+                        time.sleep(tiempo_espera)
             
             self.log_msg("--- PROCESO FINALIZADO ---")
             messagebox.showinfo("Completado", "El envío masivo ha terminado.")
