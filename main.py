@@ -36,7 +36,6 @@ logging.basicConfig(
 )
 
 # --- CONFIGURACIÓN ---
-archivo_excel = resource_path('Correos.xlsx')
 smtp_server = "mail.partnertech.pe"
 smtp_port = 465
 sender_email = "fguerrero@partnertech.pe"
@@ -46,6 +45,7 @@ class CorreoApp:
     def __init__(self, root):
         self.root = root
         self.root.title("Partner Tech | Gestor de Envío Masivo")
+        self.root.state('zoomed')
         self.root.geometry("1100x700")
         
         # Configurar Estilos
@@ -54,8 +54,9 @@ class CorreoApp:
 
         # Variables de control
         self.plantilla_var = tk.StringVar()
-        self.contador_var = tk.StringVar(value="Cargando destinatarios...")
+        self.contador_var = tk.StringVar(value="Ningún archivo seleccionado")
         self.enviando = False
+        self.archivo_excel_seleccionado = None
         
         # Perfiles de Envío
         self.perfiles = {
@@ -112,38 +113,37 @@ class CorreoApp:
         self.contar_destinatarios()
 
     def construir_tab_envio(self):
-        # Contenedor Horizontal (2 Columnas)
-        container = ttk.Frame(self.tab_envio, padding=10)
-        container.pack(fill="both", expand=True)
-        
-        # COLUMNA IZQUIERDA: Configuración y Logs
-        left_col = ttk.Frame(container, width=400)
-        left_col.pack(side="left", fill="both", padx=(0, 10))
-        left_col.pack_propagate(False)
+        # Contenedor principal con paneles redimensionables
+        main_paned_window = ttk.PanedWindow(self.tab_envio, orient=tk.HORIZONTAL)
+        main_paned_window.pack(fill="both", expand=True, padx=10, pady=10)
 
+        # COLUMNA IZQUIERDA: Configuración y Logs
+        left_col = ttk.Frame(main_paned_window, width=400)
+        main_paned_window.add(left_col, weight=1)
+        
         # Configuración
         frame_config = ttk.LabelFrame(left_col, text="⚙️ Configuración del Envío", padding=15)
         frame_config.pack(fill="x", pady=(0, 10))
+        frame_config.grid_columnconfigure(1, weight=1)
 
         # --- SECCIÓN REMITENTE ---
         frame_remitente = ttk.LabelFrame(frame_config, text="👤 Seleccionar Remitente", padding=10)
         frame_remitente.grid(row=0, column=0, columnspan=2, sticky="ew", pady=(0, 15))
         
-        self.combo_perfil = ttk.Combobox(frame_remitente, textvariable=self.perfil_seleccionado, values=list(self.perfiles.keys()), state="readonly", width=35)
+        self.combo_perfil = ttk.Combobox(frame_remitente, textvariable=self.perfil_seleccionado, values=list(self.perfiles.keys()), state="readonly")
         self.combo_perfil.pack(fill="x", pady=5)
         self.combo_perfil.bind("<<ComboboxSelected>>", self.cargar_perfil)
         
-        # Etiquetas informativas (solo lectura)
         self.lbl_info_remitente = ttk.Label(frame_remitente, text=f"{self.email_remitente_var.get()} | {self.cargo_remitente_var.get()}", font=("Segoe UI", 8), foreground="#666")
         self.lbl_info_remitente.pack(fill="x")
 
         # --- SECCIÓN ENVÍO ---
-        ttk.Label(frame_config, text="Plantilla:", style="Bold.TLabel").grid(row=1, column=0, sticky="w")
-        self.combo_plantillas = ttk.Combobox(frame_config, textvariable=self.plantilla_var, state="readonly", width=35)
+        ttk.Label(frame_config, text="Plantilla:", style="Bold.TLabel").grid(row=1, column=0, sticky="w", pady=5)
+        self.combo_plantillas = ttk.Combobox(frame_config, textvariable=self.plantilla_var, state="readonly")
         self.combo_plantillas.grid(row=1, column=1, padx=10, pady=5, sticky="ew")
         self.combo_plantillas.bind("<<ComboboxSelected>>", self.actualizar_preview)
 
-        ttk.Label(frame_config, text="Asunto:", style="Bold.TLabel").grid(row=2, column=0, sticky="w")
+        ttk.Label(frame_config, text="Asunto:", style="Bold.TLabel").grid(row=2, column=0, sticky="w", pady=5)
         opciones_asunto = [
             "{{Nombre_Remitente}}: ¿Tu software actual te limita?",
             "Optimiza tus procesos - {{Nombre_Remitente}} (Partner Tech)",
@@ -151,15 +151,20 @@ class CorreoApp:
             "Propuesta de desarrollo a medida de {{Nombre_Remitente}}",
             "Hola {{Nombre_Contacto}}, soy {{Nombre_Remitente}} de Partner Tech"
         ]
-        self.combo_asunto = ttk.Combobox(frame_config, textvariable=self.asunto_var, values=opciones_asunto, width=35)
+        self.combo_asunto = ttk.Combobox(frame_config, textvariable=self.asunto_var, values=opciones_asunto)
         self.combo_asunto.grid(row=2, column=1, padx=10, pady=5, sticky="ew")
         self.combo_asunto.current(0)
 
-        ttk.Label(frame_config, text="Destinatarios:", style="Bold.TLabel").grid(row=3, column=0, sticky="w")
-        ttk.Label(frame_config, textvariable=self.contador_var).grid(row=3, column=1, padx=10, pady=5, sticky="w")
+        ttk.Label(frame_config, text="Archivo:", style="Bold.TLabel").grid(row=3, column=0, sticky="w", pady=5)
+        self.btn_cargar = ttk.Button(frame_config, text="📁 Seleccionar Excel...", command=self.cargar_archivo_excel)
+        self.btn_cargar.grid(row=3, column=1, padx=10, pady=5, sticky="ew")
+
+        ttk.Label(frame_config, text="Destinatarios:", style="Bold.TLabel").grid(row=4, column=0, sticky="w", pady=5)
+        ttk.Label(frame_config, textvariable=self.contador_var).grid(row=4, column=1, padx=10, pady=5, sticky="w")
 
         self.btn_iniciar = ttk.Button(frame_config, text="🚀 INICIAR ENVÍO", command=self.iniciar_envio_thread, style="Action.TButton")
-        self.btn_iniciar.grid(row=4, column=0, columnspan=2, pady=(15, 0), sticky="ew")
+        self.btn_iniciar.grid(row=5, column=0, columnspan=2, pady=(15, 0), sticky="ew")
+        self.btn_iniciar.config(state="disabled")
 
         # Logs
         frame_logs = ttk.LabelFrame(left_col, text="📝 Registro de Actividad", padding=10)
@@ -168,12 +173,31 @@ class CorreoApp:
         self.txt_log = scrolledtext.ScrolledText(frame_logs, state='disabled', height=10, font=("Consolas", 9), bg="#1e1e1e", fg="#d4d4d4")
         self.txt_log.pack(fill="both", expand=True)
 
-        # COLUMNA DERECHA: Visor Preview Real
-        right_col = ttk.LabelFrame(container, text="👁️ Vista Previa del Correo", padding=10)
-        right_col.pack(side="right", fill="both", expand=True)
-
-        self.visor_html = HtmlFrame(right_col, messages_enabled=False)
+        # PANEL CENTRAL: Visor Preview Real
+        center_col = ttk.LabelFrame(main_paned_window, text="👁️ Vista Previa del Correo", padding=10)
+        main_paned_window.add(center_col, weight=2)
+        
+        self.visor_html = HtmlFrame(center_col, messages_enabled=False)
         self.visor_html.pack(fill="both", expand=True)
+
+        # PANEL DERECHO: Lista de Destinatarios
+        right_col = ttk.LabelFrame(main_paned_window, text="📋 Lista de Destinatarios", padding=10)
+        main_paned_window.add(right_col, weight=1)
+
+        # Treeview para mostrar la lista
+        cols = ("Nombre", "Correo")
+        self.tree_destinatarios = ttk.Treeview(right_col, columns=cols, show="headings", height=5)
+        self.tree_destinatarios.heading("Nombre", text="Nombre")
+        self.tree_destinatarios.heading("Correo", text="Correo")
+        self.tree_destinatarios.column("Nombre", width=150)
+        self.tree_destinatarios.column("Correo", width=200)
+
+        # Scrollbar
+        scrollbar = ttk.Scrollbar(right_col, orient="vertical", command=self.tree_destinatarios.yview)
+        self.tree_destinatarios.configure(yscrollcommand=scrollbar.set)
+        
+        self.tree_destinatarios.pack(side="left", fill="both", expand=True)
+        scrollbar.pack(side="right", fill="y")
 
     def setup_styles(self):
         style = ttk.Style()
@@ -228,19 +252,64 @@ class CorreoApp:
             self.lbl_info_remitente.config(text=f"{datos['email']} | {datos['cargo']}")
             self.actualizar_preview()
 
+    def cargar_archivo_excel(self):
+        filepath = filedialog.askopenfilename(
+            title="Seleccionar archivo de correos",
+            filetypes=(("Archivos de Excel", "*.xlsx *.xls"), ("Todos los archivos", "*.*"))
+        )
+        if not filepath:
+            return
+
+        self.archivo_excel_seleccionado = filepath
+        self.contar_destinatarios()
+
     def contar_destinatarios(self):
+        # Limpiar la lista de destinatarios antes de procesar
+        self.actualizar_lista_destinatarios(None)
+
+        if not self.archivo_excel_seleccionado:
+            self.contador_var.set("Ningún archivo seleccionado")
+            self.btn_iniciar.config(state="disabled")
+            return 0
+        
         try:
-            if os.path.exists(archivo_excel):
-                df = pd.read_excel(archivo_excel)
+            if os.path.exists(self.archivo_excel_seleccionado):
+                df = pd.read_excel(self.archivo_excel_seleccionado)
+                # Check for required columns
+                if 'nombre' not in df.columns or 'correo' not in df.columns:
+                    messagebox.showerror("Error de Archivo", "El archivo Excel debe contener las columnas 'nombre' y 'correo'.")
+                    self.contador_var.set("Error: Faltan columnas")
+                    self.btn_iniciar.config(state="disabled")
+                    return 0
+                
                 count = len(df)
                 self.contador_var.set(f"{count} contactos detectados")
+                self.btn_iniciar.config(state="normal")
+                self.log_msg(f"Archivo cargado: {os.path.basename(self.archivo_excel_seleccionado)}")
+                
+                # Actualizar la lista visual de destinatarios
+                self.actualizar_lista_destinatarios(df)
+                
                 return count
             else:
                 self.contador_var.set("Excel no encontrado")
+                self.btn_iniciar.config(state="disabled")
                 return 0
         except Exception as e:
             self.contador_var.set("Error al leer Excel")
+            self.log_msg(f"Error al cargar Excel: {e}", "ERROR")
+            self.btn_iniciar.config(state="disabled")
             return 0
+
+    def actualizar_lista_destinatarios(self, df):
+        # Limpiar Treeview
+        for i in self.tree_destinatarios.get_children():
+            self.tree_destinatarios.delete(i)
+
+        # Llenar con nuevos datos si el dataframe es válido
+        if df is not None and not df.empty:
+            for index, row in df.iterrows():
+                self.tree_destinatarios.insert("", "end", values=(row['nombre'], row['correo']))
 
     def actualizar_preview(self, event=None):
         archivo_nombre = self.plantilla_var.get()
@@ -846,9 +915,17 @@ class CorreoApp:
         archivo_html_nombre = self.plantilla_var.get() # <-- Solo el nombre del archivo
         log_csv = 'registro_envios.csv'
         
+        if not self.archivo_excel_seleccionado:
+            self.log_msg("Error: No se ha seleccionado ningún archivo de destinatarios.", "ERROR")
+            messagebox.showerror("Error", "No se ha seleccionado ningún archivo de destinatarios.")
+            self.enviando = False
+            self.btn_iniciar.config(state="normal")
+            self.status_var.set("Finalizado con error")
+            return
+
         try:
             self.log_msg("--- INICIANDO ENVÍO MASIVO ---")
-            df = pd.read_excel(archivo_excel)
+            df = pd.read_excel(self.archivo_excel_seleccionado)
             if not os.path.exists(log_csv):
                 with open(log_csv, 'w', encoding='utf-8') as f: f.write("Nombre,Correo,Plantilla,Fecha,Estado\n")
             
