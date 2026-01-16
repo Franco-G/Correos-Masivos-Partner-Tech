@@ -15,6 +15,18 @@ from email.utils import formatdate, make_msgid
 import logging
 from email_validator import validate_email, EmailNotValidError
 from tkinterweb import HtmlFrame
+import sys
+import pathlib
+
+# --- FUNCIÓN PARA MANEJAR RUTAS EN PYINSTALLER ---
+def resource_path(relative_path):
+    """ Obtiene la ruta absoluta al recurso, funciona para desarrollo y para PyInstaller """
+    try:
+        # PyInstaller crea una carpeta temporal y guarda la ruta en _MEIPASS
+        base_path = sys._MEIPASS
+    except Exception:
+        base_path = os.path.abspath(".")
+    return os.path.join(base_path, relative_path)
 
 # --- CONFIGURACIÓN LOGGING ---
 logging.basicConfig(
@@ -24,7 +36,7 @@ logging.basicConfig(
 )
 
 # --- CONFIGURACIÓN ---
-archivo_excel = 'Correos.xlsx'
+archivo_excel = resource_path('Correos.xlsx')
 smtp_server = "mail.partnertech.pe"
 smtp_port = 465
 sender_email = "fguerrero@partnertech.pe"
@@ -191,10 +203,13 @@ class CorreoApp:
         getattr(logging, nivel.lower())(mensaje)
 
     def cargar_plantillas(self):
-        archivos = glob.glob("*.html")
+        # Usamos resource_path para encontrar los HTMLs dentro del .exe
+        ruta_busqueda = resource_path("*.html")
+        archivos = glob.glob(ruta_busqueda)
         if archivos:
-            self.combo_plantillas['values'] = archivos
-            self.combo_plantillas.current(0)
+            # Mostramos solo el nombre del archivo, no la ruta completa
+            self.combo_plantillas['values'] = [os.path.basename(f) for f in archivos]
+            self.plantilla_var.set(os.path.basename(archivos[0])) # Usar la variable para setear
             self.actualizar_preview()
         else:
             self.combo_plantillas['values'] = ["No se encontraron HTMLs"]
@@ -228,19 +243,26 @@ class CorreoApp:
             return 0
 
     def actualizar_preview(self, event=None):
-        archivo = self.plantilla_var.get()
-        if not archivo or not os.path.exists(archivo): return
+        archivo_nombre = self.plantilla_var.get()
+        if not archivo_nombre: return
+        
+        archivo_path = resource_path(archivo_nombre)
+        if not os.path.exists(archivo_path): return
         
         try:
-            with open(archivo, 'r', encoding='utf-8') as f:
+            with open(archivo_path, 'r', encoding='utf-8') as f:
                 content = f.read()
+            
+            logo_path = resource_path('Logo_blanco_ver1.png')
+            logo_uri = pathlib.Path(logo_path).as_uri()
             
             # Cargar HTML en el visor real y reemplazar placeholders con datos de ejemplo del remitente
             preview_content = content.replace('{{Nombre_Remitente}}', self.nombre_remitente_var.get())\
                                      .replace('{{Email_Remitente}}', self.email_remitente_var.get())\
                                      .replace('{{Cargo_Remitente}}', self.cargo_remitente_var.get())\
                                      .replace('{{Nombre_Contacto}}', "[Nombre Cliente]")\
-                                     .replace('{{Email_Destinatario}}', "[Email Cliente]")
+                                     .replace('{{Email_Destinatario}}', "[Email Cliente]")\
+                                     .replace('cid:Logo_ver1', logo_uri)
             
             self.visor_html.load_html(preview_content)
         except Exception as e:
@@ -425,7 +447,8 @@ class CorreoApp:
             entry_texto = ttk.Entry(self.frame_propiedades, textvariable=var_texto)
             entry_texto.pack(fill="x", pady=5)
             entry_texto.bind("<KeyRelease>", lambda e: self.actualizar_bloque_btn_delayed(idx, "texto", var_texto.get()))
-            
+
+            ttk.Label(self.frame_propiedades, text="URL del Botón:").pack(anchor="w")
             var_url = tk.StringVar(value=bloque["url"])
             entry_url = ttk.Entry(self.frame_propiedades, textvariable=var_url)
             entry_url.pack(fill="x", pady=5)
@@ -687,7 +710,7 @@ class CorreoApp:
         <table class="main-container" cellpadding="0" cellspacing="0">
             <tr>
                 <td class="content">
-" 
+"""
         # Inyectar Bloques
         for b in self.bloques:
             if b["tipo"] == "SALUDO":
@@ -700,10 +723,10 @@ class CorreoApp:
                 html += f'                    <p class="text-paragraph">{texto}</p>\n'
             elif b["tipo"] == "BTN_VERDE":
                 sub = f'<span class="btn-subtext" style="font-size: 12px; font-weight: 400; opacity: 0.95; display: block; margin-top: 3px; font-family: \'Poppins\', sans-serif;">{b.get("subtexto", "")}</span>' if b.get("subtexto") else ""
-                html += f'                    <a href="{b["url"]}" class="btn-primary" style="background-color: #00c853; color: #ffffff !important; display: block; width: 100%; max-width: 380px; margin: 0 auto 15px auto; padding: 14px 30px; text-decoration: none; border-radius: 50px; font-weight: 700; font-size: 16px; text-align: center; font-family: \'Poppins\', sans-serif; box-shadow: 0 4px 12px rgba(0, 200, 83, 0.3);">{b["texto"]}</a>\n'
+                html += f'                    <a href="{b["url"]}" class="btn-primary" style="background-color: #00c853; color: #ffffff !important; display: block; width: 100%; max-width: 380px; margin: 0 auto 15px auto; padding: 14px 30px; text-decoration: none; border-radius: 50px; font-weight: 700; font-size: 16px; text-align: center; font-family: \'Poppins\', sans-serif; box-shadow: 0 4px 12px rgba(0, 200, 83, 0.3);"><span style="color: #ffffff;">{b["texto"]}</span>{sub}</a>\n'
             elif b["tipo"] == "BTN_AZUL":
                 sub = f'<span class="btn-subtext" style="font-size: 12px; font-weight: 400; opacity: 0.95; display: block; margin-top: 3px; font-family: \'Poppins\', sans-serif;">{b.get("subtexto", "")}</span>' if b.get("subtexto") else ""
-                html += f'                    <a href="{b["url"]}" class="btn-meeting" style="background-color: #0056b3; color: #ffffff !important; display: block; width: 100%; max-width: 380px; margin: 0 auto 15px auto; padding: 14px 30px; text-decoration: none; border-radius: 50px; font-weight: 700; font-size: 15px; text-align: center; font-family: \'Poppins\', sans-serif; box-shadow: 0 4px 12px rgba(0, 86, 179, 0.3);">{b["texto"]}</a>\n'
+                html += f'                    <a href="{b["url"]}" class="btn-meeting" style="background-color: #0056b3; color: #ffffff !important; display: block; width: 100%; max-width: 380px; margin: 0 auto 15px auto; padding: 14px 30px; text-decoration: none; border-radius: 50px; font-weight: 700; font-size: 15px; text-align: center; font-family: \'Poppins\', sans-serif; box-shadow: 0 4px 12px rgba(0, 86, 179, 0.3);"><span style="color: #ffffff;">{b["texto"]}</span>{sub}</a>\n'
             elif b["tipo"] == "BENEFICIO":
                 color = b.get("color", "#00c853")
                 html += f'''                    <div class="benefit-box" style="border-left-color: {color};">
@@ -738,12 +761,15 @@ class CorreoApp:
 
     def actualizar_preview_visual(self):
         html = self.generar_html_final()
+        logo_path = resource_path('Logo_blanco_ver1.png')
+        logo_uri = pathlib.Path(logo_path).as_uri()
         # Preview dummy
-        preview = html.replace('{{Nombre_Remitente}}', self.nombre_remitente_var.get())
-                      .replace('{{Cargo_Remitente}}', self.cargo_remitente_var.get())
-                      .replace('{{Email_Remitente}}', self.email_remitente_var.get())
-                      .replace('{{Nombre_Contacto}}', "[Cliente]")
-                      .replace('{{Email_Destinatario}}', "[Email]")
+        preview = html.replace('{{Nombre_Remitente}}', self.nombre_remitente_var.get())\
+                      .replace('{{Cargo_Remitente}}', self.cargo_remitente_var.get())\
+                      .replace('{{Email_Remitente}}', self.email_remitente_var.get())\
+                      .replace('{{Nombre_Contacto}}', "[Cliente]")\
+                      .replace('{{Email_Destinatario}}', "[Email]")\
+                      .replace('cid:Logo_ver1', logo_uri)
         self.editor_preview.load_html(preview)
 
     def guardar_plantilla_visual(self):
@@ -755,9 +781,13 @@ class CorreoApp:
             messagebox.showinfo("Guardado", "Plantilla guardada correctamente.")
             self.cargar_plantillas()
 
-    def enviar_correo(self, nombre, email_destinatario, archivo_html):
+    def enviar_correo(self, nombre, email_destinatario, archivo_html_nombre):
         try:
-            with open(archivo_html, 'r', encoding='utf-8') as f:
+            # Obtener la ruta completa de la plantilla y el logo
+            archivo_html_path = resource_path(archivo_html_nombre)
+            logo_path = resource_path('Logo_blanco_ver1.png')
+
+            with open(archivo_html_path, 'r', encoding='utf-8') as f:
                 html_content = f.read()
             
             # Datos del Remitente desde UI
@@ -768,14 +798,14 @@ class CorreoApp:
             asunto_template = self.asunto_var.get()
 
             # Reemplazos en HTML
-            html_content = html_content.replace('{{Nombre_Contacto}}', nombre)
-                                       .replace('{{Email_Destinatario}}', email_destinatario)
-                                       .replace('{{Nombre_Remitente}}', remitente_nombre)
-                                       .replace('{{Email_Remitente}}', remitente_email)
+            html_content = html_content.replace('{{Nombre_Contacto}}', nombre)\
+                                       .replace('{{Email_Destinatario}}', email_destinatario)\
+                                       .replace('{{Nombre_Remitente}}', remitente_nombre)\
+                                       .replace('{{Email_Remitente}}', remitente_email)\
                                        .replace('{{Cargo_Remitente}}', remitente_cargo)
             
             message = MIMEMultipart("related")
-            message["Subject"] = asunto_template.replace('{{Nombre_Contacto}}', nombre)
+            message["Subject"] = asunto_template.replace('{{Nombre_Contacto}}', nombre)\
                                                 .replace('{{Nombre_Remitente}}', remitente_nombre)
             message["From"] = remitente_email
             message["To"] = email_destinatario
@@ -791,12 +821,12 @@ class CorreoApp:
             msg_alternative.attach(MIMEText(html_content, "html"))
             
             try:
-                with open('Logo_blanco_ver1.png', 'rb') as f:
+                with open(logo_path, 'rb') as f:
                     img = MIMEImage(f.read())
                     img.add_header('Content-ID', '<Logo_ver1>')
                     message.attach(img)
-            except:
-                pass
+            except Exception as e:
+                self.log_msg(f"No se pudo adjuntar el logo: {e}", "WARNING")
             
             context = ssl.create_default_context()
             with smtplib.SMTP_SSL(smtp_server, smtp_port, context=context) as server:
@@ -813,7 +843,7 @@ class CorreoApp:
         threading.Thread(target=self.proceso_envio, daemon=True).start()
 
     def proceso_envio(self):
-        archivo_html = self.plantilla_var.get()
+        archivo_html_nombre = self.plantilla_var.get() # <-- Solo el nombre del archivo
         log_csv = 'registro_envios.csv'
         
         try:
@@ -832,11 +862,11 @@ class CorreoApp:
                     self.log_msg(f"Omitido (Formato): {correo}", "WARNING")
                     continue
                 
-                exito = self.enviar_correo(nombre, correo, archivo_html)
+                exito = self.enviar_correo(nombre, correo, archivo_html_nombre) # Pasamos solo el nombre
                 estado = "Enviado" if exito else "Fallido"
                 
                 with open(log_csv, 'a', encoding='utf-8') as f:
-                    f.write(f'"{nombre}","{correo}","{archivo_html}","{time.strftime("%Y-%m-%d %H:%M:%S)}","{estado}"\n')
+                    f.write(f'"{nombre}","{correo}","{archivo_html_nombre}","{time.strftime("%Y-%m-%d %H:%M:%S")}","{estado}"\n')
                 
                 # Loguear siempre el resultado
                 resultado_msg = f"OK: {correo}" if exito else f"FALLÓ: {correo}"
