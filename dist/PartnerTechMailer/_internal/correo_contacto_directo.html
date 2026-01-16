@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contacto Directo - Franco Guerrero</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;700&family=Poppins:wght@400;700&display=swap"
+        rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Poppins', sans-serif;
+            background-color: #f4f7f6;
+            color: #555555;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .wrapper {
+            width: 100%;
+            table-layout: fixed;
+            background-color: #f4f7f6;
+            padding: 40px 0;
+        }
+
+        .main-container {
+            background-color: #ffffff;
+            margin: 0 auto;
+            width: 100%;
+            max-width: 600px;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06);
+        }
+
+        .content {
+            padding: 40px 35px;
+        }
+
+        .greeting {
+            font-size: 20px;
+            color: #2c3e50;
+            font-weight: 700;
+            margin-bottom: 20px;
+            font-family: 'Orbitron', sans-serif;
+        }
+
+        .text-paragraph {
+            font-size: 16px;
+            line-height: 1.7;
+            color: #666;
+            margin-bottom: 25px;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .highlight {
+            color: #0056b3;
+            font-weight: 700;
+        }
+
+        .closing-box {
+            text-align: center;
+            margin-top: 35px;
+            padding-top: 25px;
+            border-top: 1px dashed #dce5f2;
+        }
+
+        .footer {
+            background-color: #2d3748;
+            padding: 30px 30px;
+            text-align: center;
+            font-size: 13px;
+            color: #555555;
+            line-height: 1.6;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .footer a {
+            color: #cbd5e0;
+            text-decoration: none;
+            border-bottom: 1px dotted #cbd5e0;
+        }
+
+        .footer-logo {
+            max-height: 80px;
+            width: auto;
+            margin: 10px auto 0;
+            display: block;
+        }
+    </style>
+</head>
+
+<body>
+    <center class="wrapper">
+        <table class="main-container" width="100%" cellpadding="0" cellspacing="0">
+            <tr>
+                <td class="content">
+                    <p class="greeting">Hola {{Nombre_Contacto}},</p>
+
+                    <p class="text-paragraph">
+                        Te saluda {{Nombre_Remitente}}, de Partner Tech, somos una empresa de desarrollo de software.
+                        Te escribo porque me gustaría saber cómo están
+                        manejando actualmente tus procesos internos y si sientes que hay alguna etapa de tu operación
+                        que podría ser más fluida.
+                    </p>
+
+                    <p class="text-paragraph">
+                        A veces, un ajuste tecnológico o una automatización puntual puede liberar horas de
+                        trabajo y eliminar fricciones que a veces pasan desapercibidas.
+                    </p>
+
+                    <p class="text-paragraph">
+                        ¿Te parece si conversamos <span class="highlight">5 o 10 minutos</span> esta semana o la siguiente? No es una
+                        presentación comercial, solo me interesa conocer tus retos actuales y ver si mi experiencia
+                        puede darte alguna idea útil.
+                    </p>
+
+                    <p class="text-paragraph">
+                        Quedo atento a tu respuesta.
+                    </p>
+
+                    <div class="closing-box">
+                        <p style="color: #555; margin-top: 15px; margin-bottom: 10px;">
+                            Saludos,<br><strong>{{Nombre_Remitente}}</strong><br>
+                            <a href="mailto:{{Email_Remitente}}"
+                                style="color: #0056b3; text-decoration: none;">{{Email_Remitente}}</a><br>
+                            <span style="font-size: 14px; color: #888;">{{Cargo_Remitente}} | Partner Tech</span>
+                        </p>
+                        <img src="cid:Logo_ver1" alt="Partner Tech Logo" class="footer-logo">
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td class="footer" style="padding-top: 5px;">
+                    <p>Enviado a <strong>{{Email_Destinatario}}</strong> cumpliendo los lineamientos de la
+                        <strong>Cámara de Comercio de Lima (CCL)</strong>.
+                    </p>
+                    <p>Respetamos tu privacidad profesional. Si no deseas recibir más correos, <a
+                            href="mailto:negocios@partnertech.pe?subject=Remover">haga clic aquí para darse de baja</a>.
+                    </p>
+                    <p style="margin-top: 15px;">RUC 20523799623 | Partnertech.pe | Av. Malachowsky 340, San Borja, Lima
+                    </p>
+                </td>
+            </tr>
+        </table>
+    </center>
+</body>
+
+</html>
