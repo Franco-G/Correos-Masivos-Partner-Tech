@@ -5,7 +5,7 @@ a = Analysis(
     ['main.py'],
     pathex=[],
     binaries=[],
-    datas=[('Correos.xlsx', '.'), ('Base_Mailing_V6_Nombres_Comerciales.xlsx', '.'), ('Logo_blanco_ver1.png', '.'), ('correo_brochure.html', '.'), ('correo_contacto_directo.html', '.'), ('correo_premium.html', '.'), ('correo_reunion_corta.html', '.'), ('correo_solo_brochure.html', '.'), ('correo_vacio.html', '.'), ('prueba_editor.html', '.')],
+    datas=[('*.html', '.'), ('Correos.xlsx', '.'), ('Base_Mailing_V6_Nombres_Comerciales.xlsx', '.'), ('Logo_blanco_ver1.png', '.')],
     hiddenimports=[],
     hookspath=[],
     hooksconfig={},

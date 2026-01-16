@@ -17,6 +17,8 @@ from email_validator import validate_email, EmailNotValidError
 from tkinterweb import HtmlFrame
 import sys
 import pathlib
+import base64
+import io
 
 # --- FUNCIÓN PARA MANEJAR RUTAS EN PYINSTALLER ---
 def resource_path(relative_path):
@@ -27,6 +29,16 @@ def resource_path(relative_path):
     except Exception:
         base_path = os.path.abspath(".")
     return os.path.join(base_path, relative_path)
+
+def get_base64_image(image_path):
+    try:
+        with open(image_path, "rb") as image_file:
+            encoded_string = base64.b64encode(image_file.read()).decode("utf-8")
+        # Assuming PNG for now, can be made dynamic if needed
+        return f"data:image/png;base64,{encoded_string}"
+    except Exception as e:
+        logging.error(f"Error encoding image to base64: {e}")
+        return ""
 
 # --- CONFIGURACIÓN LOGGING ---
 logging.basicConfig(
@@ -323,7 +335,7 @@ class CorreoApp:
                 content = f.read()
             
             logo_path = resource_path('Logo_blanco_ver1.png')
-            logo_uri = pathlib.Path(logo_path).as_uri()
+            logo_base64_uri = get_base64_image(logo_path)
             
             # Cargar HTML en el visor real y reemplazar placeholders con datos de ejemplo del remitente
             preview_content = content.replace('{{Nombre_Remitente}}', self.nombre_remitente_var.get())\
@@ -331,7 +343,7 @@ class CorreoApp:
                                      .replace('{{Cargo_Remitente}}', self.cargo_remitente_var.get())\
                                      .replace('{{Nombre_Contacto}}', "[Nombre Cliente]")\
                                      .replace('{{Email_Destinatario}}', "[Email Cliente]")\
-                                     .replace('cid:Logo_ver1', logo_uri)
+                                     .replace('cid:Logo_ver1', logo_base64_uri)
             
             self.visor_html.load_html(preview_content)
         except Exception as e:
@@ -831,14 +843,14 @@ class CorreoApp:
     def actualizar_preview_visual(self):
         html = self.generar_html_final()
         logo_path = resource_path('Logo_blanco_ver1.png')
-        logo_uri = pathlib.Path(logo_path).as_uri()
+        logo_base64_uri = get_base64_image(logo_path)
         # Preview dummy
         preview = html.replace('{{Nombre_Remitente}}', self.nombre_remitente_var.get())\
                       .replace('{{Cargo_Remitente}}', self.cargo_remitente_var.get())\
                       .replace('{{Email_Remitente}}', self.email_remitente_var.get())\
                       .replace('{{Nombre_Contacto}}', "[Cliente]")\
                       .replace('{{Email_Destinatario}}', "[Email]")\
-                      .replace('cid:Logo_ver1', logo_uri)
+                      .replace('cid:Logo_ver1', logo_base64_uri)
         self.editor_preview.load_html(preview)
 
     def guardar_plantilla_visual(self):
