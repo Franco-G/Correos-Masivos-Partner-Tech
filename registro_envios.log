@@ -1691,3 +1691,14 @@
 2026-01-19 10:37:58,128 - INFO - Esperando 14.34s...
 2026-01-19 10:38:14,379 - INFO - OK: negocios@partnertech.pe
 2026-01-19 10:38:14,390 - INFO - --- PROCESO FINALIZADO ---
+2026-01-19 12:37:30,350 - ERROR - Error al cargar Excel: Missing optional dependency 'openpyxl'.  Use pip or conda to install openpyxl.
+2026-01-19 12:38:00,656 - ERROR - Error al cargar Excel: Missing optional dependency 'openpyxl'.  Use pip or conda to install openpyxl.
+2026-01-19 12:38:33,679 - INFO - Archivo cargado: Correos.xlsx
+2026-01-19 12:39:52,346 - INFO - Archivo cargado: Correos.xlsx
+2026-01-19 12:39:53,945 - INFO - --- INICIANDO ENVÍO MASIVO ---
+2026-01-19 12:39:56,689 - INFO - OK: negocios@partnertech.pe
+2026-01-19 12:39:56,705 - INFO - --- PROCESO FINALIZADO ---
+2026-01-19 12:46:24,237 - INFO - Archivo cargado: Correos.xlsx
+2026-01-19 12:46:27,510 - INFO - --- INICIANDO ENVÍO MASIVO ---
+2026-01-19 12:46:29,244 - INFO - OK: negocios@partnertech.pe
+2026-01-19 12:46:29,272 - INFO - --- PROCESO FINALIZADO ---
