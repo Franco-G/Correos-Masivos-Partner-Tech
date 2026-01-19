@@ -343,7 +343,8 @@ class CorreoApp:
                                      .replace('{{Cargo_Remitente}}', self.cargo_remitente_var.get())\
                                      .replace('{{Nombre_Contacto}}', "[Nombre Cliente]")\
                                      .replace('{{Email_Destinatario}}', "[Email Cliente]")\
-                                     .replace('cid:Logo_ver1', logo_base64_uri)
+                                     .replace('cid:Logo_ver1', logo_base64_uri)\
+                                     .replace('{{MAX_WIDTH_PLACEHOLDER}}', 'max-width: none;') # Added this line
             
             self.visor_html.load_html(preview_content)
         except Exception as e:
@@ -689,7 +690,7 @@ class CorreoApp:
     <style>
         body { margin: 0; padding: 0; font-family: 'Poppins', sans-serif; background-color: #f4f7f6; color: #555; }
         .wrapper { width: 100%; table-layout: fixed; background-color: #f4f7f6; padding: 40px 0; }
-        .main-container { background-color: #ffffff; margin: 0 auto; width: 100%; max-width: 600px; border-radius: 16px; overflow: hidden; box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06); }
+        .main-container { background-color: #ffffff; margin: 0 auto; width: 100%; {{MAX_WIDTH_PLACEHOLDER}} border-radius: 16px; overflow: hidden; box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06); }
         .content { padding: 40px 35px; }
         .greeting { font-size: 20px; color: #2c3e50; font-weight: 700; margin-bottom: 20px; font-family: 'Orbitron', sans-serif; }
         .text-paragraph { font-size: 16px; line-height: 1.7; color: #666; margin-bottom: 25px; }
@@ -850,7 +851,8 @@ class CorreoApp:
                       .replace('{{Email_Remitente}}', self.email_remitente_var.get())\
                       .replace('{{Nombre_Contacto}}', "[Cliente]")\
                       .replace('{{Email_Destinatario}}', "[Email]")\
-                      .replace('cid:Logo_ver1', logo_base64_uri)
+                      .replace('cid:Logo_ver1', logo_base64_uri)\
+                      .replace('{{MAX_WIDTH_PLACEHOLDER}}', 'max-width: none;')
         self.editor_preview.load_html(preview)
 
     def guardar_plantilla_visual(self):

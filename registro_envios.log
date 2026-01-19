@@ -1265,3 +1265,12 @@
 2026-01-16 09:13:11,882 - INFO - Archivo cargado: Correos.xlsx
 2026-01-16 09:13:31,068 - INFO - Archivo cargado: Correos.xlsx
 2026-01-16 09:20:11,761 - INFO - Archivo cargado: Correos.xlsx
+2026-01-19 09:28:01,941 - INFO - Archivo cargado: Correos.xlsx
+2026-01-19 09:28:43,469 - INFO - --- INICIANDO ENVÍO MASIVO ---
+2026-01-19 09:28:47,098 - INFO - OK: negocios@partnertech.pe
+2026-01-19 09:28:47,105 - INFO - Esperando 11.80s...
+2026-01-19 09:29:01,140 - INFO - OK: fguerrero@partnertech.pe
+2026-01-19 09:29:01,143 - INFO - Esperando 14.09s...
+2026-01-19 09:29:16,628 - INFO - OK: acardozo@partnertech.pe
+2026-01-19 09:29:16,633 - INFO - --- PROCESO FINALIZADO ---
+2026-01-19 09:31:14,093 - INFO - Archivo cargado: Correos.xlsx

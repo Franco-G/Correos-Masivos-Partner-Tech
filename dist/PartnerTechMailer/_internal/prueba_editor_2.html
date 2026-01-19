@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Correo Partner Tech</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;700&family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body { margin: 0; padding: 0; font-family: 'Poppins', sans-serif; background-color: #f4f7f6; color: #555; }
+        .wrapper { width: 100%; table-layout: fixed; background-color: #f4f7f6; padding: 40px 0; }
+        .main-container { background-color: #ffffff; margin: 0 auto; width: 100%; max-width: 600px; border-radius: 16px; overflow: hidden; box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06); }
+        .content { padding: 40px 35px; }
+        .greeting { font-size: 20px; color: #2c3e50; font-weight: 700; margin-bottom: 20px; font-family: 'Orbitron', sans-serif; }
+        .text-paragraph { font-size: 16px; line-height: 1.7; color: #666; margin-bottom: 25px; }
+        
+        .btn-primary { 
+            background-color: #00c853; 
+            color: #ffffff !important; 
+            display: block; 
+            width: 100%; 
+            max-width: 380px; 
+            margin: 0 auto 15px auto; 
+            padding: 14px 30px; 
+            text-decoration: none; 
+            border-radius: 50px; 
+            font-weight: 700; 
+            font-size: 16px; 
+            text-align: center; 
+            font-family: 'Poppins', sans-serif; 
+            box-shadow: 0 4px 12px rgba(0, 200, 83, 0.3); 
+            transition: all 0.3s ease; 
+        }
+        .btn-meeting { 
+            background-color: #0056b3; 
+            color: #ffffff !important; 
+            display: block; 
+            width: 100%; 
+            max-width: 380px; 
+            margin: 0 auto 15px auto; 
+            padding: 14px 30px; 
+            text-decoration: none; 
+            border-radius: 50px; 
+            font-weight: 700; 
+            font-size: 15px; 
+            text-align: center; 
+            font-family: 'Poppins', sans-serif; 
+            box-shadow: 0 4px 12px rgba(0, 86, 179, 0.3); 
+            transition: all 0.3s ease; 
+        }
+        
+        .btn-primary:hover { background-color: #00b34a; transform: translateY(-2px); }
+        .btn-meeting:hover { background-color: #004494; transform: translateY(-2px); }
+
+        .closing-box { text-align: center; margin-top: 35px; padding-top: 25px; border-top: 1px dashed #dce5f2; }
+        .footer { background-color: #2d3748; padding: 30px; text-align: center; font-size: 13px; color: #555; }
+        .footer-logo { max-height: 80px; width: auto; margin: 10px auto 0; display: block; }
+        .footer a { color: #cbd5e0; text-decoration: none; border-bottom: 1px dotted #cbd5e0; }
+
+        /* NUEVOS ESTILOS BROCHURE */
+        .highlight { color: #0056b3; font-weight: 700; }
+        
+        .benefit-box {
+            background-color: #ffffff;
+            border: 1px solid #e2e8f0;
+            border-left: 5px solid #00c853;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
+        }
+        .benefit-title {
+            color: #2c3e50;
+            font-size: 16px;
+            font-weight: 700;
+            display: block;
+            margin-bottom: 5px;
+            font-family: 'Orbitron', sans-serif;
+        }
+        .benefit-text {
+            font-size: 14px;
+            line-height: 1.5;
+            color: #718096;
+            margin: 0;
+            font-family: 'Poppins', sans-serif;
+        }
+        .btn-section {
+            background-color: #f8fafc;
+            border-radius: 12px;
+            padding: 30px 20px;
+            margin: 30px 0;
+            text-align: center;
+            border: 1px solid #edf2f7;
+        }
+        .btn-label {
+            display: block; font-size: 14px; color: #555; margin-bottom: 15px;
+            font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px;
+        }
+        .btn-subtext {
+            font-size: 12px; font-weight: 400; opacity: 0.95; display: block;
+            margin-top: 3px; font-family: 'Poppins', sans-serif;
+        }
+        .call-action {
+            font-size: 17px; color: #0056b3; font-weight: 700;
+            margin-bottom: 10px; font-family: 'Orbitron', sans-serif;
+        }
+    </style>
+</head>
+<body>
+    <center class="wrapper">
+        <table class="main-container" cellpadding="0" cellspacing="0">
+            <tr>
+                <td class="content">
+                    <p class="greeting">Hola {{Nombre_Contacto}},</p>
+                    <p class="text-paragraph">Te saluda {{Nombre_Remitente}}, de Partner Tech. He identificado tu contacto en el Directorio CCL.<br>Sabemos que a medida que una empresa crece, el software genérico ("enlatado") empieza a quedar chico: procesos lentos, datos desconectados y manuales operativos interminables.</p>
+                    <p class="text-paragraph">En <strong>Partner Tech</strong>, no te pedimos que adaptes tu negocio al software. <span class="highlight">Nosotros construimos el software exactamente como tu operación lo necesita.</span></p>
+                    <p class="text-paragraph">Nuestra metodología se basa en un análisis profundo de tus flujos de trabajo actuales para identificar cuellos de botella y oportunidades de automatización, garantizando un retorno de inversión medible desde la primera fase de implementación.</p>
+                    <p class="text-paragraph">¿Por qué elegir nuestra Fábrica de Software?</p>
+                    <div class="benefit-box" style="border-left-color: #00c853;">
+                        <span class="benefit-title">🛠️ Desarrollo 100% Personalizado</span>
+                        <p class="benefit-text">Diseñamos sistemas que automatizan <strong>tus reglas de negocio</strong> específicas, integrando áreas críticas (Finanzas, Logística, RRHH) sin fricción.</p>
+                    </div>
+                    <div class="benefit-box" style="border-left-color: #0056b3;">
+                        <span class="benefit-title">🔐 Es tu Activo, no un Alquiler</span>
+                        <p class="benefit-text">A diferencia de las licencias eternas, nosotros <strong>te entregamos el código fuente</strong>. Tú eres dueño de tu tecnología y de tu futuro.</p>
+                    </div>
+                    <p class="text-paragraph">Si estás evaluando desarrollar una solución propia o buscas aplicativos listos para implementar, te invito a revisar nuestro portafolio:</p>
+                    <a href="https://drive.google.com/file/d/1bDlvyO8tNbv_yf_QzIZumZ-de6caU-Ey/view?usp=sharing" class="btn-primary" style="background-color: #00c853; color: #ffffff !important; display: block; width: 100%; max-width: 380px; margin: 0 auto 15px auto; padding: 14px 30px; text-decoration: none; border-radius: 50px; font-weight: 700; font-size: 16px; text-align: center; font-family: 'Poppins', sans-serif; box-shadow: 0 4px 12px rgba(0, 200, 83, 0.3);"><span style="color: #ffffff;">Descargar Brochure</span><span class="btn-subtext" style="font-size: 12px; font-weight: 400; opacity: 0.95; display: block; margin-top: 3px; font-family: 'Poppins', sans-serif;">Desarrollo de Software Estratégico</span></a>
+                    <p class="text-paragraph">¿Tienes un cuello de botella operativo que el software actual no resuelve?</p>
+                    <a href="https://cal.com/negocios-partner-tech/requerimientos-software-desarrollo" class="btn-meeting" style="background-color: #0056b3; color: #ffffff !important; display: block; width: 100%; max-width: 380px; margin: 0 auto 15px auto; padding: 14px 30px; text-decoration: none; border-radius: 50px; font-weight: 700; font-size: 15px; text-align: center; font-family: 'Poppins', sans-serif; box-shadow: 0 4px 12px rgba(0, 86, 179, 0.3);"><span style="color: #ffffff;">📅 Agendar Reunión de 15 min</span></a>
+                    <p class="text-paragraph">Diagnostiquemos si un desarrollo a medida es la inversión correcta para tu año 2026.</p>
+
+                    <div class="closing-box">
+                        <p style="color: #555; margin-top: 15px; margin-bottom: 10px;">
+                            Saludos,<br><strong>{{Nombre_Remitente}}</strong><br>
+                            <a href="mailto:{{Email_Remitente}}" style="color: #0056b3; text-decoration: none;">{{Email_Remitente}}</a><br>
+                            <span style="font-size: 14px; color: #888;">{{Cargo_Remitente}} | Partner Tech</span>
+                        </p>
+                        <img src="cid:Logo_ver1" alt="Partner Tech Logo" class="footer-logo">
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td class="footer">
+                    <p>Enviado a <strong>{{Email_Destinatario}}</strong> cumpliendo los lineamientos de la <strong>Cámara de Comercio de Lima (CCL)</strong>.</p>
+                    <p>Respetamos tu privacidad profesional. Si no deseas recibir más correos, <a href="mailto:negocios@partnertech.pe?subject=Remover">haga clic aquí para darse de baja</a>.</p>
+                    <p style="margin-top: 15px;">RUC 20523799623 | Partnertech.pe | Av. Malachowsky 340, San Borja, Lima</p>
+                </td>
+            </tr>
+        </table>
+    </center>
+</body>
+</html>
