@@ -19,6 +19,7 @@ import sys
 import pathlib
 import base64
 import io
+from database import DatabaseManager
 
 # --- FUNCIÓN PARA MANEJAR RUTAS EN PYINSTALLER ---
 def resource_path(relative_path):
@@ -108,12 +109,22 @@ class CorreoApp:
         # Tab 2: Editor de Plantillas (Nuevo)
         self.tab_editor = ttk.Frame(self.notebook)
         self.notebook.add(self.tab_editor, text=" ✍️ Editor de Plantillas ")
+
+        # Tab 3: Historial (Nuevo)
+        self.tab_historial = ttk.Frame(self.notebook)
+        self.notebook.add(self.tab_historial, text=" 📜 Historial de Envíos ")
         
+        # Inicialización DB (Necesario antes de construir historial)
+        self.db = DatabaseManager()
+
         # --- CONSTRUCCIÓN TAB 1: ENVÍO ---
         self.construir_tab_envio()
         
         # --- CONSTRUCCIÓN TAB 2: EDITOR ---
         self.construir_tab_editor()
+
+        # --- CONSTRUCCIÓN TAB 3: HISTORIAL ---
+        self.construir_tab_historial()
 
         # Barra de estado
         self.status_var = tk.StringVar(value="Listo.")
@@ -121,6 +132,7 @@ class CorreoApp:
         self.status_bar.pack(side="bottom", fill="x")
 
         # Inicialización
+        self.inicializar_datos_db()
         self.cargar_plantillas()
         self.contar_destinatarios()
 
@@ -230,6 +242,73 @@ class CorreoApp:
         style.configure("Action.TButton", background=COLOR_AZUL_ELECTRICO, foreground=COLOR_BLANCO, font=("Segoe UI", 11, "bold"), borderwidth=0)
         style.map("Action.TButton", background=[('active', COLOR_AZUL_MEDIO), ('disabled', '#cccccc')])
 
+    def inicializar_datos_db(self):
+        # 1. Migrar perfiles estáticos a la DB si está vacía
+        perfiles_db = self.db.obtener_perfiles()
+        if not perfiles_db:
+            for nombre, datos in self.perfiles.items():
+                self.db.guardar_perfil(nombre, datos["email"], datos["pass"], datos["cargo"])
+        else:
+            self.perfiles = perfiles_db
+
+        # 2. Migrar archivos HTML locales a la DB (Migración automática)
+        ruta_busqueda = resource_path("*.html")
+        archivos = glob.glob(ruta_busqueda)
+        for f in archivos:
+            nombre = os.path.basename(f)
+            # Solo migrar si no existe ya en la DB para no sobreescribir ediciones del usuario
+            if not self.db.obtener_contenido_plantilla(nombre):
+                try:
+                    with open(f, 'r', encoding='utf-8') as html_file:
+                        contenido = html_file.read()
+                        self.db.guardar_plantilla(nombre, contenido)
+                except Exception as e:
+                    self.log_msg(f"Error migrando {nombre}: {e}", "WARNING")
+
+        # Cargar perfiles en el combo
+        self.actualizar_combo_perfiles()
+
+    def actualizar_combo_perfiles(self):
+        nombres = list(self.perfiles.keys())
+        self.combo_perfil['values'] = nombres
+        if nombres:
+            primer_nombre = nombres[0]
+            self.perfil_seleccionado.set(primer_nombre)
+            self.cargar_perfil()
+
+    def construir_tab_historial(self):
+        # Treeview para el historial
+        cols = ("Nombre", "Correo", "Plantilla", "Fecha", "Estado")
+        self.tree_historial = ttk.Treeview(self.tab_historial, columns=cols, show="headings")
+        
+        for col in cols:
+            self.tree_historial.heading(col, text=col)
+            self.tree_historial.column(col, width=150)
+
+        # Scrollbar historial
+        scrolly = ttk.Scrollbar(self.tab_historial, orient="vertical", command=self.tree_historial.yview)
+        scrollx = ttk.Scrollbar(self.tab_historial, orient="horizontal", command=self.tree_historial.xview)
+        self.tree_historial.configure(yscrollcommand=scrolly.set, xscrollcommand=scrollx.set)
+        
+        self.tree_historial.pack(side="top", fill="both", expand=True)
+        scrolly.pack(side="right", fill="y")
+        scrollx.pack(side="bottom", fill="x")
+
+        # Botón para actualizar historial
+        ttk.Button(self.tab_historial, text="🔄 Actualizar Historial", command=self.actualizar_historial_visual).pack(pady=10)
+        
+        self.actualizar_historial_visual()
+
+    def actualizar_historial_visual(self):
+        # Limpiar
+        for i in self.tree_historial.get_children():
+            self.tree_historial.delete(i)
+        
+        # Cargar de DB
+        registros = self.db.obtener_historial()
+        for r in registros:
+            self.tree_historial.insert("", "end", values=r)
+
     def log_msg(self, mensaje, nivel="INFO"):
         prefix = f"[{nivel}] " if nivel != "INFO" else ""
         self.txt_log.config(state='normal')
@@ -239,16 +318,17 @@ class CorreoApp:
         getattr(logging, nivel.lower())(mensaje)
 
     def cargar_plantillas(self):
-        # Usamos resource_path para encontrar los HTMLs dentro del .exe
-        ruta_busqueda = resource_path("*.html")
-        archivos = glob.glob(ruta_busqueda)
-        if archivos:
-            # Mostramos solo el nombre del archivo, no la ruta completa
-            self.combo_plantillas['values'] = [os.path.basename(f) for f in archivos]
-            self.plantilla_var.set(os.path.basename(archivos[0])) # Usar la variable para setear
+        # Ahora cargamos 100% desde la base de datos
+        lista_completa = self.db.obtener_plantillas()
+        
+        if lista_completa:
+            self.combo_plantillas['values'] = lista_completa
+            # Si no hay selección previa, poner la primera
+            if not self.plantilla_var.get():
+                self.plantilla_var.set(lista_completa[0])
             self.actualizar_preview()
         else:
-            self.combo_plantillas['values'] = ["No se encontraron HTMLs"]
+            self.combo_plantillas['values'] = ["No se encontraron plantillas en DB"]
             self.btn_iniciar.config(state="disabled")
 
     def cargar_perfil(self, event=None):
@@ -327,12 +407,13 @@ class CorreoApp:
         archivo_nombre = self.plantilla_var.get()
         if not archivo_nombre: return
         
-        archivo_path = resource_path(archivo_nombre)
-        if not os.path.exists(archivo_path): return
-        
         try:
-            with open(archivo_path, 'r', encoding='utf-8') as f:
-                content = f.read()
+            # Cargar 100% desde la DB
+            content = self.db.obtener_contenido_plantilla(archivo_nombre)
+            
+            if not content:
+                self.log_msg(f"Plantilla {archivo_nombre} no encontrada en DB", "WARNING")
+                return
             
             logo_path = resource_path('Logo_blanco_ver1.png')
             logo_base64_uri = get_base64_image(logo_path)
@@ -344,7 +425,7 @@ class CorreoApp:
                                      .replace('{{Nombre_Contacto}}', "[Nombre Cliente]")\
                                      .replace('{{Email_Destinatario}}', "[Email Cliente]")\
                                      .replace('cid:Logo_ver1', logo_base64_uri)\
-                                     .replace('{{MAX_WIDTH_PLACEHOLDER}}', 'max-width: none;') # Added this line
+                                     .replace('{{MAX_WIDTH_PLACEHOLDER}}', 'max-width: none;')
             
             self.visor_html.load_html(preview_content)
         except Exception as e:
@@ -842,37 +923,56 @@ class CorreoApp:
         return html
 
     def actualizar_preview_visual(self):
-        html = self.generar_html_final()
-        logo_path = resource_path('Logo_blanco_ver1.png')
-        logo_base64_uri = get_base64_image(logo_path)
-        # Preview dummy
-        preview = html.replace('{{Nombre_Remitente}}', self.nombre_remitente_var.get())\
-                      .replace('{{Cargo_Remitente}}', self.cargo_remitente_var.get())\
-                      .replace('{{Email_Remitente}}', self.email_remitente_var.get())\
-                      .replace('{{Nombre_Contacto}}', "[Cliente]")\
-                      .replace('{{Email_Destinatario}}', "[Email]")\
-                      .replace('cid:Logo_ver1', logo_base64_uri)\
-                      .replace('{{MAX_WIDTH_PLACEHOLDER}}', 'max-width: none;')
-        self.editor_preview.load_html(preview)
+        try:
+            html = self.generar_html_final()
+            logo_path = resource_path('Logo_blanco_ver1.png')
+            logo_base64_uri = get_base64_image(logo_path)
+            # Preview dummy
+            preview = html.replace('{{Nombre_Remitente}}', self.nombre_remitente_var.get())\
+                          .replace('{{Cargo_Remitente}}', self.cargo_remitente_var.get())\
+                          .replace('{{Email_Remitente}}', self.email_remitente_var.get())\
+                          .replace('{{Nombre_Contacto}}', "[Cliente]")\
+                          .replace('{{Email_Destinatario}}', "[Email]")\
+                          .replace('cid:Logo_ver1', logo_base64_uri)\
+                          .replace('{{MAX_WIDTH_PLACEHOLDER}}', 'max-width: none;')
+            self.editor_preview.load_html(preview)
+        except Exception as e:
+            self.log_msg(f"Error en preview visual: {e}", "ERROR")
 
     def guardar_plantilla_visual(self):
-        filename = filedialog.asksaveasfilename(defaultextension=".html", filetypes=[("HTML Files", "*.html")])
-        if filename:
+        # Preguntar nombre para la plantilla en la DB
+        nombre_plantilla = filedialog.asksaveasfilename(
+            defaultextension=".html", 
+            filetypes=[("Plantilla HTML", "*.html")],
+            title="Guardar como Plantilla de Base de Datos"
+        )
+        
+        if nombre_plantilla:
+            basename = os.path.basename(nombre_plantilla)
             html = self.generar_html_final()
-            with open(filename, 'w', encoding='utf-8') as f:
+            
+            # Guardar en DB
+            self.db.guardar_plantilla(basename, html)
+            
+            # También guardar archivo físico para seguridad si el usuario lo desea
+            with open(nombre_plantilla, 'w', encoding='utf-8') as f:
                 f.write(html)
-            messagebox.showinfo("Guardado", "Plantilla guardada correctamente.")
+            
+            messagebox.showinfo("Guardado", f"Plantilla '{basename}' guardada en base de datos.")
             self.cargar_plantillas()
+            self.plantilla_var.set(basename)
 
     def enviar_correo(self, nombre, email_destinatario, archivo_html_nombre):
         try:
-            # Obtener la ruta completa de la plantilla y el logo
-            archivo_html_path = resource_path(archivo_html_nombre)
+            # Obtener 100% de la DB
+            html_content = self.db.obtener_contenido_plantilla(archivo_html_nombre)
+            
+            if not html_content:
+                self.log_msg(f"Error: Plantilla {archivo_html_nombre} no encontrada en base de datos.", "ERROR")
+                return False
+
             logo_path = resource_path('Logo_blanco_ver1.png')
 
-            with open(archivo_html_path, 'r', encoding='utf-8') as f:
-                html_content = f.read()
-            
             # Datos del Remitente desde UI
             remitente_nombre = self.nombre_remitente_var.get()
             remitente_email = self.email_remitente_var.get()
@@ -955,6 +1055,10 @@ class CorreoApp:
                 
                 exito = self.enviar_correo(nombre, correo, archivo_html_nombre) # Pasamos solo el nombre
                 estado = "Enviado" if exito else "Fallido"
+                
+                # Registrar en DB SQLite
+                self.db.registrar_envio(nombre, correo, archivo_html_nombre, estado)
+                self.root.after(0, self.actualizar_historial_visual) # Actualizar UI suavemente
                 
                 with open(log_csv, 'a', encoding='utf-8') as f:
                     f.write(f'"{nombre}","{correo}","{archivo_html_nombre}","{time.strftime("%Y-%m-%d %H:%M:%S")}","{estado}"\n')
