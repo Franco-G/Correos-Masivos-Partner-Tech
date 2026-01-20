@@ -2243,3 +2243,14 @@
 2026-01-19 16:29:31,959 - INFO - Esperando 11.54s...
 2026-01-19 16:29:45,960 - INFO - OK: negocios@partnertech.pe
 2026-01-19 16:29:46,002 - INFO - --- PROCESO FINALIZADO ---
+2026-01-20 16:39:10,864 - ERROR - Error al cargar Excel: Missing optional dependency 'openpyxl'.  Use pip or conda to install openpyxl.
+2026-01-20 16:40:22,316 - INFO - Archivo cargado: Correos.xlsx
+2026-01-20 16:40:27,144 - INFO - --- INICIANDO ENVÍO MASIVO ---
+2026-01-20 16:40:48,359 - ERROR - Error con negocios@partnertech.pe: [WinError 10060] Se produjo un error durante el intento de conexión ya que la parte conectada no respondió adecuadamente tras un periodo de tiempo, o bien se produjo un error en la conexión establecida ya que el host conectado no ha podido responder
+2026-01-20 16:40:48,391 - INFO - FALLÓ: negocios@partnertech.pe
+2026-01-20 16:40:48,428 - INFO - Esperando 11.14s...
+2026-01-20 16:41:16,018 - INFO - Archivo cargado: Correos.xlsx
+2026-01-20 16:41:21,116 - INFO - --- INICIANDO ENVÍO MASIVO ---
+2026-01-20 16:41:42,309 - ERROR - Error con negocios@partnertech.pe: [WinError 10060] Se produjo un error durante el intento de conexión ya que la parte conectada no respondió adecuadamente tras un periodo de tiempo, o bien se produjo un error en la conexión establecida ya que el host conectado no ha podido responder
+2026-01-20 16:41:42,329 - INFO - FALLÓ: negocios@partnertech.pe
+2026-01-20 16:41:42,363 - INFO - Esperando 13.37s...
