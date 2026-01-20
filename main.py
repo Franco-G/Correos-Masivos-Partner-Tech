@@ -256,14 +256,25 @@ class CorreoApp:
         archivos = glob.glob(ruta_busqueda)
         for f in archivos:
             nombre = os.path.basename(f)
-            # Solo migrar si no existe ya en la DB para no sobreescribir ediciones del usuario
-            if not self.db.obtener_contenido_plantilla(nombre):
-                try:
-                    with open(f, 'r', encoding='utf-8') as html_file:
-                        contenido = html_file.read()
-                        self.db.guardar_plantilla(nombre, contenido)
-                except Exception as e:
-                    self.log_msg(f"Error migrando {nombre}: {e}", "WARNING")
+            contenido_db = self.db.obtener_contenido_plantilla(nombre)
+            
+            # Migrar si no existe o si es una versión antigua (sin responsive)
+            try:
+                with open(f, 'r', encoding='utf-8') as html_file:
+                    contenido_archivo = html_file.read()
+                    
+                    debe_migrar = False
+                    if not contenido_db:
+                        debe_migrar = True
+                    elif 'viewport' not in contenido_db and 'viewport' in contenido_archivo:
+                        # Si el archivo local tiene responsive y la DB no, actualizar
+                        debe_migrar = True
+                    
+                    if debe_migrar:
+                        self.db.guardar_plantilla(nombre, contenido_archivo)
+                        self.log_msg(f"Plantilla {nombre} actualizada/migrada con éxito.")
+            except Exception as e:
+                self.log_msg(f"Error migrando {nombre}: {e}", "WARNING")
 
         # Cargar perfiles en el combo
         self.actualizar_combo_perfiles()
@@ -425,11 +436,12 @@ class CorreoApp:
                                      .replace('{{Nombre_Contacto}}', "[Nombre Cliente]")\
                                      .replace('{{Email_Destinatario}}', "[Email Cliente]")\
                                      .replace('cid:Logo_ver1', logo_base64_uri)\
-                                     .replace('{{MAX_WIDTH_PLACEHOLDER}}', 'max-width: none;')
+                                     .replace('{{MAX_WIDTH_PLACEHOLDER}}', 'max-width: 650px;')
             
             self.visor_html.load_html(preview_content)
         except Exception as e:
-            self.log_msg(f"Error en preview: {e}", "ERROR")
+            self.log_msg(f"Error al renderizar preview: {e}", "ERROR")
+            self.visor_html.load_html(f"<h3>Error de Renderizado</h3><p style='color:red;'>{e}</p>")
 
     def verificar_formato(self, email):
         try:
@@ -766,10 +778,11 @@ class CorreoApp:
 <html lang="es">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Correo Partner Tech</title>
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;700&family=Poppins:wght@400;700&display=swap" rel="stylesheet">
     <style>
-        body { margin: 0; padding: 0; font-family: 'Poppins', sans-serif; background-color: #f4f7f6; color: #555; }
+        body { margin: 0; padding: 0; font-family: 'Poppins', sans-serif; background-color: #f4f7f6; color: #555; -webkit-font-smoothing: antialiased; }
         .wrapper { width: 100%; table-layout: fixed; background-color: #f4f7f6; padding: 40px 0; }
         .main-container { background-color: #ffffff; margin: 0 auto; width: 100%; {{MAX_WIDTH_PLACEHOLDER}} border-radius: 16px; overflow: hidden; box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06); }
         .content { padding: 40px 35px; }
@@ -866,6 +879,20 @@ class CorreoApp:
             font-size: 17px; color: #0056b3; font-weight: 700;
             margin-bottom: 10px; font-family: 'Orbitron', sans-serif;
         }
+
+        /* RESPONSIVE DESIGN */
+        @media screen and (max-width: 600px) {
+            .wrapper { padding: 20px 0 !important; }
+            .content { padding: 30px 20px !important; }
+            .greeting { font-size: 18px !important; }
+            .text-paragraph { font-size: 15px !important; }
+            .btn-primary, .btn-meeting { 
+                width: 100% !important; 
+                max-width: none !important; 
+                box-sizing: border-box !important; 
+            }
+            .benefit-box { padding: 15px !important; }
+        }
     </style>
 </head>
 <body>
@@ -934,10 +961,11 @@ class CorreoApp:
                           .replace('{{Nombre_Contacto}}', "[Cliente]")\
                           .replace('{{Email_Destinatario}}', "[Email]")\
                           .replace('cid:Logo_ver1', logo_base64_uri)\
-                          .replace('{{MAX_WIDTH_PLACEHOLDER}}', 'max-width: none;')
+                          .replace('{{MAX_WIDTH_PLACEHOLDER}}', 'max-width: 650px;')
             self.editor_preview.load_html(preview)
         except Exception as e:
             self.log_msg(f"Error en preview visual: {e}", "ERROR")
+            self.editor_preview.load_html(f"<h3>Error de Vista Previa</h3><p style='color:red;'>{e}</p>")
 
     def guardar_plantilla_visual(self):
         # Preguntar nombre para la plantilla en la DB
@@ -985,7 +1013,8 @@ class CorreoApp:
                                        .replace('{{Email_Destinatario}}', email_destinatario)\
                                        .replace('{{Nombre_Remitente}}', remitente_nombre)\
                                        .replace('{{Email_Remitente}}', remitente_email)\
-                                       .replace('{{Cargo_Remitente}}', remitente_cargo)
+                                       .replace('{{Cargo_Remitente}}', remitente_cargo)\
+                                       .replace('{{MAX_WIDTH_PLACEHOLDER}}', 'max-width: 600px;')
             
             message = MIMEMultipart("related")
             message["Subject"] = asunto_template.replace('{{Nombre_Contacto}}', nombre)\
