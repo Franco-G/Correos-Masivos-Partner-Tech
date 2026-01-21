@@ -2243,3 +2243,18 @@
 2026-01-19 16:29:31,959 - INFO - Esperando 11.54s...
 2026-01-19 16:29:45,960 - INFO - OK: negocios@partnertech.pe
 2026-01-19 16:29:46,002 - INFO - --- PROCESO FINALIZADO ---
+2026-01-21 17:11:31,755 - INFO - Archivo cargado: Correos.xlsx
+2026-01-21 17:11:35,484 - INFO - --- INICIANDO ENVÍO MASIVO ---
+2026-01-21 17:11:56,703 - ERROR - Error con negocios@partnertech.pe: [WinError 10060] Se produjo un error durante el intento de conexión ya que la parte conectada no respondió adecuadamente tras un periodo de tiempo, o bien se produjo un error en la conexión establecida ya que el host conectado no ha podido responder
+2026-01-21 17:11:56,710 - INFO - FALLÓ: negocios@partnertech.pe
+2026-01-21 17:11:56,720 - INFO - Esperando 13.67s...
+2026-01-21 17:13:57,475 - INFO - Archivo cargado: Correos.xlsx
+2026-01-21 17:14:08,915 - INFO - --- INICIANDO ENVÍO MASIVO ---
+2026-01-21 17:14:30,323 - ERROR - Error con negocios@partnertech.pe: [WinError 10060] Se produjo un error durante el intento de conexión ya que la parte conectada no respondió adecuadamente tras un periodo de tiempo, o bien se produjo un error en la conexión establecida ya que el host conectado no ha podido responder
+2026-01-21 17:14:30,332 - INFO - FALLÓ: negocios@partnertech.pe
+2026-01-21 17:14:30,342 - INFO - Esperando 13.54s...
+2026-01-21 17:16:25,280 - INFO - Archivo cargado: Correos.xlsx
+2026-01-21 17:16:30,760 - INFO - --- INICIANDO ENVÍO MASIVO ---
+2026-01-21 17:16:51,859 - ERROR - Error con ricardo.noriega@pmoperu.com: [WinError 10060] Se produjo un error durante el intento de conexión ya que la parte conectada no respondió adecuadamente tras un periodo de tiempo, o bien se produjo un error en la conexión establecida ya que el host conectado no ha podido responder
+2026-01-21 17:16:51,869 - INFO - FALLÓ: ricardo.noriega@pmoperu.com
+2026-01-21 17:16:51,884 - INFO - --- PROCESO FINALIZADO ---
