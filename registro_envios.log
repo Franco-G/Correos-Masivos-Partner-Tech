@@ -1691,3 +1691,8 @@
 2026-01-19 10:37:58,128 - INFO - Esperando 14.34s...
 2026-01-19 10:38:14,379 - INFO - OK: negocios@partnertech.pe
 2026-01-19 10:38:14,390 - INFO - --- PROCESO FINALIZADO ---
+2026-01-20 16:43:54,675 - INFO - Archivo cargado: Correos.xlsx
+2026-01-20 16:43:59,688 - INFO - --- INICIANDO ENVÍO MASIVO ---
+2026-01-20 16:44:20,802 - ERROR - Error con negocios@partnertech.pe: [WinError 10060] Se produjo un error durante el intento de conexión ya que la parte conectada no respondió adecuadamente tras un periodo de tiempo, o bien se produjo un error en la conexión establecida ya que el host conectado no ha podido responder
+2026-01-20 16:44:20,814 - INFO - FALLÓ: negocios@partnertech.pe
+2026-01-20 16:44:20,818 - INFO - Esperando 13.49s...
