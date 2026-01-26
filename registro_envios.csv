@@ -1422,6 +1422,7 @@ Sandra,stravi@nematsa.com.pe,correo_brochure.html,2026-01-09
 "Alexandra","negocios@partnertech.pe","correo_brochure.html","2026-01-21 17:11:56","Fallido"
 "Alexandra","negocios@partnertech.pe","correo_brochure.html","2026-01-21 17:14:30","Fallido"
 "Alexandra","ricardo.noriega@pmoperu.com","correo_brochure.html","2026-01-21 17:16:51","Fallido"
+<<<<<<< HEAD
 "Alexandra","ricardo.noriega@pmoperu.com","correo_brochure.html","2026-01-26 09:26:31","Enviado"
 "Erika","administracion.peru@movilmax.com","correo_brochure.html","2026-01-26 09:26:43","Enviado"
 "Andres","andres.escudero@movilmax.com","correo_brochure.html","2026-01-26 09:26:58","Enviado"
@@ -1526,3 +1527,9 @@ Sandra,stravi@nematsa.com.pe,correo_brochure.html,2026-01-09
 "Royer","royer@wardia.com.pe","correo_brochure.html","2026-01-26 10:02:56","Enviado"
 "Sergio","sergio.soto@equifax.com","correo_brochure.html","2026-01-26 10:03:13","Enviado"
 "Alexandra","negocios@partnertech.pe","correo_brochure.html","2026-01-26 10:03:27","Enviado"
+=======
+"Ricardo","ricardo.noriega@pmoperu.com","correo_vacio.html","2026-01-22 09:02:04","Fallido"
+"Ricardo","ricardo.noriega@pmoperu.com","correo_brochure.html","2026-01-22 19:00:09","Fallido"
+"Ricardo","ricardo.noriega@pmoperu.com","correo_vacio.html","2026-01-23 16:19:36","Enviado"
+"Ricardo","ricardo.noriega@pmoperu.com","correo_vacio.html","2026-01-23 16:22:28","Fallido"
+>>>>>>> 5ae7e92eebe641ac7ef66048dbd203ca4e384076
