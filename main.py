@@ -1,6 +1,4 @@
 import pandas as pd
-import smtplib
-import ssl
 import time
 import random
 import glob
@@ -8,18 +6,20 @@ import os
 import threading
 import tkinter as tk
 from tkinter import ttk, messagebox, scrolledtext, filedialog
-from email.mime.text import MIMEText
-from email.mime.multipart import MIMEMultipart
-from email.mime.image import MIMEImage
-from email.utils import formatdate, make_msgid
 import logging
-from email_validator import validate_email, EmailNotValidError
+from email_validator import validate_email
 from tkinterweb import HtmlFrame
 import sys
-import pathlib
 import base64
-import io
 from database import DatabaseManager
+from app.config import Config
+from app.services.email_sender import EmailSender
+from app.ui.styles import UIStyles
+
+
+# Validar configuración al inicio
+Config.validate()
+
 
 # --- FUNCIÓN PARA MANEJAR RUTAS EN PYINSTALLER ---
 def resource_path(relative_path):
@@ -48,11 +48,8 @@ logging.basicConfig(
     format='%(asctime)s - %(levelname)s - %(message)s'
 )
 
-# --- CONFIGURACIÓN ---
-smtp_server = "mail.partnertech.pe"
-smtp_port = 465
-sender_email = "fguerrero@partnertech.pe"
-password_email = "Franco001"
+# --- CONFIGURACIÓN ELIMINADA (Movida a app/config.py) ---
+
 
 class CorreoApp:
     def __init__(self, root):
@@ -60,6 +57,10 @@ class CorreoApp:
         self.root.title("Partner Tech | Gestor de Envío Masivo")
         self.root.state('zoomed')
         self.root.geometry("1100x700")
+        
+        # Inicializar servicios
+        self.email_service = EmailSender()
+
         
         # Configurar Estilos
         self.setup_styles()
@@ -224,23 +225,9 @@ class CorreoApp:
         scrollbar.pack(side="right", fill="y")
 
     def setup_styles(self):
-        style = ttk.Style()
-        style.theme_use('clam')
-        COLOR_AZUL_OSCURO = "#0021a4"
-        COLOR_AZUL_MEDIO = "#243a92"
-        COLOR_AZUL_ELECTRICO = "#1e53dd"
-        COLOR_BLANCO = "#ffffff"
-        
-        style.configure(".", background="#f4f6f9", font=("Segoe UI", 10))
-        style.configure("TFrame", background="#f4f6f9")
-        style.configure("TLabelframe", background="#f4f6f9", bordercolor=COLOR_AZUL_MEDIO)
-        style.configure("TLabelframe.Label", background="#f4f6f9", foreground=COLOR_AZUL_OSCURO, font=("Segoe UI", 11, "bold"))
-        style.configure("TLabel", background="#f4f6f9", foreground="#333333")
-        style.configure("Header.TLabel", background=COLOR_AZUL_OSCURO, foreground=COLOR_BLANCO, font=("Orbitron", 18, "bold"))
-        style.configure("Bold.TLabel", font=("Segoe UI", 10, "bold"), foreground=COLOR_AZUL_OSCURO)
-        
-        style.configure("Action.TButton", background=COLOR_AZUL_ELECTRICO, foreground=COLOR_BLANCO, font=("Segoe UI", 11, "bold"), borderwidth=0)
-        style.map("Action.TButton", background=[('active', COLOR_AZUL_MEDIO), ('disabled', '#cccccc')])
+        """Aplica los estilos corporativos definidos en app/ui/styles.py"""
+        self.style = UIStyles.apply(self.root)
+
 
     def inicializar_datos_db(self):
         # 1. Migrar perfiles estáticos a la DB si está vacía
@@ -991,63 +978,59 @@ class CorreoApp:
             self.plantilla_var.set(basename)
 
     def enviar_correo(self, nombre, email_destinatario, archivo_html_nombre):
+        """Prepara los datos y delega el envío al servicio EmailSender."""
         try:
-            # Obtener 100% de la DB
+            # Obtener contenido de la plantilla desde la DB
             html_content = self.db.obtener_contenido_plantilla(archivo_html_nombre)
-            
             if not html_content:
-                self.log_msg(f"Error: Plantilla {archivo_html_nombre} no encontrada en base de datos.", "ERROR")
+                self.log_msg(f"Error: Plantilla {archivo_html_nombre} no encontrada.", "ERROR")
                 return False
 
-            logo_path = resource_path('Logo_blanco_ver1.png')
+            # Preparar datos del remitente
+            sender_data = {
+                "nombre": self.nombre_remitente_var.get(),
+                "email": self.email_remitente_var.get(),
+                "password": self.pass_remitente_var.get(),
+                "cargo": self.cargo_remitente_var.get()
+            }
 
-            # Datos del Remitente desde UI
-            remitente_nombre = self.nombre_remitente_var.get()
-            remitente_email = self.email_remitente_var.get()
-            remitente_pass = self.pass_remitente_var.get()
-            remitente_cargo = self.cargo_remitente_var.get()
+            # Preparar datos del destinatario
+            recipient_data = {
+                "nombre": nombre,
+                "email": email_destinatario
+            }
+
+            # Procesar el asunto dinámico
             asunto_template = self.asunto_var.get()
+            subject = asunto_template.replace('{{Nombre_Contacto}}', nombre)\
+                                     .replace('{{Nombre_Remitente}}', sender_data["nombre"])
 
-            # Reemplazos en HTML
-            html_content = html_content.replace('{{Nombre_Contacto}}', nombre)\
-                                       .replace('{{Email_Destinatario}}', email_destinatario)\
-                                       .replace('{{Nombre_Remitente}}', remitente_nombre)\
-                                       .replace('{{Email_Remitente}}', remitente_email)\
-                                       .replace('{{Cargo_Remitente}}', remitente_cargo)\
-                                       .replace('{{MAX_WIDTH_PLACEHOLDER}}', 'max-width: 600px;')
-            
-            message = MIMEMultipart("related")
-            message["Subject"] = asunto_template.replace('{{Nombre_Contacto}}', nombre)\
-                                                .replace('{{Nombre_Remitente}}', remitente_nombre)
-            message["From"] = remitente_email
-            message["To"] = email_destinatario
-            message["Date"] = formatdate(localtime=True)
-            message["Message-ID"] = make_msgid(domain="partnertech.pe")
-            message["List-Unsubscribe"] = "<mailto:negocios@partnertech.pe?subject=unsubscribe>"
-            
-            msg_alternative = MIMEMultipart("alternative")
-            message.attach(msg_alternative)
-            
-            text_plain = f"Hola {nombre},\n\nGracias por tu interés en Partner Tech.\nDesarrollamos software a medida según sus necesidades.\n\nAtentamente,\n{remitente_nombre}"
-            msg_alternative.attach(MIMEText(text_plain, "plain"))
-            msg_alternative.attach(MIMEText(html_content, "html"))
-            
-            try:
-                with open(logo_path, 'rb') as f:
-                    img = MIMEImage(f.read())
-                    img.add_header('Content-ID', '<Logo_ver1>')
-                    message.attach(img)
-            except Exception as e:
-                self.log_msg(f"No se pudo adjuntar el logo: {e}", "WARNING")
-            
-            context = ssl.create_default_context()
-            with smtplib.SMTP_SSL(smtp_server, smtp_port, context=context) as server:
-                server.login(remitente_email, remitente_pass)
-                server.sendmail(remitente_email, email_destinatario, message.as_string())
-            return True
+            # Procesar placeholders en el cuerpo HTML
+            html_body = html_content.replace('{{Nombre_Contacto}}', nombre)\
+                                    .replace('{{Email_Destinatario}}', email_destinatario)\
+                                    .replace('{{Nombre_Remitente}}', sender_data["nombre"])\
+                                    .replace('{{Email_Remitente}}', sender_data["email"])\
+                                    .replace('{{Cargo_Remitente}}', sender_data["cargo"])\
+                                    .replace('{{MAX_WIDTH_PLACEHOLDER}}', 'max-width: 600px;')
+
+            # Delegar envío al servicio
+            exito, mensaje = self.email_service.send(
+                sender_data=sender_data,
+                recipient_data=recipient_data,
+                subject=subject,
+                html_body=html_body,
+                logo_path=resource_path('Logo_blanco_ver1.png')
+            )
+
+            if not exito:
+                self.log_msg(f"Error con {email_destinatario}: {mensaje}", "ERROR")
+
+            return exito
+
         except Exception as e:
-            self.log_msg(f"Error con {email_destinatario}: {e}", "ERROR")
+            self.log_msg(f"Error crítico en enviar_correo: {e}", "ERROR")
             return False
+
 
     def iniciar_envio_thread(self):
         self.btn_iniciar.config(state="disabled")
