@@ -4881,4 +4881,9 @@
 2026-02-17 10:30:45,011 - INFO - Esperando 14.94s...
 2026-02-17 10:31:01,843 - INFO - OK: negocios@partnertech.pe
 2026-02-17 10:31:01,872 - INFO - --- PROCESO FINALIZADO ---
-2026-02-18 15:14:01,980 - INFO - Archivo cargado: Correos.xlsx
+2026-02-18 15:15:37,675 - ERROR - Error al cargar Excel: `Import openpyxl` failed.  Use pip or conda to install the openpyxl package.
+2026-02-18 15:16:33,373 - ERROR - Error al cargar Excel: `Import openpyxl` failed.  Use pip or conda to install the openpyxl package.
+2026-02-18 15:17:37,758 - INFO - Archivo cargado: Correos.xlsx
+2026-02-18 15:17:40,657 - INFO - --- INICIANDO ENVÍO MASIVO ---
+2026-02-18 15:17:43,509 - INFO - OK: negocios@partnertech.pe
+2026-02-18 15:17:43,528 - INFO - --- PROCESO FINALIZADO ---
