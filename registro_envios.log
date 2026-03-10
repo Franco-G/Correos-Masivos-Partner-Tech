@@ -1,1 +1,57 @@
 2026-03-10 15:15:51,102 - INFO - Archivo cargado: Correos.xlsx
+2026-03-10 16:55:20,100 - INFO - Archivo cargado: Correos.xlsx
+2026-03-10 16:55:32,429 - INFO - --- INICIANDO ENVÍO MASIVO ---
+2026-03-10 16:55:32,462 - ERROR - Error con negocios@partnertech.pe: name 'resource_path' is not defined
+2026-03-10 16:55:32,469 - INFO - FALLÓ: negocios@partnertech.pe
+2026-03-10 16:55:32,471 - INFO - Esperando 10.22s...
+2026-03-10 16:55:42,699 - ERROR - Error con acardozo@partnertech.pe: name 'resource_path' is not defined
+2026-03-10 16:55:42,709 - INFO - FALLÓ: acardozo@partnertech.pe
+2026-03-10 16:55:42,719 - INFO - --- PROCESO FINALIZADO ---
+2026-03-10 16:55:46,611 - INFO - --- INICIANDO ENVÍO MASIVO ---
+2026-03-10 16:55:46,624 - ERROR - Error con negocios@partnertech.pe: name 'resource_path' is not defined
+2026-03-10 16:55:46,634 - INFO - FALLÓ: negocios@partnertech.pe
+2026-03-10 16:55:46,639 - INFO - Esperando 11.34s...
+2026-03-10 16:55:57,986 - ERROR - Error con acardozo@partnertech.pe: name 'resource_path' is not defined
+2026-03-10 16:55:57,996 - INFO - FALLÓ: acardozo@partnertech.pe
+2026-03-10 16:55:58,005 - INFO - --- PROCESO FINALIZADO ---
+2026-03-10 17:00:42,530 - INFO - Archivo cargado: Correos.xlsx
+2026-03-10 17:00:49,426 - INFO - --- INICIANDO ENVÍO MASIVO ---
+2026-03-10 17:00:50,340 - ERROR - Error con negocios@partnertech.pe: [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: Basic Constraints of CA cert not marked critical (_ssl.c:1081)
+2026-03-10 17:00:50,349 - INFO - FALLÓ: negocios@partnertech.pe
+2026-03-10 17:00:50,353 - INFO - Esperando 11.56s...
+2026-03-10 17:01:02,181 - ERROR - Error con acardozo@partnertech.pe: [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: Basic Constraints of CA cert not marked critical (_ssl.c:1081)
+2026-03-10 17:01:02,191 - INFO - FALLÓ: acardozo@partnertech.pe
+2026-03-10 17:01:02,195 - INFO - --- PROCESO FINALIZADO ---
+2026-03-10 17:01:04,854 - INFO - --- INICIANDO ENVÍO MASIVO ---
+2026-03-10 17:01:05,112 - ERROR - Error con negocios@partnertech.pe: [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: Basic Constraints of CA cert not marked critical (_ssl.c:1081)
+2026-03-10 17:01:05,121 - INFO - FALLÓ: negocios@partnertech.pe
+2026-03-10 17:01:05,125 - INFO - Esperando 11.61s...
+2026-03-10 17:01:17,021 - ERROR - Error con acardozo@partnertech.pe: [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: Basic Constraints of CA cert not marked critical (_ssl.c:1081)
+2026-03-10 17:01:17,032 - INFO - FALLÓ: acardozo@partnertech.pe
+2026-03-10 17:01:17,040 - INFO - --- PROCESO FINALIZADO ---
+2026-03-10 17:03:24,668 - INFO - Archivo cargado: Correos.xlsx
+2026-03-10 17:03:25,681 - INFO - --- INICIANDO ENVÍO MASIVO ---
+2026-03-10 17:03:27,436 - INFO - OK: negocios@partnertech.pe
+2026-03-10 17:03:27,444 - INFO - Esperando 13.01s...
+2026-03-10 17:03:42,070 - INFO - OK: acardozo@partnertech.pe
+2026-03-10 17:03:42,077 - INFO - --- PROCESO FINALIZADO ---
+2026-03-10 17:08:09,486 - INFO - --- INICIANDO ENVÍO MASIVO ---
+2026-03-10 17:08:11,073 - INFO - OK: negocios@partnertech.pe
+2026-03-10 17:08:11,079 - INFO - Esperando 11.58s...
+2026-03-10 17:08:24,097 - INFO - OK: acardozo@partnertech.pe
+2026-03-10 17:08:24,108 - INFO - --- PROCESO FINALIZADO ---
+2026-03-10 17:08:27,415 - INFO - --- INICIANDO ENVÍO MASIVO ---
+2026-03-10 17:08:29,047 - INFO - OK: negocios@partnertech.pe
+2026-03-10 17:08:29,056 - INFO - Esperando 11.99s...
+2026-03-10 17:08:42,554 - INFO - OK: acardozo@partnertech.pe
+2026-03-10 17:08:42,565 - INFO - --- PROCESO FINALIZADO ---
+2026-03-10 17:08:48,269 - INFO - --- INICIANDO ENVÍO MASIVO ---
+2026-03-10 17:08:49,754 - INFO - OK: negocios@partnertech.pe
+2026-03-10 17:08:49,759 - INFO - Esperando 10.25s...
+2026-03-10 17:09:01,500 - INFO - OK: acardozo@partnertech.pe
+2026-03-10 17:09:01,508 - INFO - --- PROCESO FINALIZADO ---
+2026-03-10 17:09:05,400 - INFO - --- INICIANDO ENVÍO MASIVO ---
+2026-03-10 17:09:07,061 - INFO - OK: negocios@partnertech.pe
+2026-03-10 17:09:07,069 - INFO - Esperando 13.07s...
+2026-03-10 17:09:21,665 - INFO - OK: acardozo@partnertech.pe
+2026-03-10 17:09:21,671 - INFO - --- PROCESO FINALIZADO ---

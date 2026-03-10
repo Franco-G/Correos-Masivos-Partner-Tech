@@ -347,61 +347,11 @@ class CorreoApp:
             return True
         except: return False
 
-
-
-        # Cierre Fijo (Firma + Footer)
-        html += """
-                    <div class="closing-box">
-                        <p style="color: #555; margin-top: 15px; margin-bottom: 10px;">
-                            Saludos,<br><strong>{{Nombre_Remitente}}</strong><br>
-                            <a href="mailto:{{Email_Remitente}}" style="color: #0056b3; text-decoration: none;">{{Email_Remitente}}</a><br>
-                            <span style="font-size: 14px; color: #888;">{{Cargo_Remitente}} | Partner Tech</span>
-                        </p>
-                        <img src="cid:Logo_ver1" alt="Partner Tech Logo" class="footer-logo">
-                    </div>
-                </td>
-            </tr>
-            <tr>
-                <td class="footer">
-                    <p>Enviado a <strong>{{Email_Destinatario}}</strong> cumpliendo los lineamientos de la <strong>Cámara de Comercio de Lima (CCL)</strong>.</p>
-                    <p>Respetamos tu privacidad profesional. Si no deseas recibir más correos, <a href="mailto:negocios@partnertech.pe?subject=Remover">haga clic aquí para darse de baja</a>.</p>
-                    <p style="margin-top: 15px;">RUC 20523799623 | Partnertech.pe | Av. Malachowsky 340, San Borja, Lima</p>
-                </td>
-            </tr>
-        </table>
-    </center>
-</body>
-</html>"""
-        return html
-
-    def actualizar_preview_visual(self):
-        html = self.generar_html_final()
-        logo_path = resource_path('Logo_blanco_ver1.png')
-        logo_base64_uri = get_base64_image(logo_path)
-        # Preview dummy
-        preview = html.replace('{{Nombre_Remitente}}', self.nombre_remitente_var.get())\
-                      .replace('{{Cargo_Remitente}}', self.cargo_remitente_var.get())\
-                      .replace('{{Email_Remitente}}', self.email_remitente_var.get())\
-                      .replace('{{Nombre_Contacto}}', "[Cliente]")\
-                      .replace('{{Email_Destinatario}}', "[Email]")\
-                      .replace('cid:Logo_ver1', logo_base64_uri)\
-                      .replace('{{MAX_WIDTH_PLACEHOLDER}}', 'max-width: none;')
-        self.editor_preview.load_html(preview)
-
-    def guardar_plantilla_visual(self):
-        filename = filedialog.asksaveasfilename(defaultextension=".html", filetypes=[("HTML Files", "*.html")])
-        if filename:
-            html = self.generar_html_final()
-            with open(filename, 'w', encoding='utf-8') as f:
-                f.write(html)
-            messagebox.showinfo("Guardado", "Plantilla guardada correctamente.")
-            self.cargar_plantillas()
-
     def enviar_correo(self, nombre, email_destinatario, archivo_html_nombre):
         try:
-            # Obtener la ruta completa de la plantilla y el logo
-            archivo_html_path = resource_path(archivo_html_nombre)
-            logo_path = resource_path('Logo_blanco_ver1.png')
+            # Rutas simples relativas al directorio del script
+            archivo_html_path = os.path.abspath(archivo_html_nombre)
+            logo_path = os.path.abspath('Logo_blanco_ver1.png')
 
             with open(archivo_html_path, 'r', encoding='utf-8') as f:
                 html_content = f.read()
@@ -445,6 +395,8 @@ class CorreoApp:
                 self.log_msg(f"No se pudo adjuntar el logo: {e}", "WARNING")
             
             context = ssl.create_default_context()
+            context.check_hostname = False
+            context.verify_mode = ssl.CERT_NONE
             with smtplib.SMTP_SSL(smtp_server, smtp_port, context=context) as server:
                 server.login(remitente_email, remitente_pass)
                 server.sendmail(remitente_email, email_destinatario, message.as_string())
