@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Infrasys - Presupuestos de Obra | Partner Tech</title>
+    <title>Infrasys - Gestión de Obras | Partner Tech</title>
 
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;700&family=Poppins:wght@400;700&display=swap"
         rel="stylesheet">
@@ -53,7 +53,7 @@
             font-size: 16px;
             line-height: 1.7;
             color: #666;
-            margin-bottom: 25px;
+            margin-bottom: 20px;
             font-family: 'Poppins', sans-serif;
         }
 
@@ -62,37 +62,19 @@
             font-weight: 700;
         }
 
-        /* STAT BOXES */
-        .stat-row {
-            display: flex;
-            gap: 12px;
-            margin-bottom: 25px;
+        /* SEPARATOR */
+        .section-divider {
+            border: none;
+            border-top: 1px solid #edf2f7;
+            margin: 25px 0;
         }
 
-        .stat-box {
-            flex: 1;
-            background-color: #f8fafc;
-            border: 1px solid #e2e8f0;
-            border-radius: 12px;
-            padding: 20px 15px;
-            text-align: center;
-        }
-
-        .stat-number {
-            font-size: 28px;
-            font-weight: 700;
-            color: #0021a4;
-            font-family: 'Orbitron', sans-serif;
-            display: block;
-            margin-bottom: 5px;
-        }
-
-        .stat-label {
-            font-size: 12px;
-            color: #718096;
+        .section-title {
+            font-size: 15px;
+            color: #555;
+            font-weight: 600;
+            margin-bottom: 16px;
             font-family: 'Poppins', sans-serif;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
         }
 
         /* BENEFIT BOXES */
@@ -101,14 +83,14 @@
             border: 1px solid #e2e8f0;
             border-left: 5px solid #1bde5d;
             border-radius: 12px;
-            padding: 20px;
-            margin-bottom: 20px;
+            padding: 18px 20px;
+            margin-bottom: 16px;
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
         }
 
         .benefit-title {
             color: #0021a4;
-            font-size: 16px;
+            font-size: 15px;
             font-weight: 700;
             display: block;
             margin-bottom: 5px;
@@ -117,7 +99,7 @@
 
         .benefit-text {
             font-size: 14px;
-            line-height: 1.5;
+            line-height: 1.6;
             color: #718096;
             margin: 0;
             font-family: 'Poppins', sans-serif;
@@ -137,7 +119,6 @@
             font-weight: 700;
             font-size: 16px;
             box-shadow: 0 4px 12px rgba(27, 222, 93, 0.3);
-            transition: all 0.3s ease;
             font-family: 'Poppins', sans-serif;
             text-align: center;
         }
@@ -155,13 +136,12 @@
             font-weight: 700;
             font-size: 15px;
             box-shadow: 0 4px 12px rgba(30, 83, 221, 0.3);
-            transition: all 0.3s ease;
             font-family: 'Poppins', sans-serif;
             text-align: center;
         }
 
-        .btn-primary:hover { background-color: #15c750; transform: translateY(-2px); }
-        .btn-meeting:hover { background-color: #1645b8; transform: translateY(-2px); }
+        .btn-primary:hover { background-color: #15c750; }
+        .btn-meeting:hover { background-color: #1645b8; }
 
         .closing-box {
             text-align: center;
@@ -174,7 +154,7 @@
             font-size: 17px;
             color: #1e53dd;
             font-weight: 700;
-            margin-bottom: 10px;
+            margin-bottom: 16px;
             font-family: 'Orbitron', sans-serif;
         }
 
@@ -184,7 +164,7 @@
             padding: 30px 30px;
             text-align: center;
             font-size: 13px;
-            color: #555555;
+            color: #a0aec0;
             line-height: 1.6;
             font-family: 'Poppins', sans-serif;
         }
@@ -204,7 +184,6 @@
 
         @media screen and (max-width: 600px) {
             .content { padding: 30px 20px !important; }
-            .stat-row { flex-direction: column; }
             .btn-meeting, .btn-primary { display: block; width: 100%; box-sizing: border-box; }
         }
     </style>
@@ -218,66 +197,62 @@
                     <p class="greeting">Hola {{Nombre_Contacto}},</p>
 
                     <p class="text-paragraph">
-                        Te saluda {{Nombre_Remitente}}, de Partner Tech. Como responsable financiero, sabes que en obra civil <span class="highlight">"casi exacto" no es suficiente</span>.
+                        Te saluda {{Nombre_Remitente}}, de Partner Tech.
                     </p>
 
                     <p class="text-paragraph">
-                        Mantener la consistencia entre los <strong>APU (Análisis de Precios Unitarios)</strong>, los cronogramas valorizados y lo ejecutado realmente es una tarea titánica si se hace manualmente. El riesgo de pagar en exceso o subestimar un desvío de insumos es constante.
+                        En muchas constructoras el control de obra se termina manejando con metrados en Excel, el presupuesto en otro archivo y el cronograma en MS Project.
+                        El problema no es la herramienta en sí, sino que <span class="highlight">la información queda dispersa y rara vez se mantiene sincronizada.</span>
                     </p>
-
-                    <!-- Stats -->
-                    <div class="stat-row">
-                        <div class="stat-box">
-                            <span class="stat-number">40%</span>
-                            <span class="stat-label">Ahorro en horas<br>de oficina</span>
-                        </div>
-                        <div class="stat-box">
-                            <span class="stat-number" style="color: #1bde5d;">0</span>
-                            <span class="stat-label">Errores de<br>transcripción</span>
-                        </div>
-                        <div class="stat-box">
-                            <span class="stat-number" style="color: #1e53dd;">∞</span>
-                            <span class="stat-label">Escenarios<br>simulables</span>
-                        </div>
-                    </div>
 
                     <p class="text-paragraph">
-                        <strong>Infrasys</strong> es nuestra plataforma SaaS que automatiza la gestión de presupuestos y
-                        valorizaciones para constructoras. Esto es lo que obtiene tu área financiera:
+                        Cuando ocurre un cambio en obra —una partida, un metrado o el plazo de ejecución— el equipo debe actualizar varios archivos manualmente.
+                        Esto suele generar inconsistencias, retrabajo y una pérdida de tiempo importante en tareas administrativas.
                     </p>
 
+                    <hr class="section-divider">
+
+                    <p class="text-paragraph">
+                        Con ese escenario en mente desarrollamos <strong>Infrasys</strong>, una plataforma SaaS diseñada para centralizar la planificación, el presupuesto y el control de obras en un solo sistema.
+                    </p>
+
+                    <p class="section-title">Con Infrasys es posible:</p>
+
+                    <!-- Beneficios -->
                     <div class="benefit-box">
-                        <span class="benefit-title">💰 Gestión Integral de APU</span>
+                        <span class="benefit-title">📊 Visualizar el estado de cada obra</span>
                         <p class="benefit-text">
-                            Centraliza tus análisis de precios. Vincula automáticamente el rendimiento de insumos con tu presupuesto maestro. <strong>Sin fugas de costos invisibles.</strong>
+                            Dashboard consolidado con información actualizada de avance, costos y desempeño del proyecto.
                         </p>
                     </div>
 
                     <div class="benefit-box" style="border-left-color: #00e0ff;">
-                        <span class="benefit-title">📐 Valorizaciones Automatizadas</span>
+                        <span class="benefit-title">🔄 Recalcular automáticamente presupuesto y cronograma</span>
                         <p class="benefit-text">
-                            Genera valorizaciones precisas basadas en el avance real reportado. <strong>Evita errores de cálculo</strong> que comprometan el flujo de caja del proyecto.
+                            Si se modifica una partida o duración, el sistema actualiza el presupuesto y el cronograma tipo Gantt <strong>sin depender de múltiples archivos</strong>.
                         </p>
                     </div>
 
                     <div class="benefit-box" style="border-left-color: #1e53dd;">
-                        <span class="benefit-title">📊 Escenarios y Análisis de Varianza</span>
+                        <span class="benefit-title">🔐 Mantener trazabilidad completa de los cambios</span>
                         <p class="benefit-text">
-                            Simula escenarios (Optimista/Realista) antes de ejecutar cambios. Detecta desvíos de presupuesto <strong>antes de que afecten tu utilidad neta.</strong>
+                            Cada modificación queda registrada: quién la realizó, cuándo y sobre qué partida.
                         </p>
                     </div>
 
-                    <!-- CTA Section -->
-                    <div class="closing-box">
-                        <p class="call-action">¿Listo para presupuestos que se actualizan solos?</p>
+                    <p class="text-paragraph" style="margin-top: 10px;">
+                        El objetivo es simple: <strong>reducir la dependencia de archivos dispersos y facilitar el control integral de cada obra.</strong>
+                    </p>
 
-                        <a href="mailto:{{Email_Remitente}}?subject=Demo%20Infrasys%20-%20Presupuestos"
-                            class="btn-primary">
-                            <span style="color: #ffffff;">📋 Solicitar Demo Gratuita</span>
+                    <!-- CTA -->
+                    <div class="closing-box">
+                        <p class="call-action">¿Le damos una mirada juntos?</p>
+
+                        <a href="mailto:{{Email_Remitente}}?subject=Demo%20Infrasys" class="btn-primary">
+                            <span style="color: #ffffff;">✉️ Solicitar Demo Gratuita</span>
                         </a>
 
-                        <a href="https://cal.com/negocios-partner-tech/requerimientos-software-desarrollo"
-                            class="btn-meeting">
+                        <a href="https://cal.com/negocios-partner-tech/requerimientos-software-desarrollo" class="btn-meeting">
                             <span style="color: #ffffff;">📅 Agendar Reunión de 15 min</span>
                         </a>
 
