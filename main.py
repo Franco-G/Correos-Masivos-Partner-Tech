@@ -15,20 +15,10 @@ from email.utils import formatdate, make_msgid
 import logging
 from email_validator import validate_email, EmailNotValidError
 from tkinterweb import HtmlFrame
-import sys
-import pathlib
 import base64
 import io
 
-# --- FUNCIÓN PARA MANEJAR RUTAS EN PYINSTALLER ---
-def resource_path(relative_path):
-    """ Obtiene la ruta absoluta al recurso, funciona para desarrollo y para PyInstaller """
-    try:
-        # PyInstaller crea una carpeta temporal y guarda la ruta en _MEIPASS
-        base_path = sys._MEIPASS
-    except Exception:
-        base_path = os.path.abspath(".")
-    return os.path.join(base_path, relative_path)
+
 
 def get_base64_image(image_path):
     try:
@@ -105,15 +95,12 @@ class CorreoApp:
         self.tab_envio = ttk.Frame(self.notebook)
         self.notebook.add(self.tab_envio, text=" 📨 Panel de Envío ")
         
-        # Tab 2: Editor de Plantillas (Nuevo)
-        self.tab_editor = ttk.Frame(self.notebook)
-        self.notebook.add(self.tab_editor, text=" ✍️ Editor de Plantillas ")
+
         
         # --- CONSTRUCCIÓN TAB 1: ENVÍO ---
         self.construir_tab_envio()
         
-        # --- CONSTRUCCIÓN TAB 2: EDITOR ---
-        self.construir_tab_editor()
+
 
         # Barra de estado
         self.status_var = tk.StringVar(value="Listo.")
@@ -240,7 +227,7 @@ class CorreoApp:
 
     def cargar_plantillas(self):
         # Usamos resource_path para encontrar los HTMLs dentro del .exe
-        ruta_busqueda = resource_path("*.html")
+        ruta_busqueda = "*.html"
         archivos = glob.glob(ruta_busqueda)
         if archivos:
             # Mostramos solo el nombre del archivo, no la ruta completa
@@ -327,14 +314,14 @@ class CorreoApp:
         archivo_nombre = self.plantilla_var.get()
         if not archivo_nombre: return
         
-        archivo_path = resource_path(archivo_nombre)
+        archivo_path = archivo_nombre
         if not os.path.exists(archivo_path): return
         
         try:
             with open(archivo_path, 'r', encoding='utf-8') as f:
                 content = f.read()
             
-            logo_path = resource_path('Logo_blanco_ver1.png')
+            logo_path = 'Logo_blanco_ver1.png'
             logo_base64_uri = get_base64_image(logo_path)
             
             # Cargar HTML en el visor real y reemplazar placeholders con datos de ejemplo del remitente
@@ -356,96 +343,7 @@ class CorreoApp:
             return True
         except: return False
 
-    def construir_tab_editor(self):
-        # Variables del Constructor
-        self.bloques = [] # Lista de dicts {type, content, url, etc}
-        self.timer_preview = None # Variable para debounce
-        
-        # LAYOUT: 3 COLUMNAS (Bloques, Propiedades, Preview)
-        paned = ttk.PanedWindow(self.tab_editor, orient="horizontal")
-        paned.pack(fill="both", expand=True, padx=10, pady=10)
-        
-        # 1. PANEL IZQUIERDO: Lista de Bloques y Botones de Agregar
-        frame_left = ttk.Frame(paned, width=250)
-        frame_left.pack_propagate(False)
-        paned.add(frame_left, weight=0)
-        
-        # Botones de Agregar
-        lbl_acciones = ttk.Label(frame_left, text="➕ Agregar Elemento", style="Bold.TLabel")
-        lbl_acciones.pack(anchor="w", pady=(0,5))
-        
-        btn_add_titulo = ttk.Button(frame_left, text="H1  Título", command=lambda: self.agregar_bloque("TITULO"))
-        btn_add_titulo.pack(fill="x", pady=2)
-        
-        btn_add_parrafo = ttk.Button(frame_left, text="¶   Párrafo", command=lambda: self.agregar_bloque("PARRAFO"))
-        btn_add_parrafo.pack(fill="x", pady=2)
-        
-        btn_add_btn_verde = ttk.Button(frame_left, text="🟩 Botón Principal", command=lambda: self.agregar_bloque("BTN_VERDE"))
-        btn_add_btn_verde.pack(fill="x", pady=2)
-        
-        btn_add_btn_azul = ttk.Button(frame_left, text="🟦 Botón Reunión", command=lambda: self.agregar_bloque("BTN_AZUL"))
-        btn_add_btn_azul.pack(fill="x", pady=2)
-        
-        btn_add_beneficio = ttk.Button(frame_left, text="⭐ Beneficio", command=lambda: self.agregar_bloque("BENEFICIO"))
-        btn_add_beneficio.pack(fill="x", pady=2)
-        
-        ttk.Separator(frame_left, orient="horizontal").pack(fill="x", pady=10)
-        
-        # Lista de Bloques Actuales
-        lbl_estructura = ttk.Label(frame_left, text="📑 Estructura del Correo", style="Bold.TLabel")
-        lbl_estructura.pack(anchor="w", pady=(0,5))
-        
-        self.listbox_bloques = tk.Listbox(frame_left, height=15, selectmode=tk.SINGLE, font=("Segoe UI", 9))
-        self.listbox_bloques.pack(fill="both", expand=True)
-        self.listbox_bloques.bind("<<ListboxSelect>>", self.seleccionar_bloque)
-        
-        frame_controles_lista = ttk.Frame(frame_left)
-        frame_controles_lista.pack(fill="x", pady=5)
-        ttk.Button(frame_controles_lista, text="⬆", width=3, command=lambda: self.mover_bloque(-1)).pack(side="left", padx=2)
-        ttk.Button(frame_controles_lista, text="⬇", width=3, command=lambda: self.mover_bloque(1)).pack(side="left", padx=2)
-        ttk.Button(frame_controles_lista, text="❌ Eliminar", command=self.eliminar_bloque).pack(side="right", padx=2)
-        
-        # Botones Globales
-        ttk.Separator(frame_left, orient="horizontal").pack(fill="x", pady=10)
-        ttk.Button(frame_left, text="💾 GUARDAR PLANTILLA", command=self.guardar_plantilla_visual, style="Action.TButton").pack(fill="x", pady=5)
-        ttk.Button(frame_left, text="🗑️ Limpiar Todo", command=self.limpiar_editor).pack(fill="x")
 
-        # 2. PANEL CENTRAL: Propiedades del Bloque
-        frame_center = ttk.LabelFrame(paned, text="🛠️ Propiedades", width=300)
-        frame_center.pack_propagate(False)
-        paned.add(frame_center, weight=0)
-        
-        self.frame_propiedades = ttk.Frame(frame_center, padding=10)
-        self.frame_propiedades.pack(fill="both", expand=True)
-        # (El contenido de este frame cambiará dinámicamente)
-        
-        # 3. PANEL DERECHO: Preview
-        frame_right = ttk.LabelFrame(paned, text="👁️ Vista Previa")
-        paned.add(frame_right, weight=1)
-        
-        self.editor_preview = HtmlFrame(frame_right)
-        self.editor_preview.pack(fill="both", expand=True)
-        
-        # Inicializar con un saludo por defecto
-        # Inicializar con contenido por defecto (Brochure)
-        self.cargar_contenido_por_defecto()
-
-    def cargar_contenido_por_defecto(self):
-        # Recrear la estructura de correo_brochure.html
-        self.bloques = [
-            {"tipo": "SALUDO", "contenido": "Hola {{Nombre_Contacto}},"},
-            {"tipo": "PARRAFO", "contenido": "Te saluda {{Nombre_Remitente}}, de Partner Tech. He identificado tu contacto en el Directorio CCL.\nSabemos que a medida que una empresa crece, el software genérico (\"enlatado\") empieza a quedar chico: procesos lentos, datos desconectados y manuales operativos interminables."},
-            {"tipo": "PARRAFO", "contenido": "En <strong>Partner Tech</strong>, no te pedimos que adaptes tu negocio al software. <span class=\"highlight\">Nosotros construimos el software exactamente como tu operación lo necesita.</span>"},
-            {"tipo": "PARRAFO", "contenido": "Nuestra metodología se basa en un análisis profundo de tus flujos de trabajo actuales para identificar cuellos de botella y oportunidades de automatización, garantizando un retorno de inversión medible desde la primera fase de implementación."},
-            {"tipo": "PARRAFO", "contenido": "¿Por qué elegir nuestra Fábrica de Software?"},
-            {"tipo": "BENEFICIO", "titulo": "🛠️ Desarrollo 100% Personalizado", "contenido": "Diseñamos sistemas que automatizan <strong>tus reglas de negocio</strong> específicas, integrando áreas críticas (Finanzas, Logística, RRHH) sin fricción.", "color": "#00c853"},
-            {"tipo": "BENEFICIO", "titulo": "🔐 Es tu Activo, no un Alquiler", "contenido": "A diferencia de las licencias eternas, nosotros <strong>te entregamos el código fuente</strong>. Tú eres dueño de tu tecnología y de tu futuro.", "color": "#0056b3"},
-            {"tipo": "PARRAFO", "contenido": "Si estás evaluando desarrollar una solución propia o buscas aplicativos listos para implementar, te invito a revisar nuestro portafolio:"},
-            {"tipo": "BTN_VERDE", "texto": "Descargar Brochure", "subtexto": "Desarrollo de Software Estratégico", "url": "https://drive.google.com/file/d/1bDlvyO8tNbv_yf_QzIZumZ-de6caU-Ey/view?usp=sharing"},
-            {"tipo": "PARRAFO", "contenido": "¿Tienes un cuello de botella operativo que el software actual no resuelve?"},
-            {"tipo": "BTN_AZUL", "texto": "📅 Agendar Reunión de 15 min", "url": "https://cal.com/negocios-partner-tech/requerimientos-software-desarrollo"},
-            {"tipo": "PARRAFO", "contenido": "Diagnostiquemos si un desarrollo a medida es la inversión correcta para tu año 2026."}
-        ]
         self.actualizar_lista_bloques()
         self.programar_actualizacion()
 
