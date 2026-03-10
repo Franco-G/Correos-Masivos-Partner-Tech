@@ -93,10 +93,7 @@
 
         /* TIMELINE STEPS */
         .timeline-step {
-            display: flex;
-            align-items: flex-start;
             margin-bottom: 18px;
-            gap: 15px;
         }
 
         .step-number {
@@ -216,6 +213,17 @@
             .content { padding: 30px 20px !important; }
             .btn-meeting, .btn-primary { display: block; width: 100%; box-sizing: border-box; }
         }
+        /* DARK MODE SUPPORT */
+        @media (prefers-color-scheme: dark) {
+            body, .wrapper, .main-container { background-color: #1a202c !important; color: #e2e8f0 !important; }
+            .content { background-color: #1a202c !important; }
+            .text-paragraph, .benefit-text, .step-desc, .comparison-text, .comparison-text li { color: #cbd5e0 !important; }
+            .benefit-box, .comparison-box, .stat-box, .btn-section, .story-box { background-color: #2d3748 !important; border-color: #4a5568 !important; }
+            .greeting, .benefit-title, .comparison-title, .step-title, .section-title, .call-action { color: #63b3ed !important; }
+            .footer { background-color: #1a202c !important; color: #718096 !important; border-top: 1px solid #2d3748; }
+            .footer a { color: #63b3ed !important; border-bottom-color: #63b3ed !important; }
+            .highlight { color: #63b3ed !important; }
+        }
     </style>
 </head>
 
@@ -246,39 +254,69 @@
                         Con <strong>Infrasys</strong>, esa misma empresa centralizó su operación. Ahora, el flujo de trabajo es un ciclo continuo y blindado:
                     </p>
 
-                    <!-- TIMELINE -->
-                    <div style="margin: 25px 0;">
-                        <div class="timeline-step">
-                            <div class="step-number">1</div>
-                            <div class="step-content">
-                                <div class="step-title">Ingresa partidas y metrados una sola vez</div>
-                                <div class="step-desc">Sin transcripciones manuales entre archivos</div>
-                            </div>
-                        </div>
-                        <div class="timeline-step">
-                            <div class="step-number">2</div>
-                            <div class="step-content">
-                                <div class="step-title">El Gantt se genera automáticamente</div>
-                                <div class="step-desc">Vinculado al presupuesto — si ajustas una duración, todo se
-                                    recalcula</div>
-                            </div>
-                        </div>
-                        <div class="timeline-step">
-                            <div class="step-number">3</div>
-                            <div class="step-content">
-                                <div class="step-title">El residente reporta desde campo</div>
-                                <div class="step-desc">Y el gerente ve el avance real vs. planificado al instante desde
-                                    Lima</div>
-                            </div>
-                        </div>
-                        <div class="timeline-step">
-                            <div class="step-number">4</div>
-                            <div class="step-content">
-                                <div class="step-title">Valorizaciones y APU se calculan solos</div>
-                                <div class="step-desc">Con trazabilidad total de quién modificó qué y cuándo</div>
-                            </div>
-                        </div>
-                    </div>
+                    <!-- TIMELINE TABLE -->
+                    <table width="100%" cellpadding="0" cellspacing="0" style="margin: 25px 0;">
+                        <tr>
+                            <td style="padding-bottom: 18px;">
+                                <table width="100%" cellpadding="0" cellspacing="0">
+                                    <tr>
+                                        <td valign="top" width="50">
+                                            <div class="step-number">1</div>
+                                        </td>
+                                        <td valign="top">
+                                            <div class="step-title">Ingresa partidas y metrados una sola vez</div>
+                                            <div class="step-desc">Sin transcripciones manuales entre archivos</div>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="padding-bottom: 18px;">
+                                <table width="100%" cellpadding="0" cellspacing="0">
+                                    <tr>
+                                        <td valign="top" width="50">
+                                            <div class="step-number">2</div>
+                                        </td>
+                                        <td valign="top">
+                                            <div class="step-title">El Gantt se genera automáticamente</div>
+                                            <div class="step-desc">Vinculado al presupuesto — si ajustas una duración, todo se recalcula</div>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="padding-bottom: 18px;">
+                                <table width="100%" cellpadding="0" cellspacing="0">
+                                    <tr>
+                                        <td valign="top" width="50">
+                                            <div class="step-number">3</div>
+                                        </td>
+                                        <td valign="top">
+                                            <div class="step-title">El residente reporta desde campo</div>
+                                            <div class="step-desc">Y el gerente ve el avance real vs. planificado al instante desde Lima</div>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="padding-bottom: 18px;">
+                                <table width="100%" cellpadding="0" cellspacing="0">
+                                    <tr>
+                                        <td valign="top" width="50">
+                                            <div class="step-number">4</div>
+                                        </td>
+                                        <td valign="top">
+                                            <div class="step-title">Valorizaciones y APU se calculan solos</div>
+                                            <div class="step-desc">Con trazabilidad total de quién modificó qué y cuándo</div>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </td>
+                        </tr>
+                    </table>
 
                     <p class="text-paragraph">
                         100% cloud. Multiusuario. Sin servidores locales. <strong>Escalable de 1 a 20 obras

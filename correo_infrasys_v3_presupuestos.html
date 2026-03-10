@@ -63,14 +63,7 @@
         }
 
         /* STAT BOXES */
-        .stat-row {
-            display: flex;
-            gap: 12px;
-            margin-bottom: 25px;
-        }
-
         .stat-box {
-            flex: 1;
             background-color: #f8fafc;
             border: 1px solid #e2e8f0;
             border-radius: 12px;
@@ -207,6 +200,17 @@
             .stat-row { flex-direction: column; }
             .btn-meeting, .btn-primary { display: block; width: 100%; box-sizing: border-box; }
         }
+        /* DARK MODE SUPPORT */
+        @media (prefers-color-scheme: dark) {
+            body, .wrapper, .main-container { background-color: #1a202c !important; color: #e2e8f0 !important; }
+            .content { background-color: #1a202c !important; }
+            .text-paragraph, .benefit-text, .step-desc, .comparison-text, .comparison-text li { color: #cbd5e0 !important; }
+            .benefit-box, .comparison-box, .stat-box, .btn-section, .story-box { background-color: #2d3748 !important; border-color: #4a5568 !important; }
+            .greeting, .benefit-title, .comparison-title, .step-title, .section-title, .call-action { color: #63b3ed !important; }
+            .footer { background-color: #1a202c !important; color: #718096 !important; border-top: 1px solid #2d3748; }
+            .footer a { color: #63b3ed !important; border-bottom-color: #63b3ed !important; }
+            .highlight { color: #63b3ed !important; }
+        }
     </style>
 </head>
 
@@ -225,21 +229,29 @@
                         Mantener la consistencia entre los <strong>APU (Análisis de Precios Unitarios)</strong>, los cronogramas valorizados y lo ejecutado realmente es una tarea titánica si se hace manualmente. El riesgo de pagar en exceso o subestimar un desvío de insumos es constante.
                     </p>
 
-                    <!-- Stats -->
-                    <div class="stat-row">
-                        <div class="stat-box">
-                            <span class="stat-number">40%</span>
-                            <span class="stat-label">Ahorro en horas<br>de oficina</span>
-                        </div>
-                        <div class="stat-box">
-                            <span class="stat-number" style="color: #1bde5d;">0</span>
-                            <span class="stat-label">Errores de<br>transcripción</span>
-                        </div>
-                        <div class="stat-box">
-                            <span class="stat-number" style="color: #1e53dd;">∞</span>
-                            <span class="stat-label">Escenarios<br>simulables</span>
-                        </div>
-                    </div>
+                    <!-- Stats Table -->
+                    <table width="100%" cellpadding="0" cellspacing="0" style="margin-bottom: 25px;">
+                        <tr>
+                            <td align="center" width="31%" style="padding: 5px;">
+                                <div class="stat-box">
+                                    <span class="stat-number">40%</span>
+                                    <span class="stat-label">Ahorro en horas<br>de oficina</span>
+                                </div>
+                            </td>
+                            <td align="center" width="31%" style="padding: 5px;">
+                                <div class="stat-box">
+                                    <span class="stat-number" style="color: #1bde5d;">0</span>
+                                    <span class="stat-label">Errores de<br>transcripción</span>
+                                </div>
+                            </td>
+                            <td align="center" width="31%" style="padding: 5px;">
+                                <div class="stat-box">
+                                    <span class="stat-number" style="color: #1e53dd;">∞</span>
+                                    <span class="stat-label">Escenarios<br>simulables</span>
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
 
                     <p class="text-paragraph">
                         <strong>Infrasys</strong> es nuestra plataforma SaaS que automatiza la gestión de presupuestos y
