@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Infrasys - Planificación de Obras | Partner Tech</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;700&family=Poppins:wght@400;700&display=swap"
+        rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Poppins', 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background-color: #f4f7f6;
+            color: #555555;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        table { border-spacing: 0; width: 100%; }
+        td { padding: 0; }
+        img { border: 0; display: block; max-width: 100%; }
+
+        .wrapper {
+            width: 100%;
+            table-layout: fixed;
+            background-color: #f4f7f6;
+            padding: 40px 0;
+        }
+
+        .main-container {
+            background-color: #ffffff;
+            margin: 0 auto;
+            width: 100%;
+            max-width: 600px;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06);
+        }
+
+        .content { padding: 40px 35px; }
+
+        .greeting {
+            font-size: 20px;
+            color: #0021a4;
+            font-weight: 700;
+            margin-bottom: 20px;
+            font-family: 'Orbitron', sans-serif;
+        }
+
+        .text-paragraph {
+            font-size: 16px;
+            line-height: 1.7;
+            color: #666;
+            margin-bottom: 25px;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .highlight {
+            color: #1e53dd;
+            font-weight: 700;
+        }
+
+        /* STORY BOX */
+        .story-box {
+            background: linear-gradient(135deg, #f8fafc 0%, #edf2f7 100%);
+            border-radius: 16px;
+            padding: 25px;
+            margin: 25px 0;
+            border: 1px solid #e2e8f0;
+        }
+
+        .story-label {
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: #1e53dd;
+            font-weight: 700;
+            margin-bottom: 12px;
+            display: block;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .story-text {
+            font-size: 15px;
+            line-height: 1.7;
+            color: #4a5568;
+            font-style: italic;
+            margin: 0;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        /* TIMELINE STEPS */
+        .timeline-step {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 18px;
+            gap: 15px;
+        }
+
+        .step-number {
+            background-color: #0021a4;
+            color: #ffffff;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 14px;
+            font-family: 'Orbitron', sans-serif;
+            flex-shrink: 0;
+        }
+
+        .step-content {
+            flex: 1;
+        }
+
+        .step-title {
+            font-weight: 700;
+            color: #0021a4;
+            font-size: 14px;
+            margin-bottom: 3px;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .step-desc {
+            font-size: 13px;
+            color: #718096;
+            line-height: 1.5;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        /* BOTONES */
+        .btn-primary {
+            background-color: #1bde5d;
+            color: #ffffff !important;
+            display: block;
+            width: 100%;
+            max-width: 380px;
+            margin: 0 auto 15px auto;
+            padding: 16px 0;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 16px;
+            box-shadow: 0 4px 12px rgba(27, 222, 93, 0.3);
+            transition: all 0.3s ease;
+            font-family: 'Poppins', sans-serif;
+            text-align: center;
+        }
+
+        .btn-meeting {
+            background-color: #1e53dd;
+            color: #ffffff !important;
+            display: block;
+            width: 100%;
+            max-width: 380px;
+            margin: 0 auto 15px auto;
+            padding: 14px 30px;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 15px;
+            box-shadow: 0 4px 12px rgba(30, 83, 221, 0.3);
+            transition: all 0.3s ease;
+            font-family: 'Poppins', sans-serif;
+            text-align: center;
+        }
+
+        .btn-primary:hover { background-color: #15c750; transform: translateY(-2px); }
+        .btn-meeting:hover { background-color: #1645b8; transform: translateY(-2px); }
+
+        .closing-box {
+            text-align: center;
+            margin-top: 35px;
+            padding-top: 25px;
+            border-top: 1px dashed #dce5f2;
+        }
+
+        .call-action {
+            font-size: 17px;
+            color: #1e53dd;
+            font-weight: 700;
+            margin-bottom: 10px;
+            font-family: 'Orbitron', sans-serif;
+        }
+
+        /* FOOTER */
+        .footer {
+            background-color: #2d3748;
+            padding: 30px 30px;
+            text-align: center;
+            font-size: 13px;
+            color: #555555;
+            line-height: 1.6;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .footer a {
+            color: #cbd5e0;
+            text-decoration: none;
+            border-bottom: 1px dotted #cbd5e0;
+        }
+
+        .footer-logo {
+            max-height: 80px;
+            width: auto;
+            margin: 10px auto 0;
+            display: block;
+        }
+
+        @media screen and (max-width: 600px) {
+            .content { padding: 30px 20px !important; }
+            .btn-meeting, .btn-primary { display: block; width: 100%; box-sizing: border-box; }
+        }
+    </style>
+</head>
+
+<body>
+    <center class="wrapper">
+        <table class="main-container" width="100%" cellpadding="0" cellspacing="0">
+            <tr>
+                <td class="content">
+                    <p class="greeting">Hola {{Nombre_Contacto}},</p>
+
+                    <p class="text-paragraph">
+                        Te saluda {{Nombre_Remitente}}, de Partner Tech. Quiero contarte algo que nos pasa
+                        frecuentemente en las reuniones de diagnóstico con constructoras:
+                    </p>
+
+                    <!-- STORY BOX -->
+                    <div class="story-box">
+                        <span class="story-label">📖 Un caso que nos encontramos seguido</span>
+                        <p class="story-text">
+                            "Tenemos los metrados en un Excel, el presupuesto en otro archivo, y el cronograma
+                            en MS Project. Si cambió algo en obra, hay que actualizar los tres. El mes pasado,
+                            una partida se duplicó por error de transcripción y nadie lo notó hasta la valorización.
+                            Perdimos plata."
+                        </p>
+                    </div>
+
+                    <p class="text-paragraph">
+                        ¿Te suena familiar? Es el escenario más común que encontramos. Y la solución no es
+                        "ser más cuidadoso con el Excel". <span class="highlight">La solución es que los archivos no
+                            existan por separado.</span>
+                    </p>
+
+                    <p class="text-paragraph">
+                        Con <strong>Infrasys</strong>, esa constructora pasó de gestionar 3 archivos desconectados a
+                        una sola plataforma donde todo se vincula automáticamente:
+                    </p>
+
+                    <!-- TIMELINE -->
+                    <div style="margin: 25px 0;">
+                        <div class="timeline-step">
+                            <div class="step-number">1</div>
+                            <div class="step-content">
+                                <div class="step-title">Ingresa partidas y metrados una sola vez</div>
+                                <div class="step-desc">Sin transcripciones manuales entre archivos</div>
+                            </div>
+                        </div>
+                        <div class="timeline-step">
+                            <div class="step-number">2</div>
+                            <div class="step-content">
+                                <div class="step-title">El Gantt se genera automáticamente</div>
+                                <div class="step-desc">Vinculado al presupuesto — si ajustas una duración, todo se
+                                    recalcula</div>
+                            </div>
+                        </div>
+                        <div class="timeline-step">
+                            <div class="step-number">3</div>
+                            <div class="step-content">
+                                <div class="step-title">El residente reporta desde campo</div>
+                                <div class="step-desc">Y el gerente ve el avance real vs. planificado al instante desde
+                                    Lima</div>
+                            </div>
+                        </div>
+                        <div class="timeline-step">
+                            <div class="step-number">4</div>
+                            <div class="step-content">
+                                <div class="step-title">Valorizaciones y APU se calculan solos</div>
+                                <div class="step-desc">Con trazabilidad total de quién modificó qué y cuándo</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <p class="text-paragraph">
+                        100% cloud. Multiusuario. Sin servidores locales. <strong>Escalable de 1 a 20 obras
+                            simultáneas.</strong>
+                    </p>
+
+                    <!-- CTA Section -->
+                    <div class="closing-box">
+                        <p class="call-action">¿Quieres ver cómo funciona con datos reales?</p>
+
+                        <a href="mailto:{{Email_Remitente}}?subject=Demo%20Infrasys%20-%20Planificacion"
+                            class="btn-primary">
+                            <span style="color: #ffffff;">🔍 Conocer Infrasys</span>
+                        </a>
+
+                        <a href="https://cal.com/negocios-partner-tech/requerimientos-software-desarrollo"
+                            class="btn-meeting">
+                            <span style="color: #ffffff;">📅 Agendar Reunión de 15 min</span>
+                        </a>
+
+                        <p style="font-size: 10px; color: #777; margin-top: 15px;">
+                            También puedes responder directamente a este correo.
+                        </p>
+
+                        <p style="color: #555; margin-top: 15px; margin-bottom: 10px;">
+                            Saludos,<br><strong>{{Nombre_Remitente}}</strong><br>
+                            <a href="mailto:{{Email_Remitente}}"
+                                style="color: #1e53dd; text-decoration: none;">{{Email_Remitente}}</a><br>
+                            <span style="font-size: 14px; color: #888;">{{Cargo_Remitente}} | Partner Tech</span>
+                        </p>
+                        <img src="cid:Logo_ver1" alt="Partner Tech Logo" class="footer-logo">
+                    </div>
+                </td>
+            </tr>
+
+            <!-- Footer Legal CCL -->
+            <tr>
+                <td class="footer" style="padding-top: 5px;">
+                    <p>Enviado a <strong>{{Email_Destinatario}}</strong> cumpliendo los lineamientos de la
+                        <strong>Cámara de Comercio de Lima (CCL)</strong>.
+                    </p>
+                    <p>Respetamos tu privacidad profesional. Si no deseas recibir más correos, <a
+                            href="mailto:negocios@partnertech.pe?subject=Remover">haga clic aquí para darse de baja</a>.
+                    </p>
+                    <p style="margin-top: 15px;">RUC 20523799623 | Partnertech.pe | Av. Malachowsky 340, San Borja, Lima
+                    </p>
+                </td>
+            </tr>
+        </table>
+    </center>
+</body>
+
+</html>

@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Infrasys - Visibilidad de Obras | Partner Tech</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;700&family=Poppins:wght@400;700&display=swap"
+        rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Poppins', 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background-color: #f4f7f6;
+            color: #555555;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        table { border-spacing: 0; width: 100%; }
+        td { padding: 0; }
+        img { border: 0; display: block; max-width: 100%; }
+
+        .wrapper {
+            width: 100%;
+            table-layout: fixed;
+            background-color: #f4f7f6;
+            padding: 40px 0;
+        }
+
+        .main-container {
+            background-color: #ffffff;
+            margin: 0 auto;
+            width: 100%;
+            max-width: 600px;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06);
+        }
+
+        .content { padding: 40px 35px; }
+
+        .greeting {
+            font-size: 20px;
+            color: #0021a4;
+            font-weight: 700;
+            margin-bottom: 20px;
+            font-family: 'Orbitron', sans-serif;
+        }
+
+        .text-paragraph {
+            font-size: 16px;
+            line-height: 1.7;
+            color: #666;
+            margin-bottom: 25px;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .highlight {
+            color: #1e53dd;
+            font-weight: 700;
+        }
+
+        /* SECCIÓN ANTES/DESPUÉS */
+        .comparison-box {
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+
+        .before-box {
+            background-color: #fef2f2;
+            border: 1px solid #fecaca;
+            border-left: 5px solid #ef4444;
+        }
+
+        .after-box {
+            background-color: #f0fdf4;
+            border: 1px solid #bbf7d0;
+            border-left: 5px solid #1bde5d;
+        }
+
+        .comparison-title {
+            font-size: 16px;
+            font-weight: 700;
+            display: block;
+            margin-bottom: 8px;
+            font-family: 'Orbitron', sans-serif;
+        }
+
+        .before-box .comparison-title { color: #dc2626; }
+        .after-box .comparison-title { color: #0021a4; }
+
+        .comparison-text {
+            font-size: 14px;
+            line-height: 1.6;
+            color: #555;
+            margin: 0;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .comparison-text li {
+            margin-bottom: 6px;
+        }
+
+        /* BOTONES */
+        .btn-primary {
+            background-color: #1bde5d;
+            color: #ffffff !important;
+            display: block;
+            width: 100%;
+            max-width: 380px;
+            margin: 0 auto 15px auto;
+            padding: 16px 0;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 16px;
+            box-shadow: 0 4px 12px rgba(27, 222, 93, 0.3);
+            transition: all 0.3s ease;
+            font-family: 'Poppins', sans-serif;
+            text-align: center;
+        }
+
+        .btn-meeting {
+            background-color: #1e53dd;
+            color: #ffffff !important;
+            display: block;
+            width: 100%;
+            max-width: 380px;
+            margin: 0 auto 15px auto;
+            padding: 14px 30px;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 15px;
+            box-shadow: 0 4px 12px rgba(30, 83, 221, 0.3);
+            transition: all 0.3s ease;
+            font-family: 'Poppins', sans-serif;
+            text-align: center;
+        }
+
+        .btn-primary:hover { background-color: #15c750; transform: translateY(-2px); }
+        .btn-meeting:hover { background-color: #1645b8; transform: translateY(-2px); }
+
+        .closing-box {
+            text-align: center;
+            margin-top: 35px;
+            padding-top: 25px;
+            border-top: 1px dashed #dce5f2;
+        }
+
+        .call-action {
+            font-size: 17px;
+            color: #1e53dd;
+            font-weight: 700;
+            margin-bottom: 10px;
+            font-family: 'Orbitron', sans-serif;
+        }
+
+        /* FOOTER */
+        .footer {
+            background-color: #2d3748;
+            padding: 30px 30px;
+            text-align: center;
+            font-size: 13px;
+            color: #555555;
+            line-height: 1.6;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .footer a {
+            color: #cbd5e0;
+            text-decoration: none;
+            border-bottom: 1px dotted #cbd5e0;
+        }
+
+        .footer-logo {
+            max-height: 80px;
+            width: auto;
+            margin: 10px auto 0;
+            display: block;
+        }
+
+        @media screen and (max-width: 600px) {
+            .content { padding: 30px 20px !important; }
+            .btn-meeting, .btn-primary { display: block; width: 100%; box-sizing: border-box; }
+        }
+    </style>
+</head>
+
+<body>
+    <center class="wrapper">
+        <table class="main-container" width="100%" cellpadding="0" cellspacing="0">
+            <tr>
+                <td class="content">
+                    <p class="greeting">Hola {{Nombre_Contacto}},</p>
+
+                    <p class="text-paragraph">
+                        Te saluda {{Nombre_Remitente}}, de Partner Tech.
+                        ¿Te ha pasado que necesitas saber <strong>cómo va una obra</strong> y tienes que llamar al
+                        residente, esperar que consolide datos en un Excel y enviarte un reporte que ya está desactualizado
+                        cuando lo recibes?
+                    </p>
+
+                    <p class="text-paragraph">
+                        En la mayoría de constructoras, <span class="highlight">la información llega tarde a quienes
+                            toman las decisiones</span>. Y cuando llega tarde, las decisiones cuestan más.
+                    </p>
+
+                    <!-- ANTES -->
+                    <div class="comparison-box before-box">
+                        <span class="comparison-title">❌ Antes — Sin Visibilidad</span>
+                        <div class="comparison-text">
+                            <ul style="padding-left: 18px; margin: 0;">
+                                <li>Reportes manuales que llegan días después</li>
+                                <li>El gerente no sabe si una obra está perdiendo dinero hasta el cierre</li>
+                                <li>Metrados, presupuesto y cronograma en archivos separados que nunca cuadran</li>
+                                <li>Decisiones basadas en datos incompletos o desactualizados</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- DESPUÉS -->
+                    <div class="comparison-box after-box">
+                        <span class="comparison-title">✅ Después — Con Infrasys</span>
+                        <div class="comparison-text">
+                            <ul style="padding-left: 18px; margin: 0;">
+                                <li>Dashboard en tiempo real: el residente reporta en campo y tú lo ves al instante desde
+                                    Lima</li>
+                                <li>Presupuesto vinculado automáticamente al Gantt — si algo cambia, todo se recalcula
+                                    solo</li>
+                                <li>Simulación de escenarios: Optimista, Conservador y Realista antes de ejecutar</li>
+                                <li>Gestión de 5, 10 o 20 obras simultáneamente sin colapso administrativo</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <p class="text-paragraph">
+                        Infrasys es la plataforma SaaS que tu equipo necesita para pasar de la <strong>ceguera
+                            operativa</strong> al <strong>control total de cada proyecto</strong>.
+                        100% cloud. Sin instalaciones. Acceso desde cualquier dispositivo.
+                    </p>
+
+                    <!-- CTA Section -->
+                    <div class="closing-box">
+                        <p class="call-action">¿Quieres ver Infrasys funcionando con datos reales de obra?</p>
+
+                        <a href="mailto:{{Email_Remitente}}?subject=Demo%20Infrasys"
+                            class="btn-primary">
+                            <span style="color: #ffffff;">🖥️ Ver Infrasys en Acción</span>
+                        </a>
+
+                        <a href="https://cal.com/negocios-partner-tech/requerimientos-software-desarrollo"
+                            class="btn-meeting">
+                            <span style="color: #ffffff;">📅 Agendar Reunión de 15 min</span>
+                        </a>
+
+                        <p style="font-size: 10px; color: #777; margin-top: 15px;">
+                            También puedes responder directamente a este correo.
+                        </p>
+
+                        <p style="color: #555; margin-top: 15px; margin-bottom: 10px;">
+                            Saludos,<br><strong>{{Nombre_Remitente}}</strong><br>
+                            <a href="mailto:{{Email_Remitente}}"
+                                style="color: #1e53dd; text-decoration: none;">{{Email_Remitente}}</a><br>
+                            <span style="font-size: 14px; color: #888;">{{Cargo_Remitente}} | Partner Tech</span>
+                        </p>
+                        <img src="cid:Logo_ver1" alt="Partner Tech Logo" class="footer-logo">
+                    </div>
+                </td>
+            </tr>
+
+            <!-- Footer Legal CCL -->
+            <tr>
+                <td class="footer" style="padding-top: 5px;">
+                    <p>Enviado a <strong>{{Email_Destinatario}}</strong> cumpliendo los lineamientos de la
+                        <strong>Cámara de Comercio de Lima (CCL)</strong>.
+                    </p>
+                    <p>Respetamos tu privacidad profesional. Si no deseas recibir más correos, <a
+                            href="mailto:negocios@partnertech.pe?subject=Remover">haga clic aquí para darse de baja</a>.
+                    </p>
+                    <p style="margin-top: 15px;">RUC 20523799623 | Partnertech.pe | Av. Malachowsky 340, San Borja, Lima
+                    </p>
+                </td>
+            </tr>
+        </table>
+    </center>
+</body>
+
+</html>
