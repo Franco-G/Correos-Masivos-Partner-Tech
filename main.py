@@ -277,7 +277,7 @@ class CorreoApp:
         
         try:
             if os.path.exists(self.archivo_excel_seleccionado):
-                df = pd.read_excel(self.archivo_excel_seleccionado)
+                df = pd.read_excel(self.archivo_excel_seleccionado).fillna('')
                 # Check for required columns
                 if 'nombre' not in df.columns or 'correo' not in df.columns:
                     messagebox.showerror("Error de Archivo", "El archivo Excel debe contener las columnas 'nombre' y 'correo'.")
@@ -424,7 +424,7 @@ class CorreoApp:
 
         try:
             self.log_msg("--- INICIANDO ENVÍO MASIVO ---")
-            df = pd.read_excel(self.archivo_excel_seleccionado)
+            df = pd.read_excel(self.archivo_excel_seleccionado).fillna('')
             if not os.path.exists(log_csv):
                 with open(log_csv, 'w', encoding='utf-8') as f: f.write("Nombre,Correo,Plantilla,Fecha,Estado\n")
             
