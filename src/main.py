@@ -32,8 +32,10 @@ def get_base64_image(image_path):
         return ""
 
 # --- CONFIGURACIÓN LOGGING ---
+if not os.path.exists('data'):
+    os.makedirs('data')
 logging.basicConfig(
-    filename='registro_envios.log',
+    filename=os.path.join('data', 'registro_envios.log'),
     level=logging.INFO,
     format='%(asctime)s - %(levelname)s - %(message)s'
 )
@@ -228,7 +230,7 @@ class CorreoApp:
 
     def cargar_plantillas(self):
         # Usamos resource_path para encontrar los HTMLs dentro del .exe
-        ruta_busqueda = "*.html"
+        ruta_busqueda = os.path.join("templates", "*.html")
         archivos = glob.glob(ruta_busqueda)
         if archivos:
             # Mostramos solo el nombre del archivo, no la ruta completa
@@ -319,14 +321,14 @@ class CorreoApp:
         archivo_nombre = self.plantilla_var.get()
         if not archivo_nombre: return
         
-        archivo_path = archivo_nombre
+        archivo_path = os.path.join("templates", archivo_nombre)
         if not os.path.exists(archivo_path): return
         
         try:
             with open(archivo_path, 'r', encoding='utf-8') as f:
                 content = f.read()
             
-            logo_path = 'Logo_blanco_ver1.png'
+            logo_path = os.path.join('assets', 'Logo_blanco_ver1.png')
             logo_base64_uri = get_base64_image(logo_path)
             
             # Generar hash falso para la preview
@@ -355,8 +357,8 @@ class CorreoApp:
     def enviar_correo(self, nombre, email_destinatario, archivo_html_nombre):
         try:
             # Rutas simples relativas al directorio del script
-            archivo_html_path = os.path.abspath(archivo_html_nombre)
-            logo_path = os.path.abspath('Logo_blanco_ver1.png')
+            archivo_html_path = os.path.abspath(os.path.join("templates", archivo_html_nombre))
+            logo_path = os.path.abspath(os.path.join('assets', 'Logo_blanco_ver1.png'))
 
             with open(archivo_html_path, 'r', encoding='utf-8') as f:
                 html_content = f.read()
@@ -421,7 +423,7 @@ class CorreoApp:
 
     def proceso_envio(self):
         archivo_html_nombre = self.plantilla_var.get() # <-- Solo el nombre del archivo
-        log_csv = 'registro_envios.csv'
+        log_csv = os.path.join('data', 'registro_envios.csv')
         
         if not self.archivo_excel_seleccionado:
             self.log_msg("Error: No se ha seleccionado ningún archivo de destinatarios.", "ERROR")
