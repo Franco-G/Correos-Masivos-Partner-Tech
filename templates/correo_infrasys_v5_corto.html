@@ -34,12 +34,31 @@
             margin: 0 auto;
             width: 100%;
             max-width: 600px;
-            border-radius: 16px;
+            border-radius: 8px;
             overflow: hidden;
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06);
+            border: 1px solid #e2e8f0;
         }
 
-        .content { padding: 40px 35px; }
+        /* HEADER ESTRATÉGICO */
+        .header {
+            background-color: #ffffff;
+            padding: 25px 20px;
+            text-align: center;
+            border-bottom: 1px solid #f1f5f9;
+        }
+
+        .header-tagline {
+            color: #718096;
+            font-family: 'Poppins', sans-serif;
+            font-size: 8px;
+            letter-spacing: 2px;
+            margin-top: 5px;
+            text-transform: uppercase;
+        }
+
+        .content {
+            padding: 30px 35px;
+        }
 
         .greeting {
             font-size: 20px;
@@ -124,6 +143,15 @@
 <body>
     <center class="wrapper">
         <table class="main-container" width="100%" cellpadding="0" cellspacing="0">
+            <!-- Header -->
+            <tr>
+                <td class="header">
+                    <img src="cid:Logo_ver1" alt="Partner Tech Logo" style="max-height: 35px; width: auto; border:0; margin: 0 auto;">
+                    <div class="header-tagline">Tu Socio Estratégico</div>
+                </td>
+            </tr>
+
+            <!-- Cuerpo -->
             <tr>
                 <td class="content">
                     <p class="greeting">Hola {{Nombre_Contacto}},</p>
@@ -147,9 +175,9 @@
                     <!-- CTA -->
                     <div style="text-align: center; margin-top: 20px;">
                         <a href="https://cal.com/negocios-partner-tech/requerimientos-software-desarrollo?utm_source=partnertech&amp;utm_medium=correo&amp;utm_campaign=campana_infrasys&amp;utm_content=v5_corto_boton_agendar&amp;utm_term={{Email_Hash}}"
-                            class="btn-meeting">
-                            <span style="color: #ffffff;">📅 Agendar Reunión de 15 min</span>
-                        </a>
+                        class="btn-meeting" style="color: #ffffff !important; text-decoration: none;">
+                        <span style="color: #ffffff;">📅 Agendar Reunión de 15 min</span>
+                    </a>
                     </div>
 
                     <!-- Firma -->

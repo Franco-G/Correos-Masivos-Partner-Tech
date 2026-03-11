@@ -18,6 +18,23 @@
             -webkit-font-smoothing: antialiased;
         }
 
+        /* HEADER ESTRATÉGICO */
+        .header {
+            background-color: #ffffff;
+            padding: 30px 20px;
+            text-align: center;
+            border-bottom: 2px solid #f1f5f9;
+        }
+
+        .header-tagline {
+            color: #718096;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 9px;
+            letter-spacing: 2px;
+            margin-top: 8px;
+            text-transform: uppercase;
+        }
+
         table { border-spacing: 0; width: 100%; }
         td { padding: 0; }
         img { border: 0; display: block; max-width: 100%; }
@@ -193,6 +210,15 @@
 <body>
     <center class="wrapper">
         <table class="main-container" width="100%" cellpadding="0" cellspacing="0">
+            <!-- Header de Marca -->
+            <tr>
+                <td class="header">
+                    <img src="cid:Logo_ver1" alt="Partner Tech Logo" style="max-height: 40px; width: auto; margin: 0 auto;">
+                    <div class="header-tagline">Tu Socio Estratégico</div>
+                </td>
+            </tr>
+
+            <!-- Cuerpo del Mensaje -->
             <tr>
                 <td class="content">
                     <p class="greeting">Hola {{Nombre_Contacto}},</p>
@@ -249,16 +275,13 @@
                     <div class="closing-box">
                         <p class="call-action">¿Le damos una mirada juntos?</p>
 
-                        <a href="mailto:{{Email_Remitente}}?subject=Interes%20Licencia%20Infrasys" class="btn-primary">
-                            <span style="color: #ffffff;">✉️ Revisar Ficha Técnica del Software</span>
-                        </a>
-
-                        <a href="https://cal.com/negocios-partner-tech/requerimientos-software-desarrollo?utm_source=partnertech&amp;utm_medium=correo&amp;utm_campaign=campana_infrasys&amp;utm_content=v6_directo_boton_agendar&amp;utm_term={{Email_Hash}}" class="btn-meeting">
+                        <a href="https://cal.com/negocios-partner-tech/requerimientos-software-desarrollo?utm_source=partnertech&amp;utm_medium=correo&amp;utm_campaign=campana_infrasys&amp;utm_content=v6_directo_boton_agendar&amp;utm_term={{Email_Hash}}"
+                            class="btn-meeting" style="color: #ffffff !important; text-decoration: none;">
                             <span style="color: #ffffff;">📅 Agendar Reunión de 15 min</span>
                         </a>
 
-                        <p style="font-size: 10px; color: #777; margin-top: 15px;">
-                            También puedes responder directamente a este correo.
+                        <p style="font-size: 13px; color: #666; margin-top: 18px; line-height: 1.6;">
+                            P.S. ¿Prefieres la información técnica primero? <a href="mailto:{{Email_Remitente}}?subject=Interes%20Licencia%20Infrasys" style="color: #1e53dd; text-decoration: underline;">Solicita la ficha del software aquí</a>.
                         </p>
 
                         <p style="color: #555; margin-top: 15px; margin-bottom: 10px;">
