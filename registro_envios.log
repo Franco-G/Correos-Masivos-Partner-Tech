@@ -74,3 +74,9 @@
 2026-03-11 09:55:51,056 - INFO - Esperando 11.78s...
 2026-03-11 09:56:04,310 - INFO - OK: acardozo@partnertech.pe
 2026-03-11 09:56:04,315 - INFO - --- PROCESO FINALIZADO ---
+2026-03-11 11:27:26,060 - INFO - Archivo cargado: Correos.xlsx
+2026-03-11 11:27:37,176 - INFO - --- INICIANDO ENVÍO MASIVO ---
+2026-03-11 11:27:38,817 - INFO - OK: negocios@partnertech.pe
+2026-03-11 11:27:38,821 - INFO - Esperando 13.39s...
+2026-03-11 11:27:53,577 - INFO - OK: acardozo@partnertech.pe
+2026-03-11 11:27:53,585 - INFO - --- PROCESO FINALIZADO ---

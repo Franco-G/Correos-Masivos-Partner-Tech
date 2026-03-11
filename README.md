@@ -2,7 +2,7 @@
 
 Una aplicación de escritorio profesional desarrollada en Python para la gestión y automatización de campañas de correo electrónico masivo, optimizada para **Partner Tech**.
 
-![Python](https://img.shields.io/badge/Python-3.8+-3776AB?style=for-the-badge&logo=python&logoColor=white)
+![Python](https://img.shields.io/badge/Python-3.8%2B-3776AB?style=for-the-badge&logo=python&logoColor=white)
 ![Tkinter](https://img.shields.io/badge/UI-Tkinter-blue?style=for-the-badge)
 ![GA4](https://img.shields.io/badge/Analytics-GA4-orange?style=for-the-badge&logo=google-analytics&logoColor=white)
 ![License](https://img.shields.io/badge/License-Proprietary-red?style=for-the-badge)
@@ -10,10 +10,23 @@ Una aplicación de escritorio profesional desarrollada en Python para la gestió
 ## 🌟 Características Principales
 
 - **👤 Gestión de Perfiles Multi-Remitente:** Permite alternar fácilmente entre diferentes cuentas de remitente (ej. Gerencia Comercial, Sub-Gerencia) con firmas y cargos automatizados.
-- **📈 Rastreo Profesional (GA4):** Integración completa con Google Analytics 4 para medir:
-  - **Aperturas de correo:** Mediante Measurement Protocol (píxel invisible).
-  - **Clics en enlaces:** Parametrización automática con etiquetas UTM (`utm_source`, `utm_medium`, `utm_campaign`, `utm_content`).
-  - **Atribución por plantilla:** Identificación de qué versión del correo generó la interacción.
+### 📊 Detalle de Etiquetas y Rastreo
+
+El sistema utiliza una combinación de **UTM dinámicos** y el **GA4 Measurement Protocol** para una trazabilidad total:
+
+| Parámetro | Categoría | ¿Para qué sirve? | Detalle Técnico / Valor |
+| :--- | :--- | :--- | :--- |
+| `tid` | **Configuración** | Identificar la cuenta | ID de seguimiento de GA4 (`G-FLPG7XG57W`). |
+| `cid` | **Privacidad** | Identificar al usuario | **Client ID**: Hash MD5 del correo para anonimizar el rastro del usuario. |
+| `v` | **Protocolo** | Versión de API | Indica que se usa el protocolo de medición de Google v1. |
+| `en` | **Evento** | Definir acción | Registra el nombre del evento (ej. `open_email`). |
+| `píxel` | **Captura** | Rastreo de aperturas | Imagen invisible de 1x1 cargada desde los servidores de Analytics. |
+| `utm_source` | **Tráfico** | Fuente de origen | Define el canal de origen (ej. `partner_tech_mailer`). |
+| `utm_medium` | **Tráfico** | Medio de captura | Especifica el medio (ej. `email`). |
+| `utm_campaign` | **Campaña** | Nombre del esfuerzo | Agrupa los datos bajo la campaña `Infrasys`. |
+| `utm_content` | **A/B Testing** | Variante de diseño | Diferencia cuál de las **6 versiones** del correo convirtió. |
+| `utm_term` | **Segmento** | Palabra clave | Opcional: Se usa para identificar segmentos de base de datos. |
+
 - **🔒 Privacidad y Cumplimiento (PII):** Generación automática de **Hashes MD5** únicos para el `Client ID` de GA4, evitando el envío de correos electrónicos en texto plano a los servidores de Google.
 - **📄 Plantillas HTML Robustas:** 6 versiones optimizadas para la campaña Infrasys, con diseño basado en tablas para máxima compatibilidad (Outlook, móviles) y fondo blanco corporativo.
 - **👁️ Vista Previa en Tiempo Real:** Renderizado interactivo de las plantillas antes del envío para asegurar la calidad visual.
