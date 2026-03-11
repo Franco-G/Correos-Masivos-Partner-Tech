@@ -6,6 +6,7 @@ import random
 import glob
 import os
 import threading
+import hashlib
 import tkinter as tk
 from tkinter import ttk, messagebox, scrolledtext, filedialog
 from email.mime.text import MIMEText
@@ -328,6 +329,9 @@ class CorreoApp:
             logo_path = 'Logo_blanco_ver1.png'
             logo_base64_uri = get_base64_image(logo_path)
             
+            # Generar hash falso para la preview
+            email_hash_preview = hashlib.md5(b"preview@admin.com").hexdigest()
+
             # Cargar HTML en el visor real y reemplazar placeholders con datos de ejemplo del remitente
             preview_content = content.replace('{{Nombre_Remitente}}', self.nombre_remitente_var.get())\
                                      .replace('{{Email_Remitente}}', self.email_remitente_var.get())\
@@ -335,7 +339,8 @@ class CorreoApp:
                                      .replace('{{Nombre_Contacto}}', "[Nombre Cliente]")\
                                      .replace('{{Email_Destinatario}}', "[Email Cliente]")\
                                      .replace('cid:Logo_ver1', logo_base64_uri)\
-                                     .replace('{{MAX_WIDTH_PLACEHOLDER}}', 'max-width: none;') # Added this line
+                                     .replace('{{MAX_WIDTH_PLACEHOLDER}}', 'max-width: none;')\
+                                     .replace('{{Email_Hash}}', email_hash_preview)
             
             self.visor_html.load_html(preview_content)
         except Exception as e:
@@ -363,12 +368,16 @@ class CorreoApp:
             remitente_cargo = self.cargo_remitente_var.get()
             asunto_template = self.asunto_var.get()
 
+            # Hash del email destino para GA4 Client ID
+            email_hash = hashlib.md5(email_destinatario.encode('utf-8')).hexdigest()
+
             # Reemplazos en HTML
             html_content = html_content.replace('{{Nombre_Contacto}}', nombre)\
                                        .replace('{{Email_Destinatario}}', email_destinatario)\
                                        .replace('{{Nombre_Remitente}}', remitente_nombre)\
                                        .replace('{{Email_Remitente}}', remitente_email)\
-                                       .replace('{{Cargo_Remitente}}', remitente_cargo)
+                                       .replace('{{Cargo_Remitente}}', remitente_cargo)\
+                                       .replace('{{Email_Hash}}', email_hash)
             
             message = MIMEMultipart("related")
             message["Subject"] = asunto_template.replace('{{Nombre_Contacto}}', nombre)\
