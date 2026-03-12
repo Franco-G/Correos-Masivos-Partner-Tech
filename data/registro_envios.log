@@ -121,3 +121,28 @@
 2026-03-11 17:04:50,931 - INFO - OK: fguerrero@partnertech.pe
 2026-03-11 17:04:50,932 - INFO - --- PROCESO FINALIZADO ---
 2026-03-11 17:08:09,446 - INFO - Archivo cargado: Correos.xlsx
+2026-03-11 17:41:44,528 - INFO - --- INICIANDO PRUEBAS PARA: fguerrero@partnertech.pe ---
+2026-03-11 17:41:46,422 - INFO - Prueba correo_ejemplo.html: OK
+2026-03-11 17:41:49,860 - INFO - Prueba correo_infrasys_v1_excel.html: OK
+2026-03-11 17:41:53,290 - INFO - Prueba correo_infrasys_v2_visibilidad.html: OK
+2026-03-11 17:41:56,767 - INFO - Prueba correo_infrasys_v3_presupuestos.html: OK
+2026-03-11 17:42:00,251 - INFO - Prueba correo_infrasys_v4_narrativa.html: OK
+2026-03-11 17:42:03,906 - INFO - Prueba correo_infrasys_v5_corto.html: OK
+2026-03-11 17:42:07,318 - INFO - Prueba correo_infrasys_v6_directo.html: OK
+2026-03-11 17:42:10,787 - INFO - Prueba correo_infrasys_v7_branding.html: OK
+2026-03-11 17:42:12,796 - INFO - --- PRUEBAS FINALIZADAS ---
+2026-03-11 17:56:51,477 - INFO - --- INICIANDO PRUEBAS PARA: fguerrero@partnertech.pe ---
+2026-03-11 17:56:53,303 - INFO - Prueba correo_infrasys_v1_excel.html: OK
+2026-03-11 17:56:53,304 - INFO - Esperando 11.26s para siguiente prueba...
+2026-03-11 17:57:07,341 - INFO - Prueba correo_infrasys_v2_visibilidad.html: OK
+2026-03-11 17:57:07,342 - INFO - Esperando 11.12s para siguiente prueba...
+2026-03-11 17:57:20,490 - INFO - Prueba correo_infrasys_v3_presupuestos.html: OK
+2026-03-11 17:57:20,490 - INFO - Esperando 13.34s para siguiente prueba...
+2026-03-11 17:57:35,510 - INFO - Prueba correo_infrasys_v4_narrativa.html: OK
+2026-03-11 17:57:35,511 - INFO - Esperando 13.15s para siguiente prueba...
+2026-03-11 17:57:50,646 - INFO - Prueba correo_infrasys_v5_corto.html: OK
+2026-03-11 17:57:50,648 - INFO - Esperando 12.63s para siguiente prueba...
+2026-03-11 17:58:05,191 - INFO - Prueba correo_infrasys_v6_directo.html: OK
+2026-03-11 17:58:05,193 - INFO - Esperando 10.33s para siguiente prueba...
+2026-03-11 17:58:17,272 - INFO - Prueba correo_infrasys_v7_branding.html: OK
+2026-03-11 17:58:17,275 - INFO - --- PRUEBAS FINALIZADAS ---

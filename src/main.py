@@ -59,6 +59,8 @@ class CorreoApp:
 
         # Variables de control
         self.plantilla_var = tk.StringVar()
+        self.email_prueba_var = tk.StringVar()
+        self.plantillas_test_vars = {} # Para almacenar los BooleanVar de los checkboxes
         self.contador_var = tk.StringVar(value="Ningún archivo seleccionado")
         self.enviando = False
         self.archivo_excel_seleccionado = None
@@ -77,7 +79,7 @@ class CorreoApp:
             }
         }
         
-        # Variables de Remitente (Inicializar con Alexandra Cardozo)
+        # Variables de Remitente
         self.perfil_seleccionado = tk.StringVar(value="Alexandra Cardozo")
         self.nombre_remitente_var = tk.StringVar(value="Alexandra Cardozo")
         self.cargo_remitente_var = tk.StringVar(value=self.perfiles["Alexandra Cardozo"]["cargo"])
@@ -94,16 +96,17 @@ class CorreoApp:
         self.notebook = ttk.Notebook(root)
         self.notebook.pack(fill="both", expand=True, padx=10, pady=10)
         
-        # Tab 1: Panel de Envío (Lo que ya existía)
+        # Tab 1: Panel de Envío
         self.tab_envio = ttk.Frame(self.notebook)
         self.notebook.add(self.tab_envio, text=" 📨 Panel de Envío ")
         
-
+        # Tab 2: Panel de Pruebas
+        self.tab_pruebas = ttk.Frame(self.notebook)
+        self.notebook.add(self.tab_pruebas, text=" 🧪 Pruebas de Envío ")
         
-        # --- CONSTRUCCIÓN TAB 1: ENVÍO ---
+        # Construcción de pestañas
         self.construir_tab_envio()
-        
-
+        self.construir_tab_pruebas()
 
         # Barra de estado
         self.status_var = tk.StringVar(value="Listo.")
@@ -113,6 +116,102 @@ class CorreoApp:
         # Inicialización
         self.cargar_plantillas()
         self.contar_destinatarios()
+
+    def construir_tab_pruebas(self):
+        # Contenedor principal
+        frame_main = ttk.Frame(self.tab_pruebas, padding=20)
+        frame_main.pack(fill="both", expand=True)
+
+        # Izquierda: Configuración de Prueba
+        frame_test_config = ttk.LabelFrame(frame_main, text="⚙️ Configuración de Prueba", padding=15)
+        frame_test_config.pack(side="left", fill="both", expand=True, padx=(0, 10))
+
+        ttk.Label(frame_test_config, text="Correo de Destino (Prueba):", style="Bold.TLabel").pack(anchor="w", pady=(0, 5))
+        self.ent_email_test = ttk.Entry(frame_test_config, textvariable=self.email_prueba_var, font=("Segoe UI", 11))
+        self.ent_email_test.pack(fill="x", pady=(0, 15))
+        self.email_prueba_var.set(self.email_remitente_var.get()) # Por defecto el mismo remitente
+
+        ttk.Label(frame_test_config, text="Seleccione Plantillas:", style="Bold.TLabel").pack(anchor="w", pady=(0, 5))
+        
+        # Botones de selección masiva
+        frame_bulk = ttk.Frame(frame_test_config)
+        frame_bulk.pack(fill="x", pady=(0, 5))
+        ttk.Button(frame_bulk, text="☑ Seleccionar Todas", command=self.seleccionar_todas_pruebas).pack(side="left", padx=2)
+        ttk.Button(frame_bulk, text="☐ Desmarcar Todas", command=self.desmarcar_todas_pruebas).pack(side="left", padx=2)
+
+        # Área desplazable para checkboxes
+        frame_scroll_container = ttk.Frame(frame_test_config, relief="flat", borderwidth=1)
+        frame_scroll_container.pack(fill="both", expand=True)
+
+        self.canvas_test = tk.Canvas(frame_scroll_container, highlightthickness=0, bg="#ffffff")
+        self.scroll_test = ttk.Scrollbar(frame_scroll_container, orient="vertical", command=self.canvas_test.yview)
+        self.frame_checkboxes = ttk.Frame(self.canvas_test)
+
+        self.frame_checkboxes.bind("<Configure>", lambda e: self.canvas_test.configure(scrollregion=self.canvas_test.bbox("all")))
+        self.canvas_test.create_window((0, 0), window=self.frame_checkboxes, anchor="nw")
+        self.canvas_test.configure(yscrollcommand=self.scroll_test.set)
+
+        self.canvas_test.pack(side="left", fill="both", expand=True)
+        self.scroll_test.pack(side="right", fill="y")
+
+        self.btn_enviar_prueba = ttk.Button(frame_test_config, text="📧 ENVIAR CORREOS DE PRUEBA", command=self.enviar_prueba_thread, style="Action.TButton")
+        self.btn_enviar_prueba.pack(fill="x", pady=(15, 0))
+
+        # Derecha: Info y Ayuda
+        frame_test_info = ttk.LabelFrame(frame_main, text="ℹ️ Información", padding=15, width=350)
+        frame_test_info.pack(side="right", fill="both")
+        frame_test_info.pack_propagate(False) # Evitar que el frame colapse al contenido
+        
+        info_text = "Este módulo permite verificar cómo llegan los correos antes del envío masivo.\n\n" \
+                    "1. Ingrese su correo personal.\n" \
+                    "2. Marque las plantillas que desea probar.\n" \
+                    "3. Se enviarán con un intervalo de 10-15s para simular un envío real y evitar bloqueos.\n\n" \
+                    "Nota: Se utilizará el Remitente y Asunto configurados en el 'Panel de Envío'."
+        
+        ttk.Label(frame_test_info, text=info_text, wraplength=300, justify="left").pack(anchor="n")
+
+    def seleccionar_todas_pruebas(self):
+        for var in self.plantillas_test_vars.values():
+            var.set(True)
+
+    def desmarcar_todas_pruebas(self):
+        for var in self.plantillas_test_vars.values():
+            var.set(False)
+
+    def enviar_prueba_thread(self):
+        destinatario = self.email_prueba_var.get().strip()
+        plantillas_seleccionadas = [name for name, var in self.plantillas_test_vars.items() if var.get()]
+        
+        if not destinatario or not self.verificar_formato(destinatario):
+            messagebox.showerror("Error", "Ingrese un correo de destino válido.")
+            return
+        
+        if not plantillas_seleccionadas:
+            messagebox.showwarning("Atención", "Seleccione al menos una plantilla para probar.")
+            return
+
+        self.btn_enviar_prueba.config(state="disabled")
+        threading.Thread(target=self.proceso_envio_prueba, args=(destinatario, plantillas_seleccionadas), daemon=True).start()
+
+    def proceso_envio_prueba(self, destinatario, plantillas_seleccionadas):
+        self.log_msg(f"--- INICIANDO PRUEBAS PARA: {destinatario} ---")
+        total = len(plantillas_seleccionadas)
+        
+        for i, p_nombre in enumerate(plantillas_seleccionadas):
+            self.status_var.set(f"Probando ({i+1}/{total}): {p_nombre}")
+            exito = self.enviar_correo("Usuario Prueba", destinatario, p_nombre)
+            resultado = "OK" if exito else "FALLÓ"
+            self.log_msg(f"Prueba {p_nombre}: {resultado}")
+            
+            if i + 1 < total:
+                espera = random.uniform(10, 15)
+                self.log_msg(f"Esperando {espera:.2f}s para siguiente prueba...")
+                time.sleep(espera)
+
+        self.log_msg("--- PRUEBAS FINALIZADAS ---")
+        self.status_var.set("Pruebas completadas")
+        self.btn_enviar_prueba.config(state="normal")
+        messagebox.showinfo("Pruebas", "Se han enviado los correos de prueba seleccionados.")
 
     def construir_tab_envio(self):
         # Contenedor principal con paneles redimensionables
@@ -233,13 +332,26 @@ class CorreoApp:
         ruta_busqueda = os.path.join("templates", "*.html")
         archivos = glob.glob(ruta_busqueda)
         if archivos:
-            # Mostramos solo el nombre del archivo, no la ruta completa
-            self.combo_plantillas['values'] = [os.path.basename(f) for f in archivos]
+            nombres = [os.path.basename(f) for f in archivos]
+            # Llenar Combo del Panel de Envío
+            self.combo_plantillas['values'] = nombres
+            
+            # Llenar Checkboxes del Panel de Pruebas
+            for widget in self.frame_checkboxes.winfo_children():
+                widget.destroy()
+            
+            self.plantillas_test_vars = {}
+            for n in nombres:
+                var = tk.BooleanVar()
+                self.plantillas_test_vars[n] = var
+                cb = ttk.Checkbutton(self.frame_checkboxes, text=n, variable=var)
+                cb.pack(anchor="w", pady=2)
+
             # Intentar seleccionar correo_brochure.html por defecto
-            if "correo_brochure.html" in self.combo_plantillas['values']:
+            if "correo_brochure.html" in nombres:
                 self.plantilla_var.set("correo_brochure.html")
             else:
-                self.plantilla_var.set(os.path.basename(archivos[0]))
+                self.plantilla_var.set(nombres[0])
             self.actualizar_preview()
         else:
             self.combo_plantillas['values'] = ["No se encontraron HTMLs"]
@@ -329,7 +441,10 @@ class CorreoApp:
                 content = f.read()
             
             logo_path = os.path.join('assets', 'Logo_blanco_ver1.png')
+            logo_color_path = os.path.join('assets', 'Logo_y_texto_Partner_Tech.png')
+            
             logo_base64_uri = get_base64_image(logo_path)
+            logo_color_base64_uri = get_base64_image(logo_color_path)
             
             # Generar hash falso para la preview
             email_hash_preview = hashlib.md5(b"preview@admin.com").hexdigest()
@@ -341,6 +456,7 @@ class CorreoApp:
                                      .replace('{{Nombre_Contacto}}', "[Nombre Cliente]")\
                                      .replace('{{Email_Destinatario}}', "[Email Cliente]")\
                                      .replace('cid:Logo_ver1', logo_base64_uri)\
+                                     .replace('cid:Logo_Color', logo_color_base64_uri)\
                                      .replace('{{MAX_WIDTH_PLACEHOLDER}}', 'max-width: none;')\
                                      .replace('{{Email_Hash}}', email_hash_preview)
             
@@ -359,6 +475,7 @@ class CorreoApp:
             # Rutas simples relativas al directorio del script
             archivo_html_path = os.path.abspath(os.path.join("templates", archivo_html_nombre))
             logo_path = os.path.abspath(os.path.join('assets', 'Logo_blanco_ver1.png'))
+            logo_color_path = os.path.abspath(os.path.join('assets', 'Logo_y_texto_Partner_Tech.png'))
 
             with open(archivo_html_path, 'r', encoding='utf-8') as f:
                 html_content = f.read()
@@ -398,10 +515,17 @@ class CorreoApp:
             msg_alternative.attach(MIMEText(html_content, "html"))
             
             try:
+                # Adjuntar Logo Blanco (Logo_ver1)
                 with open(logo_path, 'rb') as f:
                     img = MIMEImage(f.read())
                     img.add_header('Content-ID', '<Logo_ver1>')
                     message.attach(img)
+                
+                # Adjuntar Logo Color (Logo_Color)
+                with open(logo_color_path, 'rb') as f:
+                    img_c = MIMEImage(f.read())
+                    img_c.add_header('Content-ID', '<Logo_Color>')
+                    message.attach(img_c)
             except Exception as e:
                 self.log_msg(f"No se pudo adjuntar el logo: {e}", "WARNING")
             
