@@ -16,42 +16,106 @@ El píxel de rastreo está ubicado al final de cada correo. Los parámetros fijo
 | `ep.campana` | `campana_infrasys` | Identificador de campaña |
 | `cid` | `{{Email_Hash}}` | ID de cliente (Hash MD5 anónimo) |
 
-### Valores de Plantilla (`ep.plantilla`) por Versión:
-1.  **Versión Excel / Control:** `v1_excel`
-2.  **Versión Visibilidad:** `v2_visibilidad`
-3.  **Versión Presupuestos:** `v3_presupuestos`
-4.  **Versión Narrativa:** `v4_narrativa`
-5.  **Versión Corto:** `v5_corto`
-6.  **Versión Directo:** `v6_directo`
+### Valores de Plantilla (`ep.plantilla`) por Aplicativo:
+
+#### 1. CRM
+1. `v1_centralizacion`
+2. `v2_embudo`
+3. `v3_ventas`
+4. `v4_fidelizacion`
+5. `v5_corto`
+6. `v6_directo`
+7. `v7_branding`
+
+#### 2. HCM (Rankmi)
+1. `v1_autogestion`
+2. `v2_nomina`
+3. `v3_desempeno`
+4. `v4_bi`
+5. `v5_onboarding`
+6. `v6_clima`
+7. `v7_branding`
+
+#### 3. NEXTFLOW (BPM)
+1. `v1_procesos`
+2. `v2_documental`
+3. `v3_aprobaciones`
+4. `v4_digitalizacion`
+5. `v5_corto`
+6. `v6_cumplimiento`
+7. `v7_branding`
+
+#### 4. PARTNERS TRUCK
+1. `v1_mantenimiento`
+2. `v2_combustible`
+3. `v3_neumaticos`
+4. `v4_logistica`
+5. `v5_corto`
+6. `v6_disponibilidad`
+7. `v7_branding`
+
+#### 5. SMARTDENT
+1. `v1_agenda`
+2. `v2_pacientes`
+3. `v3_clinico`
+4. `v4_digitalizacion`
+5. `v5_corto`
+6. `v6_fidelizacion`
+7. `v7_branding`
+
+#### 6. ERP
+1. `v1_rentabilidad`
+2. `v2_control`
+3. `v3_visibilidad`
+4. `v4_digitalizacion`
+5. `v5_corto`
+6. `v6_gobierno`
+7. `v7_branding`
+
+#### 7. KARDEX
+1. `v1_control`
+2. `v2_trazabilidad`
+3. `v3_valorizacion`
+4. `v4_digitalizacion`
+5. `v5_corto`
+6. `v6_auditoria`
+7. `v7_branding`
+
+#### 8. GEMP (Gestión Empresarial Participativa)
+1. `v1_centralizacion`
+2. `v2_manufactura`
+3. `v3_proyectos`
+4. `v4_finanzas`
+5. `v5_eficiencia`
+6. `v6_seguridad`
+7. `v7_branding`
+
+#### 9. CLINIC MENTOR
+1. `v1_rentabilidad`
+2. `v2_agenda`
+3. `v3_finanzas`
+4. `v4_historia`
+5. `v5_corto`
+6. `v6_auditoria`
+7. `v7_branding`
 
 ## 3. Rastreo de Clics (Etiquetas UTM)
-Todos los enlaces incluyen los siguientes parámetros para el análisis de tráfico:
+Todos los enlaces incluyen los parámetros base: `utm_source=partnertech`, `utm_medium=correo`, `utm_term={{Email_Hash}}`.
 
-*   **utm_source:** `partnertech`
-*   **utm_medium:** `correo`
-*   **utm_campaign:** `campana_infrasys`
-*   **utm_term:** `{{Email_Hash}}` (Identificador MD5 del usuario)
+### Valores de Campaña (`utm_campaign`) por Aplicativo:
+- **CRM**: `campana_crm`
+- **HCM**: `campana_hcm`
+- **Nextflow**: `campana_nextflow`
+- **Partners Truck**: `campana_truck`
+- **SmartDent**: `campana_smartdent`
+- **ERP**: `campana_erp`
+- **Kardex**: `campana_kardex`
+- **GEMP**: `campana_gem`
+- **Clinic Mentor**: `campana_clinic`
 
-### Valores de Contenido (`utm_content`) por Enlace Específico:
-
-| Versión | Enlace / Botón | Valor Literal `utm_content` |
-| :--- | :--- | :--- |
-| **v1_excel** | Botón Agendar | `v1_excel_boton_agendar` |
-| **v1_excel** | Enlace Sitio Web | `v1_excel_enlace_web` |
-| **v2_visibilidad** | Botón Agendar | `v2_visibilidad_boton_agendar` |
-| **v2_visibilidad** | Enlace Sitio Web | `v2_visibilidad_enlace_web` |
-| **v3_presupuestos**| Botón Agendar | `v3_presupuestos_boton_agendar` |
-| **v3_presupuestos**| Enlace Sitio Web | `v3_presupuestos_enlace_web` |
-| **v4_narrativa** | Botón Agendar | `v4_narrativa_boton_agendar` |
-| **v4_narrativa** | Enlace Sitio Web | `v4_narrativa_enlace_web` |
-| **v5_corto** | Botón Agendar | `v5_corto_boton_agendar` |
-| **v5_corto** | Enlace Sitio Web | `v5_corto_enlace_web` |
-| **v6_directo** | Botón Agendar | `v6_directo_boton_agendar` |
-| **v6_directo** | Enlace Sitio Web | `v6_directo_enlace_web` |
-
-## 4. Hash de Identidad
-*   **Algoritmo utilizado:** `MD5` (a través de la librería `hashlib` en `main.py`).
-*   **Propósito:** Generar el valor para `cid` (píxel) y `utm_term` (clics) para permitir la trazabilidad individual en GA4 de forma anónima, sin enviar el correo en texto plano.
+### Valores de Contenido (`utm_content`) por Enlace:
+Formato: `{plantilla}_{elemento}` (ej: `v1_centralizacion_boton_agendar`).
 
 ---
-Última actualización: 11 de marzo de 2026.
+Última actualización: 12 de marzo de 2026.
+

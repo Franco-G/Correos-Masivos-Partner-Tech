@@ -11,8 +11,8 @@ Busca estos datos en tus reportes de eventos:
 | Parámetro / Campo | Valor Literal | ¿Para qué sirve? |
 | :--- | :--- | :--- |
 | **Nombre del Evento (`en`)** | `apertura_correo` | Filtro principal para ver quién abrió correos. |
-| **Campaña (`ep.campana`)** | `campana_infrasys` | Agrupa todas las aperturas de esta campaña. |
-| **Plantilla (`ep.plantilla`)** | `v1_excel`, `v2_visibilidad`, `v3_presupuestos`, `v4_narrativa`, `v5_corto`, `v6_directo` | Identifica qué diseño específico fue abierto. |
+| **Campaña (`ep.campana`)** | `campana_infrasys`, `campana_crm`, `campana_hcm`, `campana_nextflow`, `campana_truck`, `campana_smartdent`, `campana_erp`, `campana_kardex`, `campana_gem`, `campana_clinic` | Agrupa todas las aperturas de la campaña respectiva. |
+| **Plantilla (`ep.plantilla`)** | Ej: `v1_excel`, `v1_centralizacion`, `v2_nomina`, `v3_procesos` | Identifica qué diseño específico fue abierto. |
 | **ID de Usuario (`cid`)** | `[HASH_MD5]` | Identificador anónimo del cliente. |
 
 ## 3. Rastreo de Clics (Etiquetas UTM)
@@ -22,8 +22,8 @@ Datos registrados cuando el cliente interactúa con los botones o enlaces:
 | :--- | :--- | :--- |
 | **Fuente (`utm_source`)** | `partnertech` | Origen del tráfico. |
 | **Medio (`utm_medium`)** | `correo` | Clasificación del tráfico. |
-| **Campaña (`utm_campaign`)** | `campana_infrasys` | Agrupación por campaña. |
-| **Contenido (`utm_content`)** | `v1_excel_boton_agendar`, `v1_excel_enlace_web`, `v2_visibilidad_boton_agendar`, `v2_visibilidad_enlace_web`, `v3_presupuestos_boton_agendar`, `v3_presupuestos_enlace_web`, `v4_narrativa_boton_agendar`, `v4_narrativa_enlace_web`, `v5_corto_boton_agendar`, `v5_corto_enlace_web`, `v6_directo_boton_agendar`, `v6_directo_enlace_web` | Saber dónde hicieron clic exactamente. |
+| **Campaña (`utm_campaign`)** | `campana_{app}` | Agrupación por campaña de aplicativo. |
+| **Contenido (`utm_content`)** | `{v_slug}_boton_agendar`, `{v_slug}_enlace_web` | Saber dónde hicieron clic exactamente. |
 | **Término (`utm_term`)** | `[HASH_MD5]` | ID anónimo del cliente que hizo clic. |
 
 ---
