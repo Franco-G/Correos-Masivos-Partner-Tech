@@ -600,7 +600,7 @@ class CorreoApp:
             # Generar hash falso para la preview
             email_hash_preview = hashlib.md5(b"preview@admin.com").hexdigest()
 
-            # Cargar HTML en el visor real y reemplazar placeholders con datos de ejemplo del remitente
+            # Cargar HTML y aplicar reemplazos para la previsualización
             preview_content = content.replace('{{Nombre_Remitente}}', self.nombre_remitente_var.get())\
                                      .replace('{{Email_Remitente}}', self.email_remitente_var.get())\
                                      .replace('{{Cargo_Remitente}}', self.cargo_remitente_var.get())\
@@ -625,9 +625,8 @@ class CorreoApp:
         try:
             # Rutas simples relativas al directorio del script
             archivo_html_path = os.path.abspath(os.path.join("templates", archivo_html_nombre))
-            logo_path = os.path.abspath(os.path.join('assets', 'Logo_blanco_ver1.png'))
-            logo_color_path = os.path.abspath(os.path.join('assets', 'Logo_y_texto_Partner_Tech.png'))
-
+            logo_path = os.path.join('assets', 'Logo_blanco_ver1.png')
+            logo_color_path = os.path.join('assets', 'Logo_y_texto_Partner_Tech.png')
             with open(archivo_html_path, 'r', encoding='utf-8') as f:
                 html_content = f.read()
             
@@ -677,6 +676,7 @@ class CorreoApp:
                     img_c = MIMEImage(f.read())
                     img_c.add_header('Content-ID', '<Logo_Color>')
                     message.attach(img_c)
+
             except Exception as e:
                 self.log_msg(f"No se pudo adjuntar el logo: {e}", "WARNING")
             
