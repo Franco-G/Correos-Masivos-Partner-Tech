@@ -194,3 +194,11 @@
 2026-03-12 14:57:00,800 - INFO - --- INICIANDO PRUEBAS PARA: negocios@partnertech.pe ---
 2026-03-12 14:57:02,239 - INFO - Prueba clinic_mentor/correo_clinic_mentor_v1_rentabilidad.html: OK
 2026-03-12 14:57:02,240 - INFO - --- PRUEBAS FINALIZADAS ---
+2026-03-12 15:03:42,287 - INFO - --- INICIANDO PRUEBAS PARA: negocios@partnertech.pe ---
+2026-03-12 15:03:43,792 - INFO - Prueba clinic_mentor/correo_clinic_mentor_v1_rentabilidad.html: OK
+2026-03-12 15:03:43,794 - INFO - Esperando 13.88s para siguiente prueba...
+2026-03-12 15:03:59,118 - INFO - Prueba clinic_mentor/correo_clinic_mentor_v7_branding.html: OK
+2026-03-12 15:03:59,120 - INFO - --- PRUEBAS FINALIZADAS ---
+2026-03-12 15:20:43,058 - INFO - --- INICIANDO PRUEBAS PARA: negocios@partnertech.pe ---
+2026-03-12 15:20:46,075 - INFO - Prueba clinic_mentor/correo_clinic_mentor_v1_rentabilidad.html: OK
+2026-03-12 15:20:46,076 - INFO - --- PRUEBAS FINALIZADAS ---
