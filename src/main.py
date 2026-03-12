@@ -18,6 +18,8 @@ from email_validator import validate_email, EmailNotValidError
 from tkinterweb import HtmlFrame
 import base64
 import io
+import sqlite3
+from datetime import datetime, timedelta
 
 
 
@@ -66,6 +68,8 @@ class CorreoApp:
         self.contador_var = tk.StringVar(value="Ningún archivo seleccionado")
         self.enviando = False
         self.archivo_excel_seleccionado = None
+        self.dias_espera_var = tk.IntVar(value=15)
+        self.setup_db()
         
         # Perfiles de Envío
         self.perfiles = {
@@ -118,6 +122,94 @@ class CorreoApp:
         # Inicialización
         self.cargar_plantillas()
         self.contar_destinatarios()
+
+    def setup_db(self):
+        if not os.path.exists('data'):
+            os.makedirs('data')
+        self.db_path = os.path.join('data', 'control_envios.db')
+        conn = sqlite3.connect(self.db_path)
+        cursor = conn.cursor()
+        cursor.execute('''
+            CREATE TABLE IF NOT EXISTS envios (
+                id INTEGER PRIMARY KEY AUTOINCREMENT,
+                correo TEXT,
+                fecha_ultimo_envio TIMESTAMP,
+                plantilla TEXT
+            )
+        ''')
+        # Tabla de configuración
+        cursor.execute('''
+            CREATE TABLE IF NOT EXISTS configuracion (
+                clave TEXT PRIMARY KEY,
+                valor TEXT
+            )
+        ''')
+        # Cargar configuración de días
+        cursor.execute("SELECT valor FROM configuracion WHERE clave = 'dias_espera'")
+        res = cursor.fetchone()
+        if res:
+            self.dias_espera_var.set(int(res[0]))
+        else:
+            cursor.execute("INSERT INTO configuracion (clave, valor) VALUES ('dias_espera', '15')")
+        conn.commit()
+        conn.close()
+
+    def guardar_config_dias(self):
+        try:
+            dias = self.dias_espera_var.get()
+            conn = sqlite3.connect(self.db_path)
+            cursor = conn.cursor()
+            cursor.execute("UPDATE configuracion SET valor = ? WHERE clave = 'dias_espera'", (str(dias),))
+            conn.commit()
+            conn.close()
+            self.log_msg(f"Configuración guardada: {dias} días de espera.")
+            messagebox.showinfo("Configuración", f"Se ha actualizado el periodo de espera a {dias} días.")
+            self.actualizar_stats_db()
+        except Exception as e:
+            messagebox.showerror("Error", f"No se pudo guardar la configuración: {e}")
+
+    def es_elegible_envio(self, correo):
+        try:
+            dias_espera = self.dias_espera_var.get()
+            if dias_espera <= 0:
+                return True
+                
+            conn = sqlite3.connect(self.db_path)
+            cursor = conn.cursor()
+            # Buscar el último envío exitoso a este correo
+            cursor.execute('''
+                SELECT fecha_ultimo_envio FROM envios 
+                WHERE correo = ? 
+                ORDER BY fecha_ultimo_envio DESC LIMIT 1
+            ''', (correo,))
+            res = cursor.fetchone()
+            conn.close()
+            
+            if not res:
+                return True
+                
+            fecha_ultimo = datetime.strptime(res[0], "%Y-%m-%d %H:%M:%S")
+            if datetime.now() > (fecha_ultimo + timedelta(days=dias_espera)):
+                return True
+            
+            return False
+        except Exception as e:
+            self.log_msg(f"Error al verificar elegibilidad: {e}", "ERROR")
+            return True # Por seguridad, permitimos el envío si falla la DB
+
+    def registrar_envio_db(self, correo, plantilla):
+        try:
+            conn = sqlite3.connect(self.db_path)
+            cursor = conn.cursor()
+            fecha_actual = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+            cursor.execute('''
+                INSERT INTO envios (correo, fecha_ultimo_envio, plantilla)
+                VALUES (?, ?, ?)
+            ''', (correo, fecha_actual, plantilla))
+            conn.commit()
+            conn.close()
+        except Exception as e:
+            self.log_msg(f"Error al registrar en DB: {e}", "ERROR")
 
     def construir_tab_pruebas(self):
         # Contenedor principal
@@ -286,12 +378,36 @@ class CorreoApp:
         self.txt_log = scrolledtext.ScrolledText(frame_logs, state='disabled', height=10, font=("Consolas", 9), bg="#1e1e1e", fg="#d4d4d4")
         self.txt_log.pack(fill="both", expand=True)
 
-        # PANEL CENTRAL: Visor Preview Real
-        center_col = ttk.LabelFrame(main_paned_window, text="👁️ Vista Previa del Correo", padding=10)
+        # PANEL CENTRAL: Control de Envíos y Base de Datos (Reemplaza Vista Previa)
+        center_col = ttk.LabelFrame(main_paned_window, text="🛡️ Control de Envíos (Anti-Duplicados)", padding=15)
         main_paned_window.add(center_col, weight=2)
         
-        self.visor_html = HtmlFrame(center_col, messages_enabled=False)
-        self.visor_html.pack(fill="both", expand=True)
+        # Configuración de Días
+        frame_db_config = ttk.Frame(center_col)
+        frame_db_config.pack(fill="x", pady=(0, 20))
+        
+        ttk.Label(frame_db_config, text="Periodo de espera (días):", style="Bold.TLabel").pack(side="left", padx=5)
+        self.spin_dias = ttk.Spinbox(frame_db_config, from_=0, to=365, textvariable=self.dias_espera_var, width=5)
+        self.spin_dias.pack(side="left", padx=5)
+        
+        ttk.Button(frame_db_config, text="💾 Guardar Configuración", command=self.guardar_config_dias).pack(side="left", padx=10)
+        
+        # Información de Base de Datos
+        ttk.Separator(center_col, orient="horizontal").pack(fill="x", pady=10)
+        
+        ttk.Label(center_col, text="Información del Sistema:", style="Bold.TLabel").pack(anchor="w", pady=5)
+        
+        info_db = "Esta funcionalidad utiliza una base de datos SQLite para asegurar que no se envíen correos repetidos a la misma persona en un corto periodo de tiempo.\n\n" \
+                  "• Si el contacto ya recibió un correo hace menos de los días configurados, el sistema saltará ese envío.\n" \
+                  "• Por defecto, el periodo es de 15 días.\n" \
+                  "• Todos los envíos quedan registrados históricamente en `data/control_envios.db`."
+        
+        ttk.Label(center_col, text=info_db, wraplength=450, justify="left").pack(fill="x")
+        
+        # Estadísticas Rápidas
+        self.lbl_stats = ttk.Label(center_col, text="\nResumen de Base de Datos: Cargando...", font=("Segoe UI", 9, "italic"))
+        self.lbl_stats.pack(anchor="w", pady=20)
+        self.actualizar_stats_db()
 
         # PANEL DERECHO: Lista de Destinatarios
         right_col = ttk.LabelFrame(main_paned_window, text="📋 Lista de Destinatarios", padding=10)
@@ -311,6 +427,20 @@ class CorreoApp:
         
         self.tree_destinatarios.pack(side="left", fill="both", expand=True)
         scrollbar.pack(side="right", fill="y")
+
+    def actualizar_stats_db(self):
+        try:
+            conn = sqlite3.connect(self.db_path)
+            cursor = conn.cursor()
+            cursor.execute("SELECT COUNT(*) FROM envios")
+            total = cursor.fetchone()[0]
+            cursor.execute("SELECT COUNT(DISTINCT correo) FROM envios")
+            contactos = cursor.fetchone()[0]
+            conn.close()
+            self.lbl_stats.config(text=f"\nResumen de Base de Datos:\n• Total de envíos registrados: {total}\n• Contactos únicos contactados: {contactos}")
+        except:
+            if hasattr(self, 'lbl_stats'):
+                self.lbl_stats.config(text="\nResumen de Base de Datos: No disponible")
 
     def setup_styles(self):
         style = ttk.Style()
@@ -340,11 +470,16 @@ class CorreoApp:
         getattr(logging, nivel.lower())(mensaje)
 
     def cargar_plantillas(self):
-        # Usamos resource_path para encontrar los HTMLs dentro del .exe
-        ruta_busqueda = os.path.join("templates", "*.html")
-        archivos = glob.glob(ruta_busqueda)
-        if archivos:
-            nombres = sorted([os.path.basename(f) for f in archivos])
+        nombres = []
+        for root_dir, dirs, files in os.walk("templates"):
+            for file in files:
+                if file.endswith(".html"):
+                    # Obtener ruta relativa para mostrar el "aplicativo/archivo"
+                    rel_path = os.path.relpath(os.path.join(root_dir, file), "templates")
+                    nombres.append(rel_path.replace("\\", "/"))
+
+        if nombres:
+            nombres = sorted(nombres)
             # Llenar Combos del Panel de Envío
             self.combo_plantilla1['values'] = nombres
             self.combo_plantilla2['values'] = ["Ninguna"] + nombres
@@ -361,16 +496,14 @@ class CorreoApp:
                 cb = ttk.Checkbutton(self.frame_checkboxes, text=n, variable=var)
                 cb.pack(anchor="w", pady=2)
 
-            # Intentar seleccionar correo_brochure.html o el primero disponible
-            if "correo_brochure.html" in nombres:
-                self.plantilla1_var.set("correo_brochure.html")
-            else:
+            # Intentar seleccionar el primero disponible
+            if nombres:
                 self.plantilla1_var.set(nombres[0])
             
             self.plantilla2_var.set("Ninguna")
             self.plantilla3_var.set("Ninguna")
             
-            self.actualizar_preview()
+            # self.actualizar_preview() # Eliminado ya que no hay visor HTML
         else:
             self.combo_plantilla1['values'] = ["No se encontraron HTMLs"]
             self.btn_iniciar.config(state="disabled")
@@ -478,7 +611,7 @@ class CorreoApp:
                                      .replace('{{MAX_WIDTH_PLACEHOLDER}}', 'max-width: none;')\
                                      .replace('{{Email_Hash}}', email_hash_preview)
             
-            self.visor_html.load_html(preview_content)
+            # self.visor_html.load_html(preview_content) # Ya no existe
         except Exception as e:
             self.log_msg(f"Error en preview: {e}", "ERROR")
 
@@ -600,12 +733,20 @@ class CorreoApp:
                     self.log_msg(f"Omitido (Formato): {correo}", "WARNING")
                     continue
                 
+                # VERIFICACIÓN SQLITE
+                if not self.es_elegible_envio(correo):
+                    self.log_msg(f"Bloqueado (SQLite - Periodo reciente): {correo}", "WARNING")
+                    continue
+
                 # Selección de plantilla rotativa
                 archivo_html_nombre = plantillas_para_envio[idx % len(plantillas_para_envio)]
                 
                 exito = self.enviar_correo(nombre, correo, archivo_html_nombre) # Pasamos solo el nombre
                 estado = "Enviado" if exito else "Fallido"
                 
+                if exito:
+                    self.registrar_envio_db(correo, archivo_html_nombre)
+
                 with open(log_csv, 'a', encoding='utf-8') as f:
                     f.write(f'"{nombre}","{correo}","{archivo_html_nombre}","{time.strftime("%Y-%m-%d %H:%M:%S")}","{estado}"\n')
                 
@@ -624,6 +765,7 @@ class CorreoApp:
                         time.sleep(tiempo_espera)
             
             self.log_msg("--- PROCESO FINALIZADO ---")
+            self.actualizar_stats_db()
             messagebox.showinfo("Completado", "El envío masivo ha terminado.")
         except Exception as e:
             self.log_msg(f"Error crítico: {e}", "CRITICAL")
