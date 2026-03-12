@@ -81,7 +81,7 @@ class CorreoApp:
             "Alexandra Cardozo": {
                 "email": "acardozo@partnertech.pe",
                 "pass": "acardozo001",
-                "cargo": "Gerente Comercial"
+                "cargo": "Chief Business Officer<br>Directora de Negocios"
             }
         }
         

@@ -6,60 +6,57 @@ Este documento establece los estándares obligatorios para la creación y modifi
 
 | Uso | Hex | Muestra | Descripción |
 | :--- | :--- | :--- | :--- |
-| **Principal / Títulos** | `#001556` | 🔵 | Azul marino para títulos, párrafos destacados y negritas. |
-| **Azul Eléctrico (Medio)** | `#1e53dd` | 🔷 | Azul para jerarquía en tarjetas o detalles (Usar con moderación). |
+| **Principal / Títulos** | `#001556` | 🔵 | Azul marino para el saludo (Hola...), títulos de secciones y encabezados. |
+| **Azul Eléctrico (Medio)** | `#1e53dd` | 🔷 | Azul para jerarquía en detalles o enlaces secundarios. |
 | **Acción (CTA)** | `#00e0ff` | 💎 | Cyan para el botón principal de agendamiento y acentos destacados. |
 | **Secundario (Éxito)** | `#1bde5d` | 🟢 | Verde institucional para tarjetas de beneficios o detalles positivos. |
 | **Fondo / Cuerpo** | `#ffffff` | ⚪ | Fondo blanco para asegurar limpieza y legibilidad móvil. |
 | **Texto Secundario** | `#555555` | 🌚 | Gris para el cuerpo de texto general. |
+| **Divisores Sutiles** | `#e2e8f0` | ⚪ | Gris muy claro para líneas de separación poco visibles. |
 | **Footer Legal** | `#333c4e` | 🌑 | Fondo oscuro de baja visibilidad para el pie de página legal. |
 | **Texto Footer** | `#718096` | 🔘 | Gris claro para el texto legal (baja relevancia visual). |
+
+## 2. Tipografía Estándar
+*   **Fuente Principal**: `Poppins`, sans-serif. Se debe forzar mediante `!important` en el CSS global.
+*   **Encabezados**: Peso **Bold (700)**, color `#001556`.
+*   **Cuerpo**: Peso **Regular (400)**, color `#555555`, interlineado `1.6`.
 
 ## 2. Principios de Diseño (Inspiración HubSpot)
 
 Basado en las mejores prácticas de conversión, cada correo debe cumplir con:
 
-1.  **Jerarquía Visual Clara**: Un solo mensaje principal por correo. El elemento más importante debe ser el CTA (verde).
-2.  **Personalización Profunda**: No solo el nombre, sino adaptar el tono según el aplicativo (salud en Clinic Mentor, logística en Kardex).
-3.  **Finitud y Brevedad**: Párrafos cortos de máximo 3-4 líneas para facilitar el escaneo visual.
-4.  **Diseño Mobile-First**: Ancho máximo de 600px, botones grandes y fáciles de tocar.
-5. ### A. Encabezado Premium (Diseño de Franja)
-*   **Fondo**: Blanco puro (`#ffffff`).
-*   **Logo**: Centrado, altura máx `40px`.
-*   **Franja de Cierre**: Una franja sólida de color `#001556` (institucional) de `8px` de altura en la base del encabezado.
-*   **Tagline**: Texto en `#718096`, fuente Orbitron, `9px`, espaciado `2px`.
-2.  **Cuerpo del Mensaje**:
-    *   Saludo: `Hola {{Nombre_Contacto}},`
-    *   Problema: Presentación del punto de dolor.
-    *   Solución: Breve descripción del beneficio del software.
-3.  **Bloque de Beneficios**: 1 a 3 cajas con bordes variados (`#1e53dd`, `#00e0ff`, `#1bde5d`).
-4.  **Botón de Acción (Cyan)**: Centrado y destacado.
-5.  **Firma con Confianza**: Datos del remitente, logo y enlace web con UTMs.
-6.  **Pie de Página Legal (Baja Visibilidad)**: Información de cumplimiento CCL y link de baja.
+1.  **Jerarquía Visual Clara**: Un solo mensaje principal por correo. El elemento más importante debe ser el CTA (Cyan).
+2.  **Encabezado Premium (Dark Mode Style)**: 
+    *   **Fondo**: Azul Marino (`#001556`) sólido.
+    *   **Borde Inferior**: Verde Institucional (`#1bde5d`) de `6px`.
+    *   **Logo**: Versión **Blanca** (Logo_ver1) centrada (máx `40px`).
+    *   **Tagline**: Texto en blanco sutil (`#a0aec0`) para alto contraste.
+3.  **Cuerpo Neutral**: 
+    *   **NO usar Azul Marino en el texto**.
+    *   **Color de Títulos y Saludos**: Usar Gris Carbón (`#333c4e`).
+    *   **Texto de Cuerpo y Beneficios**: Gris suave (`#555555`) para máxima legibilidad.
+4.  **Firma Corporativa**: Estructura de dos columnas, cargo en dos líneas y divisor vertical sutil.
+    *   Los cargos deben evitar el uso de símbolos como "/" para separar jerarquías; preferir el salto de línea (`<br>`).
+    *   La columna derecha de la firma debe contener el logo y los datos de contacto generales.
 
----
+## 3. Detalles de Implementación Técnica
 
-## 4. Detalles de Implementación Técnica
-
-### A. Botón de Acompañamiento (CTA)
+### A. Botón de Acción (CTA)
 *   **Fondo**: `#00e0ff`.
 *   **Sombra**: `rgba(0, 224, 255, 0.3)`.
 *   **Forma**: Borde redondeado `50px`.
-*   **Importante**: Siempre usar `color: #ffffff !important` para el texto.
+*   **Texto**: `color: #ffffff !important`, peso `700`.
 
-### B. Elementos de Acento (#1e53dd)
-*   **Divisores**: Todas las líneas divisoras (punteadas, sólidas o barras verticales) deben ser de color **Azul Eléctrico (#1e53dd)** para mantener la consistencia visual.
-*   **Otros usos**: Puntos de lista (viñetas) y detalles decorativos sutiles.
-### C. Prohibiciones
-*   **NO usar asteriscos**: Convertirlos siempre a `<strong>`.
+### B. Prohibiciones
+*   **NO usar fuentes alternativas**: Mantener la soberanía de `Poppins`.
+*   **No usar asteriscos**: Convertirlos siempre a `<strong>`.
 *   **Evitar redundancia**: No poner el logo más de 2 veces por correo.
-*   **No usar fondos oscuros en el cuerpo**: Mantener el contraste alto (texto oscuro sobre fondo claro).
 
 ---
 
 ## 5. Segmentación Dinámica
 
-Recordar el uso correcto de los placeholders:
-*   `{{Nombre_Contacto}}`: Para tono cercano.
-*   `{{Nombre_Remitente}}`: Para autoría del mensaje.
-*   `{{Email_Hash}}`: Obligatorio en todos los enlaces para rastreo GA4.
+Placeholders obligatorios:
+*   `{{Nombre_Contacto}}`: Personalización.
+*   `{{Cargo_Remitente}}`: Jerarquía dinámica del remitente.
+*   `{{Email_Hash}}`: Rastreo GA4 obligatorio en cada enlace.
