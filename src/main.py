@@ -58,7 +58,9 @@ class CorreoApp:
         self.root.configure(bg="#f4f6f9")
 
         # Variables de control
-        self.plantilla_var = tk.StringVar()
+        self.plantilla1_var = tk.StringVar()
+        self.plantilla2_var = tk.StringVar(value="Ninguna")
+        self.plantilla3_var = tk.StringVar(value="Ninguna")
         self.email_prueba_var = tk.StringVar()
         self.plantillas_test_vars = {} # Para almacenar los BooleanVar de los checkboxes
         self.contador_var = tk.StringVar(value="Ningún archivo seleccionado")
@@ -238,13 +240,23 @@ class CorreoApp:
         self.lbl_info_remitente = ttk.Label(frame_remitente, text=f"{self.email_remitente_var.get()} | {self.cargo_remitente_var.get()}", font=("Segoe UI", 8), foreground="#666")
         self.lbl_info_remitente.pack(fill="x")
 
-        # --- SECCIÓN ENVÍO ---
-        ttk.Label(frame_config, text="Plantilla:", style="Bold.TLabel").grid(row=1, column=0, sticky="w", pady=5)
-        self.combo_plantillas = ttk.Combobox(frame_config, textvariable=self.plantilla_var, state="readonly")
-        self.combo_plantillas.grid(row=1, column=1, padx=10, pady=5, sticky="ew")
-        self.combo_plantillas.bind("<<ComboboxSelected>>", self.actualizar_preview)
+        # Plantilla 1 (Obligatoria)
+        ttk.Label(frame_config, text="Plantilla 1 (Oblig):", style="Bold.TLabel").grid(row=1, column=0, sticky="w", pady=2)
+        self.combo_plantilla1 = ttk.Combobox(frame_config, textvariable=self.plantilla1_var, state="readonly")
+        self.combo_plantilla1.grid(row=1, column=1, padx=10, pady=2, sticky="ew")
+        self.combo_plantilla1.bind("<<ComboboxSelected>>", self.actualizar_preview)
 
-        ttk.Label(frame_config, text="Asunto:", style="Bold.TLabel").grid(row=2, column=0, sticky="w", pady=5)
+        # Plantilla 2 (Opcional)
+        ttk.Label(frame_config, text="Plantilla 2 (Opc):", style="Bold.TLabel").grid(row=2, column=0, sticky="w", pady=2)
+        self.combo_plantilla2 = ttk.Combobox(frame_config, textvariable=self.plantilla2_var, state="readonly")
+        self.combo_plantilla2.grid(row=2, column=1, padx=10, pady=2, sticky="ew")
+
+        # Plantilla 3 (Opcional)
+        ttk.Label(frame_config, text="Plantilla 3 (Opc):", style="Bold.TLabel").grid(row=3, column=0, sticky="w", pady=2)
+        self.combo_plantilla3 = ttk.Combobox(frame_config, textvariable=self.plantilla3_var, state="readonly")
+        self.combo_plantilla3.grid(row=3, column=1, padx=10, pady=2, sticky="ew")
+
+        ttk.Label(frame_config, text="Asunto:", style="Bold.TLabel").grid(row=4, column=0, sticky="w", pady=5)
         opciones_asunto = [
             "{{Nombre_Remitente}}: ¿Tu software actual te limita?",
             "Optimiza tus procesos - {{Nombre_Remitente}} (Partner Tech)",
@@ -253,18 +265,18 @@ class CorreoApp:
             "Hola {{Nombre_Contacto}}, soy {{Nombre_Remitente}} de Partner Tech"
         ]
         self.combo_asunto = ttk.Combobox(frame_config, textvariable=self.asunto_var, values=opciones_asunto)
-        self.combo_asunto.grid(row=2, column=1, padx=10, pady=5, sticky="ew")
+        self.combo_asunto.grid(row=4, column=1, padx=10, pady=5, sticky="ew")
         self.combo_asunto.current(4) # "Hola {{Nombre_Contacto}}, soy {{Nombre_Remitente}} de Partner Tech"
 
-        ttk.Label(frame_config, text="Archivo:", style="Bold.TLabel").grid(row=3, column=0, sticky="w", pady=5)
+        ttk.Label(frame_config, text="Archivo:", style="Bold.TLabel").grid(row=5, column=0, sticky="w", pady=5)
         self.btn_cargar = ttk.Button(frame_config, text="📁 Seleccionar Excel...", command=self.cargar_archivo_excel)
-        self.btn_cargar.grid(row=3, column=1, padx=10, pady=5, sticky="ew")
+        self.btn_cargar.grid(row=5, column=1, padx=10, pady=5, sticky="ew")
 
-        ttk.Label(frame_config, text="Destinatarios:", style="Bold.TLabel").grid(row=4, column=0, sticky="w", pady=5)
-        ttk.Label(frame_config, textvariable=self.contador_var).grid(row=4, column=1, padx=10, pady=5, sticky="w")
+        ttk.Label(frame_config, text="Destinatarios:", style="Bold.TLabel").grid(row=6, column=0, sticky="w", pady=5)
+        ttk.Label(frame_config, textvariable=self.contador_var).grid(row=6, column=1, padx=10, pady=5, sticky="w")
 
         self.btn_iniciar = ttk.Button(frame_config, text="🚀 INICIAR ENVÍO", command=self.iniciar_envio_thread, style="Action.TButton")
-        self.btn_iniciar.grid(row=5, column=0, columnspan=2, pady=(15, 0), sticky="ew")
+        self.btn_iniciar.grid(row=7, column=0, columnspan=2, pady=(15, 0), sticky="ew")
         self.btn_iniciar.config(state="disabled")
 
         # Logs
@@ -332,9 +344,11 @@ class CorreoApp:
         ruta_busqueda = os.path.join("templates", "*.html")
         archivos = glob.glob(ruta_busqueda)
         if archivos:
-            nombres = [os.path.basename(f) for f in archivos]
-            # Llenar Combo del Panel de Envío
-            self.combo_plantillas['values'] = nombres
+            nombres = sorted([os.path.basename(f) for f in archivos])
+            # Llenar Combos del Panel de Envío
+            self.combo_plantilla1['values'] = nombres
+            self.combo_plantilla2['values'] = ["Ninguna"] + nombres
+            self.combo_plantilla3['values'] = ["Ninguna"] + nombres
             
             # Llenar Checkboxes del Panel de Pruebas
             for widget in self.frame_checkboxes.winfo_children():
@@ -347,14 +361,18 @@ class CorreoApp:
                 cb = ttk.Checkbutton(self.frame_checkboxes, text=n, variable=var)
                 cb.pack(anchor="w", pady=2)
 
-            # Intentar seleccionar correo_brochure.html por defecto
+            # Intentar seleccionar correo_brochure.html o el primero disponible
             if "correo_brochure.html" in nombres:
-                self.plantilla_var.set("correo_brochure.html")
+                self.plantilla1_var.set("correo_brochure.html")
             else:
-                self.plantilla_var.set(nombres[0])
+                self.plantilla1_var.set(nombres[0])
+            
+            self.plantilla2_var.set("Ninguna")
+            self.plantilla3_var.set("Ninguna")
+            
             self.actualizar_preview()
         else:
-            self.combo_plantillas['values'] = ["No se encontraron HTMLs"]
+            self.combo_plantilla1['values'] = ["No se encontraron HTMLs"]
             self.btn_iniciar.config(state="disabled")
 
     def cargar_perfil(self, event=None):
@@ -430,7 +448,7 @@ class CorreoApp:
                 self.tree_destinatarios.insert("", "end", values=(row['nombre'], row['correo']))
 
     def actualizar_preview(self, event=None):
-        archivo_nombre = self.plantilla_var.get()
+        archivo_nombre = self.plantilla1_var.get()
         if not archivo_nombre: return
         
         archivo_path = os.path.join("templates", archivo_nombre)
@@ -546,7 +564,16 @@ class CorreoApp:
         threading.Thread(target=self.proceso_envio, daemon=True).start()
 
     def proceso_envio(self):
-        archivo_html_nombre = self.plantilla_var.get() # <-- Solo el nombre del archivo
+        # Recopilar plantillas seleccionadas
+        plantillas_para_envio = []
+        p1 = self.plantilla1_var.get()
+        p2 = self.plantilla2_var.get()
+        p3 = self.plantilla3_var.get()
+        
+        if p1: plantillas_para_envio.append(p1)
+        if p2 and p2 != "Ninguna": plantillas_para_envio.append(p2)
+        if p3 and p3 != "Ninguna": plantillas_para_envio.append(p3)
+
         log_csv = os.path.join('data', 'registro_envios.csv')
         
         if not self.archivo_excel_seleccionado:
@@ -573,6 +600,9 @@ class CorreoApp:
                     self.log_msg(f"Omitido (Formato): {correo}", "WARNING")
                     continue
                 
+                # Selección de plantilla rotativa
+                archivo_html_nombre = plantillas_para_envio[idx % len(plantillas_para_envio)]
+                
                 exito = self.enviar_correo(nombre, correo, archivo_html_nombre) # Pasamos solo el nombre
                 estado = "Enviado" if exito else "Fallido"
                 
@@ -580,7 +610,7 @@ class CorreoApp:
                     f.write(f'"{nombre}","{correo}","{archivo_html_nombre}","{time.strftime("%Y-%m-%d %H:%M:%S")}","{estado}"\n')
                 
                 # Loguear siempre el resultado
-                resultado_msg = f"OK: {correo}" if exito else f"FALLÓ: {correo}"
+                resultado_msg = f"OK ({archivo_html_nombre}): {correo}" if exito else f"FALLÓ ({archivo_html_nombre}): {correo}"
                 self.log_msg(resultado_msg)
                 
                 if idx + 1 < total:
