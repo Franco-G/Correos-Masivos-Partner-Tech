@@ -26,28 +26,80 @@ Este documento establece los estándares obligatorios para la creación y modifi
 Basado en las mejores prácticas de conversión, cada correo debe cumplir con:
 
 1.  **Jerarquía Visual Clara**: Un solo mensaje principal por correo. El elemento más importante debe ser el CTA (Cyan).
-2.  **Encabezado Premium (Dark Mode Style)**: 
+2.  **Encabezado Premium (High Contrast)**: 
+    *   **Fondo**: Azul Marino (`#001556`) sólido con borde inferior Verde (`#1bde5d`) de `6px`.
+    *   **Logo**: Versión **Blanca** (Logo_ver1) de `50px` de altura.
+    *   **Tagline**: Texto en blanco sutil (`#a0aec0`) de `12px` para máxima legibilidad.
+3.  **Cuerpo y Texto**: 
+    *   **NO usar Azul Marino en el texto del cuerpo**.
+    *   **Títulos/Saludos**: Gris Carbón (`#333c4e`).
+    *   **Párrafos**: Gris suave (`#555555`).
+4.  **Sección de Cierre (CTA Navy Block)**:
     *   **Fondo**: Azul Marino (`#001556`) sólido.
-    *   **Borde Inferior**: Verde Institucional (`#1bde5d`) de `6px`.
-    *   **Logo**: Versión **Blanca** (Logo_ver1) centrada (máx `40px`).
-    *   **Tagline**: Texto en blanco sutil (`#a0aec0`) para alto contraste.
-3.  **Cuerpo Neutral**: 
-    *   **NO usar Azul Marino en el texto**.
-    *   **Color de Títulos y Saludos**: Usar Gris Carbón (`#333c4e`).
-    *   **Texto de Cuerpo y Beneficios**: Gris suave (`#555555`) para máxima legibilidad.
-4.  **Firma Corporativa**: Estructura de dos columnas, cargo en dos líneas y divisor vertical sutil.
-    *   Los cargos deben evitar el uso de símbolos como "/" para separar jerarquías; preferir el salto de línea (`<br>`).
-    *   La columna derecha de la firma debe contener el logo y los datos de contacto generales.
-
-## 3. Detalles de Implementación Técnica
-
-### A. Botón de Acción (CTA)
-*   **Fondo**: `#00e0ff`.
-*   **Sombra**: `rgba(0, 224, 255, 0.3)`.
-*   **Forma**: Borde redondeado `50px`.
-*   **Texto**: `color: #ffffff !important`, peso `700`.
-
-### B. Prohibiciones
+    *   **Forma**: Bordes redondeados de `20px` y padding generoso.
+    *   **Botón**: Azul Cyan (`#00e0ff`) o Verde (`#1bde5d`) con texto blanco negrita. En esta iteración se prefiere **Verde** para el botón sobre fondo marino.
+    *   **Contraste**: Todos los textos dentro de este bloque deben ser claros (#a0aec0 o blanco).
+5.  **Firma Corporativa (Fuera del Bloque)**: 
+    *   **Ubicación**: Siempre fuera de bloques de color, directamente sobre el fondo blanco.
+    *   **Colores**: Usar Gris Carbón (`#333c4e`) para el nombre y Gris Suave (`#718096`) para cargos y contacto.
+    *   **Logo**: Usar la versión a **color** (`cid:Logo_Color`).
+6.  **Pie de Página (Footer Clean)**:
+    *   **Fondo**: Blanco (`#ffffff`) absoluto.
+    *   **Texto**: Gris muy tenue (`#cbd5e0`) de `12px`.
+ Riverside:0.0.0.0,
+ Riverside:0.0.0.0,
+ Riverside:0.0.1,
+ Riverside:0.0.0.0,
+ Riverside:0.0.0.0,
+ Riverside:0.0.1,
+ Riverside:0.0.0.0,
+ Riverside:0.0.0.0,
+ Riverside:0.0.1,
+ Riverside:0.0.0.0,
+ Riverside:0.0.0.0,
+ Riverside:0.0.1,
+ Riverside:0.0.0.0,
+ Riverside:0.0.0.0,
+ Riverside:0.0.1,
+ Riverside:0.0.0.0,
+ Riverside:0.0.0.0,
+ Riverside:0.0.1,
+ Riverside:0.0.0.0,
+ Riverside:0.0.0.0,
+ Riverside:0.0.1,
+ Riverside:0.0.0.0,
+ Riverside:0.0.0.0,
+ Riverside:0.0.1,
+ Riverside:0.0.0.0,
+ Riverside:0.0.0.0,
+ Riverside:0.0.1,
+ Riverside:0.0.0.0,
+ Riverside:0.0.0.0,
+ Riverside:0.0.1,
+ Riverside:0.0.0.0,
+ Riverside:0.0.0.0,
+ Riverside:0.0.1,
+ Riverside:0.0.0.0,
+ Riverside:0.0.0.0,
+ Riverside:0.0.1,
+ Riverside:0.0.0.0,
+ Riverside:0.0.0.0,
+ Riverside:0.0.1,
+ Riverside:0.0.0.0,
+ Riverside:0.0.0.0,
+ Riverside:0.0.1,
+ Riverside:0.0.0.0,
+ Riverside:0.0.0.0,
+ Riverside:0.0.1,
+ Riverside:0.0.0.0,
+ Riverside:0.0.0.0,
+ Riverside:0.0.1,
+ Riverside:0.0.0.0,
+ Riverside:0.0.0.0,
+ Riverside:0.0.1,
+ Riverside:0.0.0.0,
+ Riverside:0.0.0.0,
+ Riverside:0.0.1,
 *   **NO usar fuentes alternativas**: Mantener la soberanía de `Poppins`.
 *   **No usar asteriscos**: Convertirlos siempre a `<strong>`.
 *   **Evitar redundancia**: No poner el logo más de 2 veces por correo.
