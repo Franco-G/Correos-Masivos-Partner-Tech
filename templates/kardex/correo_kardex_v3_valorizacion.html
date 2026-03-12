@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kardex - Valorización de Existencias | Partner Tech</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;700&family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body { margin: 0; padding: 0; font-family: 'Poppins', 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; background-color: #ffffff; color: #555555; -webkit-font-smoothing: antialiased; }
+        table { border-spacing: 0; width: 100%; } td { padding: 0; } img { border: 0; display: block; max-width: 100%; }
+        .wrapper { width: 100%; table-layout: fixed; background-color: #ffffff; padding: 40px 0; }
+        .main-container { background-color: #ffffff; margin: 0 auto; width: 100%; max-width: 600px; border-radius: 16px; overflow: hidden; box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06); }
+        .header { background-color: #ffffff; padding: 30px 20px; text-align: center; border-bottom: 2px solid #f1f5f9; }
+        .header-tagline { color: #718096; font-family: 'Orbitron', sans-serif; font-size: 9px; letter-spacing: 2px; margin-top: 8px; text-transform: uppercase; }
+        .content { padding: 40px 35px; }
+        .greeting { font-size: 20px; color: #0021a4; font-weight: 700; margin-bottom: 20px; font-family: 'Orbitron', sans-serif; }
+        .text-paragraph { font-size: 16px; line-height: 1.7; color: #666; margin-bottom: 25px; font-family: 'Poppins', sans-serif; }
+        .highlight { color: #1e53dd; font-weight: 700; }
+        .stat-box { background-color: #f8fafc; border: 1px solid #e2e8f0; border-radius: 12px; padding: 20px 15px; text-align: center; }
+        .stat-number { font-size: 28px; font-weight: 700; color: #0021a4; font-family: 'Orbitron', sans-serif; display: block; margin-bottom: 5px; }
+        .stat-label { font-size: 12px; color: #718096; font-family: 'Poppins', sans-serif; text-transform: uppercase; letter-spacing: 0.5px; }
+        .benefit-box { background-color: #ffffff; border: 1px solid #e2e8f0; border-left: 5px solid #1bde5d; border-radius: 12px; padding: 20px; margin-bottom: 20px; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04); }
+        .benefit-title { color: #0021a4; font-size: 16px; font-weight: 700; display: block; margin-bottom: 5px; font-family: 'Orbitron', sans-serif; }
+        .benefit-text { font-size: 14px; line-height: 1.5; color: #718096; margin: 0; font-family: 'Poppins', sans-serif; }
+        .btn-meeting { background-color: #1e53dd; color: #ffffff !important; display: block; width: 100%; max-width: 380px; margin: 0 auto 15px auto; padding: 14px 30px; text-decoration: none; border-radius: 50px; font-weight: 700; font-size: 15px; box-shadow: 0 4px 12px rgba(30, 83, 221, 0.3); font-family: 'Poppins', sans-serif; text-align: center; }
+        .closing-box { text-align: center; margin-top: 35px; padding-top: 25px; border-top: 1px dashed #dce5f2; }
+        @media screen and (max-width: 600px) { .content { padding: 30px 20px !important; } .btn-meeting { display: block; width: 100%; box-sizing: border-box; } }
+    </style>
+</head>
+<body>
+    <center class="wrapper">
+        <table class="main-container" width="100%" cellpadding="0" cellspacing="0">
+            <tr><td class="header"><img src="cid:Logo_Color" alt="Partner Tech Logo" style="max-height: 40px; width: auto; margin: 0 auto;"><div class="header-tagline">Tu Socio Estratégico</div></td></tr>
+            <tr>
+                <td class="content">
+                    <p class="greeting">Hola {{Nombre_Contacto}},</p>
+                    <p class="text-paragraph">Te saluda {{Nombre_Remitente}}, de Partner Tech. Como responsable financiero, sabes que <span class="highlight">un almacén no solo contiene productos, contiene capital de trabajo en movimiento que debe ser valorizado con precisión milimétrica.</span></p>
+                    <p class="text-paragraph">La falta de una valorización de existencias real y automática impide calcular correctamente el costo de ventas y el margen bruto de tu operación, nublando tu capacidad de tomar decisiones estratégicas.</p>
+
+                    <table width="100%" cellpadding="0" cellspacing="0" style="margin-bottom: 25px;">
+                        <tr>
+                            <td align="center" width="31%" style="padding: 5px;"><div class="stat-box"><span class="stat-number">100%</span><span class="stat-label">Valorización<br>Automática</span></div></td>
+                            <td align="center" width="31%" style="padding: 5px;"><div class="stat-box"><span class="stat-number" style="color: #1bde5d;">-20%</span><span class="stat-label">Reducción de<br>Sobre-stock</span></div></td>
+                            <td align="center" width="31%" style="padding: 5px;"><div class="stat-box"><span class="stat-number" style="color: #1e53dd;">99%</span><span class="stat-label">Exactitud de<br>Inventario</span></div></td>
+                        </tr>
+                    </table>
+
+                    <p class="text-paragraph">Nuestro sistema <strong>Kardex</strong> integra métodos de valorización avanzados (Promedio Ponderado, PEPS) para que tengas una visión financiera real de tu stock en cada momento del mes.</p>
+
+                    <div class="benefit-box">
+                        <span class="benefit-title">💰 Valorización Financiera Real</span>
+                        <p class="benefit-text">Obtén el valor contable de tus activos al instante. <strong>Presenta reportes financieros precisos sin procesos manuales de fin de mes.</strong></p>
+                    </div>
+                    <div class="benefit-box" style="border-left-color: #00e0ff;">
+                        <span class="benefit-title">🔋 Gestión de Reposición Inteligente</span>
+                        <p class="benefit-text">Analiza consumos históricos para optimizar tus compras. <strong>No inmovilices dinero innecesario en productos de baja rotación.</strong></p>
+                    </div>
+                    <div class="benefit-box" style="border-left-color: #1e53dd;">
+                        <span class="benefit-title">📋 Inventarios Cíclicos Ágiles</span>
+                        <p class="benefit-text">Digitaliza el proceso de auditoría con tablets y lectores de códigos. <strong>Reduce el tiempo de conciliación de días a solo horas.</strong></p>
+                    </div>
+
+                    <div class="closing-box">
+                        <p style="font-size: 17px; color: #1e53dd; font-weight: 700; margin-bottom: 10px; font-family: 'Orbitron', sans-serif;">¿Desea optimizar su flujo de caja logístico?</p>
+                        <a href="https://cal.com/negocios-partner-tech/requerimientos-software-desarrollo?utm_source=partnertech&amp;utm_medium=correo&amp;utm_campaign=campana_kardex&amp;utm_content=v3_valorizacion_boton_agendar&amp;utm_term={{Email_Hash}}" class="btn-meeting" style="color: #ffffff !important; text-decoration: none;"><span style="color: #ffffff;">📅 Agendar Reunión de 15 min</span></a>
+                        <p style="font-size: 13px; color: #666; margin-top: 18px; line-height: 1.6;">P.S. ¿Quiere conocer cómo manejamos los costos de importación en el Kardex? <a href="mailto:{{Email_Remitente}}?subject=Interes%20Kardex%20Costos" style="color: #1e53dd; text-decoration: underline;">Solicite una demo aquí</a>.</p>
+                        <p style="color: #555; margin-top: 15px; margin-bottom: 10px;">Saludos,<br><strong>{{Nombre_Remitente}}</strong><br><a href="mailto:{{Email_Remitente}}" style="color: #1e53dd; text-decoration: none;">{{Email_Remitente}}</a><br><span style="font-size: 14px; color: #888;">{{Cargo_Remitente}}</span></p>
+                        <img src="cid:Logo_Color" alt="Partner Tech Logo" class="footer-logo">
+                        <div style="margin-top: 25px; padding-top: 15px; border-top: 1px solid #e2e8f0; font-size: 13px; color: #718096; line-height: 1.6;"><strong>RUC 20523799623</strong><br>🏢 Av. Malachowsky 340, San Borja, Lima<br>🌐 <a href="https://partnertech.pe/?utm_source=partnertech&amp;utm_medium=correo&amp;utm_campaign=campana_kardex&amp;utm_content=v3_valorizacion_enlace_web&amp;utm_term={{Email_Hash}}" style="color: #1e53dd; text-decoration: none; font-weight: bold;">Visitar nuestro sitio web: Partnertech.pe</a></div>
+                    </div>
+                </td>
+            </tr>
+            <tr><td class="footer" style="padding-top: 5px;"><p>Enviado cumpliendo los lineamientos de la CCL.</p></td></tr>
+        </table>
+    </center>
+    <img src="https://www.google-analytics.com/g/collect?v=2&amp;tid=G-FLPG7XG57W&amp;cid={{Email_Hash}}&amp;en=apertura_correo&amp;ep.campana=campana_kardex&amp;ep.plantilla=v3_valorizacion" width="1" height="1" style="display:none; visibility:hidden;" alt="" />
+</body>
+</html>

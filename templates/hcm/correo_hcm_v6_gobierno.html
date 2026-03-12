@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rankmi - Gobierno de Datos | Partner Tech</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;700&family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body { margin: 0; padding: 0; font-family: 'Poppins', 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; background-color: #ffffff; color: #555555; -webkit-font-smoothing: antialiased; }
+        .header { background-color: #ffffff; padding: 30px 20px; text-align: center; border-bottom: 2px solid #f1f5f9; }
+        .header-tagline { color: #718096; font-family: 'Orbitron', sans-serif; font-size: 9px; letter-spacing: 2px; margin-top: 8px; text-transform: uppercase; }
+        table { border-spacing: 0; width: 100%; } td { padding: 0; } img { border: 0; display: block; max-width: 100%; }
+        .wrapper { width: 100%; table-layout: fixed; background-color: #ffffff; padding: 40px 0; }
+        .main-container { background-color: #ffffff; margin: 0 auto; width: 100%; max-width: 600px; border-radius: 16px; overflow: hidden; box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06); }
+        .content { padding: 40px 35px; }
+        .greeting { font-size: 20px; color: #0021a4; font-weight: 700; margin-bottom: 20px; font-family: 'Orbitron', sans-serif; }
+        .text-paragraph { font-size: 16px; line-height: 1.7; color: #666; margin-bottom: 20px; font-family: 'Poppins', sans-serif; }
+        .highlight { color: #1e53dd; font-weight: 700; }
+        .section-divider { border: none; border-top: 1px solid #edf2f7; margin: 25px 0; }
+        .section-title { font-size: 15px; color: #555; font-weight: 600; margin-bottom: 16px; font-family: 'Poppins', sans-serif; }
+        .benefit-box { background-color: #ffffff; border: 1px solid #e2e8f0; border-left: 5px solid #1bde5d; border-radius: 12px; padding: 18px 20px; margin-bottom: 16px; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04); }
+        .benefit-title { color: #0021a4; font-size: 15px; font-weight: 700; display: block; margin-bottom: 5px; font-family: 'Orbitron', sans-serif; }
+        .benefit-text { font-size: 14px; line-height: 1.6; color: #718096; margin: 0; font-family: 'Poppins', sans-serif; }
+        .btn-meeting { background-color: #1e53dd; color: #ffffff !important; display: block; width: 100%; max-width: 380px; margin: 0 auto 15px auto; padding: 14px 30px; text-decoration: none; border-radius: 50px; font-weight: 700; font-size: 15px; box-shadow: 0 4px 12px rgba(30, 83, 221, 0.3); font-family: 'Poppins', sans-serif; text-align: center; }
+        .btn-meeting:hover { background-color: #1645b8; }
+        .closing-box { text-align: center; margin-top: 35px; padding-top: 25px; border-top: 1px dashed #dce5f2; }
+        .call-action { font-size: 17px; color: #1e53dd; font-weight: 700; margin-bottom: 16px; font-family: 'Orbitron', sans-serif; }
+        .footer { background-color: #2d3748; padding: 30px; text-align: center; font-size: 13px; color: #a0aec0; line-height: 1.6; font-family: 'Poppins', sans-serif; }
+        .footer-logo { max-height: 50px; width: auto; margin: 10px auto 0; display: block; }
+        @media screen and (max-width: 600px) { .content { padding: 30px 20px !important; } .btn-meeting { display: block; width: 100%; box-sizing: border-box; } }
+    </style>
+</head>
+<body>
+    <center class="wrapper">
+        <table class="main-container" width="100%" cellpadding="0" cellspacing="0">
+            <tr><td class="header"><img src="cid:Logo_Color" alt="Partner Tech Logo" style="max-height: 40px; width: auto; margin: 0 auto;"><div class="header-tagline">Tu Socio Estratégico</div></td></tr>
+            <tr>
+                <td class="content">
+                    <p class="greeting">Hola {{Nombre_Contacto}},</p>
+                    <p class="text-paragraph">Te saluda {{Nombre_Remitente}}, de Partner Tech.</p>
+                    <p class="text-paragraph">Cuando la información sensible de tus colaboradores (salarios, expedientes, evaluaciones) vive fragmentada en archivos locales o sistemas antiguos, <span class="highlight">tu empresa enfrenta un riesgo crítico de seguridad y cumplimiento normativo.</span></p>
+                    <p class="text-paragraph">Sin roles granulares ni logs de auditoría inalterables, es imposible saber quién accedió o modificó un registro vital. Esto no es solo un problema técnico; es una vulnerabilidad patrimonial.</p>
+                    <hr class="section-divider">
+                    <p class="text-paragraph"><strong>Rankmi</strong> garantiza el gobierno total de tus datos de capital humano con trazabilidad de grado corporativo, protegiendo la información sensible ante cualquier acceso no autorizado.</p>
+                    <p class="section-title">Proteja su gestión con:</p>
+                    <div class="benefit-box">
+                        <span class="benefit-title">🔐 Roles Granulares y Permisos</span>
+                        <p class="benefit-text">Control total sobre quién ve qué. <strong>Asegure que la información sensible solo sea accesible por las personas autorizadas.</strong></p>
+                    </div>
+                    <div class="benefit-box" style="border-left-color: #00e0ff;">
+                        <span class="benefit-title">📑 Logs de Auditoría Inalterables</span>
+                        <p class="benefit-text">Registro histórico de cada acción crítica. <strong>Sepa exactamente quién, qué y cuándo se modificó un dato sensible.</strong></p>
+                    </div>
+                    <div class="benefit-box" style="border-left-color: #1e53dd;">
+                        <span class="benefit-title">🌍 Cumplimiento Regional</span>
+                        <p class="benefit-text">Protección de datos bajo estándares internacionales de seguridad (GDPR/ISO). <strong>Seguridad total de grado bancario para tu talento humano.</strong></p>
+                    </div>
+                    <p class="text-paragraph" style="margin-top: 10px;">El objetivo es simple: <strong>garantice la protección total del patrimonio informativo de su empresa con auditoría y roles protegidos.</strong></p>
+                    <div class="closing-box">
+                        <p class="call-action">¿Le damos una mirada juntos?</p>
+                        <a href="https://cal.com/negocios-partner-tech/requerimientos-software-desarrollo?utm_source=partnertech&amp;utm_medium=correo&amp;utm_campaign=campana_hcm&amp;utm_content=v6_gobierno_boton_agendar&amp;utm_term={{Email_Hash}}" class="btn-meeting" style="color: #ffffff !important; text-decoration: none;"><span style="color: #ffffff;">📅 Agendar Reunión de 15 min</span></a>
+                        <p style="font-size: 13px; color: #666; margin-top: 18px; line-height: 1.6;">P.S. ¿Prefieres la información técnica primero? <a href="mailto:{{Email_Remitente}}?subject=Interes%20Rankmi%20Gobierno" style="color: #1e53dd; text-decoration: underline;">Solicita la ficha técnica aquí</a>.</p>
+                        <p style="color: #555; margin-top: 15px; margin-bottom: 10px;">Saludos,<br><strong>{{Nombre_Remitente}}</strong><br><a href="mailto:{{Email_Remitente}}" style="color: #1e53dd; text-decoration: none;">{{Email_Remitente}}</a><br><span style="font-size: 14px; color: #888;">{{Cargo_Remitente}}</span></p>
+                        <img src="cid:Logo_Color" alt="Partner Tech Logo" class="footer-logo">
+                        <div style="margin-top: 25px; padding-top: 15px; border-top: 1px solid #e2e8f0; font-size: 13px; color: #718096; line-height: 1.6;"><strong>RUC 20523799623</strong><br>🏢 Av. Malachowsky 340, San Borja, Lima<br>🌐 <a href="https://partnertech.pe/?utm_source=partnertech&amp;utm_medium=correo&amp;utm_campaign=campana_hcm&amp;utm_content=v6_gobierno_enlace_web&amp;utm_term={{Email_Hash}}" style="color: #1e53dd; text-decoration: none; font-weight: bold;">Visitar nuestro sitio web: Partnertech.pe</a></div>
+                    </div>
+                </td>
+            </tr>
+            <tr><td class="footer" style="padding-top: 5px;"><p>Enviado a <strong>{{Email_Destinatario}}</strong> cumpliendo los lineamientos de la <strong>Cámara de Comercio de Lima (CCL)</strong>.</p><p>Respetamos tu privacidad profesional. Si no deseas recibir más correos, <a href="mailto:negocios@partnertech.pe?subject=Remover">haga clic aquí para darse de baja</a>.</p></td></tr>
+        </table>
+    </center>
+    <img src="https://www.google-analytics.com/g/collect?v=2&amp;tid=G-FLPG7XG57W&amp;cid={{Email_Hash}}&amp;en=apertura_correo&amp;ep.campana=campana_hcm&amp;ep.plantilla=v6_gobierno" width="1" height="1" style="display:none; visibility:hidden;" alt="" />
+</body>
+</html>

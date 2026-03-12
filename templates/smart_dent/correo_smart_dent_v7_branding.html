@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SmartDent - Gestión Maestro Odontológica | Partner Tech</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;700&family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { margin: 0; padding: 0; font-family: 'Poppins', 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; background-color: #f1f5f9; color: #334155; -webkit-font-smoothing: antialiased; }
+        table { border-spacing: 0; width: 100%; } td { padding: 0; } img { border: 0; display: block; max-width: 100%; }
+        .wrapper { width: 100%; table-layout: fixed; background-color: #f1f5f9; padding: 20px 0; }
+        .main-container { background-color: #ffffff; margin: 0 auto; width: 100%; max-width: 600px; overflow: hidden; box-shadow: 0 10px 25px rgba(0, 13, 45, 0.08); }
+        .header { background-color: #001556; padding: 40px 20px; text-align: center; border-bottom: 3px solid #1bde5d; }
+        .header-tagline { color: #ffffff; font-family: 'Orbitron', sans-serif; font-size: 10px; letter-spacing: 3px; margin-top: 10px; text-transform: uppercase; opacity: 0.8; }
+        .content { padding: 45px 40px; background-color: #ffffff; }
+        .greeting { font-size: 20px; color: #001556; font-weight: 700; margin-bottom: 25px; font-family: 'Orbitron', sans-serif; letter-spacing: 0.5px; }
+        .text-paragraph { font-size: 16px; line-height: 1.8; color: #475569; margin-bottom: 25px; font-family: 'Poppins', sans-serif; }
+        .highlight { color: #0021a4; font-weight: 700; }
+        .section-divider { border: none; border-top: 1px solid #e2e8f0; margin: 30px 0; }
+        .section-title { font-size: 13px; color: #64748b; font-weight: 700; margin-bottom: 20px; font-family: 'Orbitron', sans-serif; text-transform: uppercase; letter-spacing: 2px; }
+        .benefit-box { background-color: #f8fafc; border: 1px solid #e2e8f0; border-left: 4px solid #1bde5d; border-radius: 6px; padding: 20px; margin-bottom: 16px; }
+        .benefit-title { color: #001556; font-size: 14px; font-weight: 700; display: block; margin-bottom: 6px; font-family: 'Orbitron', sans-serif; }
+        .benefit-text { font-size: 14px; line-height: 1.6; color: #64748b; margin: 0; font-family: 'Poppins', sans-serif; }
+        .btn-container { text-align: center; margin: 40px 0; padding: 35px 20px; background-color: #001556; border-radius: 12px; }
+        .btn-web { background-color: #1bde5d; color: #001556 !important; display: inline-block; padding: 16px 35px; text-decoration: none; font-weight: 800; font-size: 14px; font-family: 'Orbitron', sans-serif; text-transform: uppercase; letter-spacing: 1.5px; border-radius: 4px; box-shadow: 0 4px 15px rgba(27, 222, 93, 0.4); }
+        .ps-text { font-size: 13px; color: #94a3b8; margin-top: 25px; line-height: 1.6; font-family: 'Poppins', sans-serif; }
+        .ps-link { color: #1bde5d; text-decoration: underline; }
+        .closing-box { margin-top: 40px; padding-top: 30px; border-top: 1px solid #f1f5f9; }
+        .sender-info { color: #001556; font-size: 15px; line-height: 1.6; }
+        .footer-logo { max-height: 40px; width: auto; margin: 25px 0; }
+        .footer-legal { background-color: #001556; padding: 40px; text-align: center; font-size: 12px; color: #94a3b8; line-height: 1.6; }
+        .corp-info { font-size: 12px; color: #94a3b8; margin-bottom: 20px; }
+        .corp-info a { color: #1bde5d; text-decoration: none; font-weight: bold; }
+        @media screen and (max-width: 600px) { .content { padding: 30px 20px; } .btn-web { width: 100%; box-sizing: border-box; } }
+    </style>
+</head>
+<body>
+    <center class="wrapper">
+        <table class="main-container" width="100%" cellpadding="0" cellspacing="0">
+            <tr><td class="header"><img src="cid:Logo_ver1" alt="Partner Tech Logo" style="max-height: 40px; width: auto; margin: 0 auto;"><div class="header-tagline">Tu Socio Estratégico</div></td></tr>
+            <tr>
+                <td class="content">
+                    <p class="greeting">Hola {{Nombre_Contacto}},</p>
+                    <p class="text-paragraph">Te saluda <strong>{{Nombre_Remitente}}</strong>, del equipo de Partner Tech.</p>
+                    <p class="text-paragraph">En muchas clínicas la administración termina absorbiendo el tiempo que debería dedicarse a la salud bucal de los pacientes. El problema no es solo la carga de trabajo, sino que <span class="highlight">la falta de procesos automatizados impide escalar su red de clínicas, controlar mermas en stock y fidelizar realmente a su comunidad.</span></p>
+                    <p class="text-paragraph">Cuando la gestión opera de forma fragmentada, se pierde rentabilidad y se asumen riesgos operativos innecesarios. La solución no es contratar más personal administrativo, sino <strong>centralizar toda la inteligencia de su práctica dental en un ecosistema digital moderno y eficiente.</strong></p>
+                    <hr class="section-divider">
+                    <p class="text-paragraph">Con ese objetivo en mente implementamos <strong>SmartDent</strong>. Una plataforma integral diseñada para modernizar sus procesos clínicos y maximizar el rendimiento de cada sede con control total y agilidad.</p>
+                    <p class="section-title">Nuestra Suite Tecnológica Dental:</p>
+                    <div class="benefit-box">
+                        <span class="benefit-title">🦷 ODONTOGRAMA Y FICHAS TÁCTILES</span>
+                        <p class="benefit-text">Reduzca tiempos de registro clínico y mejore la calidad de la atención con historiales digitales interactivos de última generación.</p>
+                    </div>
+                    <div class="benefit-box" style="border-left-color: #00e0ff;">
+                        <span class="benefit-title">📲 FIDELIZACIÓN POR WHATSAPP</span>
+                        <p class="benefit-text">Automatice recordatorios de citas y campañas de salud bucal recurrentes para mantener su agenda siempre llena.</p>
+                    </div>
+                    <div class="benefit-box" style="border-left-color: #1e53dd;">
+                        <span class="benefit-title">💰 CONTROL FINANCIERO Y STOCK</span>
+                        <p class="benefit-text">Gestione liquidaciones de doctores, flujo de caja e inventario crítico con alertas inteligentes de reposición.</p>
+                    </div>
+                    <div class="btn-container">
+                        <a href="https://cal.com/negocios-partner-tech/requerimientos-software-desarrollo?utm_source=partnertech&amp;utm_medium=correo&amp;utm_campaign=campana_smartdent&amp;utm_content=v7_branding_boton_agendar&amp;utm_term={{Email_Hash}}" class="btn-web" style="color: #001556 !important; text-decoration: none;"><span style="color: #001556;">Agendar Reunión de 15 min</span></a>
+                        <p class="ps-text">P.S. ¿Prefieres revisar los módulos funcionales de SmartDent primero? <br><a href="mailto:{{Email_Remitente}}?subject=Interes%20SmartDent%20Modules" class="ps-link">Solicita el brochure del software aquí</a>.</p>
+                    </div>
+                    <div class="closing-box"><div class="sender-info">Saludos,<br><strong>{{Nombre_Remitente}}</strong><br><span style="font-size: 13px; color: #64748b;">{{Cargo_Remitente}}</span><br><a href="mailto:{{Email_Remitente}}" style="color: #0021a4; text-decoration: none; font-size: 13px; font-weight: 600;">{{Email_Remitente}}</a></div><img src="cid:Logo_Color" alt="Partner Tech Logo" class="footer-logo"></div>
+                </td>
+            </tr>
+            <tr>
+                <td class="footer-legal">
+                    <div class="corp-info"><strong>RUC 20523799623</strong><br>🏢 Av. Malachowsky 340, San Borja, Lima<br>🌐 <a href="https://partnertech.pe/?utm_source=partnertech&amp;utm_medium=correo&amp;utm_campaign=campana_smartdent&amp;utm_content=v7_branding_enlace_web&amp;utm_term={{Email_Hash}}">PARTNERTECH.PE</a></div>
+                    <p>Enviado cumpliendo los lineamientos de la CCL.</p>
+                </td>
+            </tr>
+        </table>
+    </center>
+    <img src="https://www.google-analytics.com/g/collect?v=2&amp;tid=G-FLPG7XG57W&amp;cid={{Email_Hash}}&amp;en=apertura_correo&amp;ep.campana=campana_smartdent&amp;ep.plantilla=v7_branding" width="1" height="1" style="display:none; visibility:hidden;" alt="" />
+</body>
+</html>

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Partners Truck - Digitalización de Transporte | Partner Tech</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;700&family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body { margin: 0; padding: 0; font-family: 'Poppins', 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; background-color: #ffffff; color: #555555; -webkit-font-smoothing: antialiased; }
+        table { border-spacing: 0; width: 100%; } td { padding: 0; } img { border: 0; display: block; max-width: 100%; }
+        .wrapper { width: 100%; table-layout: fixed; background-color: #ffffff; padding: 40px 0; }
+        .main-container { background-color: #ffffff; margin: 0 auto; width: 100%; max-width: 600px; border-radius: 16px; overflow: hidden; box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06); }
+        .content { padding: 40px 35px; }
+        .greeting { font-size: 20px; color: #0021a4; font-weight: 700; margin-bottom: 20px; font-family: 'Orbitron', sans-serif; }
+        .text-paragraph { font-size: 16px; line-height: 1.7; color: #666; margin-bottom: 25px; font-family: 'Poppins', sans-serif; }
+        .highlight { color: #1e53dd; font-weight: 700; }
+        .story-box { background: linear-gradient(135deg, #f8fafc 0%, #edf2f7 100%); border-radius: 16px; padding: 25px; margin: 25px 0; border: 1px solid #e2e8f0; }
+        .story-label { font-size: 11px; text-transform: uppercase; letter-spacing: 1.5px; color: #1e53dd; font-weight: 700; margin-bottom: 12px; display: block; font-family: 'Poppins', sans-serif; }
+        .story-text { font-size: 15px; line-height: 1.7; color: #4a5568; font-style: italic; margin: 0; font-family: 'Poppins', sans-serif; }
+        .step-number { background-color: #0021a4; color: #ffffff; width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 14px; font-family: 'Orbitron', sans-serif; flex-shrink: 0; }
+        .step-title { font-weight: 700; color: #0021a4; font-size: 14px; margin-bottom: 3px; font-family: 'Poppins', sans-serif; }
+        .step-desc { font-size: 13px; color: #718096; line-height: 1.5; font-family: 'Poppins', sans-serif; }
+        .btn-meeting { background-color: #1e53dd; color: #ffffff !important; display: block; width: 100%; max-width: 380px; margin: 0 auto 15px auto; padding: 14px 30px; text-decoration: none; border-radius: 50px; font-weight: 700; font-size: 15px; box-shadow: 0 4px 12px rgba(30, 83, 221, 0.3); transition: all 0.3s ease; font-family: 'Poppins', sans-serif; text-align: center; }
+        .closing-box { text-align: center; margin-top: 35px; padding-top: 25px; border-top: 1px dashed #dce5f2; }
+        .call-action { font-size: 17px; color: #1e53dd; font-weight: 700; margin-bottom: 10px; font-family: 'Orbitron', sans-serif; }
+        .header { background-color: #ffffff; padding: 30px 20px; text-align: center; border-bottom: 2px solid #f1f5f9; }
+        .header-tagline { color: #718096; font-family: 'Orbitron', sans-serif; font-size: 9px; letter-spacing: 2px; margin-top: 8px; text-transform: uppercase; }
+        .footer { background-color: #2d3748; padding: 30px; text-align: center; font-size: 13px; color: #555555; line-height: 1.6; font-family: 'Poppins', sans-serif; }
+        .footer-logo { max-height: 50px; width: auto; margin: 10px auto 0; display: block; }
+        @media screen and (max-width: 600px) { .content { padding: 30px 20px !important; } .btn-meeting { display: block; width: 100%; box-sizing: border-box; } }
+    </style>
+</head>
+<body>
+    <center class="wrapper">
+        <table class="main-container" width="100%" cellpadding="0" cellspacing="0">
+            <tr><td class="header"><img src="cid:Logo_Color" alt="Partner Tech Logo" style="max-height: 40px; width: auto; margin: 0 auto;"><div class="header-tagline">Tu Socio Estratégico</div></td></tr>
+            <tr>
+                <td class="content">
+                    <p class="greeting">Hola {{Nombre_Contacto}},</p>
+                    <p class="text-paragraph">Te saluda {{Nombre_Remitente}}, de Partner Tech. Hace poco conversé con un dueño de flota que gestionaba 40 camiones con una brillante memoria, pero tenía un gran problema: **ceguera de datos.**</p>
+                    <div class="story-box">
+                        <span class="story-label">📖 El costo de lo invisible</span>
+                        <p class="story-text">"Sabía que gastábamos mucho en combustible, pero no podía identificar qué conductores tenían malos hábitos de manejo. Los reportes de liquidación tardaban días en Excels dispersos. Tomábamos decisiones de renovación de flota basadas en sensaciones, no en rentabilidad real por unidad."</p>
+                    </div>
+                    <p class="text-paragraph">Esa historia es común en empresas que crecen operativamente pero se quedan atrás técnicamente. La solución no es solo un GPS, sino una **plataforma de gestión de transporte (TMS) con Business Intelligence integrado.**</p>
+                    <p class="text-paragraph" style="margin-bottom: 20px;">Con <strong>Partners Truck</strong>, dejas de adivinar y empiezas a liderar con datos en tiempo real:</p>
+                    <table width="100%" cellpadding="0" cellspacing="0" style="margin: 25px 0;">
+                        <tr><td style="padding-bottom: 18px;"><table width="100%" cellpadding="0" cellspacing="0"><tr><td valign="top" width="50"><div class="step-number">1</div></td><td valign="top"><div class="step-title">Telemetría de última generación</div><div class="step-desc">Identifique excesos de velocidad, frenados bruscos y ralentí excesivo al instante.</div></td></tr></table></td></tr>
+                        <tr><td style="padding-bottom: 18px;"><table width="100%" cellpadding="0" cellspacing="0"><tr><td valign="top" width="50"><div class="step-number">2</div></td><td valign="top"><div class="step-title">Liquidación de viajes inmediata</div><div class="step-desc">Elimine el papeleo y los días de espera para conocer la rentabilidad de cada ruta.</div></td></tr></table></td></tr>
+                        <tr><td style="padding-bottom: 18px;"><table width="100%" cellpadding="0" cellspacing="0"><tr><td valign="top" width="50"><div class="step-number">3</div></td><td valign="top"><div class="step-title">Mobile App para el conductor</div><div class="step-desc">Reporte de fallas, carga de combustible y checklists desde el smartphone en ruta.</div></td></tr></table></td></tr>
+                    </table>
+                    <p class="text-paragraph">Tome decisiones maestras. **Deje de gestionar transporte como hace 20 años; lidere con una flota digitalizada y rentable.**</p>
+                    <div class="closing-box">
+                        <p class="call-action">¿Quieres ver cómo visualizamos tu rentabilidad?</p>
+                        <a href="https://cal.com/negocios-partner-tech/requerimientos-software-desarrollo?utm_source=partnertech&amp;utm_medium=correo&amp;utm_campaign=campana_partnerstruck&amp;utm_content=v4_digitalizacion_boton_agendar&amp;utm_term={{Email_Hash}}" class="btn-meeting" style="color: #ffffff !important; text-decoration: none;"><span style="color: #ffffff;">📅 Agendar Reunión de 15 min</span></a>
+                        <p style="font-size: 13px; color: #666; margin-top: 18px; line-height: 1.6;">P.S. Si prefieres revisar el catálogo de módulos primero, <a href="mailto:{{Email_Remitente}}?subject=Interes%20PartnersTruck%20Modulos" style="color: #1e53dd; text-decoration: underline;">pídelo aquí</a>.</p>
+                        <p style="color: #555; margin-top: 15px; margin-bottom: 10px;">Saludos,<br><strong>{{Nombre_Remitente}}</strong><br><a href="mailto:{{Email_Remitente}}" style="color: #1e53dd; text-decoration: none;">{{Email_Remitente}}</a><br><span style="font-size: 14px; color: #888;">{{Cargo_Remitente}}</span></p>
+                        <img src="cid:Logo_Color" alt="Partner Tech Logo" class="footer-logo">
+                        <div style="margin-top: 25px; padding-top: 15px; border-top: 1px solid #e2e8f0; font-size: 13px; color: #718096; line-height: 1.6;"><strong>RUC 20523799623</strong><br>🏢 Av. Malachowsky 340, San Borja, Lima<br>🌐 <a href="https://partnertech.pe/?utm_source=partnertech&amp;utm_medium=correo&amp;utm_campaign=campana_partnerstruck&amp;utm_content=v4_digitalizacion_enlace_web&amp;utm_term={{Email_Hash}}" style="color: #1e53dd; text-decoration: none; font-weight: bold;">Visitar nuestro sitio web: Partnertech.pe</a></div>
+                    </div>
+                </td>
+            </tr>
+            <tr><td class="footer" style="padding-top: 5px;"><p>Enviado cumpliendo los lineamientos de la CCL.</p></td></tr>
+        </table>
+    </center>
+    <img src="https://www.google-analytics.com/g/collect?v=2&amp;tid=G-FLPG7XG57W&amp;cid={{Email_Hash}}&amp;en=apertura_correo&amp;ep.campana=campana_partnerstruck&amp;ep.plantilla=v4_digitalizacion" width="1" height="1" style="display:none; visibility:hidden;" alt="" />
+</body>
+</html>

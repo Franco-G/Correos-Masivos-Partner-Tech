@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nextflow - Trazabilidad Documental | Partner Tech</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;700&family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body { margin: 0; padding: 0; font-family: 'Poppins', 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; background-color: #ffffff; color: #555555; -webkit-font-smoothing: antialiased; }
+        table { border-spacing: 0; width: 100%; } td { padding: 0; } img { border: 0; display: block; max-width: 100%; }
+        .wrapper { width: 100%; table-layout: fixed; background-color: #ffffff; padding: 40px 0; }
+        .main-container { background-color: #ffffff; margin: 0 auto; width: 100%; max-width: 600px; border-radius: 16px; overflow: hidden; box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06); }
+        .content { padding: 40px 35px; }
+        .greeting { font-size: 20px; color: #0021a4; font-weight: 700; margin-bottom: 20px; font-family: 'Orbitron', sans-serif; }
+        .text-paragraph { font-size: 16px; line-height: 1.7; color: #666; margin-bottom: 25px; font-family: 'Poppins', sans-serif; }
+        .highlight { color: #1e53dd; font-weight: 700; }
+        .comparison-box { border-radius: 12px; padding: 20px; margin-bottom: 20px; }
+        .before-box { background-color: #fef2f2; border: 1px solid #fecaca; border-left: 5px solid #ef4444; }
+        .after-box { background-color: #f0fdf4; border: 1px solid #bbf7d0; border-left: 5px solid #1bde5d; }
+        .comparison-title { font-size: 16px; font-weight: 700; display: block; margin-bottom: 8px; font-family: 'Orbitron', sans-serif; }
+        .before-box .comparison-title { color: #dc2626; }
+        .after-box .comparison-title { color: #0021a4; }
+        .comparison-text { font-size: 14px; line-height: 1.6; color: #555; margin: 0; font-family: 'Poppins', sans-serif; }
+        .comparison-text li { margin-bottom: 6px; }
+        .btn-meeting { background-color: #1e53dd; color: #ffffff !important; display: block; width: 100%; max-width: 380px; margin: 0 auto 15px auto; padding: 14px 30px; text-decoration: none; border-radius: 50px; font-weight: 700; font-size: 15px; box-shadow: 0 4px 12px rgba(30, 83, 221, 0.3); transition: all 0.3s ease; font-family: 'Poppins', sans-serif; text-align: center; }
+        .closing-box { text-align: center; margin-top: 35px; padding-top: 25px; border-top: 1px dashed #dce5f2; }
+        .header { background-color: #ffffff; padding: 30px 20px; text-align: center; border-bottom: 2px solid #f1f5f9; }
+        .header-tagline { color: #718096; font-family: 'Orbitron', sans-serif; font-size: 9px; letter-spacing: 2px; margin-top: 8px; text-transform: uppercase; }
+        .footer { background-color: #2d3748; padding: 30px; text-align: center; font-size: 13px; color: #555555; line-height: 1.6; font-family: 'Poppins', sans-serif; }
+        .footer-logo { max-height: 50px; width: auto; margin: 10px auto 0; display: block; }
+        @media screen and (max-width: 600px) { .content { padding: 30px 20px !important; } .btn-meeting { display: block; width: 100%; box-sizing: border-box; } }
+    </style>
+</head>
+<body>
+    <center class="wrapper">
+        <table class="main-container" width="100%" cellpadding="0" cellspacing="0">
+            <tr><td class="header"><img src="cid:Logo_Color" alt="Partner Tech Logo" style="max-height: 40px; width: auto; margin: 0 auto;"><div class="header-tagline">Tu Socio Estratégico</div></td></tr>
+            <tr>
+                <td class="content">
+                    <p class="greeting">Hola {{Nombre_Contacto}},</p>
+                    <p class="text-paragraph">Te saluda {{Nombre_Remitente}}, de Partner Tech. Una pregunta de control: <strong>¿Sabes exactamente quién leyó o modificó el último contrato importante de la empresa?</strong></p>
+                    <p class="text-paragraph">En muchas organizaciones, los documentos digitales viven en carpetas compartidas sin rastro de auditoría. <span class="highlight">La falta de trazabilidad es un riesgo de seguridad que puede costar caro en auditorías o disputas legales.</span></p>
+
+                    <div class="comparison-box before-box">
+                        <span class="comparison-title">❌ Antes — Caos y Riesgo Documental</span>
+                        <div class="comparison-text">
+                            <ul style="padding-left: 18px; margin: 0;">
+                                <li>Archivos dispersos en PCs locales o nubes personales</li>
+                                <li>Sin historial de quién consultó o editó cada archivo</li>
+                                <li>Versiones duplicadas ("contrato_final_v2_FINAL.pdf")</li>
+                                <li>Dificultad extrema para encontrar documentos antiguos</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="comparison-box after-box">
+                        <span class="comparison-title">✅ Después — Trazabilidad Total con Nextflow</span>
+                        <div class="comparison-text">
+                            <ul style="padding-left: 18px; margin: 0;">
+                                <li><strong>Logs de auditoría inalterables</strong>: Cada clic queda registrado</li>
+                                <li>Control de versiones automático: Trabaje siempre en el último</li>
+                                <li>Búsqueda por metadatos y contenido (OCR) en segundos</li>
+                                <li>Flujos de aprobación con firma digital integrada</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <p class="text-paragraph"><strong>Nextflow</strong> centraliza su patrimonio informativo en un entorno seguro y monitoreado, asegurando que cada documento tenga una historia clara y auditable.</p>
+
+                    <div class="closing-box">
+                        <p class="call-action">¿Quieres asegurar tu información hoy mismo?</p>
+                        <a href="https://cal.com/negocios-partner-tech/requerimientos-software-desarrollo?utm_source=partnertech&amp;utm_medium=correo&amp;utm_campaign=campana_nextflow&amp;utm_content=v2_trazabilidad_boton_agendar&amp;utm_term={{Email_Hash}}" class="btn-meeting" style="color: #ffffff !important; text-decoration: none;"><span style="color: #ffffff;">📅 Agendar Reunión de 15 min</span></a>
+                        <p style="font-size: 13px; color: #666; margin-top: 18px; line-height: 1.6;">P.S. ¿Prefieres ver una demo rápida primero? <a href="mailto:{{Email_Remitente}}?subject=Demo%20Nextflow%20Trazabilidad" style="color: #1e53dd; text-decoration: underline;">Solicita una demo aquí</a>.</p>
+                        <p style="color: #555; margin-top: 15px; margin-bottom: 10px;">Saludos,<br><strong>{{Nombre_Remitente}}</strong><br><a href="mailto:{{Email_Remitente}}" style="color: #1e53dd; text-decoration: none;">{{Email_Remitente}}</a><br><span style="font-size: 14px; color: #888;">{{Cargo_Remitente}}</span></p>
+                        <img src="cid:Logo_Color" alt="Partner Tech Logo" class="footer-logo">
+                        <div style="margin-top: 25px; padding-top: 15px; border-top: 1px solid #e2e8f0; font-size: 13px; color: #718096; line-height: 1.6;"><strong>RUC 20523799623</strong><br>🏢 Av. Malachowsky 340, San Borja, Lima<br>🌐 <a href="https://partnertech.pe/?utm_source=partnertech&amp;utm_medium=correo&amp;utm_campaign=campana_nextflow&amp;utm_content=v2_trazabilidad_enlace_web&amp;utm_term={{Email_Hash}}" style="color: #1e53dd; text-decoration: none; font-weight: bold;">Visitar nuestro sitio web: Partnertech.pe</a></div>
+                    </div>
+                </td>
+            </tr>
+            <tr><td class="footer" style="padding-top: 5px;"><p>Enviado a <strong>{{Email_Destinatario}}</strong> cumpliendo los lineamientos de la <strong>Cámara de Comercio de Lima (CCL)</strong>.</p><p>Haga clic aquí para darse de baja.</p></td></tr>
+        </table>
+    </center>
+    <img src="https://www.google-analytics.com/g/collect?v=2&amp;tid=G-FLPG7XG57W&amp;cid={{Email_Hash}}&amp;en=apertura_correo&amp;ep.campana=campana_nextflow&amp;ep.plantilla=v2_trazabilidad" width="1" height="1" style="display:none; visibility:hidden;" alt="" />
+</body>
+</html>
