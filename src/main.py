@@ -591,12 +591,18 @@ class CorreoApp:
             with open(archivo_path, 'r', encoding='utf-8') as f:
                 content = f.read()
             
-            logo_path = os.path.join('assets', 'Logo_blanco_ver1.png')
+            logo_path = os.path.join('assets', 'Logo_blanco_ver3.png')
             logo_color_path = os.path.join('assets', 'Logo_y_texto_Partner_Tech.png')
             
             logo_base64_uri = get_base64_image(logo_path)
             logo_color_base64_uri = get_base64_image(logo_color_path)
             
+            # --- CARGAR ICONOS PARA PREVIEW ---
+            icon_agenda_uri = get_base64_image(os.path.join('assets', 'benefit_agenda.svg'))
+            icon_historia_uri = get_base64_image(os.path.join('assets', 'benefit_historia.svg'))
+            icon_liquidacion_uri = get_base64_image(os.path.join('assets', 'benefit_liquidacion.svg'))
+            icon_reunion_uri = get_base64_image(os.path.join('assets', 'benefit_reunion.svg'))
+
             # Generar hash falso para la preview
             email_hash_preview = hashlib.md5(b"preview@admin.com").hexdigest()
 
@@ -608,6 +614,10 @@ class CorreoApp:
                                      .replace('{{Email_Destinatario}}', "[Email Cliente]")\
                                      .replace('cid:Logo_ver1', logo_base64_uri)\
                                      .replace('cid:Logo_Color', logo_color_base64_uri)\
+                                     .replace('cid:Icon_Agenda', icon_agenda_uri)\
+                                     .replace('cid:Icon_Historia', icon_historia_uri)\
+                                     .replace('cid:Icon_Liquidacion', icon_liquidacion_uri)\
+                                     .replace('cid:Icon_Reunion', icon_reunion_uri)\
                                      .replace('{{MAX_WIDTH_PLACEHOLDER}}', 'max-width: none;')\
                                      .replace('{{Email_Hash}}', email_hash_preview)
             
@@ -625,7 +635,7 @@ class CorreoApp:
         try:
             # Rutas simples relativas al directorio del script
             archivo_html_path = os.path.abspath(os.path.join("templates", archivo_html_nombre))
-            logo_path = os.path.join('assets', 'Logo_blanco_ver1.png')
+            logo_path = os.path.join('assets', 'Logo_blanco_ver3.png')
             logo_color_path = os.path.join('assets', 'Logo_y_texto_Partner_Tech.png')
             with open(archivo_html_path, 'r', encoding='utf-8') as f:
                 html_content = f.read()
@@ -677,8 +687,32 @@ class CorreoApp:
                     img_c.add_header('Content-ID', '<Logo_Color>')
                     message.attach(img_c)
 
+                # --- ADJUNTAR ICONOS DE BENEFICIOS (SI EXISTEN) ---
+                # Soporta tanto SVG como PNG (se busca primero .png por compatibilidad)
+                iconos_beneficios = {
+                    'benefit_agenda': 'Icon_Agenda',
+                    'benefit_historia': 'Icon_Historia',
+                    'benefit_liquidacion': 'Icon_Liquidacion',
+                    'benefit_reunion': 'Icon_Reunion'
+                }
+
+                for base_name, cid_name in iconos_beneficios.items():
+                    # Intentar encontrar PNG primero, luego SVG
+                    icon_path = None
+                    for ext in ['.png', '.svg']:
+                        p = os.path.join('assets', base_name + ext)
+                        if os.path.exists(p):
+                            icon_path = p
+                            break
+                    
+                    if icon_path:
+                        with open(icon_path, 'rb') as f:
+                            img_icon = MIMEImage(f.read())
+                            img_icon.add_header('Content-ID', f'<{cid_name}>')
+                            message.attach(img_icon)
+
             except Exception as e:
-                self.log_msg(f"No se pudo adjuntar el logo: {e}", "WARNING")
+                self.log_msg(f"No se pudo adjuntar el logo o iconos: {e}", "WARNING")
             
             context = ssl.create_default_context()
             context.check_hostname = False

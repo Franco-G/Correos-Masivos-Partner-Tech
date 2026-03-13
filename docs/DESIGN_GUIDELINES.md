@@ -6,109 +6,52 @@ Este documento establece los estándares obligatorios para la creación y modifi
 
 | Uso | Hex | Muestra | Descripción |
 | :--- | :--- | :--- | :--- |
-| **Principal / Títulos** | `#001556` | 🔵 | Azul marino para el saludo (Hola...), títulos de secciones y encabezados. |
-| **Azul Eléctrico (Medio)** | `#1e53dd` | 🔷 | Azul para jerarquía en detalles o enlaces secundarios. |
-| **Acción (CTA)** | `#00e0ff` | 💎 | Cyan para el botón principal de agendamiento y acentos destacados. |
-| **Secundario (Éxito)** | `#1bde5d` | 🟢 | Verde institucional para tarjetas de beneficios o detalles positivos. |
-| **Fondo / Cuerpo** | `#ffffff` | ⚪ | Fondo blanco para asegurar limpieza y legibilidad móvil. |
-| **Texto Secundario** | `#555555` | 🌚 | Gris para el cuerpo de texto general. |
-| **Divisores Sutiles** | `#e2e8f0` | ⚪ | Gris muy claro para líneas de separación poco visibles. |
-| **Footer Legal** | `#333c4e` | 🌑 | Fondo oscuro de baja visibilidad para el pie de página legal. |
-| **Texto Footer** | `#718096` | 🔘 | Gris claro para el texto legal (baja relevancia visual). |
+| **Principal / Títulos** | `#001556` | 🔵 | Azul marino para el encabezado, bloques de cierre y títulos destacados. |
+| **Azul Eléctrico (Medio)** | `#1e53dd` | 🔷 | Azul para jerarquía en detalles, enlaces y bordes de beneficios. |
+| **Cyan (Acento)** | `#00e0ff` | 💎 | Cyan para acentos destacados y enlaces dentro de bloques oscuros. |
+| **Acción / Éxito** | `#1bde5d` | 🟢 | Verde institucional para el botón principal de CTA y bordes de éxito. |
+| **Fondo Wrapper** | `#eaeded` | 🔘 | Gris claro/azulado para el fondo exterior, resaltando el contenedor blanco. |
+| **Cuerpo (Contenedor)** | `#ffffff` | ⚪ | Fondo blanco para asegurar limpieza y legibilidad móvil. |
+| **Texto General** | `#555555` | 🌚 | Gris para el cuerpo de texto general. |
+| **Texto Títulos** | `#333c4e` | 🌑 | Gris carbón para saludos y títulos de tarjetas (máximo contraste). |
+| **Divisores Sutiles** | `#e2e8f0` | ⚪ | Gris muy claro para líneas de separación y bordes de tarjetas. |
 
 ## 2. Tipografía Estándar
 *   **Fuente Principal**: `Poppins`, sans-serif. Se debe forzar mediante `!important` en el CSS global.
-*   **Encabezados**: Peso **Bold (700)**, color `#001556`.
+*   **Encabezados**: Peso **Bold (700)**, color `#333c4e` (cuerpo) o blanco (bloques oscuros).
 *   **Cuerpo**: Peso **Regular (400)**, color `#555555`, interlineado `1.6`.
 
-## 2. Principios de Diseño (Inspiración HubSpot)
+## 3. Iconografía Profesional (NUEVO ESTÁNDAR)
+Queda prohibido el uso de emojis en los títulos de beneficios o botones. Se debe utilizar el sistema de iconos profesionales:
+*   **Formato**: Iconos lineales (estilo Lucide), grosor de trazo `2px`.
+*   **Implementación**: Adjuntos mediante `cid:Icon_Nombre` (ej. `cid:Icon_Agenda`).
+*   **Dimensiones**: `18px` para títulos de beneficios, `16px` para botones.
+*   **Alineación**: `vertical-align: middle; margin-right: 8px;`.
+*   **Colores**: Los iconos deben coincidir exactamente con el color de acento de la tarjeta o ser blancos en botones.
 
-Basado en las mejores prácticas de conversión, cada correo debe cumplir con:
+## 4. Componentes Estructurales
 
-1.  **Jerarquía Visual Clara**: Un solo mensaje principal por correo. El elemento más importante debe ser el CTA (Cyan).
-2.  **Encabezado Premium (High Contrast)**: 
-    *   **Fondo**: Azul Marino (`#001556`) sólido con borde inferior Verde (`#1bde5d`) de `6px`.
-    *   **Logo**: Versión **Blanca** (Logo_ver1) de `50px` de altura.
-    *   **Tagline**: Texto en blanco sutil (`#a0aec0`) de `12px` para máxima legibilidad.
-3.  **Cuerpo y Texto**: 
-    *   **NO usar Azul Marino en el texto del cuerpo**.
-    *   **Títulos/Saludos**: Gris Carbón (`#333c4e`).
-    *   **Párrafos**: Gris suave (`#555555`).
-4.  **Sección de Cierre (CTA Navy Block)**:
-    *   **Fondo**: Azul Marino (`#001556`) sólido.
-    *   **Forma**: Bordes redondeados de `20px` y padding generoso.
-    *   **Botón**: Azul Cyan (`#00e0ff`) o Verde (`#1bde5d`) con texto blanco negrita. En esta iteración se prefiere **Verde** para el botón sobre fondo marino.
-    *   **Contraste**: Todos los textos dentro de este bloque deben ser claros (#a0aec0 o blanco).
-5.  **Firma Corporativa (Fuera del Bloque)**: 
-    *   **Ubicación**: Siempre fuera de bloques de color, directamente sobre el fondo blanco.
-    *   **Colores**: Usar Gris Carbón (`#333c4e`) para el nombre y Gris Suave (`#718096`) para cargos y contacto.
-    *   **Logo**: Usar la versión a **color** (`cid:Logo_Color`).
-6.  **Pie de Página (Footer Clean)**:
-    *   **Fondo**: Blanco (`#ffffff`) absoluto.
-    *   **Texto**: Gris muy tenue (`#cbd5e0`) de `12px`.
- Riverside:0.0.0.0,
- Riverside:0.0.0.0,
- Riverside:0.0.1,
- Riverside:0.0.0.0,
- Riverside:0.0.0.0,
- Riverside:0.0.1,
- Riverside:0.0.0.0,
- Riverside:0.0.0.0,
- Riverside:0.0.1,
- Riverside:0.0.0.0,
- Riverside:0.0.0.0,
- Riverside:0.0.1,
- Riverside:0.0.0.0,
- Riverside:0.0.0.0,
- Riverside:0.0.1,
- Riverside:0.0.0.0,
- Riverside:0.0.0.0,
- Riverside:0.0.1,
- Riverside:0.0.0.0,
- Riverside:0.0.0.0,
- Riverside:0.0.1,
- Riverside:0.0.0.0,
- Riverside:0.0.0.0,
- Riverside:0.0.1,
- Riverside:0.0.0.0,
- Riverside:0.0.0.0,
- Riverside:0.0.1,
- Riverside:0.0.0.0,
- Riverside:0.0.0.0,
- Riverside:0.0.1,
- Riverside:0.0.0.0,
- Riverside:0.0.0.0,
- Riverside:0.0.1,
- Riverside:0.0.0.0,
- Riverside:0.0.0.0,
- Riverside:0.0.1,
- Riverside:0.0.0.0,
- Riverside:0.0.0.0,
- Riverside:0.0.1,
- Riverside:0.0.0.0,
- Riverside:0.0.0.0,
- Riverside:0.0.1,
- Riverside:0.0.0.0,
- Riverside:0.0.0.0,
- Riverside:0.0.1,
- Riverside:0.0.0.0,
- Riverside:0.0.0.0,
- Riverside:0.0.1,
- Riverside:0.0.0.0,
- Riverside:0.0.0.0,
- Riverside:0.0.1,
- Riverside:0.0.0.0,
- Riverside:0.0.0.0,
- Riverside:0.0.1,
-*   **NO usar fuentes alternativas**: Mantener la soberanía de `Poppins`.
-*   **No usar asteriscos**: Convertirlos siempre a `<strong>`.
-*   **Evitar redundancia**: No poner el logo más de 2 veces por correo.
+### 4.1 Tarjetas de Beneficios (Benefit Cards)
+*   **Estructura**: `background-color: #ffffff; border: 1px solid #e2e8f0; border-radius: 12px; shadow: 0 4px 12px rgba(0, 0, 0, 0.04);`.
+*   **Borde de Acento**: Borde izquierdo de `5px` con el color temático del beneficio.
+*   **Título**: Título en negrita (`700`) con su icono correspondiente.
 
----
+### 4.2 Bloque de Cierre y CTA (Navy Block)
+*   **Fondo**: Azul Marino (`#001556`) sólido.
+*   **Forma**: Bordes redondeados de `10px` (antes 20px) para un look más moderno y alineado a la UI del software.
+*   **Botón CTA**: Fondo Verde (`#1bde5d`), radio de `10px`, texto blanco negrita, con icono de calendario blanco (`filter: brightness(0) invert(1)` si se usa el mismo CID).
 
-## 5. Segmentación Dinámica
+### 4.3 Encabezado Premium
+*   **Fondo**: Azul Marino (`#001556`) con borde inferior Verde (`#1bde5d`) de `6px`.
+*   **Logo**: Versión **Blanca** (`cid:Logo_ver1`) de `50px` de altura.
+*   **Tagline**: Texto `#a0aec0` de `12px`, peso `600`, en mayúsculas.
 
-Placeholders obligatorios:
+## 5. Firma y Footer
+
+*   **Firma**: Fuera de bloques de color. Nombre en `#333c4e` (Bold), cargo en `#718096`. Logo a color (`cid:Logo_Color`) con altura máxima de `35px`.
+*   **Footer**: Texto `#cbd5e0` de `12px`, centrado, sobre fondo blanco absoluto.
+
+## 6. Placeholders y Rastreo
 *   `{{Nombre_Contacto}}`: Personalización.
-*   `{{Cargo_Remitente}}`: Jerarquía dinámica del remitente.
-*   `{{Email_Hash}}`: Rastreo GA4 obligatorio en cada enlace.
+*   `{{Email_Hash}}`: Obligatorio en todos los enlaces y en el píxel de GA4.
+*   **Píxel GA4**: Debe incluirse al final del `body` con los parámetros `en=apertura_correo`, `ep.campana` y `ep.plantilla` correctos.

@@ -271,3 +271,31 @@
 2026-03-12 17:14:36,418 - INFO - --- INICIANDO PRUEBAS PARA: negocios@partnertech.pe ---
 2026-03-12 17:14:37,909 - INFO - Prueba clinic_mentor/correo_clinic_mentor_v1_rentabilidad.html: OK
 2026-03-12 17:14:37,910 - INFO - --- PRUEBAS FINALIZADAS ---
+2026-03-12 18:01:00,813 - INFO - --- INICIANDO PRUEBAS PARA: negocios@partnertech.pe ---
+2026-03-12 18:01:00,820 - WARNING - No se pudo adjuntar el logo o iconos: Could not guess image MIME subtype
+2026-03-12 18:01:02,490 - INFO - Prueba clinic_mentor/correo_clinic_mentor_v1_rentabilidad.html: OK
+2026-03-12 18:01:02,491 - INFO - --- PRUEBAS FINALIZADAS ---
+2026-03-12 18:10:29,206 - INFO - --- INICIANDO PRUEBAS PARA: negocios@partnertech.pe ---
+2026-03-12 18:10:29,217 - WARNING - No se pudo adjuntar el logo o iconos: Could not guess image MIME subtype
+2026-03-12 18:10:30,947 - INFO - Prueba clinic_mentor/correo_clinic_mentor_v1_rentabilidad.html: OK
+2026-03-12 18:10:30,948 - INFO - --- PRUEBAS FINALIZADAS ---
+2026-03-12 18:11:05,128 - INFO - --- INICIANDO PRUEBAS PARA: negocios@partnertech.pe ---
+2026-03-12 18:11:05,134 - WARNING - No se pudo adjuntar el logo o iconos: Could not guess image MIME subtype
+2026-03-12 18:11:06,486 - INFO - Prueba clinic_mentor/correo_clinic_mentor_v1_rentabilidad.html: OK
+2026-03-12 18:11:06,487 - INFO - --- PRUEBAS FINALIZADAS ---
+2026-03-12 18:25:39,232 - INFO - --- INICIANDO PRUEBAS PARA: negocios@partnertech.pe ---
+2026-03-12 18:25:39,244 - WARNING - No se pudo adjuntar el logo o iconos: Could not guess image MIME subtype
+2026-03-12 18:25:40,649 - INFO - Prueba clinic_mentor/correo_clinic_mentor_v1_rentabilidad.html: OK
+2026-03-12 18:25:40,652 - INFO - --- PRUEBAS FINALIZADAS ---
+2026-03-12 18:27:26,507 - INFO - --- INICIANDO PRUEBAS PARA: negocios@partnertech.pe ---
+2026-03-12 18:27:26,513 - WARNING - No se pudo adjuntar el logo o iconos: Could not guess image MIME subtype
+2026-03-12 18:27:27,901 - INFO - Prueba clinic_mentor/correo_clinic_mentor_v1_rentabilidad.html: OK
+2026-03-12 18:27:27,901 - INFO - --- PRUEBAS FINALIZADAS ---
+2026-03-12 18:28:41,441 - INFO - --- INICIANDO PRUEBAS PARA: negocios@partnertech.pe ---
+2026-03-12 18:28:41,447 - WARNING - No se pudo adjuntar el logo o iconos: Could not guess image MIME subtype
+2026-03-12 18:28:42,891 - INFO - Prueba clinic_mentor/correo_clinic_mentor_v1_rentabilidad.html: OK
+2026-03-12 18:28:42,891 - INFO - --- PRUEBAS FINALIZADAS ---
+2026-03-12 18:28:58,334 - INFO - --- INICIANDO PRUEBAS PARA: negocios@partnertech.pe ---
+2026-03-12 18:28:58,339 - WARNING - No se pudo adjuntar el logo o iconos: Could not guess image MIME subtype
+2026-03-12 18:28:59,809 - INFO - Prueba clinic_mentor/correo_clinic_mentor_v1_rentabilidad.html: OK
+2026-03-12 18:28:59,811 - INFO - --- PRUEBAS FINALIZADAS ---
