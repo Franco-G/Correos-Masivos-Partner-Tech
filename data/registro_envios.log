@@ -299,3 +299,7 @@
 2026-03-12 18:28:58,339 - WARNING - No se pudo adjuntar el logo o iconos: Could not guess image MIME subtype
 2026-03-12 18:28:59,809 - INFO - Prueba clinic_mentor/correo_clinic_mentor_v1_rentabilidad.html: OK
 2026-03-12 18:28:59,811 - INFO - --- PRUEBAS FINALIZADAS ---
+2026-03-13 00:05:40,116 - INFO - --- INICIANDO PRUEBAS PARA: guerrerofranco1429@gmail.com ---
+2026-03-13 00:05:40,119 - WARNING - No se pudo adjuntar el logo o iconos: Could not guess image MIME subtype
+2026-03-13 00:05:44,555 - INFO - Prueba clinic_mentor/correo_clinic_mentor_v1_rentabilidad.html: OK
+2026-03-13 00:05:44,556 - INFO - --- PRUEBAS FINALIZADAS ---
