@@ -8,7 +8,8 @@ import os
 import threading
 import hashlib
 import tkinter as tk
-from tkinter import ttk, messagebox, scrolledtext, filedialog
+from tkinter import ttk, messagebox, filedialog
+from tkinter import scrolledtext
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 from email.mime.image import MIMEImage
@@ -49,27 +50,67 @@ sender_email = "fguerrero@partnertech.pe"
 password_email = "Franco001"
 
 class CorreoApp:
-    def __init__(self, root):
+    # Type hints for Pyre2
+    root: tk.Tk
+    db_path: str
+    combo_perfil: ttk.Combobox
+    lbl_info_remitente: ttk.Label
+    combo_plantilla1: ttk.Combobox
+    combo_plantilla2: ttk.Combobox
+    combo_plantilla3: ttk.Combobox
+    combo_asunto: ttk.Combobox
+    btn_cargar: ttk.Button
+    btn_iniciar: ttk.Button
+    txt_log: scrolledtext.ScrolledText
+    spin_dias: ttk.Spinbox
+    lbl_stats: ttk.Label
+    tree_destinatarios: ttk.Treeview
+    ent_email_test: ttk.Entry
+    canvas_test: tk.Canvas
+    scroll_test: ttk.Scrollbar
+    frame_checkboxes: ttk.Frame
+    btn_enviar_prueba: ttk.Button
+    
+    plantilla1_var: tk.StringVar
+    plantilla2_var: tk.StringVar
+    plantilla3_var: tk.StringVar
+    email_prueba_var: tk.StringVar
+    plantillas_test_vars: dict[str, tk.BooleanVar]
+    contador_var: tk.StringVar
+    enviando: bool
+    archivo_excel_seleccionado: str
+    dias_espera_var: tk.IntVar
+    
+    perfiles: dict[str, dict[str, str]]
+    perfil_seleccionado: tk.StringVar
+    nombre_remitente_var: tk.StringVar
+    cargo_remitente_var: tk.StringVar
+    email_remitente_var: tk.StringVar
+    pass_remitente_var: tk.StringVar
+    asunto_var: tk.StringVar
+    
+    notebook: ttk.Notebook
+    tab_envio: ttk.Frame
+    tab_pruebas: ttk.Frame
+    status_var: tk.StringVar
+    status_bar: tk.Label
+
+    def __init__(self, root: tk.Tk):
         self.root = root
         self.root.title("Partner Tech | Gestor de Envío Masivo")
         self.root.state('zoomed')
         self.root.geometry("1100x700")
         
-        # Configurar Estilos
-        self.setup_styles()
-        self.root.configure(bg="#f4f6f9")
-
         # Variables de control
         self.plantilla1_var = tk.StringVar()
         self.plantilla2_var = tk.StringVar(value="Ninguna")
         self.plantilla3_var = tk.StringVar(value="Ninguna")
         self.email_prueba_var = tk.StringVar()
-        self.plantillas_test_vars = {} # Para almacenar los BooleanVar de los checkboxes
+        self.plantillas_test_vars = {} 
         self.contador_var = tk.StringVar(value="Ningún archivo seleccionado")
         self.enviando = False
-        self.archivo_excel_seleccionado = None
+        self.archivo_excel_seleccionado = ""
         self.dias_espera_var = tk.IntVar(value=15)
-        self.setup_db()
         
         # Perfiles de Envío
         self.perfiles = {
@@ -85,13 +126,20 @@ class CorreoApp:
             }
         }
         
-        # Variables de Remitente
         self.perfil_seleccionado = tk.StringVar(value="Alexandra Cardozo")
         self.nombre_remitente_var = tk.StringVar(value="Alexandra Cardozo")
         self.cargo_remitente_var = tk.StringVar(value=self.perfiles["Alexandra Cardozo"]["cargo"])
         self.email_remitente_var = tk.StringVar(value=self.perfiles["Alexandra Cardozo"]["email"])
         self.pass_remitente_var = tk.StringVar(value=self.perfiles["Alexandra Cardozo"]["pass"])
         self.asunto_var = tk.StringVar()
+
+        # DB Setup
+        self.db_path = ""
+        self.setup_db()
+
+        # Configurar Estilos
+        self.setup_styles()
+        self.root.configure(bg="#f4f6f9")
 
         # --- UI LAYOUT ---
         header_frame = tk.Frame(root, bg="#0021a4", height=60)
