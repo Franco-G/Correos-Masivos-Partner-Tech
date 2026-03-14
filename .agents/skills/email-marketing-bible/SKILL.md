@@ -1,18 +1,18 @@
 ---
 name: email-marketing-bible
 description: >
-  Comprehensive, data-backed email marketing knowledge base. 908 sources,
-  4,798 insights. Use when reviewing email setups, building automation flows,
-  diagnosing deliverability, writing email copy, selecting platforms, or pulling
-  benchmarks. Covers strategy, flows, deliverability, copywriting, segmentation,
-  compliance, cold email, and 19 industry playbooks.
+  Base de conocimientos exhaustiva y respaldada por datos sobre email marketing. 908 fuentes,
+  4,798 insights. Úsala para revisar configuraciones de email, construir flujos de automatización,
+  diagnosticar entregabilidad, escribir copy de email, seleccionar plataformas o extraer
+  benchmarks. Cubre estrategia, flujos, entregabilidad, copywriting, segmentación,
+  cumplimiento, email en frío y 19 guías por industria.
 license: MIT
 metadata:
   author: george-hartley
   version: "1.0"
 ---
 
-# Email Marketing Bible — Skill Reference
+# La Biblia del Email Marketing — Referencia de Skill
 
 > Source: EMB V1.0 (~65K words, 16 chapters, 4 appendices). March 2026.
 > Full guide: https://emailmarketingskill.com

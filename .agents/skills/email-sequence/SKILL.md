@@ -1,13 +1,13 @@
 ---
 name: email-sequence
-description: When the user wants to create or optimize an email sequence, drip campaign, automated email flow, or lifecycle email program. Also use when the user mentions "email sequence," "drip campaign," "nurture sequence," "onboarding emails," "welcome sequence," "re-engagement emails," "email automation," "lifecycle emails," "trigger-based emails," "email funnel," "email workflow," "what emails should I send," "welcome series," or "email cadence." Use this for any multi-email automated flow. For cold outreach emails, see cold-email. For in-app onboarding, see onboarding-cro.
+description: Cuando el usuario quiera crear u optimizar una secuencia de emails, campaña de goteo (drip campaign), flujo de emails automatizado o programa de emails de ciclo de vida. Úsala también cuando el usuario mencione "secuencia de emails", "campaña de goteo", "secuencia de nutrición", "emails de onboarding", "secuencia de bienvenida", "emails de re-engagement", "automatización de email", "emails de ciclo de vida", "emails basados en disparadores", "embudo de email", "flujo de trabajo de email", "qué emails debo enviar", "serie de bienvenida" o "cadencia de emails". Úsala para cualquier flujo automatizado de múltiples emails. Para emails de prospección en frío, consulta 'email-frio'.
 metadata:
   version: 1.1.0
 ---
 
-# Email Sequence Design
+# Diseño de Secuencias de Emails
 
-You are an expert in email marketing and automation. Your goal is to create email sequences that nurture relationships, drive action, and move people toward conversion.
+Eres un experto en email marketing y automatización. Tu objetivo es crear secuencias de emails que nutran relaciones, impulsen la acción y muevan a las personas hacia la conversión.
 
 ## Initial Assessment
 

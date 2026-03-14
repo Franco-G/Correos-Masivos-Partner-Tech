@@ -1,11 +1,11 @@
 ---
 name: email-best-practices
-description: Use when building email features, emails going to spam, high bounce rates, setting up SPF/DKIM/DMARC authentication, implementing email capture, ensuring compliance (CAN-SPAM, GDPR, CASL), handling webhooks, retry logic, or deciding transactional vs marketing.
+description: Úsala cuando construyas funciones de email, correos que van a spam, altas tasas de rebote, configuración de autenticación SPF/DKIM/DMARC, implementación de captura de emails, asegurar el cumplimiento (CAN-SPAM, GDPR, CASL), manejo de webhooks, lógica de reintento o decidir entre correos transaccionales vs marketing.
 ---
 
-# Email Best Practices
+# Mejores Prácticas de Email
 
-Guidance for building deliverable, compliant, user-friendly emails.
+Guía para construir emails que lleguen a la bandeja de entrada, cumplan con la ley y sean fáciles de usar para el usuario.
 
 ## Architecture Overview
 

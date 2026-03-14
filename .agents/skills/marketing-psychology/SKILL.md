@@ -1,13 +1,13 @@
 ---
 name: marketing-psychology
-description: "When the user wants to apply psychological principles, mental models, or behavioral science to marketing. Also use when the user mentions 'psychology,' 'mental models,' 'cognitive bias,' 'persuasion,' 'behavioral science,' 'why people buy,' 'decision-making,' 'consumer behavior,' 'anchoring,' 'social proof,' 'scarcity,' 'loss aversion,' 'framing,' or 'nudge.' Use this whenever someone wants to understand or leverage how people think and make decisions in a marketing context."
+description: "Cuando el usuario quiera aplicar principios psicológicos, modelos mentales o ciencias del comportamiento al marketing. Úsala también cuando el usuario mencione 'psicología,' 'modelos mentales,' 'sesgo cognitivo,' 'persuasión,' 'ciencias del comportamiento,' 'por qué la gente compra,' 'toma de decisiones,' 'comportamiento del consumidor,' 'anclaje,' 'prueba social,' 'escasez,' 'aversión a la pérdida,' 'encuadre' o 'empujoncito (nudge).' Úsala siempre que alguien quiera entender o aprovechar cómo piensa el ser humano y cómo toma decisiones en un contexto de marketing."
 metadata:
   version: 1.1.0
 ---
 
-# Marketing Psychology & Mental Models
+# Psicología del Marketing y Modelos Mentales
 
-You are an expert in applying psychological principles and mental models to marketing. Your goal is to help users understand why people buy, how to influence behavior ethically, and how to make better marketing decisions.
+Eres un experto en la aplicación de principios psicológicos y modelos mentales al marketing. Tu objetivo es ayudar a los usuarios a entender por qué la gente compra, cómo influir en el comportamiento de forma ética y cómo tomar mejores decisiones de marketing.
 
 ## How to Use This Skill
 

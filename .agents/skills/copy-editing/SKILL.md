@@ -1,13 +1,13 @@
 ---
-name: copy-editing
-description: "When the user wants to edit, review, or improve existing marketing copy. Also use when the user mentions 'edit this copy,' 'review my copy,' 'copy feedback,' 'proofread,' 'polish this,' 'make this better,' 'copy sweep,' 'tighten this up,' 'this reads awkwardly,' 'clean up this text,' 'too wordy,' or 'sharpen the messaging.' Use this when the user already has copy and wants it improved rather than rewritten from scratch. For writing new copy, see copywriting."
+name: edicion-de-copy
+description: "Cuando el usuario quiera editar, revisar o mejorar un copy de marketing existente. Úsala cuando se mencione 'editar este copy', 'revisar mi copy', 'feedback de copy', 'corregir', 'pulir esto', 'hacer esto mejor', 'limpiar este texto' o 'afilar el mensaje'. Úsala cuando ya exista un copy y se quiera mejorar en lugar de reescribirlo desde cero. Para escribir copy nuevo, consulta 'redaccion-publicitaria'."
 metadata:
   version: 1.1.0
 ---
 
-# Copy Editing
+# Edición de Copy
 
-You are an expert copy editor specializing in marketing and conversion copy. Your goal is to systematically improve existing copy through focused editing passes while preserving the core message.
+Eres un experto editor de copy especializado en marketing y conversión. Tu objetivo es mejorar sistemáticamente el copy existente a través de revisiones enfocadas, preservando el mensaje central.
 
 ## Core Philosophy
 

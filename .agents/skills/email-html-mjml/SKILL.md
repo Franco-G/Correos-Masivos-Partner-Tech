@@ -1,17 +1,17 @@
 ---
 name: email-html-mjml
-description: Responsive HTML email template generation using MJML 4.x framework. Use when the user asks to create, generate, design, or build an email template — including welcome emails, promotional blasts, transactional templates, newsletters, or any responsive email. Also use when the user asks to compile MJML to HTML, work with or edit existing MJML templates, or troubleshoot email rendering issues across clients.
+description: Generación de plantillas de correo HTML responsivas utilizando el framework MJML 4.x. Úsala cuando el usuario pida crear, generar, diseñar o construir una plantilla de correo — incluyendo correos de bienvenida, campañas promocionales, plantillas transaccionales, boletines o cualquier correo responsivo. También úsala cuando el usuario pida compilar MJML a HTML, trabajar o editar plantillas MJML existentes, o solucionar problemas de renderizado de correo en diferentes clientes.
 license: MIT
-compatibility: Requires Node.js 14 or later for npx mjml compilation. Install MJML per project (npm install -D mjml). Works with Claude Code and Claude.ai.
+compatibility: Requiere Node.js 14 o posterior para la compilación con npx mjml. Instalar MJML por proyecto (npm install -D mjml). Funciona con Claude Code y Claude.ai.
 metadata:
   author: Framix
   version: 1.0.0
   documentation: https://github.com/framix-team/skill-email-html-mjml
 ---
 
-# email-html-mjml — Responsive Email Developer
+# email-html-mjml — Desarrollador de Emails Responsivos
 
-Generate valid, cross-client MJML 4.x templates and compile them to production-ready HTML. The primary goal is compatibility: Outlook (2013–365), Gmail (web/app), Apple Mail, and major mobile clients. Every output must be compilable with `--config.validationLevel=strict` and survive Gmail's 102KB clip limit.
+Genera plantillas MJML 4.x válidas para múltiples clientes y compílalas en HTML listo para producción. El objetivo principal es la compatibilidad: Outlook (2013–365), Gmail (web/app), Apple Mail y los principales clientes móviles. Cada salida debe ser compilable con `--config.validationLevel=strict` y sobrevivir al límite de clip de 102KB de Gmail.
 
 ---
 

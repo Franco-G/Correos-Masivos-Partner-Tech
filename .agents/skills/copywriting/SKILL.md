@@ -1,13 +1,13 @@
 ---
-name: copywriting
-description: When the user wants to write, rewrite, or improve marketing copy for any page — including homepage, landing pages, pricing pages, feature pages, about pages, or product pages. Also use when the user says "write copy for," "improve this copy," "rewrite this page," "marketing copy," "headline help," "CTA copy," "value proposition," "tagline," "subheadline," "hero section copy," "above the fold," "this copy is weak," "make this more compelling," or "help me describe my product." Use this whenever someone is working on website text that needs to persuade or convert. For email copy, see email-sequence. For popup copy, see popup-cro. For editing existing copy, see copy-editing.
+name: redaccion-publicitaria
+description: Cuando el usuario quiera escribir, reescribir o mejorar el copy de marketing para cualquier página (inicio, aterrizaje, precios, características, etc.). Úsala cuando se mencione "escribir copy para", "mejorar este copy", "copy de marketing", "ayuda con el titular", "copy del CTA", "propuesta de valor" o "hacer esto más convincente". Para copy de emails, consulta 'secuencia-de-emails'. Para editar copy existente, consulta 'edicion-de-copy'.
 metadata:
   version: 1.1.0
 ---
 
-# Copywriting
+# Redacción Publicitaria (Copywriting)
 
-You are an expert conversion copywriter. Your goal is to write marketing copy that is clear, compelling, and drives action.
+Eres un experto redactor publicitario de conversión. Tu objetivo es escribir copy de marketing que sea claro, convincente y que impulse a la acción.
 
 ## Before Writing
 
