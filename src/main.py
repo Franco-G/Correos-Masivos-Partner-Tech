@@ -271,7 +271,7 @@ class CorreoApp:
         ttk.Label(frame_test_config, text="Correo de Destino (Prueba):", style="Bold.TLabel").pack(anchor="w", pady=(0, 5))
         self.ent_email_test = ttk.Entry(frame_test_config, textvariable=self.email_prueba_var, font=("Segoe UI", 11))
         self.ent_email_test.pack(fill="x", pady=(0, 15))
-        self.email_prueba_var.set(self.email_remitente_var.get()) # Por defecto el mismo remitente
+        self.email_prueba_var.set("guerrerofranco1429@gmail.com")
 
         ttk.Label(frame_test_config, text="Seleccione Plantillas:", style="Bold.TLabel").pack(anchor="w", pady=(0, 5))
         
@@ -745,19 +745,22 @@ class CorreoApp:
                 }
 
                 for base_name, cid_name in iconos_beneficios.items():
-                    # Intentar encontrar PNG primero, luego SVG
-                    icon_path = None
-                    for ext in ['.png', '.svg']:
-                        p = os.path.join('assets', base_name + ext)
-                        if os.path.exists(p):
-                            icon_path = p
-                            break
-                    
-                    if icon_path:
-                        with open(icon_path, 'rb') as f:
-                            img_icon = MIMEImage(f.read())
-                            img_icon.add_header('Content-ID', f'<{cid_name}>')
-                            message.attach(img_icon)
+                    # SOLO ADJUNTAR SI SE USA EN EL HTML
+                    if f'cid:{cid_name}' in html_content:
+                        # Intentar encontrar PNG primero, luego SVG
+                        icon_path = None
+                        for ext in ['.png', '.svg']:
+                            p = os.path.join('assets', base_name + ext)
+                            if os.path.exists(p):
+                                icon_path = p
+                                break
+                        
+                        if icon_path:
+                            with open(icon_path, 'rb') as f:
+                                img_icon = MIMEImage(f.read())
+                                img_icon.add_header('Content-ID', f'<{cid_name}>')
+                                # Aseguramos que no tenga Content-Disposition para evitar adjuntos detectados como archivos
+                                message.attach(img_icon)
 
             except Exception as e:
                 self.log_msg(f"No se pudo adjuntar el logo o iconos: {e}", "WARNING")

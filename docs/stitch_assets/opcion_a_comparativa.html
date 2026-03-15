@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+
+<html class="light" lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;600;700;900&amp;family=Poppins:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#1e53dd",
+                        "electric-blue": "#1e53dd",
+                        "cyan-accent": "#00e0ff",
+                        "inst-green": "#1bde5d",
+                        "dark-navy": "#001556",
+                        "problem-red": "#fff5f5",
+                        "solution-green": "#f0fff4",
+                        "background-light": "#f8f6f6",
+                        "background-dark": "#221610",
+                    },
+                    fontFamily: {
+                        "display": ["Poppins", "Public Sans", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        .header-border {
+            border-bottom: 6px solid;
+            border-image: linear-gradient(to right, #1e53dd, #00e0ff) 1;
+        }
+    </style>
+</head>
+<body class="bg-slate-50 font-display text-slate-900">
+<div class="max-w-[600px] mx-auto bg-white shadow-xl my-8 overflow-hidden rounded-xl">
+<!-- Header Section -->
+<header class="bg-white px-8 py-6 header-border flex items-center justify-between">
+<div class="flex items-center gap-2">
+<div class="size-8 text-electric-blue">
+<svg fill="currentColor" viewbox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+<path clip-rule="evenodd" d="M24 4H42V17.3333V30.6667H24V44H6V30.6667V17.3333H24V4Z" fill-rule="evenodd"></path>
+</svg>
+</div>
+<h2 class="text-electric-blue text-xl font-bold leading-tight tracking-tight">Partner Tech</h2>
+</div>
+<div class="text-slate-400 text-sm font-medium">Clinic Mentor</div>
+</header>
+<!-- Main Body -->
+<main class="p-8">
+<div class="mb-10 text-center">
+<h1 class="text-3xl font-black text-dark-navy leading-tight mb-4">Optimiza tu Gestión Médica</h1>
+<p class="text-slate-600 text-lg">Descubre la evolución de tu consultorio con Clinic Mentor.</p>
+</div>
+<!-- Comparison Layout -->
+<div class="grid grid-cols-1 gap-6 mb-12">
+<!-- Manual Situation -->
+<div class="bg-problem-red border border-red-100 rounded-xl p-6 flex flex-col md:flex-row gap-4 items-start">
+<div class="bg-white p-3 rounded-lg shadow-sm">
+<span class="material-symbols-outlined text-red-500 text-3xl">warning</span>
+</div>
+<div>
+<h3 class="text-red-800 font-bold text-lg mb-1">Situación Actual (Gestión Manual)</h3>
+<p class="text-red-700/80 text-sm leading-relaxed">
+                            Procesos lentos, errores constantes en la agenda, falta de seguimiento de pacientes y dificultad extrema en las liquidaciones mensuales.
+                        </p>
+</div>
+</div>
+<!-- Clinic Mentor Solution -->
+<div class="bg-solution-green border border-green-100 rounded-xl p-6 flex flex-col md:flex-row gap-4 items-start">
+<div class="bg-white p-3 rounded-lg shadow-sm">
+<span class="material-symbols-outlined text-green-500 text-3xl">auto_awesome</span>
+</div>
+<div>
+<h3 class="text-green-800 font-bold text-lg mb-1">Solución Clinic Mentor</h3>
+<p class="text-green-700/80 text-sm leading-relaxed">
+                            Agenda inteligente, historia clínica digital centralizada y liquidación automática de honorarios con un solo clic.
+                        </p>
+</div>
+</div>
+</div>
+<!-- Features Grid -->
+<div class="grid grid-cols-1 gap-4 mb-12">
+<div class="flex items-center gap-4 p-4 rounded-lg bg-slate-50 border border-slate-100">
+<div class="bg-electric-blue/10 p-2 rounded-lg">
+<span class="material-symbols-outlined text-electric-blue">calendar_month</span>
+</div>
+<div>
+<h4 class="font-bold text-slate-800">Agenda Inteligente</h4>
+<p class="text-slate-500 text-xs">Optimización de turnos y recordatorios automáticos.</p>
+</div>
+</div>
+<div class="flex items-center gap-4 p-4 rounded-lg bg-slate-50 border border-slate-100">
+<div class="bg-electric-blue/10 p-2 rounded-lg">
+<span class="material-symbols-outlined text-electric-blue">clinical_notes</span>
+</div>
+<div>
+<h4 class="font-bold text-slate-800">Historia Clínica</h4>
+<p class="text-slate-500 text-xs">Acceso rápido y seguro a datos del paciente desde cualquier lugar.</p>
+</div>
+</div>
+<div class="flex items-center gap-4 p-4 rounded-lg bg-slate-50 border border-slate-100">
+<div class="bg-electric-blue/10 p-2 rounded-lg">
+<span class="material-symbols-outlined text-electric-blue">payments</span>
+</div>
+<div>
+<h4 class="font-bold text-slate-800">Liquidación</h4>
+<p class="text-slate-500 text-xs">Cálculos automáticos de honorarios y reportes de gestión precisos.</p>
+</div>
+</div>
+</div>
+<!-- CTA Section -->
+<div class="bg-dark-navy rounded-2xl p-10 text-center">
+<h3 class="text-white text-2xl font-bold mb-4">¿Listo para transformar tu clínica?</h3>
+<p class="text-blue-100/70 mb-8 text-sm max-w-sm mx-auto">Únete a los cientos de profesionales que ya optimizaron su tiempo con nuestra tecnología.</p>
+<a class="inline-block bg-inst-green text-white font-bold py-4 px-10 rounded-full hover:brightness-110 transition-all shadow-lg shadow-inst-green/20" href="#">
+                    Solicitar Demo Gratis
+                </a>
+</div>
+</main>
+<!-- Footer -->
+<footer class="bg-white px-8 py-10 text-center border-t border-slate-100">
+<div class="flex justify-center gap-6 mb-6">
+<span class="material-symbols-outlined text-slate-400 cursor-pointer hover:text-electric-blue">share</span>
+<span class="material-symbols-outlined text-slate-400 cursor-pointer hover:text-electric-blue">mail</span>
+<span class="material-symbols-outlined text-slate-400 cursor-pointer hover:text-electric-blue">public</span>
+</div>
+<p class="text-slate-400 text-[10px] uppercase tracking-widest leading-loose">
+                © 2024 Partner Tech. Todos los derechos reservados.<br/>
+                Este es un mensaje automático, por favor no responda a esta dirección.<br/>
+                Consulte nuestras <a class="underline" href="#">Políticas de Privacidad</a> y <a class="underline" href="#">Términos de Servicio</a>.
+            </p>
+</footer>
+</div>
+</body></html>

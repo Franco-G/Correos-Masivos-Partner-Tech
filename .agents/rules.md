@@ -1,0 +1,12 @@
+# Reglas del Proyecto: Correos Masivos Partner Tech
+
+## Automatización de Pruebas
+- **Script de Envío:** `scripts/send_test_templates.py`
+- **Regla:** Cada vez que el asistente (tú) realice una edición en cualquier archivo dentro de la carpeta `templates/`, DEBES ejecutar automáticamente el script de envío de prueba para validar que el diseño no se haya roto y que el usuario pueda verlo en su bandeja de entrada inmediatamente.
+- **Correo Destino:** `guerrerofranco1429@gmail.com`
+
+## Estándares de Plantillas
+- **Formato:** HTML basado en tablas para compatibilidad total con Outlook.
+- **Variables:** Usar siempre `{{Variable}}` para que el sistema de envío pueda reemplazarlas.
+- **Rastreo:** Incluir siempre el píxel de GA4 al final de la plantilla.
+- **Assets:** Usar `cid:` para imágenes embebidas (Logo_ver1, Logo_Color, etc.).

@@ -16,8 +16,23 @@ async def run():
             tools = await session.list_tools()
             print(f"Number of tools: {len(tools.tools)}")
             # List notebooks
-            result = await session.call_tool("notebook_list", {"max_results": 10})
-            print(f"Result: {result}")
+            result = await session.call_tool("notebook_list", {"max_results": 100})
+            import json
+            data = json.loads(result.content[0].text)
+            if data.get("status") == "success":
+                notebooks = data.get("notebooks", [])
+                print(f"Total notebooks: {data.get('count')}")
+                print("\nApp Notebooks found:")
+                found = False
+                for nb in notebooks:
+                    title = nb.get("title", "")
+                    if "App" in title:
+                        print(f"- {title} (ID: {nb.get('notebook_id')}) (Modified: {nb.get('modified_at')})")
+                        found = True
+                if not found:
+                    print("- No notebooks found with 'App' in the title.")
+            else:
+                print(f"Error: {data}")
 
 if __name__ == "__main__":
     asyncio.run(run())
