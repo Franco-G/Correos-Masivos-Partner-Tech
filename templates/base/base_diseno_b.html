@@ -37,21 +37,22 @@
 
         /* FEATURE GRID (STITCH B BODY STYLE) */
         .grid-container { padding: 0 40px 56px 40px; }
-        .feature-box { background-color: #ffffff; border: 1px solid #f1f5f9; border-radius: 12px; padding: 24px; text-align: center; box-shadow: 0 4px 6px rgba(0,0,0,0.02); }
+        .feature-box { background-color: #f8fafc; border-radius: 16px; padding: 24px; text-align: center; border: 1px solid #f1f5f9; }
         .feat-title { color: #001556; font-size: 14px; font-weight: 700; display: block; margin-bottom: 4px; }
         .feat-desc { color: #94a3b8; font-size: 11px; margin: 0; }
 
         /* CTA (STITCH B BODY STYLE) */
-        .navy-block { background-color: #001556; padding: 64px 40px; text-align: center; margin: 0 40px 48px 40px; border-radius: 12px; }
-        .cta-title { color: #ffffff; font-size: 28px; font-weight: 800; margin-bottom: 16px; line-height: 1.2; }
-        .btn-cyan { background-color: #00e0ff; color: #001556 !important; padding: 18px 48px; text-decoration: none; border-radius: 10px; font-weight: 700; font-size: 15px; display: inline-block; text-transform: uppercase; letter-spacing: 1.5px; box-shadow: 0 10px 30px rgba(0, 224, 255, 0.2); }
+        .navy-block { background-color: #001556; padding: 64px 40px; text-align: center; }
+        .cta-title { color: #ffffff; font-size: 28px; font-weight: 800; margin-bottom: 24px; line-height: 1.2; }
+        .btn-cyan { background-color: #00e0ff; color: #001556 !important; padding: 20px 50px; text-decoration: none; border-radius: 10px; font-weight: 700; font-size: 15px; display: inline-block; text-transform: uppercase; letter-spacing: 1.5px; box-shadow: 0 10px 30px rgba(0, 224, 255, 0.2); }
 
         /* SIGNATURE ALIGNED */
         .signature-section { padding: 40px 40px; border-top: 1px solid #f1f5f9; background-color: #ffffff; }
 
         /* FOOTER */
-        .footer { padding: 40px 40px; text-align: center; background-color: #f8fafc; border-top: 1px solid #f1f5f9; }
-        .footer-text { font-size: 11px; color: #94a3b8; line-height: 1.8; }
+        .footer { padding: 48px 40px; text-align: center; background-color: #ffffff; border-top: 1px solid #f1f5f9; }
+        .footer-text { font-size: 11px; color: #cbd5e0; line-height: 1.8; letter-spacing: 0.3px; }
+        .footer-text a { color: #cbd5e0 !important; text-decoration: underline; }
 
         @media screen and (max-width: 600px) {
             .main-container { width: 100% !important; border-radius: 0 !important; }
@@ -117,21 +118,21 @@
                         <tr>
                             <td class="stack-col" width="33%">
                                 <div class="feature-box">
-                                    <img src="cid:benefit_agenda" width="32" style="margin: 0 auto 12px auto;">
+                                    <img src="cid:minimalist_agenda_navy" width="32" style="margin: 0 auto 12px auto;">
                                     <span class="feat-title">Agenda</span>
                                     <p class="feat-desc">Reserva web y WhatsApp.</p>
                                 </div>
                             </td>
                             <td class="stack-col" width="33%">
                                 <div class="feature-box">
-                                    <img src="cid:benefit_historia" width="32" style="margin: 0 auto 12px auto;">
+                                    <img src="cid:minimalist_history_navy" width="32" style="margin: 0 auto 12px auto;">
                                     <span class="feat-title">Historia</span>
                                     <p class="feat-desc">Digital y Centralizada.</p>
                                 </div>
                             </td>
                             <td class="stack-col" width="33%">
                                 <div class="feature-box">
-                                    <img src="cid:benefit_liquidacion" width="32" style="margin: 0 auto 12px auto;">
+                                    <img src="cid:minimalist_finance_navy" width="32" style="margin: 0 auto 12px auto;">
                                     <span class="feat-title">Finanzas</span>
                                     <p class="feat-desc">Liquidación automática.</p>
                                 </div>
@@ -141,13 +142,13 @@
                 </td>
             </tr>
             <tr>
-                <td>
-                    <div class="navy-block">
-                        <h2 class="cta-title">¿Listo para evolucionar su práctica?</h2>
-                        <a href="{{CTA_Link}}?utm_source=partnertech&utm_medium=correo&utm_campaign={{Campana}}&utm_content=high_fidelity_b&utm_term={{Email_Hash}}" class="btn-cyan">SOLICITAR DEMO GRATIS</a>
-                    </div>
+                <td class="navy-block">
+                    <h2 class="cta-title">¿Listo para evolucionar su práctica?</h2>
+                    <a href="{{CTA_Link}}?utm_source=partnertech&utm_medium=correo&utm_campaign={{Campana}}&utm_content=high_fidelity_b&utm_term={{Email_Hash}}" class="btn-cyan">SOLICITAR DEMO GRATIS</a>
                 </td>
             </tr>
+            <tr>
+                <td class="signature-section" style="padding-top: 48px;">
             <tr>
                 <td class="signature-section">
                     <table width="100%" cellpadding="0" cellspacing="0">
@@ -181,8 +182,8 @@
             </tr>
             <tr>
                 <td class="footer">
-                    <p class="footer-text" style="margin-bottom: 10px; font-size: 11px;">Enviado a <strong>{{Email_Destinatario}}</strong> cumpliendo los lineamientos de la <strong>Cámara de Comercio de Lima (CCL)</strong>.</p>
-                    <p class="footer-text" style="font-size: 11px;">Respetamos tu privacidad profesional. Si no deseas recibir más correos, <a href="mailto:negocios@partnertech.pe?subject=Remover" style="color: #94a3b8; text-decoration: underline;">haga clic aquí para darse de baja</a>.</p>
+                    <p class="footer-text" style="margin-bottom: 10px;">Enviado a <span style="color: inherit !important; text-decoration: none !important; border: none !important;">{{Email_Destinatario}}</span> cumpliendo los lineamientos de la <strong>Cámara de Comercio de Lima (CCL)</strong>.</p>
+                    <p class="footer-text">Respetamos tu privacidad profesional. Si no deseas recibir más correos, <a href="mailto:negocios@partnertech.pe?subject=Remover">haga clic aquí para darse de baja</a>.</p>
                 </td>
             </tr>
         </table>

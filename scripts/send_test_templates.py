@@ -6,6 +6,7 @@ from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 from email.mime.image import MIMEImage
 from email.utils import formatdate, make_msgid
+from datetime import datetime
 
 # --- CONFIGURACIÓN ---
 SMTP_SERVER = "mail.partnertech.pe"
@@ -72,12 +73,16 @@ def send_email(template_config):
             html = html.replace(f"{{{{{key}}}}}", str(val))
 
         msg = MIMEMultipart("related")
-        asunto = template_config["vars"].get("Asunto_Override", f"Verificación: {template_config['name']}")
-        msg["Subject"] = asunto
+        asunto_base = template_config["vars"].get("Asunto_Override", f"Verificación: {template_config['name']}")
+        timestamp = datetime.now().strftime("%H:%M:%S")
+        msg["Subject"] = f"{asunto_base} [{timestamp}]"
         msg["From"] = SENDER_EMAIL
         msg["To"] = DEST_EMAIL
         msg["Date"] = formatdate(localtime=True)
-        msg["Message-ID"] = make_msgid(domain="partnertech.pe")
+        msgid = make_msgid(domain="partnertech.pe")
+        msg["Message-ID"] = msgid
+        # Cabecera para ayudar a Gmail a no agrupar en hilos
+        msg["X-Entity-Ref-ID"] = msgid
 
         msg_alt = MIMEMultipart("alternative")
         msg.attach(msg_alt)
@@ -89,10 +94,12 @@ def send_email(template_config):
             ("assets/Logo_blanco_ver1.png", "Logo_ver1"), # Usado en Base B
             ("assets/Logo_y_texto_Partner_Tech.png", "Logo_y_texto_Partner_Tech"),
             ("assets/Logo_y_texto_Partner_Tech.png", "Logo_Color"), # Fallback
-            ("assets/benefit_agenda.png", "benefit_agenda"),
-            ("assets/benefit_historia.png", "benefit_historia"),
-            ("assets/benefit_liquidacion.png", "benefit_liquidacion"),
-            ("assets/benefit_reunion.png", "benefit_reunion")
+            ("assets/icons/custom/agenda_red.png", "minimalist_agenda_red"),
+            ("assets/icons/custom/history_green.png", "minimalist_history_green"),
+            ("assets/icons/custom/agenda_navy.png", "minimalist_agenda_navy"),
+            ("assets/icons/custom/history_navy.png", "minimalist_history_navy"),
+            ("assets/icons/custom/finance_navy.png", "minimalist_finance_navy"),
+            ("assets/icons/icomoon/115-users.png", "minimalist_meeting")
         ]
 
         for path, cid in assets:

@@ -21,13 +21,14 @@ Este documento establece los estándares obligatorios para la creación y modifi
 *   **Encabezados**: Peso **Bold (700)**, color `#333c4e` (cuerpo) o blanco (bloques oscuros).
 *   **Cuerpo**: Peso **Regular (400)**, color `#555555`, interlineado `1.6`.
 
-## 3. Iconografía Profesional (NUEVO ESTÁNDAR)
-Queda prohibido el uso de emojis en los títulos de beneficios o botones. Se debe utilizar el sistema de iconos profesionales:
-*   **Formato**: Iconos lineales (estilo Lucide), grosor de trazo `2px`.
-*   **Implementación**: Adjuntos mediante `cid:Icon_Nombre` (ej. `cid:Icon_Agenda`).
-*   **Dimensiones**: `18px` para títulos de beneficios, `16px` para botones.
+## 3. Iconografía Profesional (Estándar IcoMoon PNG)
+Queda prohibido el uso de archivos `.svg` y emojis en los beneficios o botones. El estándar oficial es la biblioteca **IcoMoon Free**:
+*   **Formato**: PNG con transparencia (32px o 64px). **NO USAR SVG**.
+*   **Ubicación**: `assets/icons/icomoon/`.
+*   **Implementación**: Adjuntos mediante `cid:minimalist_[nombre]` (ej. `cid:minimalist_agenda`).
+*   **Dimensiones en HTML**: Atributo `width="32"` o `width="24"` según el layout.
 *   **Alineación**: `vertical-align: middle; margin-right: 8px;`.
-*   **Colores**: Los iconos deben coincidir exactamente con el color de acento de la tarjeta o ser blancos en botones.
+*   **Procedimiento**: Los iconos se eligen de la base local y se mapean en el script de envío (`send_test_templates.py`).
 
 ## 4. Componentes Estructurales
 

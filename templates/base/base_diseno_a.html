@@ -31,7 +31,7 @@
         .box-red { background-color: #fff5f5; border: 1px solid #fee2e2; }
         .box-green { background-color: #f0fff4; border: 1px solid #dcfce7; }
         
-        .box-icon { background: #ffffff; width: 48px; height: 48px; border-radius: 12px; display: table-cell; vertical-align: middle; text-align: center; box-shadow: 0 4px 10px rgba(0,0,0,0.05); }
+        .box-icon { background: transparent; width: 48px; height: 48px; display: table-cell; vertical-align: middle; text-align: center; }
         .box-label { font-size: 12px; font-weight: 800; text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 8px; display: block; }
         .label-red { color: #ef4444; }
         .label-green { color: #1bde5d; }
@@ -45,13 +45,14 @@
         .module-desc { font-size: 13px; color: #64748b; margin: 0; line-height: 1.5; }
 
         /* CTA NAVY BLOCK (STITCH A BODY STYLE) */
-        .navy-block { background-color: #001556; border-radius: 16px; padding: 56px 40px; text-align: center; }
-        .navy-title { color: #ffffff; font-size: 26px; font-weight: 700; margin-bottom: 16px; line-height: 1.3; }
-        .btn-green { background-color: #1bde5d; color: #ffffff !important; display: inline-block; padding: 18px 44px; text-decoration: none; border-radius: 12px; font-weight: 700; font-size: 16px; box-shadow: 0 8px 25px rgba(27, 222, 93, 0.4); text-transform: uppercase; letter-spacing: 1px; }
+        .navy-block { background-color: #001556; padding: 60px 40px; text-align: center; }
+        .navy-title { color: #ffffff; font-size: 28px; font-weight: 700; margin-bottom: 24px; line-height: 1.3; }
+        .btn-green { background-color: #1bde5d; color: #ffffff !important; display: inline-block; padding: 20px 50px; text-decoration: none; border-radius: 10px; font-weight: 700; font-size: 16px; box-shadow: 0 10px 30px rgba(27, 222, 93, 0.3); text-transform: uppercase; letter-spacing: 1px; }
 
         /* FOOTER & SIGNATURE ALIGNED */
-        .footer { padding: 40px 48px; border-top: 1px solid #e2e8f0; text-align: center; }
-        .footer p { font-size: 12px; color: #a0aec0; margin-bottom: 8px; line-height: 1.6; }
+        .footer { padding: 48px 48px; border-top: 1px solid #f1f5f9; text-align: center; background-color: #ffffff; }
+        .footer p { font-size: 11px; color: #cbd5e0; margin-bottom: 6px; line-height: 1.6; letter-spacing: 0.3px; }
+        .footer a { color: #cbd5e0 !important; text-decoration: underline; }
 
         @media screen and (max-width: 600px) {
             .main-container { width: 100% !important; border-radius: 0 !important; }
@@ -107,7 +108,7 @@
                             <table width="100%" cellpadding="0" cellspacing="0">
                                 <tr>
                                     <td valign="top">
-                                        <div class="box-icon"><img src="cid:benefit_agenda" width="24"></div>
+                                        <div class="box-icon"><img src="cid:minimalist_agenda_red" width="24"></div>
                                     </td>
                                     <td class="mobile-center" style="padding-left: 20px;">
                                         <span class="box-label label-red">Gestión Crítica</span>
@@ -122,7 +123,7 @@
                             <table width="100%" cellpadding="0" cellspacing="0">
                                 <tr>
                                     <td valign="top">
-                                        <div class="box-icon"><img src="cid:benefit_historia" width="24"></div>
+                                        <div class="box-icon"><img src="cid:minimalist_history_green" width="24"></div>
                                     </td>
                                     <td class="mobile-center" style="padding-left: 20px;">
                                         <span class="box-label label-green">Transformación Digital</span>
@@ -150,14 +151,18 @@
                         </div>
                     </div>
 
-                    <div class="navy-block">
-                        <h2 class="navy-title">{{CTA_Titulo}}</h2>
-                        <a href="{{CTA_Link}}?utm_source=partnertech&utm_medium=correo&utm_campaign={{Campana}}&utm_content=high_fidelity_a&utm_term={{Email_Hash}}" class="btn-green">
-                            SOLICITAR DEMO GRATUITA
-                        </a>
-                    </div>
                 </td>
             </tr>
+            <tr>
+                <td class="navy-block">
+                    <h2 class="navy-title">{{CTA_Titulo}}</h2>
+                    <a href="{{CTA_Link}}?utm_source=partnertech&utm_medium=correo&utm_campaign={{Campana}}&utm_content=high_fidelity_a&utm_term={{Email_Hash}}" class="btn-green">
+                        SOLICITAR DEMO GRATUITA
+                    </a>
+                </td>
+            </tr>
+            <tr>
+                <td class="content-padding" style="padding-top: 48px;">
             <tr>
                 <td style="padding: 40px 40px 0 40px; border-top: 1px solid #e2e8f0;">
                     <table width="100%" cellpadding="0" cellspacing="0">
@@ -189,8 +194,8 @@
             </tr>
             <tr>
                 <td class="footer">
-                    <p style="margin-bottom: 10px;">Enviado a <strong>{{Email_Destinatario}}</strong> cumpliendo los lineamientos de la <strong>Cámara de Comercio de Lima (CCL)</strong>.</p>
-                    <p>Respetamos tu privacidad profesional. Si no deseas recibir más correos, <a href="mailto:negocios@partnertech.pe?subject=Remover" style="color: #cbd5e0; text-decoration: underline;">haga clic aquí para darse de baja</a>.</p>
+                    <p style="margin-bottom: 10px;">Enviado a <span style="color: inherit !important; text-decoration: none !important; border: none !important;">{{Email_Destinatario}}</span> cumpliendo los lineamientos de la <strong>Cámara de Comercio de Lima (CCL)</strong>.</p>
+                    <p>Respetamos tu privacidad profesional. Si no deseas recibir más correos, <a href="mailto:negocios@partnertech.pe?subject=Remover">haga clic aquí para darse de baja</a>.</p>
                 </td>
             </tr>
         </table>
