@@ -155,7 +155,7 @@
         }
 
         .seccion-modulos {
-            margin-bottom: 48px;
+            margin-bottom: 16px;
         }
 
         .tarjeta-modulo {
@@ -185,7 +185,7 @@
 
         .closing-box {
             text-align: center;
-            padding: 40px 40px 35px 40px;
+            padding: 16px 40px 16px 40px;
             background-color: #ffffff;
         }
 
@@ -226,7 +226,6 @@
 
         .seccion-firma {
             padding: 40px 40px 0 40px;
-            border-top: 1px dashed #dce5f2;
         }
 
         .pie-pagina {
@@ -334,7 +333,7 @@
                     <table width="100%" cellpadding="0" cellspacing="0">
                         <tr>
                             <td align="left" valign="middle">
-                                <img src="cid:Logo_Color" alt="Partner Tech" height="60">
+                                <img src="cid:Logo_Color" alt="Partner Tech" height="50">
                             </td>
                             <td align="right" valign="middle">
                                 <div class="lema">Tu Socio Estratégico</div>
@@ -350,8 +349,9 @@
                         Hola {{Nombre_Contacto}},</p>
                     <p
                         style="font-size: 16px; color: #64748b; line-height: 1.62; margin-bottom: 32px; font-style: normal;">
-                        Te saluda {{Nombre_Remitente}} de Partner Tech. Me comunico contigo ya que obtuvimos tu contacto a través del directorio oficial de la Cámara de Comercio de Lima (CCL) y creemos que nuestra tecnología puede potenciar tus resultados.
+                        Te saluda {{Nombre_Remitente}} de Partner Tech. Me comunico contigo ya que obtuvimos tu contacto a través del directorio oficial de la Cámara de Comercio de Lima (CCL) y creemos que nuestra tecnología puede <strong>potenciar tus resultados</strong> de manera significativa. Nuestro enfoque se basa en la <strong>optimización de recursos</strong> y la <strong>eliminación de cuellos de botella</strong> mediante herramientas de última generación diseñadas específicamente para tu sector. Estamos convencidos de que la digitalización no es solo una tendencia, sino una <strong>necesidad operativa</strong> para mantenerse competitivo en el mercado actual.
                     </p>
+                </td>
                 </td>
             </tr>
             <tr>
@@ -417,23 +417,29 @@
             <tr>
                 <td class="closing-box">
                     <h2 class="closing-title">¿Deseas ver cómo optimizar tu práctica en vivo?</h2>
-                    <!-- Botón CTA Basado en Tabla (Máxima Robustez) -->
-                    <table align="center" cellpadding="0" cellspacing="0" border="0" style="margin: 0 auto;">
+                    <!-- Botón CTA Basado en Tabla (Centrado Vertical) -->
+                    <table align="center" cellpadding="0" cellspacing="0" border="0" style="margin: 0 auto; border-collapse: collapse; width: auto;">
                         <tr>
-                            <td align="center" bgcolor="#1e53dd" style="border-radius: 50px; padding: 15px 40px; box-shadow: 0 4px 12px rgba(30, 83, 221, 0.3);">
+                            <td align="center" bgcolor="#1e53dd" style="border-radius: 8px; padding: 12px 25px; box-shadow: 0 4px 8px rgba(30, 83, 221, 0.15);">
                                 <a href="{{CTA_Link}}?utm_source=partnertech&utm_medium=correo&utm_campaign={{Campana}}&utm_content=high_fidelity_a&utm_term={{Email_Hash}}"
-                                   style="color: #ffffff !important; text-decoration: none; font-family: 'Poppins', sans-serif; font-size: 15px; font-weight: 700; white-space: nowrap !important; display: block;">
-                                    <span style="color: #ffffff !important; white-space: nowrap !important;">📅&nbsp;AGENDAR&nbsp;MI&nbsp;CONSULTA&nbsp;GRATUITA</span>
+                                   style="color: #ffffff !important; text-decoration: none; font-family: 'Poppins', sans-serif; font-size: 15px; font-weight: 700; white-space: nowrap; display: inline-block; vertical-align: middle;">
+                                    <table align="center" cellpadding="0" cellspacing="0" border="0" style="border-collapse: collapse; width: auto;">
+                                        <tr>
+                                            <td style="vertical-align: middle; padding-right: 8px; font-size: 18px; line-height: 1.2; color: #ffffff !important; font-family: Arial, sans-serif;">📅</td>
+                                            <td style="vertical-align: middle; font-family: 'Poppins', sans-serif; font-size: 15px; font-weight: 700; color: #ffffff !important; white-space: nowrap; line-height: 1.2;">AGENDAR MI CONSULTA GRATUITA</td>
+                                        </tr>
+                                    </table>
                                 </a>
                             </td>
                         </tr>
                     </table>
-                    <p class="texto-ps">P.S. ¿Buscas optimizar procesos específicos? Hablemos de cómo la tecnología puede trabajar para ti. <br><a href="mailto:{{Email_Remitente}}?subject=Interes%20Metodologia">Más info aquí</a>.</p>
-                </td>
+                    <p class="texto-ps" style="font-size: 14px; text-align: left; margin-top: 24px; font-style: normal; color: #555555;">
+                        <strong>¿Qué puedes esperar de esta reunión?</strong> No se trata de una presentación de ventas estándar, sino de un diagnóstico técnico de tu operación actual. Analizaremos juntos tus procesos críticos para identificar <strong>fugas de tiempo o dinero</strong> que la tecnología puede resolver hoy mismo. Queremos que te lleves una visión clara de cómo la <strong>soberanía tecnológica</strong> puede transformar la cultura de trabajo de tu equipo y elevar la experiencia de tus pacientes de manera inmediata.
+                    </p>
             </tr>
             <tr>
-                <td class="espaciado-cuerpo" style="padding-top: 32px; padding-bottom: 0;">
-                    <p style="font-size: 16px; color: #64748b; line-height: 1.62; margin-bottom: 24px;">
+                <td class="espaciado-cuerpo" style="padding-top: 16px; padding-bottom: 0;">
+                    <p style="font-size: 16px; color: #64748b; line-height: 1.62; margin-bottom: 16px;">
                         Estamos a tu disposición para cualquier consulta. Puedes agendar una llamada breve con nosotros o
                         responder directamente a este correo.
                     </p>
@@ -480,7 +486,7 @@
             </tr>
             <tr>
                 <td align="center" valign="top"
-                    style="padding: 24px 0; background-color: #ffffff; border-top: 1px solid #e2e8f0; border-bottom: 1px solid #e2e8f0;">
+                    style="padding: 24px 0; background-color: #ffffff;">
                     <!-- Tabla de redes sociales con ancho fijo para asegurar centrado -->
                     <table align="center" border="0" cellpadding="0" cellspacing="0" width="160" style="width: 160px;">
                         <tr>

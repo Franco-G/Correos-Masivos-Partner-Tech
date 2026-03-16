@@ -1,6 +1,6 @@
 ---
-name: edicion-de-copy
-description: "Cuando el usuario quiera editar, revisar o mejorar un copy de marketing existente. Úsala cuando se mencione 'editar este copy', 'revisar mi copy', 'feedback de copy', 'corregir', 'pulir esto', 'hacer esto mejor', 'limpiar este texto' o 'afilar el mensaje'. Úsala cuando ya exista un copy y se quiera mejorar en lugar de reescribirlo desde cero. Para escribir copy nuevo, consulta 'redaccion-publicitaria'."
+name: copy-editing
+description: "Cuando el usuario quiera editar, revisar o mejorar un copy de marketing existente. Úsala cuando se mencione 'editar este copy', 'revisar mi copy', 'feedback de copy', 'corregir', 'pulir esto', 'hacer esto mejor', 'limpiar este texto' o 'afilar el mensaje'. Úsala cuando ya exista un copy y se quiera mejorar en lugar de reescribirlo desde cero. Para escribir copy nuevo, consulta 'copywriting'."
 metadata:
   version: 1.1.0
 ---

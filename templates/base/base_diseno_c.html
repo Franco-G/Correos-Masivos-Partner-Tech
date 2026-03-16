@@ -126,7 +126,7 @@
 
         .closing-box {
             text-align: center;
-            padding: 40px 40px 35px 40px;
+            padding: 16px 40px 16px 40px;
             background-color: #ffffff;
         }
 
@@ -180,12 +180,10 @@
 
         .seccion-firma {
             padding: 40px 40px 0 40px;
-            border-top: 1px dashed #dce5f2;
         }
 
         .pie-pagina {
             padding: 48px 48px;
-            border-top: 1px solid #f1f5f9;
             text-align: center;
             background-color: #ffffff;
         }
@@ -257,7 +255,7 @@
                     <table width="100%" cellpadding="0" cellspacing="0">
                         <tr>
                             <td align="left" valign="middle">
-                                <img src="cid:Logo_Color" alt="Partner Tech" height="60">
+                                <img src="cid:Logo_Color" alt="Partner Tech" height="50">
                             </td>
                             <td align="right" valign="middle">
                                 <div class="lema">Tu Socio Estratégico</div>
@@ -271,7 +269,7 @@
                     <p style="font-size: 17px; color: #333946; margin-bottom: 16px; font-weight: 700; line-height: 1.4;">
                         Hola {{Nombre_Contacto}},
                     </p>
-                    <p class="texto-normal" style="margin-bottom: 24px;">Te saluda {{Nombre_Remitente}} de Partner Tech. Me comunico contigo ya que obtuvimos tu contacto a través del directorio oficial de la Cámara de Comercio de Lima (CCL).</p>
+                    <p class="texto-normal" style="margin-bottom: 24px;">Te saluda {{Nombre_Remitente}} de Partner Tech. Me comunico contigo ya que obtuvimos tu contacto a través del directorio oficial de la Cámara de Comercio de Lima (CCL). Nuestra comunicación tiene como propósito compartir contigo una serie de herramientas de control y auditoría que han permitido a empresas similares a la tuya <strong>profesionalizar su gestión</strong> de manera inmediata. Entendemos que en el entorno empresarial actual, la <strong>transparencia técnica</strong> es un factor determinante para la <strong>sostenibilidad a largo plazo</strong>.</p>
                     
                     <p class="texto-normal" style="font-size: 17px; color: #333c4e;">
                         <strong>¿Es tu gestión auditable, segura y 100% precisa en cada liquidación, o dependes de la revisión manual constante para evitar errores?</strong>
@@ -280,7 +278,7 @@
                         <span style="color: #ef4444; font-weight: 700;">La falta de automatización en los procesos clave genera desconfianza, fugas de dinero y riesgos operativos.</span> Sin una trazabilidad digital total desde el inicio, es imposible optimizar los márgenes de tu negocio o garantizar el cumplimiento de los estándares de mercado.
                     </p>
 
-                    <hr class="divisor-seccion">
+                    <hr style="border: none; margin: 16px 0;">
 
                     <p class="texto-normal">
                         Nuestra tecnología profesionaliza tu operación, garantizando que cada proceso administrativo sea auditable, transparente y orientado a la excelencia.
@@ -298,7 +296,7 @@
                         <p class="texto-beneficio">Cálculo exacto de pagos. Refuerce la confianza técnica de tu staff administrativo al instante.</p>
                     </div>
                     
-                    <div class="tarjeta-beneficio tarjeta-navy" style="margin-bottom: 32px; background-color: #f0f4ff;">
+                    <div class="tarjeta-beneficio tarjeta-navy" style="margin-bottom: 16px; background-color: #f0f4ff;">
                         <span class="titulo-beneficio">Seguridad de Datos Protegidos</span>
                         <p class="texto-beneficio">Control de accesos y registros de auditoría en la nube. Cumpla con las normativas de privacidad más exigentes.</p>
                     </div>
@@ -311,23 +309,31 @@
             <tr>
                 <td class="closing-box">
                     <h2 class="closing-title">¿Deseas profesionalizar la gestión de tu empresa?</h2>
-                    <!-- Botón CTA Basado en Tabla (Máxima Robustez) -->
-                    <table align="center" cellpadding="0" cellspacing="0" border="0" style="margin: 0 auto;">
+                    <!-- Botón CTA Basado en Tabla (Centrado Vertical) -->
+                    <table align="center" cellpadding="0" cellspacing="0" border="0" style="margin: 0 auto; border-collapse: collapse; width: auto;">
                         <tr>
-                            <td align="center" bgcolor="#1e53dd" style="border-radius: 50px; padding: 15px 40px; box-shadow: 0 4px 12px rgba(30, 83, 221, 0.3);">
+                            <td align="center" bgcolor="#1e53dd" style="border-radius: 8px; padding: 12px 25px; box-shadow: 0 4px 8px rgba(30, 83, 221, 0.15);">
                                 <a href="{{CTA_Link}}?utm_source=partnertech&utm_medium=correo&utm_campaign={{Campana}}&utm_content=high_fidelity_c&utm_term={{Email_Hash}}"
-                                   style="color: #ffffff !important; text-decoration: none; font-family: 'Poppins', sans-serif; font-size: 15px; font-weight: 700; white-space: nowrap !important; display: block;">
-                                    <span style="color: #ffffff !important; white-space: nowrap !important;">🛡️&nbsp;ASEGURAR&nbsp;MI&nbsp;GESTIÓN&nbsp;AHORA</span>
+                                   style="color: #ffffff !important; text-decoration: none; font-family: 'Poppins', sans-serif; font-size: 15px; font-weight: 700; white-space: nowrap; display: inline-block; vertical-align: middle;">
+                                    <table align="center" cellpadding="0" cellspacing="0" border="0" style="border-collapse: collapse; width: auto;">
+                                        <tr>
+                                            <td style="vertical-align: middle; padding-right: 8px; font-size: 18px; line-height: 1.2; color: #ffffff !important; font-family: Arial, sans-serif;">🛡️</td>
+                                            <td style="vertical-align: middle; font-family: 'Poppins', sans-serif; font-size: 15px; font-weight: 700; color: #ffffff !important; white-space: nowrap; line-height: 1.2;">ASEGURAR MI GESTIÓN AHORA</td>
+                                        </tr>
+                                    </table>
                                 </a>
                             </td>
                         </tr>
                     </table>
-                    <p class="texto-ps">Dato: El 80% de los errores operacionales se eliminan con nuestra auditoría digital. <br><a href="mailto:{{Email_Remitente}}?subject=Interes%20Metodologia">Más detalles aquí</a>.</p>
+                    <p class="texto-ps" style="font-size: 14px; text-align: left; margin-top: 24px; font-style: normal; color: #555555;">
+                        <strong>¿Qué garantizamos con esta auditoría digital?</strong> No solo el cumplimiento normativo, sino una visibilidad de 360 grados sobre cada centavo y cada acceso en tu sistema. Queremos eliminar la incertidumbre administrativa y permitirte liderar con una gestión <strong>100% auditable</strong> y basada en la <strong>excelencia operativa</strong>. Esta es la oportunidad de blindar tu negocio contra errores que hoy podrían estar costándote miles de soles en reparos o fugas de ingresos.
+                    </p>
+
                 </td>
             </tr>
             <tr>
-                <td class="espaciado-cuerpo" style="padding-top: 32px; padding-bottom: 0;">
-                    <p style="font-size: 16px; color: #64748b; line-height: 1.62; margin-bottom: 24px;">
+                <td class="espaciado-cuerpo" style="padding-top: 16px; padding-bottom: 0;">
+                    <p style="font-size: 16px; color: #64748b; line-height: 1.62; margin-bottom: 16px;">
                         Estamos a tu disposición para cualquier consulta. Puedes agendar una llamada breve con nosotros o responder directamente a este correo.
                     </p>
                 </td>
@@ -370,7 +376,7 @@
                 </td>
             </tr>
             <tr>
-                <td align="center" valign="top" style="padding: 24px 0; background-color: #ffffff; border-top: 1px solid #e2e8f0; border-bottom: 1px solid #e2e8f0;">
+                <td align="center" valign="top" style="padding: 24px 0; background-color: #ffffff;">
                     <!-- Tabla de redes sociales con ancho fijo para asegurar centrado -->
                     <table align="center" border="0" cellpadding="0" cellspacing="0" width="160" style="width: 160px;">
                         <tr>

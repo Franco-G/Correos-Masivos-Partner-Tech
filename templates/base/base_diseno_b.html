@@ -153,7 +153,7 @@
         }
 
         .contenedor-cuadricula {
-            padding: 0 40px 56px 40px;
+            padding: 0 40px 16px 40px;
         }
 
         .caja-beneficio {
@@ -181,7 +181,7 @@
 
         .closing-box {
             text-align: center;
-            padding: 40px 40px 35px 40px;
+            padding: 16px 40px 16px 40px;
             background-color: #ffffff;
         }
 
@@ -222,14 +222,12 @@
 
         .seccion-firma {
             padding: 40px 40px 0 40px;
-            border-top: 1px dashed #dce5f2;
         }
 
         .pie-pagina {
             padding: 48px 40px;
             text-align: center;
             background-color: #ffffff;
-            border-top: 1px solid #f1f5f9;
         }
 
         .texto-pie {
@@ -327,7 +325,7 @@
                     <table width="100%" cellpadding="0" cellspacing="0">
                         <tr>
                             <td align="left" valign="middle">
-                                <img src="cid:Logo_Color" alt="Partner Tech" height="60">
+                                <img src="cid:Logo_Color" alt="Partner Tech" height="50">
                             </td>
                             <td align="right" valign="middle">
                                 <div class="lema">Tu Socio Estratégico</div>
@@ -343,7 +341,7 @@
                         Hola {{Nombre_Contacto}},</p>
                     <p
                         style="font-size: 16px; color: #64748b; line-height: 1.62; margin-bottom: 32px; font-style: normal;">
-                        Te saluda {{Nombre_Remitente}} de Partner Tech. Me comunico contigo ya que obtuvimos tu contacto a través del directorio oficial de la Cámara de Comercio de Lima (CCL) y queremos presentarte una solución diseñada para elevar el estándar de tu policlínico.
+                        Te saluda {{Nombre_Remitente}} de Partner Tech. Me comunico contigo ya que obtuvimos tu contacto a través del directorio oficial de la Cámara de Comercio de Lima (CCL) y queremos presentarte una solución diseñada para <strong>elevar el estándar</strong> de tu policlínico. Muchas organizaciones hoy en día enfrentan el desafío de mantener la eficiencia sin sacrificar la calidad del servicio, y es ahí donde nuestra intervención genera un <strong>impacto positivo inmediato</strong>. Al integrar tecnología avanzada en el flujo de trabajo diario, permitimos que tu equipo se concentre en lo más importante: la <strong>salud y satisfacción</strong> de tus pacientes, eliminando el ruido administrativo innecesario.
                     </p>
                 </td>
             </tr>
@@ -403,23 +401,31 @@
             <tr>
                 <td class="closing-box">
                     <h2 class="closing-title">¿Listo para evolucionar tu práctica?</h2>
-                    <!-- Botón CTA Basado en Tabla (Máxima Robustez) -->
-                    <table align="center" cellpadding="0" cellspacing="0" border="0" style="margin: 0 auto;">
+                    <!-- Botón CTA Basado en Tabla (Centrado Vertical) -->
+                    <table align="center" cellpadding="0" cellspacing="0" border="0" style="margin: 0 auto; border-collapse: collapse; width: auto;">
                         <tr>
-                            <td align="center" bgcolor="#1e53dd" style="border-radius: 50px; padding: 15px 40px; box-shadow: 0 4px 12px rgba(30, 83, 221, 0.3);">
+                            <td align="center" bgcolor="#1e53dd" style="border-radius: 8px; padding: 12px 25px; box-shadow: 0 4px 8px rgba(30, 83, 221, 0.15);">
                                 <a href="{{CTA_Link}}?utm_source=partnertech&utm_medium=correo&utm_campaign={{Campana}}&utm_content=high_fidelity_b&utm_term={{Email_Hash}}"
-                                   style="color: #ffffff !important; text-decoration: none; font-family: 'Poppins', sans-serif; font-size: 15px; font-weight: 700; white-space: nowrap !important; display: block;">
-                                    <span style="color: #ffffff !important; white-space: nowrap !important;">🚀&nbsp;EMPEZAR&nbsp;TRANSFORMACIÓN&nbsp;DIGITAL</span>
+                                   style="color: #ffffff !important; text-decoration: none; font-family: 'Poppins', sans-serif; font-size: 15px; font-weight: 700; white-space: nowrap; display: inline-block; vertical-align: middle;">
+                                    <table align="center" cellpadding="0" cellspacing="0" border="0" style="border-collapse: collapse; width: auto;">
+                                        <tr>
+                                            <td style="vertical-align: middle; padding-right: 8px; font-size: 18px; line-height: 1.2; color: #ffffff !important; font-family: Arial, sans-serif;">🚀</td>
+                                            <td style="vertical-align: middle; font-family: 'Poppins', sans-serif; font-size: 15px; font-weight: 700; color: #ffffff !important; white-space: nowrap; line-height: 1.2;">EMPEZAR TRANSFORMACIÓN DIGITAL</td>
+                                        </tr>
+                                    </table>
                                 </a>
                             </td>
                         </tr>
                     </table>
-                    <p class="texto-ps">Nota: Nuestra implementación es guiada y personalizada. No estás solo en este cambio. <br><a href="mailto:{{Email_Remitente}}?subject=Interes%20Metodologia">Solicítala aquí</a>.</p>
+                    <p class="texto-ps" style="font-size: 14px; text-align: left; margin-top: 24px; font-style: normal; color: #555555;">
+                        <strong>¿Por qué dar este paso ahora?</strong> El mercado de la salud es cada vez más exigente y la <strong>transformación digital</strong> ya no es opcional si buscas escalabilidad. Nuestra metodología te brindará el control total que necesitas sobre tu operación financiera y clínica, permitiéndote tomar decisiones basadas en <strong>datos reales</strong>, no en suposiciones. Estamos listos para acompañarte en este proceso de modernización que marcará un antes y un después en la rentabilidad de tu práctica.
+                    </p>
+
                 </td>
             </tr>
             <tr>
-                <td class="espaciado-cuerpo" style="padding-top: 32px; padding-bottom: 0;">
-                    <p style="font-size: 16px; color: #64748b; line-height: 1.62; margin-bottom: 24px;">
+                <td class="espaciado-cuerpo" style="padding-top: 16px; padding-bottom: 0;">
+                    <p style="font-size: 16px; color: #64748b; line-height: 1.62; margin-bottom: 16px;">
                         Estamos a tu disposición para cualquier consulta. Puedes agendar una llamada breve con nosotros o
                         responder directamente a este correo.
                     </p>
@@ -466,7 +472,7 @@
             </tr>
             <tr>
                 <td align="center" valign="top"
-                    style="padding: 24px 0; background-color: #ffffff; border-top: 1px solid #e2e8f0; border-bottom: 1px solid #e2e8f0;">
+                    style="padding: 24px 0; background-color: #ffffff;">
                     <!-- Tabla de redes sociales con ancho fijo para asegurar centrado -->
                     <table align="center" border="0" cellpadding="0" cellspacing="0" width="160" style="width: 160px;">
                         <tr>

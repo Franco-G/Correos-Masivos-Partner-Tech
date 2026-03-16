@@ -1,6 +1,6 @@
 ---
-name: redaccion-publicitaria
-description: Cuando el usuario quiera escribir, reescribir o mejorar el copy de marketing para cualquier página (inicio, aterrizaje, precios, características, etc.). Úsala cuando se mencione "escribir copy para", "mejorar este copy", "copy de marketing", "ayuda con el titular", "copy del CTA", "propuesta de valor" o "hacer esto más convincente". Para copy de emails, consulta 'secuencia-de-emails'. Para editar copy existente, consulta 'edicion-de-copy'.
+name: copywriting
+description: Cuando el usuario quiera escribir, reescribir o mejorar el copy de marketing para cualquier página (inicio, aterrizaje, precios, características, etc.). Úsala cuando se mencione "escribir copy para", "mejorar este copy", "copy de marketing", "ayuda con el titular", "copy del CTA", "propuesta de valor" o "hacer esto más convincente". Para copy de emails, consulta 'secuencia-de-emails'. Para editar copy existente, consulta 'copy-editing'.
 metadata:
   version: 1.1.0
 ---
