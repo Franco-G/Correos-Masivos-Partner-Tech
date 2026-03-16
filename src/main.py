@@ -639,17 +639,17 @@ class CorreoApp:
             with open(archivo_path, 'r', encoding='utf-8') as f:
                 content = f.read()
             
-            logo_path = os.path.join('assets', 'Logo_blanco_ver3.png')
-            logo_color_path = os.path.join('assets', 'Logo_y_texto_Partner_Tech.png')
+            logo_path = os.path.join('assets', 'logos', 'Logo_blanco_ver3.png')
+            logo_color_path = os.path.join('assets', 'logos', 'Logo_y_texto_Partner_Tech.png')
             
             logo_base64_uri = get_base64_image(logo_path)
             logo_color_base64_uri = get_base64_image(logo_color_path)
             
             # --- CARGAR ICONOS PARA PREVIEW ---
-            icon_agenda_uri = get_base64_image(os.path.join('assets', 'benefit_agenda.svg'))
-            icon_historia_uri = get_base64_image(os.path.join('assets', 'benefit_historia.svg'))
-            icon_liquidacion_uri = get_base64_image(os.path.join('assets', 'benefit_liquidacion.svg'))
-            icon_reunion_uri = get_base64_image(os.path.join('assets', 'benefit_reunion.svg'))
+            icon_agenda_uri = get_base64_image(os.path.join('assets', 'benefits', 'benefit_agenda.png'))
+            icon_historia_uri = get_base64_image(os.path.join('assets', 'benefits', 'benefit_historia.png'))
+            icon_liquidacion_uri = get_base64_image(os.path.join('assets', 'benefits', 'benefit_liquidacion.png'))
+            icon_reunion_uri = get_base64_image(os.path.join('assets', 'benefits', 'benefit_reunion.png'))
 
             # Generar hash falso para la preview
             email_hash_preview = hashlib.md5(b"preview@admin.com").hexdigest()
@@ -683,8 +683,8 @@ class CorreoApp:
         try:
             # Rutas simples relativas al directorio del script
             archivo_html_path = os.path.abspath(os.path.join("templates", archivo_html_nombre))
-            logo_path = os.path.join('assets', 'Logo_blanco_ver3.png')
-            logo_color_path = os.path.join('assets', 'Logo_y_texto_Partner_Tech.png')
+            logo_path = os.path.join('assets', 'logos', 'Logo_blanco_ver3.png')
+            logo_color_path = os.path.join('assets', 'logos', 'Logo_y_texto_Partner_Tech.png')
             with open(archivo_html_path, 'r', encoding='utf-8') as f:
                 html_content = f.read()
             
@@ -750,10 +750,10 @@ class CorreoApp:
 
                 # --- ADJUNTAR ICONOS DE BENEFICIOS Y REDES SOCIALES ---
                 iconos_mapeo = {
-                    'Icon_Agenda': os.path.join('assets', 'benefit_agenda'),
-                    'Icon_Historia': os.path.join('assets', 'benefit_historia'),
-                    'Icon_Liquidacion': os.path.join('assets', 'benefit_liquidacion'),
-                    'Icon_Reunion': os.path.join('assets', 'benefit_reunion'),
+                    'Icon_Agenda': os.path.join('assets', 'benefits', 'benefit_agenda'),
+                    'Icon_Historia': os.path.join('assets', 'benefits', 'benefit_historia'),
+                    'Icon_Liquidacion': os.path.join('assets', 'benefits', 'benefit_liquidacion'),
+                    'Icon_Reunion': os.path.join('assets', 'benefits', 'benefit_reunion'),
                     'minimalist_agenda_red': os.path.join('assets', 'icons', 'custom', 'agenda_red'),
                     'minimalist_history_green': os.path.join('assets', 'icons', 'custom', 'history_green'),
                     'minimalist_agenda_navy': os.path.join('assets', 'icons', 'custom', 'agenda_navy'),
@@ -761,7 +761,10 @@ class CorreoApp:
                     'minimalist_finance_navy': os.path.join('assets', 'icons', 'custom', 'finance_navy'),
                     'soc_fb': os.path.join('assets', 'icons', 'icomoon', '401-facebook-circle'),
                     'soc_ig': os.path.join('assets', 'icons', 'icomoon', '403-instagram-circle'),
-                    'soc_li': os.path.join('assets', 'icons', 'icomoon', '458-linkedin-circle')
+                    'soc_li': os.path.join('assets', 'icons', 'icomoon', '458-linkedin-circle'),
+                    'logo_facebook_circular': os.path.join('assets', 'icons', 'social', 'logo_facebook_circular'),
+                    'logo_instagram_circular': os.path.join('assets', 'icons', 'social', 'logo_instagram_circular'),
+                    'logo_linkedin_circular': os.path.join('assets', 'icons', 'social', 'logo_linkedin_circular')
                 }
 
                 for cid_name, base_path in iconos_mapeo.items():
