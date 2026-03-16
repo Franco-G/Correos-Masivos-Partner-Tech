@@ -699,12 +699,17 @@ class CorreoApp:
             email_hash = hashlib.md5(email_destinatario.encode('utf-8')).hexdigest()
 
             # Reemplazos en HTML
+            cta_link = "https://cal.com/negocios-partner-tech/requerimientos-software-desarrollo"
+            campana = "produccion_ccl_v1"
             html_content = html_content.replace('{{Nombre_Contacto}}', nombre)\
                                        .replace('{{Email_Destinatario}}', email_destinatario)\
                                        .replace('{{Nombre_Remitente}}', remitente_nombre)\
                                        .replace('{{Email_Remitente}}', remitente_email)\
                                        .replace('{{Cargo_Remitente}}', remitente_cargo)\
-                                       .replace('{{Email_Hash}}', email_hash)
+                                       .replace('{{Email_Hash}}', email_hash)\
+                                       .replace('{{CTA_Link}}', cta_link)\
+                                       .replace('{{Campana}}', campana)\
+                                       .replace('{{Titulo_Pagina}}', 'Partner Tech | Tu Socio Estratégico')
             
             message = MIMEMultipart("related")
             message["Subject"] = asunto_template.replace('{{Nombre_Contacto}}', nombre)\
