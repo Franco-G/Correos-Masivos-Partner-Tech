@@ -4,19 +4,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Clinic Mentor - Rentabilidad Clínica | Partner Tech</title>
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;700&family=Poppins:wght@400;700&display=swap"
+    <title>Clinic Mentor: Rentabilidad y Automatización Médica</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap"
         rel="stylesheet">
+    <!--[if mso]>
+    <style type="text/css">
+        body, table, td, p, a, span { font-family: Arial, Helvetica, sans-serif !important; }
+    </style>
+    <![endif]-->
     <style>
         * {
-            font-family: 'Poppins', sans-serif !important;
+            font-family: 'Poppins', Arial, Helvetica, sans-serif !important;
         }
 
         body {
             margin: 0;
             padding: 0;
-            background-color: #ffffff;
-            color: #555555;
+            background-color: #f0f7ff;
+            color: #64748b;
             -webkit-font-smoothing: antialiased;
         }
 
@@ -35,255 +40,497 @@
             max-width: 100%;
         }
 
-        .wrapper {
+        .envoltorio {
             width: 100%;
             table-layout: fixed;
-            background-color: #eaeded;
+            background-color: #f0f7ff;
             padding: 40px 0;
         }
 
-        .main-container {
+        .contenedor-principal {
             background-color: #ffffff;
             margin: 0 auto;
             width: 100%;
             max-width: 600px;
-            border-radius: 16px;
-            overflow: hidden;
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06);
-        }
-
-        .header {
-            background-color: #001556;
-            padding: 40px 20px;
-            text-align: center;
-            border-bottom: 6px solid #1bde5d;
-        }
-
-        .header-tagline {
-            color: #a0aec0;
-            font-size: 12px;
-            letter-spacing: 2px;
-            margin-top: 12px;
-            text-transform: uppercase;
-            font-weight: 600;
-        }
-
-        .content {
-            padding: 40px 35px;
-        }
-
-        .greeting {
-            font-size: 21px;
-            color: #333c4e;
-            font-weight: 700;
-            margin-bottom: 12px;
-        }
-
-        .text-paragraph {
-            font-size: 15px;
-            line-height: 1.6;
-            color: #555555;
-            margin-bottom: 18px;
-        }
-
-        .highlight {
-            font-weight: 700;
-        }
-
-        .benefit-box {
-            background-color: #ffffff;
-            border: 1px solid #e2e8f0;
-            border-left: 5px solid #1e53dd;
             border-radius: 12px;
-            padding: 20px;
-            margin-bottom: 15px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
+            overflow: hidden;
+            box-shadow: 0 10px 40px rgba(0, 21, 86, 0.05);
         }
 
-        .benefit-title {
-            color: #333c4e;
-            font-size: 16px;
-            font-weight: 700;
-            display: block;
-            margin-bottom: 5px;
+        .cabecera {
+            background-color: #ffffff;
+            padding: 24px 40px;
+            border-bottom: 6px solid #00e0ff;
         }
 
-        .benefit-text {
-            font-size: 14px;
-            line-height: 1.5;
-            color: #555555;
+        .lema {
+            color: #a0aec0;
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 2.2px;
             margin: 0;
         }
 
-        .btn-meeting {
-            background-color: #1bde5d;
-            color: #ffffff !important;
-            display: block;
-            width: 100%;
-            max-width: 250px;
-            margin: 5px auto 15px auto;
-            padding: 14px 30px;
-            text-decoration: none;
-            border-radius: 10px;
-            font-weight: 700;
-            font-size: 15px;
-            box-shadow: 0 4px 12px rgba(27, 222, 93, 0.3);
-            transition: all 0.3s ease;
+        .seccion-hero {
+            padding: 56px 40px 32px 40px;
             text-align: center;
+        }
+
+        .titulo-principal {
+            font-size: 36px;
+            color: #333c4e;
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 20px;
+            letter-spacing: -1px;
+        }
+
+        .subtitulo-hero {
+            font-size: 18px;
+            color: #64748b;
+            line-height: 1.6;
+            margin-bottom: 0;
+        }
+
+        .espaciado-cuerpo {
+            padding: 48px 40px;
+        }
+
+        .region-comparativa {
+            margin-bottom: 48px;
+        }
+
+        .caja-diferencial {
+            border-radius: 16px;
+            padding: 32px;
+            margin-bottom: 20px;
+            position: relative;
+        }
+
+        .caja-roja {
+            background-color: #fff5f5;
+            border: 1px solid #fee2e2;
+        }
+
+        .caja-verde {
+            background-color: #f0fff4;
+            border: 1px solid #dcfce7;
+        }
+
+        .acento-rojo {
+            border-left: 6px solid #f87171;
+            background-color: #fffbfb;
+        }
+
+        .acento-verde {
+            border-left: 6px solid #1bde5d;
+            background-color: #fafffb;
+        }
+
+        .icono-caja {
+            background: transparent;
+            width: 48px;
+            height: 48px;
+            display: table-cell;
+            vertical-align: middle;
+            text-align: center;
+        }
+
+        .etiqueta-caja {
+            font-size: 12px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin-bottom: 8px;
+            display: block;
+        }
+
+        .etiqueta-roja {
+            color: #ef4444;
+        }
+
+        .etiqueta-verde {
+            color: #1bde5d;
+        }
+
+        .titulo-caja {
+            font-size: 20px;
+            color: #333c4e;
+            font-weight: 700;
+            margin-bottom: 12px;
+            display: block;
+        }
+
+        .texto-caja {
+            font-size: 16px;
+            color: #64748b;
+            line-height: 1.62;
+            margin: 0;
+        }
+
+        .seccion-modulos {
+            margin-bottom: 16px;
+        }
+
+        .tarjeta-modulo {
+            background-color: #ffffff;
+            border: 1px solid #e2e8f0;
+            border-radius: 12px;
+            padding: 24px;
+            margin-bottom: 16px;
+            border-left: 5px solid #1e53dd;
+        }
+
+        .titulo-modulo {
+            font-size: 20px;
+            color: #001556;
+            font-weight: 700;
+            margin-bottom: 4px;
+            display: block;
+            line-height: 1.4;
+        }
+
+        .desc-modulo {
+            font-size: 16px;
+            color: #64748b;
+            margin: 0;
+            line-height: 1.62;
         }
 
         .closing-box {
             text-align: center;
-            margin-top: 35px;
-            padding: 40px 30px;
-            background-color: #001556;
-            border-radius: 10px;
-            color: #ffffff;
+            padding: 16px 40px 16px 40px;
+            background-color: #ffffff;
         }
 
-        .footer {
-            background-color: #ffffff;
-            padding: 30px;
+        .closing-title {
+            font-size: 19px;
+            color: #1e53dd;
+            font-weight: 800;
+            margin-top: 0;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+        }
+
+        .btn-pill {
+            background-color: #1e53dd;
+            color: #ffffff !important;
+            display: inline-block;
+            padding: 14px 40px;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 15px;
+            box-shadow: 0 4px 12px rgba(30, 83, 221, 0.3);
             text-align: center;
-            font-size: 12px;
+            white-space: nowrap;
+        }
+
+        .texto-ps {
+            font-size: 16px;
+            color: #64748b;
+            margin-top: 20px;
+            line-height: 1.62;
+            font-style: italic;
+        }
+
+        .texto-ps a {
+            color: #1e53dd;
+            text-decoration: underline;
+        }
+
+        .seccion-firma {
+            padding: 40px 40px 0 40px;
+        }
+
+        .pie-pagina {
+            padding: 48px 48px;
+            border-top: 1px solid #f1f5f9;
+            text-align: center;
+            background-color: #ffffff;
+        }
+
+        .pie-pagina p {
+            font-size: 11px;
             color: #cbd5e0;
+            margin-bottom: 10px;
             line-height: 1.6;
-            border-top: 1px solid #f7fafc;
+            letter-spacing: 0.3px;
+        }
+
+        .pie-pagina a {
+            color: #cbd5e0 !important;
+            text-decoration: underline;
         }
 
         @media screen and (max-width: 600px) {
-            .content {
-                padding: 30px 20px !important;
+            .contenedor-principal {
+                width: 100% !important;
+                border-radius: 0 !important;
             }
 
-            .btn-meeting {
-                display: block;
-                width: 100%;
+            .seccion-hero {
+                padding: 40px 20px !important;
+            }
+
+            .titulo-principal {
+                font-size: 26px !important;
+                line-height: 1.2 !important;
+            }
+
+            .subtitulo-hero {
+                font-size: 16px !important;
+            }
+
+            .espaciado-contenido {
+                padding: 0 20px 40px 20px !important;
+            }
+
+            .caja-diferencial {
+                padding: 24px !important;
+            }
+
+            .titulo-caja {
+                font-size: 18px !important;
+            }
+
+            .texto-caja {
+                font-size: 14px !important;
+            }
+
+            .boton-verde {
+                padding: 15px 30px !important;
+                font-size: 14px !important;
+                width: 100% !important;
                 box-sizing: border-box;
+            }
+
+            .bloque-navy {
+                padding: 40px 20px !important;
+            }
+
+            .titulo-navy {
+                font-size: 22px !important;
+            }
+
+            .columna-apilada {
+                display: block !important;
+                width: 100% !important;
+                border-left: none !important;
+                border-top: 1px solid #e2e8f0;
+                padding-left: 0 !important;
+                padding-top: 20px !important;
+                text-align: center !important;
+            }
+
+            .columna-apilada img {
+                margin: 0 auto 12px auto !important;
+            }
+
+            .icono-caja {
+                display: block !important;
+                margin: 0 auto 15px auto !important;
+            }
+
+            .centrado-movil {
+                text-align: center !important;
+                padding-left: 0 !important;
             }
         }
     </style>
 </head>
 
 <body>
-    <center class="wrapper">
-        <table class="main-container" width="100%" cellpadding="0" cellspacing="0">
+    <center class="envoltorio">
+        <table class="contenedor-principal" cellpadding="0" cellspacing="0">
             <tr>
-                <td class="header">
-                    <img src="cid:Logo_ver1" alt="Partner Tech Logo"
-                        style="max-height: 50px; width: auto; margin: 0 auto;">
-                    <div class="header-tagline">Tu Socio Estratégico</div>
+                <td class="cabecera">
+                    <table width="100%" cellpadding="0" cellspacing="0">
+                        <tr>
+                            <td align="left" valign="middle">
+                                <img src="cid:Logo_Color" alt="Partner Tech" height="50">
+                            </td>
+                            <td align="right" valign="middle">
+                                <div class="lema">Tu Socio Estratégico</div>
+                            </td>
+                        </tr>
+                    </table>
                 </td>
             </tr>
             <tr>
-                <td class="content">
-                    <p class="greeting">Hola {{Nombre_Contacto}},</p>
-                    <p class="text-paragraph">Te saluda {{Nombre_Remitente}}, de Partner Tech. Como gestor clínico,
-                        sabes que <strong>una clínica llena de pacientes no siempre es una clínica rentable.</strong>
+                <td class="espaciado-cuerpo" style="padding-bottom: 0;">
+                    <p
+                        style="font-size: 16px; color: #64748b; margin-bottom: 16px; font-weight: 400; line-height: 1.4;">
+                        Hola {{Nombre_Contacto}},</p>
+                    <p style="font-size: 16px; color: #64748b; line-height: 1.62; margin-bottom: 16px; font-style: normal;">
+                        ¿Cuánto tiempo y dinero pierde su clínica hoy en procesos manuales automatizables? Sabemos que la gestión fragmentada de citas y cobros es una carga que <span style="color: #ef4444; font-weight: 700;">drena la rentabilidad de su negocio y el tiempo de sus especialistas</span>.
                     </p>
-                    <p class="text-paragraph">Si tu equipo administrativo pierde tiempo en procesos manuales, si tienes
-                        brechas en la facturación o si el ausentismo de pacientes está drenando tus ingresos, <span
-                            class="highlight">estás dejando dinero sobre la mesa por falta de control
-                            tecnológico.</span></p>
-                    <p class="text-paragraph"><strong>Clinic Mentor</strong> es una inversión en <em>Soberanía
-                            Tecnológica</em> y eficiencia: adquieres el sistema y dejas de pagar rentas mensuales por
-                        cada paciente nuevo o cita generada. Lidera un centro médico y escuela de formación de alto
-                        rendimiento sin comisiones ocultas.</p>
-                    <p class="text-paragraph" style="margin-bottom: 15px;">Potencia la salud financiera de tu clínica
-                        hoy:</p>
-
-                    <div class="benefit-box" style="border-left-color: #1e53dd;">
-                        <span class="benefit-title"><img src="cid:Icon_Agenda" width="18"
-                                style="vertical-align: middle; margin-right: 8px;">Agenda Inteligente y Omnicanal</span>
-                        <p class="benefit-text">Citas por web, WhatsApp y call center centralizadas. <strong>Optimiza el
-                                tiempo de tus médicos y reduce drásticamente los huecos en la agenda.</strong></p>
-                    </div>
-                    <div class="benefit-box" style="border-left-color: #00e0ff;">
-                        <span class="benefit-title"><img src="cid:Icon_Historia" width="18"
-                                style="vertical-align: middle; margin-right: 8px;">Historia Clínica Digital
-                            Unificada</span>
-                        <p class="benefit-text">Acceso rápido a antecedentes, recetas y exámenes. <strong>Mejora la
-                                atención al paciente y garantiza el cumplimiento legal sin esfuerzo.</strong></p>
-                    </div>
-                    <div class="benefit-box" style="border-left-color: #1bde5d;">
-                        <span class="benefit-title"><img src="cid:Icon_Liquidacion" width="18"
-                                style="vertical-align: middle; margin-right: 8px;">Liquidación y Copagos
-                            Automatizados</span>
-                        <p class="benefit-text">Gestión exacta de pagos particulares y seguros. <strong>Elimina errores
-                                en la facturación y acelera tus ciclos de cobranza.</strong></p>
-                    </div>
-
+                    <p style="font-size: 16px; color: #64748b; line-height: 1.62; margin-bottom: 24px; font-style: normal;">
+                        En Partner Tech, le ayudamos a recuperar el control de su tiempo. Con Clinic Mentor es posible <span style="color: #1bde5d; font-weight: 700;">transformar horas de trabajo administrativo en consulta productiva</span> y eliminar las ineficiencias operativas desde el primer día.
+                    </p>
                 </td>
             </tr>
             <tr>
-                <td style="background-color: #001556; padding: 40px 30px; text-align: center;">
-                    <p style="font-size: 18px; color: #ffffff; font-weight: 700; margin-bottom: 20px; font-family: 'Poppins', sans-serif;">¿Desea transformar la rentabilidad de su clínica?</p>
-                    <a href="https://cal.com/negocios-partner-tech/requerimientos-software-desarrollo?utm_source=partnertech&amp;utm_medium=correo&amp;utm_campaign=campana_clinicmentor&amp;utm_content=v1_rentabilidad_boton_agendar&amp;utm_term={{Email_Hash}}"
-                        class="btn-meeting" style="color: #ffffff !important; text-decoration: none; display: inline-block;"><span
-                            style="color: #ffffff;"><img src="cid:Icon_Reunion" width="16"
-                                style="vertical-align: middle; margin-right: 8px; filter: brightness(0) invert(1); display: inline-block;">
-                            Agendar Reunión de 15 min</span></a>
-                    <p style="font-size: 13px; color: #a0aec0; margin-top: 15px; line-height: 1.6; font-family: 'Poppins', sans-serif;">P.S. ¿Quiere conocer nuestro módulo de telemedicina integrado en Clinic Mentor? <a
-                            href="mailto:{{Email_Remitente}}?subject=Interes%20ClinicMentor%20Telemedicina"
-                            style="color: #00e0ff; text-decoration: underline;">Consúltalo aquí</a>.</p>
-                </td>
-            </tr>
-            <tr>
-                <td class="content" style="padding-top: 0;">
-                    <div style="margin-top: 35px; text-align: left;">
-                        <table width="100%" cellpadding="0" cellspacing="0"
-                            style="border-top: 1px solid #e2e8f0; padding-top: 25px;">
-                            <tr>
-                                <td width="50%" style="vertical-align: top; text-align: center; padding-bottom: 20px;">
-                                    <div style="display: inline-block; text-align: left;">
-                                        <p style="margin: 0; font-size: 16px; color: #333c4e; font-weight: 700;">
-                                            {{Nombre_Remitente}}</p>
-                                        <p style="margin: 2px 0 5px 0; font-size: 13px; color: #718096; line-height: 1.3;">
-                                            {{Cargo_Remitente}}</p>
-                                        <p style="margin: 5px 0; font-size: 13px;">
-                                            <a href="mailto:{{Email_Remitente}}?subject=Consulta%20Clinic%20Mentor&utm_source=partnertech&utm_medium=correo&utm_campaign=campana_clinicmentor&utm_content=v1_rentabilidad_firma_email_personal&utm_term={{Email_Hash}}"
-                                                style="color: #1e53dd; text-decoration: none;">{{Email_Remitente}}</a>
-                                        </p>
-                                        <div style="margin-top: 12px;">
-                                            <a href="https://api.whatsapp.com/send/?phone=51933820255&text=Hola+Partner%21+quiero+agendar+una+reuni%C3%B3n.&utm_source=partnertech&utm_medium=correo&utm_campaign=campana_clinicmentor&utm_content=v1_rentabilidad_firma_whatsapp&utm_term={{Email_Hash}}"
-                                                style="background-color: #1bde5d; color: #ffffff; padding: 8px 15px; text-decoration: none; border-radius: 6px; font-size: 13px; font-weight: 700; display: inline-block;">📲
-                                                +51 933 820 255</a>
+                <td class="espaciado-cuerpo" style="padding-top: 0; padding-bottom: 16px;">
+                    <div class="region-comparativa">
+                        <div class="caja-diferencial caja-roja">
+                            <table width="100%" cellpadding="0" cellspacing="0">
+                                <tr>
+                                    <td valign="top">
+                                        <div class="icono-caja"><img src="cid:minimalist_agenda_red" width="24"></div>
+                                    </td>
+                                    <td class="centrado-movil" style="padding-left: 20px;">
+                                        <span class="etiqueta-caja etiqueta-roja">Gestión Actual</span>
+                                        <span class="titulo-caja">Ineficiencia Operativa</span>
+                                        <p class="texto-caja">Agendas fragmentadas, pérdida de confirmaciones y procesos de recepción lentos que consumen el tiempo clínico valioso.</p>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+
+                        <div class="caja-diferencial caja-verde" style="margin-bottom: 0;">
+                            <table width="100%" cellpadding="0" cellspacing="0">
+                                <tr>
+                                    <td valign="top">
+                                        <div class="icono-caja"><img src="cid:minimalist_history_green" width="24">
                                         </div>
-                                    </div>
-                                </td>
-                                <td width="50%" style="vertical-align: top; text-align: center; border-left: 1px solid #e2e8f0; padding-bottom: 20px;">
-                                    <div style="display: inline-block; text-align: left;">
-                                        <img src="cid:Logo_Color" alt="Partner Tech"
-                                            style="max-height: 35px; width: auto; margin-bottom: 12px;">
-                                        <p style="margin: 0; font-size: 13px; color: #718096; line-height: 1.5;">
-                                            <a href="https://partnertech.pe/?utm_source=partnertech&amp;utm_medium=correo&amp;utm_campaign=campana_clinicmentor&amp;utm_content=v1_rentabilidad_firma_web&utm_term={{Email_Hash}}"
-                                                style="color: #001556; text-decoration: none; font-weight: 700;">www.partnertech.pe</a><br>
-                                            <a href="mailto:negocios@partnertech.pe?subject=Consulta%20Partner%20Tech&utm_source=partnertech&utm_medium=correo&utm_campaign=campana_clinicmentor&utm_content=v1_rentabilidad_firma_email_general&utm_term={{Email_Hash}}"
-                                                style="color: #1e53dd; text-decoration: none;">negocios@partnertech.pe</a><br>
-                                            RUC: 20523799623<br>
-                                            Av. Malachowsky 340, San Borja, Lima
-                                        </p>
-                                    </div>
-                                </td>
-                            </tr>
-                        </table>
+                                    </td>
+                                    <td class="centrado-movil" style="padding-left: 20px;">
+                                        <span class="etiqueta-caja etiqueta-verde">Solución Clinic Mentor</span>
+                                        <span class="titulo-caja">Automatización Eficiente</span>
+                                        <p class="texto-caja">Agenda omnicanal, cobranza en línea y procesos rápidos que garantizan orden, flujo constante y rentabilidad inmediata.</p>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
                     </div>
+
+                    <div class="seccion-modulos">
+                        <h2
+                            style="font-size: 24px; color: #001556; font-weight: 800; margin-bottom: 32px; text-align: center; line-height: 1.3;">
+                            Módulos para Rentabilidad</h2>
+                        <div class="tarjeta-modulo">
+                            <span class="titulo-modulo">Agenda Inteligente Omnicanal</span>
+                            <p class="desc-modulo">Recepción automática de citas web y recordatorios por WhatsApp para reducir el ausentismo a su mínima expresión.</p>
+                        </div>
+                        <div class="tarjeta-modulo">
+                            <span class="titulo-modulo">Cobranza y Liquidación Activa</span>
+                            <p class="desc-modulo">Control integral de copagos, facturación y cálculo de honorarios médicos en segundos para evitar cualquier fuga de ingresos.</p>
+                        </div>
+                        <div class="tarjeta-modulo" style="margin-bottom: 0;">
+                            <span class="titulo-modulo">Teleconsulta Integrada</span>
+                            <p class="desc-modulo">Gestión remota directa y segura para ampliar la capacidad de servicio de la clínica sin sumar nuevos costos operativos.</p>
+                        </div>
+                    </div>
+
                 </td>
             </tr>
             <tr>
-                <td class="footer">
-                    <p style="margin-bottom: 10px;">Enviado a <strong>{{Email_Destinatario}}</strong> cumpliendo los
-                        lineamientos de la <strong>Cámara de Comercio de Lima (CCL)</strong>.</p>
+                <td class="closing-box">
+                    <h2 class="closing-title">¿Desea aumentar la rentabilidad de sus horas clínicas?</h2>
+                    <!-- Botón CTA Basado en Tabla (Centrado Vertical) -->
+                    <table align="center" cellpadding="0" cellspacing="0" border="0" style="margin: 0 auto; border-collapse: collapse; width: auto;">
+                        <tr>
+                            <td align="center" bgcolor="#1e53dd" style="border-radius: 8px; padding: 12px 25px; box-shadow: 0 4px 8px rgba(30, 83, 221, 0.15);">
+                                <a href="{{CTA_Link}}?utm_source=partnertech&utm_medium=correo&utm_campaign=campana_mentor&utm_content=v1_rentabilidad_boton_asesoria&utm_term={{Email_Hash}}"
+                                   style="color: #ffffff !important; text-decoration: none; font-family: 'Poppins', Arial, Helvetica, sans-serif; font-size: 15px; font-weight: 700; white-space: nowrap; display: inline-block; vertical-align: middle;">
+                                    <table align="center" cellpadding="0" cellspacing="0" border="0" style="border-collapse: collapse; width: auto;">
+                                        <tr>
+                                            <td style="vertical-align: middle; padding-right: 8px; font-size: 18px; line-height: 1.2; color: #ffffff !important; font-family: Arial, sans-serif;">📅</td>
+                                            <td style="vertical-align: middle; font-family: 'Poppins', Arial, Helvetica, sans-serif; font-size: 15px; font-weight: 700; color: #ffffff !important; white-space: nowrap; line-height: 1.2;">AGENDAR DIAGNÓSTICO DE RENTABILIDAD</td>
+                                        </tr>
+                                    </table>
+                                </a>
+                            </td>
+                        </tr>
+                    </table>
+                    <p class="texto-ps" style="font-size: 16px; text-align: left; margin-top: 40px; font-style: normal; color: #64748b; line-height: 1.62; font-weight: 400;">
+                        <strong>¿Qué descubriremos?</strong> Identificaremos exactamente dónde los procesos manuales <span style="color: #1bde5d; font-weight: 700;">están restando tiempo efectivo de consulta</span> a su clínica y cómo nuestra automatización lo evitará.
+                    </p>
+            </tr>
+
+            <tr>
+                <td class="seccion-firma">
+                    <table width="100%" cellpadding="0" cellspacing="0">
+                        <tr>
+                            <td class="columna-apilada" width="50%" valign="top" align="center"
+                                style="padding-bottom: 30px;">
+                                <div style="display: inline-block; text-align: left;">
+                                    <p style="margin: 0; font-size: 16px; color: #333c4e; font-weight: 700;">
+                                        {{Nombre_Remitente}}</p>
+                                    <p style="margin: 2px 0 8px 0; font-size: 13px; color: #718096; line-height: 1.3;">
+                                        {{Cargo_Remitente}}</p>
+                                    <p style="margin: 5px 0 12px 0; font-size: 13px;">
+                                        <a href="mailto:{{Email_Remitente}}"
+                                            style="color: #1e53dd; text-decoration: none;">{{Email_Remitente}}</a>
+                                    </p>
+                                    <a href="https://api.whatsapp.com/send/?phone=51933820255"
+                                        style="background-color: #1bde5d; color: #ffffff; padding: 10px 24px; text-decoration: none; border-radius: 8px; font-size: 14px; font-weight: 700; display: inline-block; white-space: nowrap;">
+                                        <span style="vertical-align: middle; font-family: 'Poppins', Arial, Helvetica, sans-serif;">+51
+                                            933 820 255</span>
+                                    </a>
+                                </div>
+                            </td>
+                            <td class="columna-apilada" width="50%" valign="top" align="center"
+                                style="padding-bottom: 30px;">
+                                <div style="display: inline-block; text-align: left; padding-left: 20px;">
+                                    <img src="cid:Logo_Color" alt="Partner Tech" height="35"
+                                        style="margin-bottom: 12px;">
+                                    <p style="margin: 0; font-size: 13px; color: #718096; line-height: 1.5;">
+                                        <a href="https://partnertech.pe"
+                                            style="color: #1e53dd; text-decoration: none;">www.partnertech.pe</a><br>
+                                        negocios@partnertech.pe<br>
+                                        Av. Malachowsky 340, San Borja, Lima
+                                    </p>
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+            <tr>
+                <td align="center" valign="top"
+                    style="padding: 24px 0; background-color: #ffffff;">
+                    <!-- Tabla de redes sociales con ancho fijo para asegurar centrado -->
+                    <table align="center" border="0" cellpadding="0" cellspacing="0" width="160" style="width: 160px;">
+                        <tr>
+                            <td align="center" width="53" style="width: 53px;">
+                                <a href="https://www.facebook.com/PartnerTech.pe/" target="_blank">
+                                    <img src="cid:logo_facebook_circular" alt="Facebook" width="24" height="24"
+                                        style="display: block; border: 0;">
+                                </a>
+                            </td>
+                            <td align="center" width="53" style="width: 53px;">
+                                <a href="https://www.instagram.com/partner.tech_pe/" target="_blank">
+                                    <img src="cid:logo_instagram_circular" alt="Instagram" width="24" height="24"
+                                        style="display: block; border: 0;">
+                                </a>
+                            </td>
+                            <td align="center" width="54" style="width: 54px;">
+                                <a href="https://www.linkedin.com/company/partner-tech-pe/" target="_blank">
+                                    <img src="cid:logo_linkedin_circular" alt="LinkedIn" width="24" height="24"
+                                        style="display: block; border: 0;">
+                                </a>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+            <tr>
+                <td class="pie-pagina" style="border-top: none; padding-top: 0;">
+                    <p style="margin-bottom: 10px;">Enviado a <span
+                            style="color: inherit !important; text-decoration: none !important; border: none !important;">{{Email_Destinatario}}</span>
+                        cumpliendo los lineamientos de la <strong>Cámara de Comercio de Lima (CCL)</strong>.</p>
                     <p>Respetamos tu privacidad profesional. Si no deseas recibir más correos, <a
-                            href="mailto:negocios@partnertech.pe?subject=Remover"
-                            style="color: #cbd5e0; text-decoration: underline;">haga clic aquí para darse de baja</a>.
+                            href="mailto:negocios@partnertech.pe?subject=Remover">haga clic aquí para darse de baja</a>.
                     </p>
                 </td>
             </tr>
         </table>
     </center>
-    <img src="https://www.google-analytics.com/g/collect?v=2&amp;tid=G-FLPG7XG57W&amp;cid={{Email_Hash}}&amp;en=apertura_correo&amp;ep.campana=campana_clinicmentor&amp;ep.plantilla=v1_rentabilidad"
-        width="1" height="1" style="display:none; visibility:hidden;" alt="" />
+    <img src="https://www.google-analytics.com/g/collect?v=2&amp;tid=G-FLPG7XG57W&amp;cid={{Email_Hash}}&amp;en=apertura_correo&amp;ep.campana=campana_mentor&amp;ep.plantilla=v1_rentabilidad"
+        width="1" height="1" style="display:none;" />
 </body>
 
 </html>

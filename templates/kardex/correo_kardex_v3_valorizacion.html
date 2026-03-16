@@ -1,77 +1,401 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
-    <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kardex - Valorización de Existencias | Partner Tech</title>
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;700&family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kardex Partnertech: Integridad Financiera y Valorización</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <!--[if mso]>
+    <style type="text/css">
+        body, table, td, p, a, span { font-family: Arial, Helvetica, sans-serif !important; }
+    </style>
+    <![endif]-->
     <style>
-        body { margin: 0; padding: 0; font-family: 'Poppins', 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; background-color: #ffffff; color: #555555; -webkit-font-smoothing: antialiased; }
-        table { border-spacing: 0; width: 100%; } td { padding: 0; } img { border: 0; display: block; max-width: 100%; }
-        .wrapper { width: 100%; table-layout: fixed; background-color: #ffffff; padding: 40px 0; }
-        .main-container { background-color: #ffffff; margin: 0 auto; width: 100%; max-width: 600px; border-radius: 16px; overflow: hidden; box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06); }
-        .header { background-color: #ffffff; padding: 30px 20px; text-align: center; border-bottom: 2px solid #f1f5f9; }
-        .header-tagline { color: #718096; font-family: 'Orbitron', sans-serif; font-size: 9px; letter-spacing: 2px; margin-top: 8px; text-transform: uppercase; }
-        .content { padding: 40px 35px; }
-        .greeting { font-size: 20px; color: #0021a4; font-weight: 700; margin-bottom: 20px; font-family: 'Orbitron', sans-serif; }
-        .text-paragraph { font-size: 16px; line-height: 1.7; color: #666; margin-bottom: 25px; font-family: 'Poppins', sans-serif; }
-        .highlight { color: #1e53dd; font-weight: 700; }
-        .stat-box { background-color: #f8fafc; border: 1px solid #e2e8f0; border-radius: 12px; padding: 20px 15px; text-align: center; }
-        .stat-number { font-size: 28px; font-weight: 700; color: #0021a4; font-family: 'Orbitron', sans-serif; display: block; margin-bottom: 5px; }
-        .stat-label { font-size: 12px; color: #718096; font-family: 'Poppins', sans-serif; text-transform: uppercase; letter-spacing: 0.5px; }
-        .benefit-box { background-color: #ffffff; border: 1px solid #e2e8f0; border-left: 5px solid #1bde5d; border-radius: 12px; padding: 20px; margin-bottom: 20px; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04); }
-        .benefit-title { color: #0021a4; font-size: 16px; font-weight: 700; display: block; margin-bottom: 5px; font-family: 'Orbitron', sans-serif; }
-        .benefit-text { font-size: 14px; line-height: 1.5; color: #718096; margin: 0; font-family: 'Poppins', sans-serif; }
-        .btn-meeting { background-color: #1e53dd; color: #ffffff !important; display: block; width: 100%; max-width: 380px; margin: 0 auto 15px auto; padding: 14px 30px; text-decoration: none; border-radius: 50px; font-weight: 700; font-size: 15px; box-shadow: 0 4px 12px rgba(30, 83, 221, 0.3); font-family: 'Poppins', sans-serif; text-align: center; }
-        .closing-box { text-align: center; margin-top: 35px; padding-top: 25px; border-top: 1px dashed #dce5f2; }
-        @media screen and (max-width: 600px) { .content { padding: 30px 20px !important; } .btn-meeting { display: block; width: 100%; box-sizing: border-box; } }
+        * {
+            font-family: 'Poppins', Arial, Helvetica, sans-serif !important;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #f0f7ff;
+            color: #64748b;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        table {
+            border-spacing: 0;
+            width: 100%;
+        }
+
+        td {
+            padding: 0;
+        }
+
+        img {
+            border: 0;
+            display: block;
+            max-width: 100%;
+        }
+
+        .envoltorio {
+            width: 100%;
+            table-layout: fixed;
+            background-color: #f0f7ff;
+            padding: 40px 0;
+        }
+
+        .contenedor-principal {
+            background-color: #ffffff;
+            margin: 0 auto;
+            width: 100%;
+            max-width: 600px;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 10px 40px rgba(0, 21, 86, 0.05);
+        }
+
+        .cabecera {
+            background-color: #ffffff;
+            padding: 24px 40px;
+            border-bottom: 6px solid #00e0ff;
+        }
+
+        .lema {
+            color: #a0aec0;
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 2.2px;
+            margin: 0;
+        }
+
+        .espaciado-cuerpo {
+            padding: 48px 40px;
+        }
+
+        .texto-normal {
+            font-size: 16px;
+            color: #64748b;
+            line-height: 1.62;
+            margin-bottom: 20px;
+        }
+
+        .texto-destacado {
+            color: #1e53dd;
+            font-weight: 700;
+        }
+
+        .divisor-seccion {
+            border: none;
+            border-top: 1px solid #e2e8f0;
+            margin: 32px 0;
+        }
+
+        .titulo-seccion {
+            font-size: 18px;
+            color: #333c4e;
+            font-weight: 800;
+            margin-bottom: 24px;
+        }
+
+        .tarjeta-beneficio {
+            background-color: #ffffff;
+            border: 1px solid #e2e8f0;
+            border-left: 5px solid #1bde5d;
+            border-radius: 12px;
+            padding: 18px 24px;
+            margin-bottom: 16px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
+        }
+
+        .tarjeta-verde { border-left-color: #1bde5d; }
+        .tarjeta-cyan { border-left-color: #00e0ff; }
+        .tarjeta-navy { border-left-color: #1e53dd; }
+
+        .titulo-beneficio {
+            color: #1a1a1a;
+            font-size: 16px;
+            font-weight: 700;
+            display: block;
+            margin-bottom: 6px;
+        }
+
+        .texto-beneficio {
+            font-size: 16px;
+            line-height: 1.6;
+            color: #64748b;
+            margin: 0;
+        }
+
+        .closing-box {
+            text-align: center;
+            padding: 16px 40px 16px 40px;
+            background-color: #ffffff;
+        }
+
+        .closing-title {
+            font-size: 19px;
+            color: #1e53dd;
+            font-weight: 800;
+            margin-top: 0;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+        }
+
+        .btn-pill {
+            background-color: #1e53dd;
+            color: #ffffff !important;
+            display: inline-block;
+            padding: 14px 40px;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 15px;
+            box-shadow: 0 4px 12px rgba(30, 83, 221, 0.3);
+            text-align: center;
+            white-space: nowrap;
+        }
+
+        .texto-ps {
+            font-size: 16px;
+            color: #64748b;
+            margin-top: 20px;
+            line-height: 1.62;
+            font-style: italic;
+        }
+
+        .texto-ps a {
+            color: #1e53dd;
+            text-decoration: underline;
+        }
+
+        .seccion-firma {
+            padding: 40px 40px 0 40px;
+        }
+
+        .pie-pagina {
+            padding: 48px 48px;
+            text-align: center;
+            background-color: #ffffff;
+        }
+
+        .pie-pagina p {
+            font-size: 11px;
+            color: #cbd5e0;
+            margin-bottom: 10px;
+            line-height: 1.6;
+            letter-spacing: 0.3px;
+        }
+
+        .pie-pagina a {
+            color: #cbd5e0 !important;
+            text-decoration: underline;
+        }
+
+        @media screen and (max-width: 600px) {
+            .contenedor-principal {
+                width: 100% !important;
+                border-radius: 0 !important;
+            }
+
+            .espaciado-cuerpo {
+                padding: 40px 20px !important;
+            }
+
+            .tarjeta-beneficio {
+                padding: 20px !important;
+            }
+
+            .boton-verde {
+                padding: 15px 20px !important;
+                font-size: 14px !important;
+                width: 100% !important;
+                box-sizing: border-box;
+            }
+
+            .bloque-navy {
+                padding: 40px 20px !important;
+            }
+
+            .titulo-navy {
+                font-size: 22px !important;
+            }
+
+            .columna-apilada {
+                display: block !important;
+                width: 100% !important;
+                border-left: none !important;
+                border-top: 1px solid #e2e8f0;
+                padding-left: 0 !important;
+                padding-top: 20px !important;
+                text-align: center !important;
+            }
+
+            .columna-apilada img {
+                margin: 0 auto 12px auto !important;
+            }
+        }
     </style>
 </head>
-<body>
-    <center class="wrapper">
-        <table class="main-container" width="100%" cellpadding="0" cellspacing="0">
-            <tr><td class="header"><img src="cid:Logo_Color" alt="Partner Tech Logo" style="max-height: 40px; width: auto; margin: 0 auto;"><div class="header-tagline">Tu Socio Estratégico</div></td></tr>
-            <tr>
-                <td class="content">
-                    <p class="greeting">Hola {{Nombre_Contacto}},</p>
-                    <p class="text-paragraph">Te saluda {{Nombre_Remitente}}, de Partner Tech. Como responsable financiero, sabes que <span class="highlight">un almacén no solo contiene productos, contiene capital de trabajo en movimiento que debe ser valorizado con precisión milimétrica.</span></p>
-                    <p class="text-paragraph">La falta de una valorización de existencias real y automática impide calcular correctamente el costo de ventas y el margen bruto de tu operación, nublando tu capacidad de tomar decisiones estratégicas.</p>
 
-                    <table width="100%" cellpadding="0" cellspacing="0" style="margin-bottom: 25px;">
+<body>
+    <center class="envoltorio">
+        <table class="contenedor-principal" cellpadding="0" cellspacing="0">
+            <tr>
+                <td class="cabecera">
+                    <table width="100%" cellpadding="0" cellspacing="0">
                         <tr>
-                            <td align="center" width="31%" style="padding: 5px;"><div class="stat-box"><span class="stat-number">100%</span><span class="stat-label">Valorización<br>Automática</span></div></td>
-                            <td align="center" width="31%" style="padding: 5px;"><div class="stat-box"><span class="stat-number" style="color: #1bde5d;">-20%</span><span class="stat-label">Reducción de<br>Sobre-stock</span></div></td>
-                            <td align="center" width="31%" style="padding: 5px;"><div class="stat-box"><span class="stat-number" style="color: #1e53dd;">99%</span><span class="stat-label">Exactitud de<br>Inventario</span></div></td>
+                            <td align="left" valign="middle">
+                                <img src="cid:Logo_Color" alt="Partner Tech" height="50">
+                            </td>
+                            <td align="right" valign="middle">
+                                <div class="lema">Tu Socio Estratégico</div>
+                            </td>
                         </tr>
                     </table>
-
-                    <p class="text-paragraph">Nuestro sistema <strong>Kardex</strong> integra métodos de valorización avanzados (Promedio Ponderado, PEPS) para que tengas una visión financiera real de tu stock en cada momento del mes.</p>
-
-                    <div class="benefit-box">
-                        <span class="benefit-title">💰 Valorización Financiera Real</span>
-                        <p class="benefit-text">Obtén el valor contable de tus activos al instante. <strong>Presenta reportes financieros precisos sin procesos manuales de fin de mes.</strong></p>
-                    </div>
-                    <div class="benefit-box" style="border-left-color: #00e0ff;">
-                        <span class="benefit-title">🔋 Gestión de Reposición Inteligente</span>
-                        <p class="benefit-text">Analiza consumos históricos para optimizar tus compras. <strong>No inmovilices dinero innecesario en productos de baja rotación.</strong></p>
-                    </div>
-                    <div class="benefit-box" style="border-left-color: #1e53dd;">
-                        <span class="benefit-title">📋 Inventarios Cíclicos Ágiles</span>
-                        <p class="benefit-text">Digitaliza el proceso de auditoría con tablets y lectores de códigos. <strong>Reduce el tiempo de conciliación de días a solo horas.</strong></p>
-                    </div>
-
-                    <div class="closing-box">
-                        <p style="font-size: 17px; color: #1e53dd; font-weight: 700; margin-bottom: 10px; font-family: 'Orbitron', sans-serif;">¿Desea optimizar su flujo de caja logístico?</p>
-                        <a href="https://cal.com/negocios-partner-tech/requerimientos-software-desarrollo?utm_source=partnertech&amp;utm_medium=correo&amp;utm_campaign=campana_kardex&amp;utm_content=v3_valorizacion_boton_agendar&amp;utm_term={{Email_Hash}}" class="btn-meeting" style="color: #ffffff !important; text-decoration: none;"><span style="color: #ffffff;">📅 Agendar Reunión de 15 min</span></a>
-                        <p style="font-size: 13px; color: #666; margin-top: 18px; line-height: 1.6;">P.S. ¿Quiere conocer cómo manejamos los costos de importación en el Kardex? <a href="mailto:{{Email_Remitente}}?subject=Interes%20Kardex%20Costos" style="color: #1e53dd; text-decoration: underline;">Solicite una demo aquí</a>.</p>
-                        <p style="color: #555; margin-top: 15px; margin-bottom: 10px;">Saludos,<br><strong>{{Nombre_Remitente}}</strong><br><a href="mailto:{{Email_Remitente}}" style="color: #1e53dd; text-decoration: none;">{{Email_Remitente}}</a><br><span style="font-size: 14px; color: #888;">{{Cargo_Remitente}}</span></p>
-                        <img src="cid:Logo_Color" alt="Partner Tech Logo" class="footer-logo">
-                        <div style="margin-top: 25px; padding-top: 15px; border-top: 1px solid #e2e8f0; font-size: 13px; color: #718096; line-height: 1.6;"><strong>RUC 20523799623</strong><br>🏢 Av. Malachowsky 340, San Borja, Lima<br>🌐 <a href="https://partnertech.pe/?utm_source=partnertech&amp;utm_medium=correo&amp;utm_campaign=campana_kardex&amp;utm_content=v3_valorizacion_enlace_web&amp;utm_term={{Email_Hash}}" style="color: #1e53dd; text-decoration: none; font-weight: bold;">Visitar nuestro sitio web: Partnertech.pe</a></div>
-                    </div>
                 </td>
             </tr>
-            <tr><td class="footer" style="padding-top: 5px;"><p>Enviado cumpliendo los lineamientos de la CCL.</p></td></tr>
+            <tr>
+                <td class="espaciado-cuerpo" style="padding-bottom: 16px;">
+                    <p style="font-size: 16px; color: #64748b; margin-bottom: 16px; font-weight: 400; line-height: 1.4;">
+                        Hola {{Nombre_Contacto}},
+                    </p>
+                    <p class="texto-normal" style="margin-bottom: 16px;">
+                        ¿Su inventario físico coincide plenamente con sus libros contables? Le escribimos porque las discrepancias en el almacén no son solo errores operativos, representan <span style="color: #ef4444; font-weight: 700;">fugas de capital invisibles y graves riesgos de fiscalización tributaria</span>.
+                    </p>
+                    <p class="texto-normal" style="margin-bottom: 24px;">
+                        Para una empresa sólida, el almacén no es un espacio físico, es dinero en tránsito que debe cuadrar a la perfección. Nuestro Sistema Kardex automatiza la <span style="color: #1bde5d; font-weight: 700;">valorización exacta de su stock y asegura la total integridad financiera</span> de sus registros.
+                    </p>
+
+                    <hr style="border: none; border-top: 1px solid #e2e8f0; margin: 16px 0;">
+
+                    <p class="texto-normal" style="margin-top: 16px; margin-bottom: 24px;">
+                        Nuestra tecnología sincroniza la operación logística con la contabilidad, garantizando que cada entrada y salida esté costeada y registrada correctamente.
+                    </p>
+                    
+                    <p class="titulo-seccion">Proteja sus activos con:</p>
+                    
+                    <div class="tarjeta-beneficio tarjeta-verde" style="background-color: #fafffb;">
+                        <span class="titulo-beneficio">Valorización Automatizada</span>
+                        <p class="texto-beneficio">Cálculo exacto (PPP, PEPS, UEPS) de sus costos de inventario acorde a la normativa, sin depender de hojas de cálculo.</p>
+                    </div>
+                    
+                    <div class="tarjeta-beneficio tarjeta-cyan" style="background-color: #f8fdff;">
+                        <span class="titulo-beneficio">Conciliación en Tiempo Real</span>
+                        <p class="texto-beneficio">Sincronización instantánea entre logística y contabilidad, asegurando que su balance refleje la realidad física.</p>
+                    </div>
+                    
+                    <div class="tarjeta-beneficio tarjeta-navy" style="margin-bottom: 16px; background-color: #f9faff;">
+                        <span class="titulo-beneficio">Prevención de Mermas</span>
+                        <p class="texto-beneficio">Identificación rápida de diferencias mediante registros auditables, blindando su rentabilidad y evitando pérdidas invisibles.</p>
+                    </div>
+
+                    <p class="texto-normal" style="margin-bottom: 0;">
+                        Lidere con una gestión logística <strong>totalmente transparente, valorizada y lista para cualquier auditoría.</strong>
+                    </p>
+                </td>
+            </tr>
+            <tr>
+                <td class="closing-box">
+                    <h2 class="closing-title">¿Desea alinear su almacén con su contabilidad?</h2>
+                    <!-- Botón CTA Basado en Tabla (Centrado Vertical) -->
+                    <table align="center" cellpadding="0" cellspacing="0" border="0" style="margin: 0 auto; border-collapse: collapse; width: auto;">
+                        <tr>
+                            <td align="center" bgcolor="#1e53dd" style="border-radius: 8px; padding: 12px 25px; box-shadow: 0 4px 8px rgba(30, 83, 221, 0.15);">
+                                <a href="{{CTA_Link}}?utm_source=partnertech&utm_medium=correo&utm_campaign=campana_kardex&utm_content=v3_valorizacion_boton_asesoria&utm_term={{Email_Hash}}"
+                                   style="color: #ffffff !important; text-decoration: none; font-family: 'Poppins', Arial, Helvetica, sans-serif; font-size: 15px; font-weight: 700; white-space: nowrap; display: inline-block; vertical-align: middle;">
+                                    <table align="center" cellpadding="0" cellspacing="0" border="0" style="border-collapse: collapse; width: auto;">
+                                        <tr>
+                                            <td style="vertical-align: middle; padding-right: 8px; font-size: 18px; line-height: 1.2; color: #ffffff !important; font-family: Arial, sans-serif;">🛡️</td>
+                                            <td style="vertical-align: middle; font-family: 'Poppins', Arial, Helvetica, sans-serif; font-size: 15px; font-weight: 700; color: #ffffff !important; white-space: nowrap; line-height: 1.2;">ANALIZAR MI INTEGRIDAD FINANCIERA</td>
+                                        </tr>
+                                    </table>
+                                </a>
+                            </td>
+                        </tr>
+                    </table>
+                    <p class="texto-ps" style="font-size: 16px; text-align: left; margin-top: 40px; font-style: normal; color: #64748b; line-height: 1.62; font-weight: 400;">
+                        <strong>¿Qué resolveremos?</strong> Le mostraremos cómo nuestra parametrización contable <span style="color: #1bde5d; font-weight: 700;">cierra definitivamente la brecha entre el inventario físico y los estados financieros</span> de su empresa.
+                    </p>
+
+                </td>
+            </tr>
+
+            <tr>
+                <td class="seccion-firma">
+                    <table width="100%" cellpadding="0" cellspacing="0">
+                        <tr>
+                            <td class="columna-apilada" width="50%" valign="top" align="center"
+                                style="padding-bottom: 30px;">
+                                <div style="display: inline-block; text-align: left;">
+                                    <p style="margin: 0; font-size: 16px; color: #333c4e; font-weight: 700;">
+                                        {{Nombre_Remitente}}</p>
+                                    <p style="margin: 2px 0 8px 0; font-size: 13px; color: #718096; line-height: 1.3;">
+                                        {{Cargo_Remitente}}</p>
+                                    <p style="margin: 5px 0 12px 0; font-size: 13px;">
+                                        <a href="mailto:{{Email_Remitente}}"
+                                            style="color: #1e53dd; text-decoration: none;">{{Email_Remitente}}</a>
+                                    </p>
+                                    <a href="https://api.whatsapp.com/send/?phone=51933820255"
+                                        style="background-color: #1bde5d; color: #ffffff; padding: 10px 24px; text-decoration: none; border-radius: 8px; font-size: 14px; font-weight: 700; display: inline-block; white-space: nowrap;">
+                                        <span style="vertical-align: middle; font-family: 'Poppins', Arial, Helvetica, sans-serif;">+51 933 820 255</span>
+                                    </a>
+                                </div>
+                            </td>
+                            <td class="columna-apilada" width="50%" valign="top" align="center"
+                                style="padding-bottom: 30px;">
+                                <div style="display: inline-block; text-align: left; padding-left: 20px;">
+                                    <img src="cid:Logo_Color" alt="Partner Tech" height="35" style="margin-bottom: 12px;">
+                                    <p style="margin: 0; font-size: 13px; color: #718096; line-height: 1.5;">
+                                        <a href="https://partnertech.pe"
+                                            style="color: #1e53dd; text-decoration: none;">www.partnertech.pe</a><br>
+                                        negocios@partnertech.pe<br>
+                                        Av. Malachowsky 340, San Borja, Lima
+                                    </p>
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+            <tr>
+                <td align="center" valign="top" style="padding: 24px 0; background-color: #ffffff;">
+                    <!-- Tabla de redes sociales con ancho fijo para asegurar centrado -->
+                    <table align="center" border="0" cellpadding="0" cellspacing="0" width="160" style="width: 160px;">
+                        <tr>
+                            <td align="center" width="53" style="width: 53px;">
+                                <a href="https://www.facebook.com/PartnerTech.pe/" target="_blank">
+                                    <img src="cid:logo_facebook_circular" alt="Facebook" width="24" height="24" style="display: block; border: 0;">
+                                </a>
+                            </td>
+                            <td align="center" width="53" style="width: 53px;">
+                                <a href="https://www.instagram.com/partner.tech_pe/" target="_blank">
+                                    <img src="cid:logo_instagram_circular" alt="Instagram" width="24" height="24" style="display: block; border: 0;">
+                                </a>
+                            </td>
+                            <td align="center" width="54" style="width: 54px;">
+                                <a href="https://www.linkedin.com/company/partner-tech-pe/" target="_blank">
+                                    <img src="cid:logo_linkedin_circular" alt="LinkedIn" width="24" height="24" style="display: block; border: 0;">
+                                </a>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+            <tr>
+                <td class="pie-pagina" style="border-top: none; padding-top: 0;">
+                    <p style="margin-bottom: 10px;">Enviado a <span style="color: inherit !important; text-decoration: none !important; border: none !important;">{{Email_Destinatario}}</span>
+                        cumpliendo los lineamientos de la <strong>Cámara de Comercio de Lima (CCL)</strong>.</p>
+                    <p>Respetamos tu privacidad profesional. Si no deseas recibir más correos, <a
+                            href="mailto:negocios@partnertech.pe?subject=Remover">haga clic aquí para darse de baja</a>.
+                    </p>
+                </td>
+            </tr>
         </table>
     </center>
-    <img src="https://www.google-analytics.com/g/collect?v=2&amp;tid=G-FLPG7XG57W&amp;cid={{Email_Hash}}&amp;en=apertura_correo&amp;ep.campana=campana_kardex&amp;ep.plantilla=v3_valorizacion" width="1" height="1" style="display:none; visibility:hidden;" alt="" />
+    <img src="https://www.google-analytics.com/g/collect?v=2&amp;tid=G-FLPG7XG57W&amp;cid={{Email_Hash}}&amp;en=apertura_correo&amp;ep.campana=campana_kardex&amp;ep.plantilla=v3_valorizacion"
+        width="1" height="1" style="display:none;" />
 </body>
 </html>

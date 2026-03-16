@@ -4,143 +4,390 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CRM - Velocidad de Cierre | Partner Tech</title>
-
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;700&family=Poppins:wght@400;700&display=swap"
-        rel="stylesheet">
+    <title>CRM: Velocidad y Control de tu Pipeline</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <!--[if mso]>
+    <style type="text/css">
+        body, table, td, p, a, span { font-family: Arial, Helvetica, sans-serif !important; }
+    </style>
+    <![endif]-->
     <style>
-        body { margin: 0; padding: 0; font-family: 'Poppins', 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; background-color: #ffffff; color: #555555; -webkit-font-smoothing: antialiased; }
-        table { border-spacing: 0; width: 100%; }
-        td { padding: 0; }
-        img { border: 0; display: block; max-width: 100%; }
-        .wrapper { width: 100%; table-layout: fixed; background-color: #ffffff; padding: 40px 0; }
-        .main-container { background-color: #ffffff; margin: 0 auto; width: 100%; max-width: 600px; border-radius: 16px; overflow: hidden; box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06); }
-        .content { padding: 40px 35px; }
-        .greeting { font-size: 20px; color: #0021a4; font-weight: 700; margin-bottom: 20px; font-family: 'Orbitron', sans-serif; }
-        .text-paragraph { font-size: 16px; line-height: 1.7; color: #666; margin-bottom: 25px; font-family: 'Poppins', sans-serif; }
-        .highlight { color: #1e53dd; font-weight: 700; }
-        .stat-box { background-color: #f8fafc; border: 1px solid #e2e8f0; border-radius: 12px; padding: 20px 15px; text-align: center; }
-        .stat-number { font-size: 28px; font-weight: 700; color: #0021a4; font-family: 'Orbitron', sans-serif; display: block; margin-bottom: 5px; }
-        .stat-label { font-size: 12px; color: #718096; font-family: 'Poppins', sans-serif; text-transform: uppercase; letter-spacing: 0.5px; }
-        .benefit-box { background-color: #ffffff; border: 1px solid #e2e8f0; border-left: 5px solid #1bde5d; border-radius: 12px; padding: 20px; margin-bottom: 20px; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04); }
-        .benefit-title { color: #0021a4; font-size: 16px; font-weight: 700; display: block; margin-bottom: 5px; font-family: 'Orbitron', sans-serif; }
-        .benefit-text { font-size: 14px; line-height: 1.5; color: #718096; margin: 0; font-family: 'Poppins', sans-serif; }
-        .btn-meeting { background-color: #1e53dd; color: #ffffff !important; display: block; width: 100%; max-width: 380px; margin: 0 auto 15px auto; padding: 14px 30px; text-decoration: none; border-radius: 50px; font-weight: 700; font-size: 15px; box-shadow: 0 4px 12px rgba(30, 83, 221, 0.3); transition: all 0.3s ease; font-family: 'Poppins', sans-serif; text-align: center; }
-        .btn-meeting:hover { background-color: #1645b8; transform: translateY(-2px); }
-        .closing-box { text-align: center; margin-top: 35px; padding-top: 25px; border-top: 1px dashed #dce5f2; }
-        .call-action { font-size: 17px; color: #1e53dd; font-weight: 700; margin-bottom: 10px; font-family: 'Orbitron', sans-serif; }
-        .header { background-color: #ffffff; padding: 30px 20px; text-align: center; border-bottom: 2px solid #f1f5f9; }
-        .header-tagline { color: #718096; font-family: 'Orbitron', sans-serif; font-size: 9px; letter-spacing: 2px; margin-top: 8px; text-transform: uppercase; }
-        .footer { background-color: #2d3748; padding: 30px; text-align: center; font-size: 13px; color: #555555; line-height: 1.6; font-family: 'Poppins', sans-serif; }
-        .footer a { color: #cbd5e0; text-decoration: none; border-bottom: 1px dotted #cbd5e0; }
-        .footer-logo { max-height: 50px; width: auto; margin: 10px auto 0; display: block; }
-        @media screen and (max-width: 600px) { .content { padding: 30px 20px !important; } .btn-meeting { display: block; width: 100%; box-sizing: border-box; } }
+        * {
+            font-family: 'Poppins', Arial, Helvetica, sans-serif !important;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #f0f7ff;
+            color: #64748b;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        table {
+            border-spacing: 0;
+            width: 100%;
+        }
+
+        td {
+            padding: 0;
+        }
+
+        img {
+            border: 0;
+            display: block;
+            max-width: 100%;
+        }
+
+        .envoltorio {
+            width: 100%;
+            table-layout: fixed;
+            background-color: #f0f7ff;
+            padding: 40px 0;
+        }
+
+        .contenedor-principal {
+            background-color: #ffffff;
+            margin: 0 auto;
+            width: 100%;
+            max-width: 600px;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 10px 40px rgba(0, 21, 86, 0.05);
+        }
+
+        .cabecera {
+            background-color: #ffffff;
+            padding: 24px 40px;
+            border-bottom: 6px solid #00e0ff;
+        }
+
+        .lema {
+            color: #a0aec0;
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 2.2px;
+            margin: 0;
+        }
+
+        .espaciado-cuerpo {
+            padding: 48px 40px;
+        }
+
+        .texto-normal {
+            font-size: 16px;
+            color: #64748b;
+            line-height: 1.62;
+            margin-bottom: 20px;
+        }
+
+        .texto-destacado {
+            color: #1e53dd;
+            font-weight: 700;
+        }
+
+        .divisor-seccion {
+            border: none;
+            border-top: 1px solid #e2e8f0;
+            margin: 32px 0;
+        }
+
+        .titulo-seccion {
+            font-size: 18px;
+            color: #333c4e;
+            font-weight: 800;
+            margin-bottom: 24px;
+        }
+
+        .tarjeta-beneficio {
+            background-color: #ffffff;
+            border: 1px solid #e2e8f0;
+            border-left: 5px solid #1bde5d;
+            border-radius: 12px;
+            padding: 18px 24px;
+            margin-bottom: 16px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
+        }
+
+        .tarjeta-verde { border-left-color: #1bde5d; }
+        .tarjeta-cyan { border-left-color: #00e0ff; }
+        .tarjeta-navy { border-left-color: #1e53dd; }
+
+        .titulo-beneficio {
+            color: #1a1a1a;
+            font-size: 16px;
+            font-weight: 700;
+            display: block;
+            margin-bottom: 6px;
+        }
+
+        .texto-beneficio {
+            font-size: 16px;
+            line-height: 1.6;
+            color: #64748b;
+            margin: 0;
+        }
+
+        .closing-box {
+            text-align: center;
+            padding: 16px 40px 16px 40px;
+            background-color: #ffffff;
+        }
+
+        .closing-title {
+            font-size: 19px;
+            color: #1e53dd;
+            font-weight: 800;
+            margin-top: 0;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+        }
+
+        .btn-pill {
+            background-color: #1e53dd;
+            color: #ffffff !important;
+            display: inline-block;
+            padding: 14px 40px;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 15px;
+            box-shadow: 0 4px 12px rgba(30, 83, 221, 0.3);
+            text-align: center;
+            white-space: nowrap;
+        }
+
+        .texto-ps {
+            font-size: 16px;
+            color: #64748b;
+            margin-top: 20px;
+            line-height: 1.62;
+            font-style: italic;
+        }
+
+        .texto-ps a {
+            color: #1e53dd;
+            text-decoration: underline;
+        }
+
+        .seccion-firma {
+            padding: 40px 40px 0 40px;
+        }
+
+        .pie-pagina {
+            padding: 48px 48px;
+            text-align: center;
+            background-color: #ffffff;
+        }
+
+        .pie-pagina p {
+            font-size: 11px;
+            color: #cbd5e0;
+            margin-bottom: 10px;
+            line-height: 1.6;
+            letter-spacing: 0.3px;
+        }
+
+        .pie-pagina a {
+            color: #cbd5e0 !important;
+            text-decoration: underline;
+        }
+
+        @media screen and (max-width: 600px) {
+            .contenedor-principal {
+                width: 100% !important;
+                border-radius: 0 !important;
+            }
+
+            .espaciado-cuerpo {
+                padding: 40px 20px !important;
+            }
+
+            .tarjeta-beneficio {
+                padding: 20px !important;
+            }
+
+            .boton-verde {
+                padding: 15px 20px !important;
+                font-size: 14px !important;
+                width: 100% !important;
+                box-sizing: border-box;
+            }
+
+            .bloque-navy {
+                padding: 40px 20px !important;
+            }
+
+            .titulo-navy {
+                font-size: 22px !important;
+            }
+
+            .columna-apilada {
+                display: block !important;
+                width: 100% !important;
+                border-left: none !important;
+                border-top: 1px solid #e2e8f0;
+                padding-left: 0 !important;
+                padding-top: 20px !important;
+                text-align: center !important;
+            }
+
+            .columna-apilada img {
+                margin: 0 auto 12px auto !important;
+            }
+        }
     </style>
 </head>
 
 <body>
-    <center class="wrapper">
-        <table class="main-container" width="100%" cellpadding="0" cellspacing="0">
+    <center class="envoltorio">
+        <table class="contenedor-principal" cellpadding="0" cellspacing="0">
             <tr>
-                <td class="header">
-                    <img src="cid:Logo_Color" alt="Partner Tech Logo" style="max-height: 40px; width: auto; margin: 0 auto;">
-                    <div class="header-tagline">Tu Socio Estratégico</div>
+                <td class="cabecera">
+                    <table width="100%" cellpadding="0" cellspacing="0">
+                        <tr>
+                            <td align="left" valign="middle">
+                                <img src="cid:Logo_Color" alt="Partner Tech" height="50">
+                            </td>
+                            <td align="right" valign="middle">
+                                <div class="lema">Tu Socio Estratégico</div>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+            <tr>
+                <td class="espaciado-cuerpo" style="padding-bottom: 16px;">
+                    <p style="font-size: 16px; color: #64748b; margin-bottom: 16px; font-weight: 400; line-height: 1.4;">
+                        Hola {{Nombre_Contacto}},
+                    </p>
+                    <p class="texto-normal" style="margin-bottom: 16px;">
+                        ¿Llega a fin de mes sin saber exactamente cuántas ventas se cerrarán? A nivel directivo, <span style="color: #ef4444; font-weight: 700;">la dependencia de reportes manuales genera ceguera frente a las oportunidades estancadas en el embudo</span>.
+                    </p>
+                    <p class="texto-normal" style="margin-bottom: 24px;">
+                        Tomar decisiones sin datos en tiempo real frena su crecimiento. Con nuestro CRM le ayudamos a <span style="color: #1bde5d; font-weight: 700;">ganar visibilidad estratégica total</span> y acelerar el ciclo de vida de cada prospecto.
+                    </p>
+
+                    <hr style="border: none; border-top: 1px solid #e2e8f0; margin: 16px 0;">
+
+                    <p class="texto-normal" style="margin-top: 16px; margin-bottom: 24px;">
+                        Proveemos a su equipo comercial de herramientas de hiper-productividad nativamente conectadas a un panel de control gerencial transparente.
+                    </p>
+                    
+                    <p class="titulo-seccion">Herramientas de Cierre y Control:</p>
+                    
+                    <div class="tarjeta-beneficio tarjeta-verde" style="background-color: #fafffb;">
+                        <span class="titulo-beneficio">Cockpit Ejecutivo</span>
+                        <p class="texto-beneficio">Dashboard en tiempo real con KPIs de ingresos, tasas de conversión y salud general de su Pipeline.</p>
+                    </div>
+                    
+                    <div class="tarjeta-beneficio tarjeta-cyan" style="background-color: #f8fdff;">
+                        <span class="titulo-beneficio">Cotizador Rápido</span>
+                        <p class="texto-beneficio">Configure y envíe presupuestos profesionales directamente desde el sistema para reducir la fricción de venta.</p>
+                    </div>
+                    
+                    <div class="tarjeta-beneficio tarjeta-navy" style="margin-bottom: 16px; background-color: #f9faff;">
+                        <span class="titulo-beneficio">Pipeline Interactivo</span>
+                        <p class="texto-beneficio">Gestión visual drag-and-drop de oportunidades. Detecte los cuellos de botella de su equipo antes de perder tratos vitales.</p>
+                    </div>
+
+                    <p class="texto-normal" style="margin-bottom: 0;">
+                        Lidere su fuerza de ventas con <strong>datos fiables y velocidad táctica superior.</strong>
+                    </p>
+                </td>
+            </tr>
+            <tr>
+                <td class="closing-box">
+                    <h2 class="closing-title">¿Listo para acelerar su ciclo de ventas?</h2>
+                    <!-- Botón CTA Basado en Tabla (Centrado Vertical) -->
+                    <table align="center" cellpadding="0" cellspacing="0" border="0" style="margin: 0 auto; border-collapse: collapse; width: auto;">
+                        <tr>
+                            <td align="center" bgcolor="#1e53dd" style="border-radius: 8px; padding: 12px 25px; box-shadow: 0 4px 8px rgba(30, 83, 221, 0.15);">
+                                <a href="{{CTA_Link}}?utm_source=partnertech&utm_medium=correo&utm_campaign=campana_crm&utm_content=v3_velocidad_boton_diagnostico&utm_term={{Email_Hash}}"
+                                   style="color: #ffffff !important; text-decoration: none; font-family: 'Poppins', Arial, Helvetica, sans-serif; font-size: 15px; font-weight: 700; white-space: nowrap; display: inline-block; vertical-align: middle;">
+                                    <table align="center" cellpadding="0" cellspacing="0" border="0" style="border-collapse: collapse; width: auto;">
+                                        <tr>
+                                            <td style="vertical-align: middle; padding-right: 8px; font-size: 18px; line-height: 1.2; color: #ffffff !important; font-family: Arial, sans-serif;">🎯</td>
+                                            <td style="vertical-align: middle; font-family: 'Poppins', Arial, Helvetica, sans-serif; font-size: 15px; font-weight: 700; color: #ffffff !important; white-space: nowrap; line-height: 1.2;">AUDITAR MI PROCESO COMERCIAL</td>
+                                        </tr>
+                                    </table>
+                                </a>
+                            </td>
+                        </tr>
+                    </table>
+                    <p class="texto-ps" style="font-size: 16px; text-align: left; margin-top: 40px; font-style: normal; color: #64748b; line-height: 1.62; font-weight: 400;">
+                        <strong>¿Qué lograremos juntos?</strong> Identificaremos las fugas de tiempo en su modelo actual y le demostraremos cómo <span style="color: #1bde5d; font-weight: 700;">nuestro CRM empodera a sus gerentes y acelera la conversión</span> general.
+                    </p>
+
                 </td>
             </tr>
 
             <tr>
-                <td class="content">
-                    <p class="greeting">Hola {{Nombre_Contacto}},</p>
-
-                    <p class="text-paragraph">
-                        Te saluda {{Nombre_Remitente}}, de Partner Tech. Como líder comercial, sabes que en ventas B2B <span class="highlight">"el que cotiza primero, cierra primero"</span>.
-                    </p>
-
-                    <p class="text-paragraph">
-                        Redactar cotizaciones manuales, buscar precios en Excel y coordinar aprobaciones por correo consume horas valiosas. Cada hora perdida es una oportunidad que se enfría y un competidor que llega antes.
-                    </p>
-
-                    <table width="100%" cellpadding="0" cellspacing="0" style="margin-bottom: 25px;">
+                <td class="seccion-firma">
+                    <table width="100%" cellpadding="0" cellspacing="0">
                         <tr>
-                            <td align="center" width="31%" style="padding: 5px;">
-                                <div class="stat-box">
-                                    <span class="stat-number">60s</span>
-                                    <span class="stat-label">Cotización<br>profesional</span>
+                            <td class="columna-apilada" width="50%" valign="top" align="center"
+                                style="padding-bottom: 30px;">
+                                <div style="display: inline-block; text-align: left;">
+                                    <p style="margin: 0; font-size: 16px; color: #333c4e; font-weight: 700;">
+                                        {{Nombre_Remitente}}</p>
+                                    <p style="margin: 2px 0 8px 0; font-size: 13px; color: #718096; line-height: 1.3;">
+                                        {{Cargo_Remitente}}</p>
+                                    <p style="margin: 5px 0 12px 0; font-size: 13px;">
+                                        <a href="mailto:{{Email_Remitente}}"
+                                            style="color: #1e53dd; text-decoration: none;">{{Email_Remitente}}</a>
+                                    </p>
+                                    <a href="https://api.whatsapp.com/send/?phone=51933820255"
+                                        style="background-color: #1bde5d; color: #ffffff; padding: 10px 24px; text-decoration: none; border-radius: 8px; font-size: 14px; font-weight: 700; display: inline-block; white-space: nowrap;">
+                                        <span style="vertical-align: middle; font-family: 'Poppins', Arial, Helvetica, sans-serif;">+51 933 820 255</span>
+                                    </a>
                                 </div>
                             </td>
-                            <td align="center" width="31%" style="padding: 5px;">
-                                <div class="stat-box">
-                                    <span class="stat-number" style="color: #1bde5d;">30s</span>
-                                    <span class="stat-label">Contexto<br>del cliente</span>
-                                </div>
-                            </td>
-                            <td align="center" width="31%" style="padding: 5px;">
-                                <div class="stat-box">
-                                    <span class="stat-number" style="color: #1e53dd;">100%</span>
-                                    <span class="stat-label">Pipeline<br>visible</span>
+                            <td class="columna-apilada" width="50%" valign="top" align="center"
+                                style="padding-bottom: 30px;">
+                                <div style="display: inline-block; text-align: left; padding-left: 20px;">
+                                    <img src="cid:Logo_Color" alt="Partner Tech" height="35" style="margin-bottom: 12px;">
+                                    <p style="margin: 0; font-size: 13px; color: #718096; line-height: 1.5;">
+                                        <a href="https://partnertech.pe"
+                                            style="color: #1e53dd; text-decoration: none;">www.partnertech.pe</a><br>
+                                        negocios@partnertech.pe<br>
+                                        Av. Malachowsky 340, San Borja, Lima
+                                    </p>
                                 </div>
                             </td>
                         </tr>
                     </table>
-
-                    <p class="text-paragraph">
-                        Nuestro <strong>CRM</strong> incluye herramientas de hiper-productividad que automatizan la generación de documentos legales y cotizaciones profesionales, acelerando cada etapa de tu ciclo de ventas.
-                    </p>
-
-                    <div class="benefit-box">
-                        <span class="benefit-title">⚡ Cotizaciones Auto-Generadas</span>
-                        <p class="benefit-text">
-                            Genere presupuestos profesionales con un clic desde la ficha del cliente. <strong>Cierre negocios más rápido enviando cotizaciones en menos de 60 segundos.</strong>
-                        </p>
-                    </div>
-
-                    <div class="benefit-box" style="border-left-color: #00e0ff;">
-                        <span class="benefit-title">📅 Agenda Integrada</span>
-                        <p class="benefit-text">
-                            Coordine reuniones sin salir del CRM. Calendarios sincronizados que eliminan el <strong>ping-pong de correos para encontrar horarios disponibles</strong>.
-                        </p>
-                    </div>
-
-                    <div class="benefit-box" style="border-left-color: #1e53dd;">
-                        <span class="benefit-title">📊 Pipeline en Tiempo Real</span>
-                        <p class="benefit-text">
-                            Visualice el embudo de ventas completo. <strong>Identifique cuellos de botella y oportunidades estancadas</strong> antes de que se pierdan.
-                        </p>
-                    </div>
-
-                    <div class="closing-box">
-                        <p class="call-action">¿Listo para acelerar tu ciclo de ventas?</p>
-
-                        <a href="https://cal.com/negocios-partner-tech/requerimientos-software-desarrollo?utm_source=partnertech&amp;utm_medium=correo&amp;utm_campaign=campana_crm&amp;utm_content=v3_velocidad_boton_agendar&amp;utm_term={{Email_Hash}}"
-                            class="btn-meeting" style="color: #ffffff !important; text-decoration: none;">
-                            <span style="color: #ffffff;">📅 Agendar Reunión de 15 min</span>
-                        </a>
-
-                        <p style="font-size: 13px; color: #666; margin-top: 18px; line-height: 1.6;">
-                            P.S. Si necesitas la propuesta técnica antes de conversar, <a href="mailto:{{Email_Remitente}}?subject=Interes%20CRM%20Partner%20Tech" style="color: #1e53dd; text-decoration: underline;">solicítala por aquí</a>.
-                        </p>
-
-                        <p style="color: #555; margin-top: 15px; margin-bottom: 10px;">
-                            Saludos,<br><strong>{{Nombre_Remitente}}</strong><br>
-                            <a href="mailto:{{Email_Remitente}}" style="color: #1e53dd; text-decoration: none;">{{Email_Remitente}}</a><br>
-                            <span style="font-size: 14px; color: #888;">{{Cargo_Remitente}}</span>
-                        </p>
-                        <img src="cid:Logo_Color" alt="Partner Tech Logo" class="footer-logo">
-
-                        <div style="margin-top: 25px; padding-top: 15px; border-top: 1px solid #e2e8f0; font-size: 13px; color: #718096; line-height: 1.6;">
-                            <strong>RUC 20523799623</strong><br>
-                            🏢 Av. Malachowsky 340, San Borja, Lima<br>
-                            🌐 <a href="https://partnertech.pe/?utm_source=partnertech&amp;utm_medium=correo&amp;utm_campaign=campana_crm&amp;utm_content=v3_velocidad_enlace_web&amp;utm_term={{Email_Hash}}" style="color: #1e53dd; text-decoration: none; font-weight: bold;">Visitar nuestro sitio web: Partnertech.pe</a>
-                        </div>
-                    </div>
                 </td>
             </tr>
-
             <tr>
-                <td class="footer" style="padding-top: 5px;">
-                    <p>Enviado a <strong>{{Email_Destinatario}}</strong> cumpliendo los lineamientos de la
-                        <strong>Cámara de Comercio de Lima (CCL)</strong>.
-                    </p>
+                <td align="center" valign="top" style="padding: 24px 0; background-color: #ffffff;">
+                    <!-- Tabla de redes sociales con ancho fijo para asegurar centrado -->
+                    <table align="center" border="0" cellpadding="0" cellspacing="0" width="160" style="width: 160px;">
+                        <tr>
+                            <td align="center" width="53" style="width: 53px;">
+                                <a href="https://www.facebook.com/PartnerTech.pe/" target="_blank">
+                                    <img src="cid:logo_facebook_circular" alt="Facebook" width="24" height="24" style="display: block; border: 0;">
+                                </a>
+                            </td>
+                            <td align="center" width="53" style="width: 53px;">
+                                <a href="https://www.instagram.com/partner.tech_pe/" target="_blank">
+                                    <img src="cid:logo_instagram_circular" alt="Instagram" width="24" height="24" style="display: block; border: 0;">
+                                </a>
+                            </td>
+                            <td align="center" width="54" style="width: 54px;">
+                                <a href="https://www.linkedin.com/company/partner-tech-pe/" target="_blank">
+                                    <img src="cid:logo_linkedin_circular" alt="LinkedIn" width="24" height="24" style="display: block; border: 0;">
+                                </a>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+            <tr>
+                <td class="pie-pagina" style="border-top: none; padding-top: 0;">
+                    <p style="margin-bottom: 10px;">Enviado a <span style="color: inherit !important; text-decoration: none !important; border: none !important;">{{Email_Destinatario}}</span>
+                        cumpliendo los lineamientos de la <strong>Cámara de Comercio de Lima (CCL)</strong>.</p>
                     <p>Respetamos tu privacidad profesional. Si no deseas recibir más correos, <a
                             href="mailto:negocios@partnertech.pe?subject=Remover">haga clic aquí para darse de baja</a>.
                     </p>
@@ -148,7 +395,7 @@
             </tr>
         </table>
     </center>
-    <img src="https://www.google-analytics.com/g/collect?v=2&amp;tid=G-FLPG7XG57W&amp;cid={{Email_Hash}}&amp;en=apertura_correo&amp;ep.campana=campana_crm&amp;ep.plantilla=v3_velocidad" width="1" height="1" style="display:none; visibility:hidden;" alt="" />
+    <img src="https://www.google-analytics.com/g/collect?v=2&amp;tid=G-FLPG7XG57W&amp;cid={{Email_Hash}}&amp;en=apertura_correo&amp;ep.campana=campana_crm&amp;ep.plantilla=v3_velocidad"
+        width="1" height="1" style="display:none;" />
 </body>
-
 </html>
