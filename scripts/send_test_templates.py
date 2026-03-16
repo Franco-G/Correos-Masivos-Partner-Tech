@@ -52,6 +52,22 @@ TEMPLATES = [
             "Email_Destinatario": "{{Email_Destinatario}}",
             "Email_Hash": "{{Email_Hash}}"
         }
+    },
+    {
+        "name": "Base Stitch C (Auditoria Final)",
+        "file": "templates/base/base_diseno_c.html",
+        "vars": {
+            "Titulo_Pagina": "Partner Tech | Control Total en Clínicas",
+            "Asunto_Override": "Tu Socio Estratégico: Auditoría Médica Continua",
+            "Nombre_Contacto": "Doctor",
+            "CTA_Link": "https://cal.com/negocios-partner-tech/requerimientos-software-desarrollo",
+            "Campana": "produccion_ccl_v1",
+            "Nombre_Remitente": "Franco Guerrero",
+            "Cargo_Remitente": "Director Comercial",
+            "Email_Remitente": "fguerrero@partnertech.pe",
+            "Email_Destinatario": "{{Email_Destinatario}}",
+            "Email_Hash": "{{Email_Hash}}"
+        }
     }
 ]
 
@@ -70,8 +86,13 @@ def send_email(template_config, dest_email):
             html = html.replace(f"{{{{{key}}}}}", content)
 
         msg = MIMEMultipart("related")
-        # Identificador de plantilla para el asunto (A o B)
-        template_id = "Plantilla A" if "base_diseno_a" in template_config["file"] else "Plantilla B"
+        # Identificador de plantilla para el asunto
+        if "base_diseno_a" in template_config["file"]:
+            template_id = "Plantilla A"
+        elif "base_diseno_b" in template_config["file"]:
+            template_id = "Plantilla B"
+        else:
+            template_id = "Plantilla C"
         timestamp = datetime.now().strftime("%H:%M:%S")
         msg["Subject"] = f"{template_id} | {timestamp}"
         msg["From"] = SENDER_EMAIL
@@ -98,7 +119,10 @@ def send_email(template_config, dest_email):
             ("assets/icons/custom/whatsapp_white.png", "whatsapp_blanco"),
             ("assets/icons/icomoon/401-facebook-circle.png", "soc_fb"),
             ("assets/icons/icomoon/403-instagram-circle.png", "soc_ig"),
-            ("assets/icons/icomoon/458-linkedin-circle.png", "soc_li")
+            ("assets/icons/icomoon/458-linkedin-circle.png", "soc_li"),
+            ("logo_facebook_circular.png", "logo_facebook_circular"),
+            ("logo_instagram_circular.png", "logo_instagram_circular"),
+            ("logo_linkedin_circular.png", "logo_linkedin_circular")
         ]
 
         for path, cid in assets:

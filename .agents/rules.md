@@ -2,7 +2,7 @@
 
 ## Automatización de Pruebas
 - **Script de Envío:** `scripts/send_test_templates.py`
-- **Regla:** Cada vez que el asistente (tú) realice una edición en cualquier archivo dentro de la carpeta `templates/`, DEBES ejecutar automáticamente el script de envío de prueba para validar que el diseño no se haya roto y que el usuario pueda verlo en su bandeja de entrada inmediatamente.
+- **Regla:** Cada vez que el asistente (tú) realice una edición en cualquier archivo dentro de la carpeta `templates/`, DEBES ejecutar exclusivamente el script de envío de prueba para validar los cambios. Ya NO es necesario usar el navegador o subagentes de visualización para confirmar la recepción, bastará con el reporte de salida del script.
 - **Correos Destino:** `guerrerofranco1429@gmail.com`, `negocios@partnertech.pe`, `acardozo@partnertech.pe`
 
 ## Estándares de Plantillas

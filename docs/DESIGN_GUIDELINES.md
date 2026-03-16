@@ -56,14 +56,15 @@ Queda prohibido el uso de archivos `.svg` y emojis en los beneficios o botones. 
 *   **Botón CTA**: Fondo Verde (`#1bde5d`), radio de `10px`, texto blanco negrita, con icono de calendario blanco (`filter: brightness(0) invert(1)` si se usa el mismo CID).
 
 ### 4.3 Encabezado Premium Unificado (Final)
-*   **Fondo**: Blanco absoluto (`#ffffff`) con borde inferior Verde (`#1bde5d`) de `6px`.
-*   **Logo**: Versión **Color** (`cid:logo_oficial`) de **100px** de altura.
+*   **Fondo**: Blanco absoluto (`#ffffff`) con borde inferior Cyan (`#00e0ff`) de `6px`.
+*   **Logo**: Versión **Color** (`cid:Logo_Color`) de **60px** de altura, estandarizado para coincidir con el logo de la firma en formato de un solo color.
 *   **Tagline**: "Tu Socio Estratégico" alineado a la **derecha** del logo. Texto `#a0aec0` de `11px`, peso `600`, en mayúsculas, con `letter-spacing: 2.2px`.
 
 ## 5. Firma y Footer
 
-*   **Firma**: Fuera de bloques de color. Nombre en `#333c4e` (Bold), cargo en `#718096`. Logo a color (`cid:Logo_Color`) con altura máxima de `35px`.
-*   **Redes Sociales**: Bloque centrado inmediatamente antes del footer. Uso obligatorio de tabla con `align="center"` y ancho fijo (`160px`). Iconos circulares de 24px en gris premium.
+*   **Párrafo de Soporte**: Inmediatamente antes de la firma, se debe incluir un párrafo `espaciado-cuerpo` con el mensaje: "Estamos a su disposición para cualquier consulta. Puede agendar una llamada breve con nosotros o responder directamente a este correo."
+*   **Firma**: Fuera de bloques de color. Nombre en `#333c4e` (Bold), cargo en `#718096`. Columnas sin línea divisora. Logo a color (`cid:Logo_Color`) con altura máxima de `35px`. Datos de contacto de la empresa sin incluir RUC.
+*   **Redes Sociales**: Bloque centrado transversal justo antes del footer. La celda (`<td>`) contenedora **debe** tener un fondo blanco absoluto (`#ffffff`), ocupando el 100% del ancho del main-container. Uso obligatorio de tabla interior con `align="center"` y ancho fijo (`160px`). Iconos circulares transparentes a todo color de 24px (`logo_facebook_circular`, `logo_instagram_circular`, `logo_linkedin_circular`).
 *   **Footer**: Texto `#cbd5e0` de `11px`, centrado, sobre fondo blanco absoluto. Incluye link de baja y mención a la CCL.
 
 ## 6. Placeholders y Rastreo
