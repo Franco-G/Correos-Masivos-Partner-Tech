@@ -3,7 +3,7 @@
 ## Automatización de Pruebas
 - **Script de Envío:** `scripts/send_test_templates.py`
 - **Regla:** Cada vez que el asistente (tú) realice una edición en cualquier archivo dentro de la carpeta `templates/`, DEBES ejecutar automáticamente el script de envío de prueba para validar que el diseño no se haya roto y que el usuario pueda verlo en su bandeja de entrada inmediatamente.
-- **Correo Destino:** `guerrerofranco1429@gmail.com`
+- **Correos Destino:** `guerrerofranco1429@gmail.com`, `negocios@partnertech.pe`, `acardozo@partnertech.pe`
 
 ## Estándares de Plantillas
 - **Formato:** HTML basado en tablas para compatibilidad total con Outlook.
@@ -17,6 +17,6 @@
 - **Enfoque Móvil:** Priorizar siempre diseños que apilen columnas y usen anchos fluidos.
 
 ## Registro de Transparencia de Skills
-- **REGLA DE ORO:** Absolutamente TODAS las respuestas dirigidas al usuario que impliquen una mejora, cambio, análisis o reporte de estado, DEBEN listar la totalidad de las skills disponibles en el sistema.
-- **REALTADO:** Debes **resaltar en negrita** aquellas skills que han sido aplicadas o consultadas activamente para resolver la tarea actual.
+- **REGLA DE ORO:** Absolutamente TODAS las respuestas dirigidas al usuario que impliquen una mejora, cambio, análisis o reporte de estado, DEBEN listar la totalidad de las skills disponibles en el sistema, separándolas en **Globales** (sistema base) y **Locales** (propias del ecosistema Partner Tech).
+- **RESALTADO:** Debes **resaltar en negrita** aquellas skills que han sido aplicadas o consultadas activamente para resolver la tarea actual.
 - **MOTIVACIÓN:** Esto garantiza que el usuario siempre tenga visibilidad de las herramientas y marcos de trabajo (como Kaizen, Marketing Bible, etc.) que están moldeando el resultado.

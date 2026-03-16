@@ -723,34 +723,52 @@ class CorreoApp:
             msg_alternative.attach(MIMEText(html_content, "html"))
             
             try:
-                # Adjuntar Logo Blanco (Logo_ver1)
-                with open(logo_path, 'rb') as f:
-                    img = MIMEImage(f.read())
-                    img.add_header('Content-ID', '<Logo_ver1>')
-                    message.attach(img)
+                # Adjuntar Logo Blanco (Logo_ver1) - Usado en plantillas antiguas
+                if 'cid:Logo_ver1' in html_content:
+                    if os.path.exists(logo_path):
+                        with open(logo_path, 'rb') as f:
+                            img = MIMEImage(f.read())
+                            img.add_header('Content-ID', '<Logo_ver1>')
+                            message.attach(img)
                 
                 # Adjuntar Logo Color (Logo_Color)
-                with open(logo_color_path, 'rb') as f:
-                    img_c = MIMEImage(f.read())
-                    img_c.add_header('Content-ID', '<Logo_Color>')
-                    message.attach(img_c)
+                if 'cid:Logo_Color' in html_content:
+                    if os.path.exists(logo_color_path):
+                        with open(logo_color_path, 'rb') as f:
+                            img_c = MIMEImage(f.read())
+                            img_c.add_header('Content-ID', '<Logo_Color>')
+                            message.attach(img_c)
 
-                # --- ADJUNTAR ICONOS DE BENEFICIOS (SI EXISTEN) ---
-                # Soporta tanto SVG como PNG (se busca primero .png por compatibilidad)
-                iconos_beneficios = {
-                    'benefit_agenda': 'Icon_Agenda',
-                    'benefit_historia': 'Icon_Historia',
-                    'benefit_liquidacion': 'Icon_Liquidacion',
-                    'benefit_reunion': 'Icon_Reunion'
+                # Adjuntar Logo Oficial (logo_oficial) - Usado en bases A y B
+                if 'cid:logo_oficial' in html_content:
+                    path_oficial = os.path.join('assets', 'logos', 'logo_color.png')
+                    if os.path.exists(path_oficial):
+                        with open(path_oficial, 'rb') as f:
+                            img_o = MIMEImage(f.read())
+                            img_o.add_header('Content-ID', '<logo_oficial>')
+                            message.attach(img_o)
+
+                # --- ADJUNTAR ICONOS DE BENEFICIOS Y REDES SOCIALES ---
+                iconos_mapeo = {
+                    'Icon_Agenda': os.path.join('assets', 'benefit_agenda'),
+                    'Icon_Historia': os.path.join('assets', 'benefit_historia'),
+                    'Icon_Liquidacion': os.path.join('assets', 'benefit_liquidacion'),
+                    'Icon_Reunion': os.path.join('assets', 'benefit_reunion'),
+                    'minimalist_agenda_red': os.path.join('assets', 'icons', 'custom', 'agenda_red'),
+                    'minimalist_history_green': os.path.join('assets', 'icons', 'custom', 'history_green'),
+                    'minimalist_agenda_navy': os.path.join('assets', 'icons', 'custom', 'agenda_navy'),
+                    'minimalist_history_navy': os.path.join('assets', 'icons', 'custom', 'history_navy'),
+                    'minimalist_finance_navy': os.path.join('assets', 'icons', 'custom', 'finance_navy'),
+                    'soc_fb': os.path.join('assets', 'icons', 'icomoon', '401-facebook'),
+                    'soc_ig': os.path.join('assets', 'icons', 'icomoon', '403-instagram'),
+                    'soc_li': os.path.join('assets', 'icons', 'icomoon', '458-linkedin')
                 }
 
-                for base_name, cid_name in iconos_beneficios.items():
-                    # SOLO ADJUNTAR SI SE USA EN EL HTML
+                for cid_name, base_path in iconos_mapeo.items():
                     if f'cid:{cid_name}' in html_content:
-                        # Intentar encontrar PNG primero, luego SVG
                         icon_path = None
                         for ext in ['.png', '.svg']:
-                            p = os.path.join('assets', base_name + ext)
+                            p = base_path + ext
                             if os.path.exists(p):
                                 icon_path = p
                                 break
@@ -759,11 +777,10 @@ class CorreoApp:
                             with open(icon_path, 'rb') as f:
                                 img_icon = MIMEImage(f.read())
                                 img_icon.add_header('Content-ID', f'<{cid_name}>')
-                                # Aseguramos que no tenga Content-Disposition para evitar adjuntos detectados como archivos
                                 message.attach(img_icon)
 
             except Exception as e:
-                self.log_msg(f"No se pudo adjuntar el logo o iconos: {e}", "WARNING")
+                self.log_msg(f"No se pudo adjuntar activos: {e}", "WARNING")
             
             context = ssl.create_default_context()
             context.check_hostname = False

@@ -13,7 +13,11 @@ SMTP_SERVER = "mail.partnertech.pe"
 SMTP_PORT = 465
 SENDER_EMAIL = "fguerrero@partnertech.pe"
 SENDER_PASS = "Franco001"
-DEST_EMAIL = "guerrerofranco1429@gmail.com"
+DEST_EMAILS = [
+    "guerrerofranco1429@gmail.com",
+    "negocios@partnertech.pe",
+    "acardozo@partnertech.pe"
+]
 
 TEMPLATES = [
     {
@@ -29,8 +33,8 @@ TEMPLATES = [
             "Nombre_Remitente": "Franco Guerrero",
             "Cargo_Remitente": "Director Comercial",
             "Email_Remitente": "fguerrero@partnertech.pe",
-            "Email_Destinatario": DEST_EMAIL,
-            "Email_Hash": hashlib.md5(DEST_EMAIL.encode()).hexdigest()
+            "Email_Destinatario": "{{Email_Destinatario}}",
+            "Email_Hash": "{{Email_Hash}}"
         }
     },
     {
@@ -45,19 +49,25 @@ TEMPLATES = [
             "Nombre_Remitente": "Franco Guerrero",
             "Cargo_Remitente": "Director Comercial",
             "Email_Remitente": "fguerrero@partnertech.pe",
-            "Email_Destinatario": DEST_EMAIL,
-            "Email_Hash": hashlib.md5(DEST_EMAIL.encode()).hexdigest()
+            "Email_Destinatario": "{{Email_Destinatario}}",
+            "Email_Hash": "{{Email_Hash}}"
         }
     }
 ]
 
-def send_email(template_config):
+def send_email(template_config, dest_email):
     try:
         with open(template_config["file"], "r", encoding="utf-8") as f:
             html = f.read()
         
+        # Preparar variables específicas para el destinatario
+        email_hash = hashlib.md5(dest_email.encode()).hexdigest()
+        
         for key, val in template_config["vars"].items():
-            html = html.replace(f"{{{{{key}}}}}", str(val))
+            content = str(val)
+            if key == "Email_Destinatario": content = dest_email
+            if key == "Email_Hash": content = email_hash
+            html = html.replace(f"{{{{{key}}}}}", content)
 
         msg = MIMEMultipart("related")
         # Identificador de plantilla para el asunto (A o B)
@@ -65,7 +75,7 @@ def send_email(template_config):
         timestamp = datetime.now().strftime("%H:%M:%S")
         msg["Subject"] = f"{template_id} | {timestamp}"
         msg["From"] = SENDER_EMAIL
-        msg["To"] = DEST_EMAIL
+        msg["To"] = dest_email
         msg["Date"] = formatdate(localtime=True)
         msgid = make_msgid(domain="partnertech.pe")
         msg["Message-ID"] = msgid
@@ -85,7 +95,10 @@ def send_email(template_config):
             ("assets/icons/custom/agenda_navy.png", "minimalist_agenda_navy"),
             ("assets/icons/custom/history_navy.png", "minimalist_history_navy"),
             ("assets/icons/custom/finance_navy.png", "minimalist_finance_navy"),
-            ("assets/icons/custom/whatsapp_white.png", "whatsapp_blanco")
+            ("assets/icons/custom/whatsapp_white.png", "whatsapp_blanco"),
+            ("assets/icons/icomoon/401-facebook.png", "soc_fb"),
+            ("assets/icons/icomoon/403-instagram.png", "soc_ig"),
+            ("assets/icons/icomoon/458-linkedin.png", "soc_li")
         ]
 
         for path, cid in assets:
@@ -105,13 +118,14 @@ def send_email(template_config):
         context.verify_mode = ssl.CERT_NONE
         with smtplib.SMTP_SSL(SMTP_SERVER, SMTP_PORT, context=context) as server:
             server.login(SENDER_EMAIL, SENDER_PASS)
-            server.sendmail(SENDER_EMAIL, [DEST_EMAIL], msg.as_string())
+            server.sendmail(SENDER_EMAIL, [dest_email], msg.as_string())
         
-        print(f"✅ Enviado: {template_config['name']}")
+        print(f"✅ Enviado: {template_config['name']} -> {dest_email}")
     except Exception as e:
         print(f"❌ Error en {template_config['name']}: {e}")
 
 if __name__ == "__main__":
-    print(f"🚀 Enviando validación final a {DEST_EMAIL}...")
-    for t in TEMPLATES:
-        send_email(t)
+    print(f"🚀 Iniciando envío de prueba a {len(DEST_EMAILS)} destinatarios...")
+    for email in DEST_EMAILS:
+        for t in TEMPLATES:
+            send_email(t, email)

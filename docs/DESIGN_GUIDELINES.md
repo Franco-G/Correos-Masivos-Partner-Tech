@@ -40,7 +40,8 @@ Queda prohibido el uso de archivos `.svg` y emojis en los beneficios o botones. 
 *   **Implementación**: Adjuntos mediante `cid:minimalist_[nombre]` (ej. `cid:minimalist_agenda`).
 *   **Dimensiones en HTML**: Atributo `width="32"` o `width="24"` según el layout.
 *   **Alineación**: `vertical-align: middle; margin-right: 8px;`.
-*   **Procedimiento**: Los iconos se eligen de la base local y se mapean en el script de envío (`send_test_templates.py`).
+*   **Iconos Sociales**: CIDs específicos `soc_fb`, `soc_ig`, `soc_li`.
+*   **Procedimiento**: Los iconos se eligen de la base local y se mapean en el script de envío (`main.py` y `send_test_templates.py`).
 
 ## 4. Componentes Estructurales
 
@@ -56,13 +57,14 @@ Queda prohibido el uso de archivos `.svg` y emojis en los beneficios o botones. 
 
 ### 4.3 Encabezado Premium Unificado (Final)
 *   **Fondo**: Blanco absoluto (`#ffffff`) con borde inferior Verde (`#1bde5d`) de `6px`.
-*   **Logo**: Versión **Color** (`cid:logo_oficial`) de **60px** de altura.
+*   **Logo**: Versión **Color** (`cid:logo_oficial`) de **100px** de altura.
 *   **Tagline**: "Tu Socio Estratégico" alineado a la **derecha** del logo. Texto `#a0aec0` de `11px`, peso `600`, en mayúsculas, con `letter-spacing: 2.2px`.
 
 ## 5. Firma y Footer
 
 *   **Firma**: Fuera de bloques de color. Nombre en `#333c4e` (Bold), cargo en `#718096`. Logo a color (`cid:Logo_Color`) con altura máxima de `35px`.
-*   **Footer**: Texto `#cbd5e0` de `12px`, centrado, sobre fondo blanco absoluto.
+*   **Redes Sociales**: Bloque centrado inmediatamente antes del footer. Uso obligatorio de tabla con `align="center"` y ancho fijo (`160px`). Iconos de 28px con padding lateral.
+*   **Footer**: Texto `#cbd5e0` de `11px`, centrado, sobre fondo blanco absoluto. Incluye link de baja y mención a la CCL.
 
 ## 6. Placeholders y Rastreo
 *   `{{Nombre_Contacto}}`: Personalización.
