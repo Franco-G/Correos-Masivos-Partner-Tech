@@ -56,3 +56,22 @@ Queda prohibido el uso de archivos `.svg` y emojis en los beneficios o botones. 
 *   `{{Nombre_Contacto}}`: Personalización.
 *   `{{Email_Hash}}`: Obligatorio en todos los enlaces y en el píxel de GA4.
 *   **Píxel GA4**: Debe incluirse al final del `body` con los parámetros `en=apertura_correo`, `ep.campana` y `ep.plantilla` correctos.
+
+## 7. Glosario de Clases CSS (Español)
+
+| Clase Original (EN) | Clase Localizada (ES) | Propósito |
+| :--- | :--- | :--- |
+| `.wrapper` | `.envoltorio` | Contenedor externo de ancho completo del correo. |
+| `.main-container` | `.contenedor-principal` | Caja central de 600px que contiene el diseño. |
+| `.header` | `.cabecera` | Sección superior con logo y lema corporativo. |
+| `.hero` | `.seccion-hero` | Bloque principal de impacto visual y mensaje clave. |
+| `.title-hero` | `.titulo-hero` | Encabezado H1 de gran tamaño y peso visual. |
+| `.section-padding` | `.espaciado-seccion` | Margen interno estándar para el cuerpo del texto. |
+| `.impact-card` | `.tarjeta-impacto` | Tarjeta de comparación o impacto (Acento de color). |
+| `.accent-red` | `.acento-rojo` | Variante con borde y fondo rojo ligero. |
+| `.accent-green` | `.acento-verde` | Variante con borde y fondo verde ligero. |
+| `.box-icon` | `.caja-icono` | Contenedor para iconos (ahora transparente). |
+| `.navy-block` | `.bloque-navy` | Sección de llamado a la acción con fondo corporativo. |
+| `.footer` | `.pie-pagina` | Sección de avisos legales y baja de suscripción. |
+| `.stack-col` | `.columna-apilada` | Clase para que las columnas se apilen automáticamente en móvil. |
+| `.signature-stack` | `.firma-apilada` | Específico para el apilado de la firma en móviles. |

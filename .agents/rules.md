@@ -15,3 +15,7 @@
 - **Lineamientos Sugeridos:** `docs/DESIGN_GUIDELINES.md`
 - **Regla:** Ante cualquier mejora de diseño, cambio estructural o adaptación de responsividad que se implemente y sea validada por el usuario, DEBES actualizar inmediatamente `docs/DESIGN_GUIDELINES.md` para reflejar el nuevo estándar. Esto evita la degradación visual en futuras iteraciones.
 - **Enfoque Móvil:** Priorizar siempre diseños que apilen columnas y usen anchos fluidos.
+
+## Registro de Transparencia de Skills
+- **REGLA:** En cada respuesta que implique una mejora, cambio o análisis, debo listar **todas** las skills disponibles en el sistema.
+- **REGLA:** Debo **resaltar en negrita** aquellas skills que están siendo activamente consultadas o aplicadas para resolver la petición actual del usuario.
