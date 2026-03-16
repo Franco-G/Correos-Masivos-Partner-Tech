@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>base_diseno_b</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;900&display=swap"
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap"
         rel="stylesheet">
     <style>
         * {
@@ -179,38 +179,50 @@
             line-height: 1.5;
         }
 
-        .bloque-navy {
-            background-color: #001556;
-            padding: 64px 40px;
+        .closing-box {
             text-align: center;
+            padding: 40px 40px 35px 40px;
+            background-color: #ffffff;
         }
 
-        .titulo-accion {
-            color: #ffffff;
-            font-size: 28px;
+        .closing-title {
+            font-size: 19px;
+            color: #1e53dd;
             font-weight: 800;
-            margin-bottom: 24px;
-            line-height: 1.2;
+            margin-bottom: 20px;
+            text-transform: uppercase;
         }
 
-        .boton-cyan {
-            background-color: #00e0ff;
-            color: #001556 !important;
-            padding: 20px 50px;
+        .btn-pill {
+            background-color: #1e53dd;
+            color: #ffffff !important;
+            display: inline-block;
+            padding: 14px 40px;
             text-decoration: none;
-            border-radius: 10px;
+            border-radius: 50px;
             font-weight: 700;
             font-size: 15px;
-            display: inline-block;
-            text-transform: uppercase;
-            letter-spacing: 1.5px;
-            box-shadow: 0 10px 30px rgba(0, 224, 255, 0.2);
+            box-shadow: 0 4px 12px rgba(30, 83, 221, 0.3);
+            text-align: center;
+            white-space: nowrap;
+        }
+
+        .texto-ps {
+            font-size: 13px;
+            color: #64748b;
+            margin-top: 20px;
+            line-height: 1.6;
+            font-style: italic;
+        }
+
+        .texto-ps a {
+            color: #1e53dd;
+            text-decoration: underline;
         }
 
         .seccion-firma {
-            padding: 40px 40px;
-            border-top: 1px solid #f1f5f9;
-            background-color: #ffffff;
+            padding: 40px 40px 0 40px;
+            border-top: 1px dashed #dce5f2;
         }
 
         .pie-pagina {
@@ -331,7 +343,7 @@
                         Hola {{Nombre_Contacto}},</p>
                     <p
                         style="font-size: 16px; color: #64748b; line-height: 1.62; margin-bottom: 32px; font-style: normal;">
-                        Te saluda {{Nombre_Remitente}} de Partner Tech. Me comunico con usted ya que obtuvimos su contacto a través del directorio oficial de la Cámara de Comercio de Lima (CCL) y queremos presentarle una solución diseñada para elevar el estándar de su policlínico.
+                        Te saluda {{Nombre_Remitente}} de Partner Tech. Me comunico contigo ya que obtuvimos tu contacto a través del directorio oficial de la Cámara de Comercio de Lima (CCL) y queremos presentarte una solución diseñada para elevar el estándar de tu policlínico.
                     </p>
                 </td>
             </tr>
@@ -342,7 +354,7 @@
                             <span class="etiqueta texto-rojo">Gestión Actual</span>
                             <h3 class="titulo-tarjeta">El Costo de la Operación Manual</h3>
                             <p class="texto-tarjeta">Cada minuto invertido en tareas administrativas repetitivas es
-                                tiempo que se resta a la atención de calidad y a la rentabilidad de su negocio.</p>
+                                tiempo que se resta a la atención de calidad y a la rentabilidad de tu negocio.</p>
                         </div>
                     </div>
                     <div class="tarjeta-impacto acento-verde" style="margin-bottom: 0;">
@@ -350,8 +362,8 @@
                             <span class="etiqueta texto-verde">Solución Partner Tech</span>
                             <h3 class="titulo-tarjeta" style="font-size: 20px; font-weight: 700; line-height: 1.4;">
                                 Control Total y Automatización</h3>
-                            <p class="texto-tarjeta">Centralice su operación, automatice cobranzas y obtenga visibilidad
-                                total de sus métricas en tiempo real.</p>
+                            <p class="texto-tarjeta">Centraliza tu operación, automatiza cobranzas y obtén visibilidad
+                                total de tus métricas en tiempo real.</p>
                         </div>
                     </div>
                 </td>
@@ -389,19 +401,26 @@
                 </td>
             </tr>
             <tr>
-                <td class="bloque-navy">
-                    <h2 class="titulo-navy">¿Listo para evolucionar su práctica?</h2>
-                    <a href="{{CTA_Link}}?utm_source=partnertech&utm_medium=correo&utm_campaign={{Campana}}&utm_content=high_fidelity_b&utm_term={{Email_Hash}}"
-                        class="boton-verde">
-                        SOLICITAR DEMO GRATUITA
-                    </a>
-                    <p class="texto-ps">P.S. ¿Interesado en conocer nuestra metodología de implementación tecnológica? <br><a href="mailto:{{Email_Remitente}}?subject=Interes%20Metodologia">Solicítala aquí</a>.</p>
+                <td class="closing-box">
+                    <h2 class="closing-title">¿Listo para evolucionar tu práctica?</h2>
+                    <!-- Botón CTA Basado en Tabla (Máxima Robustez) -->
+                    <table align="center" cellpadding="0" cellspacing="0" border="0" style="margin: 0 auto;">
+                        <tr>
+                            <td align="center" bgcolor="#1e53dd" style="border-radius: 50px; padding: 15px 40px; box-shadow: 0 4px 12px rgba(30, 83, 221, 0.3);">
+                                <a href="{{CTA_Link}}?utm_source=partnertech&utm_medium=correo&utm_campaign={{Campana}}&utm_content=high_fidelity_b&utm_term={{Email_Hash}}"
+                                   style="color: #ffffff !important; text-decoration: none; font-family: 'Poppins', sans-serif; font-size: 15px; font-weight: 700; white-space: nowrap !important; display: block;">
+                                    <span style="color: #ffffff !important; white-space: nowrap !important;">🚀&nbsp;EMPEZAR&nbsp;TRANSFORMACIÓN&nbsp;DIGITAL</span>
+                                </a>
+                            </td>
+                        </tr>
+                    </table>
+                    <p class="texto-ps">Nota: Nuestra implementación es guiada y personalizada. No estás solo en este cambio. <br><a href="mailto:{{Email_Remitente}}?subject=Interes%20Metodologia">Solicítala aquí</a>.</p>
                 </td>
             </tr>
             <tr>
                 <td class="espaciado-cuerpo" style="padding-top: 32px; padding-bottom: 0;">
                     <p style="font-size: 16px; color: #64748b; line-height: 1.62; margin-bottom: 24px;">
-                        Estamos a su disposición para cualquier consulta. Puede agendar una llamada breve con nosotros o
+                        Estamos a tu disposición para cualquier consulta. Puedes agendar una llamada breve con nosotros o
                         responder directamente a este correo.
                     </p>
                 </td>

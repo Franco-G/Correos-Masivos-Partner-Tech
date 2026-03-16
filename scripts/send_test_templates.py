@@ -120,9 +120,9 @@ def send_email(template_config, dest_email):
             ("assets/icons/icomoon/401-facebook-circle.png", "soc_fb"),
             ("assets/icons/icomoon/403-instagram-circle.png", "soc_ig"),
             ("assets/icons/icomoon/458-linkedin-circle.png", "soc_li"),
-            ("logo_facebook_circular.png", "logo_facebook_circular"),
-            ("logo_instagram_circular.png", "logo_instagram_circular"),
-            ("logo_linkedin_circular.png", "logo_linkedin_circular")
+            ("assets/icons/social/logo_facebook_circular.png", "logo_facebook_circular"),
+            ("assets/icons/social/logo_instagram_circular.png", "logo_instagram_circular"),
+            ("assets/icons/social/logo_linkedin_circular.png", "logo_linkedin_circular")
         ]
 
         for path, cid in assets:

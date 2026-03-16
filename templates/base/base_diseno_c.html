@@ -124,33 +124,45 @@
             margin: 0;
         }
 
-        .bloque-navy {
-            background-color: #001556;
-            padding: 60px 40px;
+        .closing-box {
             text-align: center;
+            padding: 40px 40px 35px 40px;
+            background-color: #ffffff;
         }
 
-        .titulo-navy {
-            color: #ffffff;
-            font-size: 26px;
+        .closing-title {
+            font-size: 19px;
+            color: #1e53dd;
             font-weight: 800;
-            margin-bottom: 28px;
-            line-height: 1.3;
+            margin-bottom: 20px;
+            text-transform: uppercase;
         }
 
-        .boton-verde {
-            background-color: #1bde5d;
+        .btn-pill {
+            background-color: #1e53dd;
             color: #ffffff !important;
             display: inline-block;
-            padding: 18px 40px;
+            padding: 14px 40px;
             text-decoration: none;
-            border-radius: 10px;
+            border-radius: 50px;
             font-weight: 700;
             font-size: 15px;
-            box-shadow: 0 10px 30px rgba(27, 222, 93, 0.3);
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-bottom: 20px;
+            box-shadow: 0 4px 12px rgba(30, 83, 221, 0.3);
+            text-align: center;
+            white-space: nowrap;
+        }
+
+        .texto-ps {
+            font-size: 13px;
+            color: #64748b;
+            margin-top: 20px;
+            line-height: 1.6;
+            font-style: italic;
+        }
+
+        .texto-ps a {
+            color: #1e53dd;
+            text-decoration: underline;
         }
 
         .texto-ps {
@@ -168,6 +180,7 @@
 
         .seccion-firma {
             padding: 40px 40px 0 40px;
+            border-top: 1px dashed #dce5f2;
         }
 
         .pie-pagina {
@@ -258,22 +271,22 @@
                     <p style="font-size: 17px; color: #333946; margin-bottom: 16px; font-weight: 700; line-height: 1.4;">
                         Hola {{Nombre_Contacto}},
                     </p>
-                    <p class="texto-normal" style="margin-bottom: 24px;">Te saluda {{Nombre_Remitente}} de Partner Tech. Me comunico con usted ya que obtuvimos su contacto a través del directorio oficial de la Cámara de Comercio de Lima (CCL).</p>
+                    <p class="texto-normal" style="margin-bottom: 24px;">Te saluda {{Nombre_Remitente}} de Partner Tech. Me comunico contigo ya que obtuvimos tu contacto a través del directorio oficial de la Cámara de Comercio de Lima (CCL).</p>
                     
                     <p class="texto-normal" style="font-size: 17px; color: #333c4e;">
                         <strong>¿Es tu gestión auditable, segura y 100% precisa en cada liquidación, o dependes de la revisión manual constante para evitar errores?</strong>
                     </p>
                     <p class="texto-normal">
-                        <span style="color: #ef4444; font-weight: 700;">La falta de automatización en los procesos clave genera desconfianza, fugas de dinero y riesgos operativos.</span> Sin una trazabilidad digital total desde el inicio, es imposible optimizar los márgenes de su negocio o garantizar el cumplimiento de los estándares de mercado.
+                        <span style="color: #ef4444; font-weight: 700;">La falta de automatización en los procesos clave genera desconfianza, fugas de dinero y riesgos operativos.</span> Sin una trazabilidad digital total desde el inicio, es imposible optimizar los márgenes de tu negocio o garantizar el cumplimiento de los estándares de mercado.
                     </p>
 
                     <hr class="divisor-seccion">
 
                     <p class="texto-normal">
-                        Nuestra tecnología profesionaliza su operación, garantizando que cada proceso administrativo sea auditable, transparente y orientado a la excelencia.
+                        Nuestra tecnología profesionaliza tu operación, garantizando que cada proceso administrativo sea auditable, transparente y orientado a la excelencia.
                     </p>
                     
-                    <p class="titulo-seccion">Controle su negocio con:</p>
+                    <p class="titulo-seccion">Controla tu negocio con:</p>
                     
                     <div class="tarjeta-beneficio tarjeta-verde" style="background-color: #f0fff4;">
                         <span class="titulo-beneficio">Auditoría Financiera Continua</span>
@@ -282,7 +295,7 @@
                     
                     <div class="tarjeta-beneficio tarjeta-cyan" style="background-color: #e6fcff;">
                         <span class="titulo-beneficio">Liquidación Transparente</span>
-                        <p class="texto-beneficio">Cálculo exacto de pagos. Refuerce la confianza técnica de su staff administrativo al instante.</p>
+                        <p class="texto-beneficio">Cálculo exacto de pagos. Refuerce la confianza técnica de tu staff administrativo al instante.</p>
                     </div>
                     
                     <div class="tarjeta-beneficio tarjeta-navy" style="margin-bottom: 32px; background-color: #f0f4ff;">
@@ -296,19 +309,26 @@
                 </td>
             </tr>
             <tr>
-                <td class="bloque-navy">
-                    <h2 class="titulo-navy">¿Desea profesionalizar la gestión de su empresa?</h2>
-                    <a href="{{CTA_Link}}?utm_source=partnertech&utm_medium=correo&utm_campaign={{Campana}}&utm_content=high_fidelity_c&utm_term={{Email_Hash}}"
-                        class="boton-verde">
-                        AGENDAR REUNIÓN DE 15 MIN
-                    </a>
-                    <p class="texto-ps">P.S. ¿Interesado en conocer nuestra metodología de implementación tecnológica? <br><a href="mailto:{{Email_Remitente}}?subject=Interes%20Metodologia">Solicítala aquí</a>.</p>
+                <td class="closing-box">
+                    <h2 class="closing-title">¿Deseas profesionalizar la gestión de tu empresa?</h2>
+                    <!-- Botón CTA Basado en Tabla (Máxima Robustez) -->
+                    <table align="center" cellpadding="0" cellspacing="0" border="0" style="margin: 0 auto;">
+                        <tr>
+                            <td align="center" bgcolor="#1e53dd" style="border-radius: 50px; padding: 15px 40px; box-shadow: 0 4px 12px rgba(30, 83, 221, 0.3);">
+                                <a href="{{CTA_Link}}?utm_source=partnertech&utm_medium=correo&utm_campaign={{Campana}}&utm_content=high_fidelity_c&utm_term={{Email_Hash}}"
+                                   style="color: #ffffff !important; text-decoration: none; font-family: 'Poppins', sans-serif; font-size: 15px; font-weight: 700; white-space: nowrap !important; display: block;">
+                                    <span style="color: #ffffff !important; white-space: nowrap !important;">🛡️&nbsp;ASEGURAR&nbsp;MI&nbsp;GESTIÓN&nbsp;AHORA</span>
+                                </a>
+                            </td>
+                        </tr>
+                    </table>
+                    <p class="texto-ps">Dato: El 80% de los errores operacionales se eliminan con nuestra auditoría digital. <br><a href="mailto:{{Email_Remitente}}?subject=Interes%20Metodologia">Más detalles aquí</a>.</p>
                 </td>
             </tr>
             <tr>
                 <td class="espaciado-cuerpo" style="padding-top: 32px; padding-bottom: 0;">
                     <p style="font-size: 16px; color: #64748b; line-height: 1.62; margin-bottom: 24px;">
-                        Estamos a su disposición para cualquier consulta. Puede agendar una llamada breve con nosotros o responder directamente a este correo.
+                        Estamos a tu disposición para cualquier consulta. Puedes agendar una llamada breve con nosotros o responder directamente a este correo.
                     </p>
                 </td>
             </tr>

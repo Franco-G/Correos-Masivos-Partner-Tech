@@ -29,9 +29,10 @@ Este documento establece los estándares obligatorios para la creación y modifi
 | **Slogan/Lema** | 11px | 600 (Semi Bold)  | Auto| 2.2px | `#a0aec0` |
 | **Firma/Pie** | 13px | 400 (Regular)    | 1.5 | 0 | `#718096` |
 | **Legal/Baja** | 11px | 400 (Regular)    | 1.6 | 0.3px | `#cbd5e0` |
+| **H2 (CTA v6)** | 19px | 800 (ExtraBold)  | 1.3 | 0 | `#1e53dd` |
 
 > [!IMPORTANT]
-> El uso de `Poppins` es obligatorio vía Google Fonts. Se debe incluir el peso `900` para títulos de máximo impacto si es necesario, pero el estándar es `800`.
+> El uso de **Poppins** es obligatorio para todos los elementos del correo. Queda prohibido el uso de otras fuentes externas (como Orbitron) para mantener la consistencia de marca.
 
 ## 3. Iconografía Profesional (Estándar IcoMoon PNG)
 Queda prohibido el uso de archivos `.svg` y emojis en los beneficios o botones. El estándar oficial es la biblioteca **IcoMoon Free**:
@@ -40,7 +41,7 @@ Queda prohibido el uso de archivos `.svg` y emojis en los beneficios o botones. 
 *   **Implementación**: Adjuntos mediante `cid:minimalist_[nombre]` (ej. `cid:minimalist_agenda`).
 *   **Dimensiones en HTML**: Atributo `width="32"` o `width="24"` según el layout.
 *   **Alineación**: `vertical-align: middle; margin-right: 8px;`.
-*   **Iconos Sociales**: CIDs específicos `soc_fb`, `soc_ig`, `soc_li`.
+*   **Iconos Sociales**: CIDs específicos `logo_facebook_circular`, `logo_instagram_circular`, `logo_linkedin_circular`. Ubicados en `assets/icons/social/`.
 *   **Procedimiento**: Los iconos se eligen de la base local y se mapean en el script de envío (`main.py` y `send_test_templates.py`).
 
 ## 4. Componentes Estructurales
@@ -50,10 +51,15 @@ Queda prohibido el uso de archivos `.svg` y emojis en los beneficios o botones. 
 *   **Borde de Acento**: Borde izquierdo de `5px` con el color temático del beneficio.
 *   **Título**: Título en negrita (`700`) con su icono correspondiente.
 
-### 4.2 Bloque de Cierre y CTA (Navy Block)
-*   **Fondo**: Azul Marino (`#001556`) sólido.
-*   **Forma**: Bordes redondeados de `10px` (antes 20px) para un look más moderno y alineado a la UI del software.
-*   **Botón CTA**: Fondo Verde (`#1bde5d`), radio de `10px`, texto blanco negrita, con icono de calendario blanco (`filter: brightness(0) invert(1)` si se usa el mismo CID).
+### 4.2 Bloque de Cierre y CTA (Estilo v6)
+*   **Fondo**: Blanco (`#ffffff`) sólido.
+*   **Título**: Fuente **Poppins ExtraBold** (`800`), `19px`, Azul Eléctrico (`#1e53dd`), mayúsculas.
+*   **Botón CTA**: Estilo "Pill" (`50px` border-radius), fondo Azul Eléctrico (`#1e53dd`), texto **blanco** (`#ffffff`).
+*   **Variabilidad**: Se recomienda variar el texto del botón y el P.S. entre bases para optimizar la conversión.
+*   **Divisor**: Usar una línea punteada sutil (`border-top: 1px dashed #dce5f2`) entre el CTA y la firma.
+
+### 4.3 Tono y Estilo Literario
+*   **Trato**: Informal (**Tutear**). Usar "tú" y "contigo" para generar cercanía.
 
 ### 4.3 Encabezado Premium Unificado (Final)
 *   **Fondo**: Blanco absoluto (`#ffffff`) con borde inferior Cyan (`#00e0ff`) de `6px`.
@@ -62,7 +68,7 @@ Queda prohibido el uso de archivos `.svg` y emojis en los beneficios o botones. 
 
 ## 5. Firma y Footer
 
-*   **Párrafo de Soporte**: Inmediatamente antes de la firma, se debe incluir un párrafo `espaciado-cuerpo` con el mensaje: "Estamos a su disposición para cualquier consulta. Puede agendar una llamada breve con nosotros o responder directamente a este correo."
+*   **Párrafo de Soporte**: Inmediatamente antes de la firma, se debe incluir un párrafo `espaciado-cuerpo` con el mensaje: "Estamos a tu disposición para cualquier consulta. Puedes agendar una llamada breve con nosotros o responder directamente a este correo."
 *   **Firma**: Fuera de bloques de color. Nombre en `#333c4e` (Bold), cargo en `#718096`. Columnas sin línea divisora. Logo a color (`cid:Logo_Color`) con altura máxima de `35px`. Datos de contacto de la empresa sin incluir RUC.
 *   **Redes Sociales**: Bloque centrado transversal justo antes del footer. La celda (`<td>`) contenedora **debe** tener un fondo blanco absoluto (`#ffffff`), ocupando el 100% del ancho del main-container. Uso obligatorio de tabla interior con `align="center"` y ancho fijo (`160px`). Iconos circulares transparentes a todo color de 24px (`logo_facebook_circular`, `logo_instagram_circular`, `logo_linkedin_circular`).
 *   **Footer**: Texto `#cbd5e0` de `11px`, centrado, sobre fondo blanco absoluto. Incluye link de baja y mención a la CCL.
