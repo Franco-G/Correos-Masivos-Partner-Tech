@@ -17,5 +17,6 @@
 - **Enfoque Móvil:** Priorizar siempre diseños que apilen columnas y usen anchos fluidos.
 
 ## Registro de Transparencia de Skills
-- **REGLA:** En cada respuesta que implique una mejora, cambio o análisis, debo listar **todas** las skills disponibles en el sistema.
-- **REGLA:** Debo **resaltar en negrita** aquellas skills que están siendo activamente consultadas o aplicadas para resolver la petición actual del usuario.
+- **REGLA DE ORO:** Absolutamente TODAS las respuestas dirigidas al usuario que impliquen una mejora, cambio, análisis o reporte de estado, DEBEN listar la totalidad de las skills disponibles en el sistema.
+- **REALTADO:** Debes **resaltar en negrita** aquellas skills que han sido aplicadas o consultadas activamente para resolver la tarea actual.
+- **MOTIVACIÓN:** Esto garantiza que el usuario siempre tenga visibilidad de las herramientas y marcos de trabajo (como Kaizen, Marketing Bible, etc.) que están moldeando el resultado.

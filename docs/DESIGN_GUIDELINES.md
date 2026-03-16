@@ -10,16 +10,28 @@ Este documento establece los estándares obligatorios para la creación y modifi
 | **Azul Eléctrico (Medio)** | `#1e53dd` | 🔷 | Azul para jerarquía en detalles, enlaces y bordes de beneficios. |
 | **Cyan (Acento)** | `#00e0ff` | 💎 | Cyan para acentos destacados y enlaces dentro de bloques oscuros. |
 | **Acción / Éxito** | `#1bde5d` | 🟢 | Verde institucional para el botón principal de CTA y bordes de éxito. |
-| **Fondo Wrapper** | `#eaeded` | 🔘 | Gris claro/azulado para el fondo exterior, resaltando el contenedor blanco. |
+| **Fondo Wrapper** | `#f0f7ff` | 🔘 | Celeste muy ligero para el fondo exterior, resaltando el contenedor blanco. |
 | **Cuerpo (Contenedor)** | `#ffffff` | ⚪ | Fondo blanco para asegurar limpieza y legibilidad móvil. |
 | **Texto General** | `#555555` | 🌚 | Gris para el cuerpo de texto general. |
 | **Texto Títulos** | `#333c4e` | 🌑 | Gris carbón para saludos y títulos de tarjetas (máximo contraste). |
 | **Divisores Sutiles** | `#e2e8f0` | ⚪ | Gris muy claro para líneas de separación y bordes de tarjetas. |
 
-## 2. Tipografía Estándar
-*   **Fuente Principal**: `Poppins`, sans-serif. Se debe forzar mediante `!important` en el CSS global.
-*   **Encabezados**: Peso **Bold (700)**, color `#333c4e` (cuerpo) o blanco (bloques oscuros).
-*   **Cuerpo**: Peso **Regular (400)**, color `#555555`, interlineado `1.6`.
+## 2. Tipografía y Jerarquía (Poppins Only)
+
+| Elemento | Tamaño | Peso (Weight) | Interlineado | Tracking | Color |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| **H1 (Hero)** | 36px | 800 (Extra Bold) | 1.1 | -1px | `#333c4e` |
+| **H2 (Sección)** | 24px | 800 (Extra Bold) | 1.3 | 0 | `#001556` |
+| **H3 (Tarjetas)**| 20px | 700 (Bold)       | 1.4 | 0 | `#1e293b` |
+| **Saludo** | 17px | 700 (Bold)       | 1.4 | 0 | `#333946` |
+| **Body (P)** | 16px | 400 (Regular)    | 1.62| 0 | `#64748b` |
+| **Etiquetas** | 12px | 800 (Extra Bold) | Auto| 1.5px | *Variable* |
+| **Slogan/Lema** | 11px | 600 (Semi Bold)  | Auto| 2.2px | `#a0aec0` |
+| **Firma/Pie** | 13px | 400 (Regular)    | 1.5 | 0 | `#718096` |
+| **Legal/Baja** | 11px | 400 (Regular)    | 1.6 | 0.3px | `#cbd5e0` |
+
+> [!IMPORTANT]
+> El uso de `Poppins` es obligatorio vía Google Fonts. Se debe incluir el peso `900` para títulos de máximo impacto si es necesario, pero el estándar es `800`.
 
 ## 3. Iconografía Profesional (Estándar IcoMoon PNG)
 Queda prohibido el uso de archivos `.svg` y emojis en los beneficios o botones. El estándar oficial es la biblioteca **IcoMoon Free**:
@@ -42,10 +54,10 @@ Queda prohibido el uso de archivos `.svg` y emojis en los beneficios o botones. 
 *   **Forma**: Bordes redondeados de `10px` (antes 20px) para un look más moderno y alineado a la UI del software.
 *   **Botón CTA**: Fondo Verde (`#1bde5d`), radio de `10px`, texto blanco negrita, con icono de calendario blanco (`filter: brightness(0) invert(1)` si se usa el mismo CID).
 
-### 4.3 Encabezado Premium
-*   **Fondo**: Azul Marino (`#001556`) con borde inferior Verde (`#1bde5d`) de `6px`.
-*   **Logo**: Versión **Blanca** (`cid:Logo_ver1`) de `50px` de altura.
-*   **Tagline**: Texto `#a0aec0` de `12px`, peso `600`, en mayúsculas.
+### 4.3 Encabezado Premium Unificado (Final)
+*   **Fondo**: Blanco absoluto (`#ffffff`) con borde inferior Verde (`#1bde5d`) de `6px`.
+*   **Logo**: Versión **Color** (`cid:logo_oficial`) de **60px** de altura.
+*   **Tagline**: "Tu Socio Estratégico" alineado a la **derecha** del logo. Texto `#a0aec0` de `11px`, peso `600`, en mayúsculas, con `letter-spacing: 2.2px`.
 
 ## 5. Firma y Footer
 

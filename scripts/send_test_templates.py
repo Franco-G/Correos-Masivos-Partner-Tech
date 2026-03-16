@@ -20,8 +20,9 @@ TEMPLATES = [
         "name": "Base Stitch A (Final - Firma Alineada)",
         "file": "templates/base/base_diseno_a.html",
         "vars": {
-            "Titulo_Pagina": "Clinic Mentor Pro | Gestión Inteligente",
-            "Asunto_Override": "Socios CCL: Solución de Gestión para su Clínica",
+            "Titulo_Pagina": "Partner Tech | Gestión Médica Inteligente",
+            "Nombre_Producto": "Solución de Gestión Médica",
+            "Asunto_Override": "Tu Socio Estratégico: Solución de Gestión Médica",
             "Nombre_Contacto": "Doctor",
             "CTA_Link": "https://cal.com/negocios-partner-tech/requerimientos-software-desarrollo",
             "Campana": "produccion_ccl_v1",
@@ -36,8 +37,8 @@ TEMPLATES = [
         "name": "Base Stitch B (Final - Firma Alineada)",
         "file": "templates/base/base_diseno_b.html",
         "vars": {
-            "Titulo_Pagina": "Soberanía Tecnológica CCL",
-            "Asunto_Override": "Optimización Operativa para Policlínicos Asociados",
+            "Titulo_Pagina": "Partner Tech | Soberanía Tecnológica",
+            "Asunto_Override": "Tu Socio Estratégico: Optimización Operativa Policlínicos",
             "Nombre_Contacto": "Doctor",
             "CTA_Link": "https://partnertech.pe",
             "Campana": "produccion_ccl_v1",
@@ -59,9 +60,10 @@ def send_email(template_config):
             html = html.replace(f"{{{{{key}}}}}", str(val))
 
         msg = MIMEMultipart("related")
-        asunto_base = template_config["vars"].get("Asunto_Override", f"Verificación: {template_config['name']}")
+        # Identificador de plantilla para el asunto (A o B)
+        template_id = "Plantilla A" if "base_diseno_a" in template_config["file"] else "Plantilla B"
         timestamp = datetime.now().strftime("%H:%M:%S")
-        msg["Subject"] = f"{asunto_base} [{timestamp}]"
+        msg["Subject"] = f"{template_id} | {timestamp}"
         msg["From"] = SENDER_EMAIL
         msg["To"] = DEST_EMAIL
         msg["Date"] = formatdate(localtime=True)
@@ -76,17 +78,14 @@ def send_email(template_config):
 
         # Mapeo de activos (CIDs DEBEN COINCIDIR CON EL HTML)
         assets = [
-            ("assets/Logo_ver3.png", "logo_oficial"),
-            ("assets/Logo_ver3.png", "Logo_Color"), 
-            ("assets/Logo_y_texto_Partner_Tech.png", "Logo_y_texto_Partner_Tech"),
-            ("assets/Logo_y_texto_Partner_Tech.png", "Logo_Color"), # Fallback
+            ("assets/logos/logo_color.png", "logo_oficial"),
+            ("assets/logos/Logo_y_texto_Partner_Tech.png", "Logo_Color"), 
             ("assets/icons/custom/agenda_red.png", "minimalist_agenda_red"),
             ("assets/icons/custom/history_green.png", "minimalist_history_green"),
             ("assets/icons/custom/agenda_navy.png", "minimalist_agenda_navy"),
             ("assets/icons/custom/history_navy.png", "minimalist_history_navy"),
             ("assets/icons/custom/finance_navy.png", "minimalist_finance_navy"),
-            ("assets/icons/custom/whatsapp_white.png", "whatsapp_blanco"),
-            ("assets/icons/icomoon/115-users.png", "minimalist_meeting")
+            ("assets/icons/custom/whatsapp_white.png", "whatsapp_blanco")
         ]
 
         for path, cid in assets:
