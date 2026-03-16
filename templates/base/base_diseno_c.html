@@ -6,16 +6,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{Titulo_Pagina}}</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <!--[if mso]>
+    <style type="text/css">
+        body, table, td, p, a, span { font-family: Arial, Helvetica, sans-serif !important; }
+    </style>
+    <![endif]-->
     <style>
         * {
-            font-family: 'Poppins', sans-serif !important;
+            font-family: 'Poppins', Arial, Helvetica, sans-serif !important;
         }
 
         body {
             margin: 0;
             padding: 0;
             background-color: #f0f7ff;
-            color: #555555;
+            color: #64748b;
             -webkit-font-smoothing: antialiased;
         }
 
@@ -110,7 +115,7 @@
         .tarjeta-navy { border-left-color: #1e53dd; }
 
         .titulo-beneficio {
-            color: #001556;
+            color: #1a1a1a;
             font-size: 16px;
             font-weight: 700;
             display: block;
@@ -118,7 +123,7 @@
         }
 
         .texto-beneficio {
-            font-size: 15px;
+            font-size: 16px;
             line-height: 1.6;
             color: #64748b;
             margin: 0;
@@ -134,6 +139,7 @@
             font-size: 19px;
             color: #1e53dd;
             font-weight: 800;
+            margin-top: 0;
             margin-bottom: 20px;
             text-transform: uppercase;
         }
@@ -153,28 +159,15 @@
         }
 
         .texto-ps {
-            font-size: 13px;
+            font-size: 16px;
             color: #64748b;
             margin-top: 20px;
-            line-height: 1.6;
+            line-height: 1.62;
             font-style: italic;
         }
 
         .texto-ps a {
             color: #1e53dd;
-            text-decoration: underline;
-        }
-
-        .texto-ps {
-            font-size: 13px;
-            color: #cbd5e0;
-            line-height: 1.6;
-            margin-top: 10px;
-            margin-bottom: 0;
-        }
-
-        .texto-ps a {
-            color: #00e0ff;
             text-decoration: underline;
         }
 
@@ -265,38 +258,36 @@
                 </td>
             </tr>
             <tr>
-                <td class="espaciado-cuerpo">
-                    <p style="font-size: 17px; color: #333946; margin-bottom: 16px; font-weight: 700; line-height: 1.4;">
+                <td class="espaciado-cuerpo" style="padding-bottom: 16px;">
+                    <p style="font-size: 16px; color: #64748b; margin-bottom: 16px; font-weight: 400; line-height: 1.4;">
                         Hola {{Nombre_Contacto}},
                     </p>
-                    <p class="texto-normal" style="margin-bottom: 24px;">Te saluda {{Nombre_Remitente}} de Partner Tech. Me comunico contigo ya que obtuvimos tu contacto a través del directorio oficial de la Cámara de Comercio de Lima (CCL). Nuestra comunicación tiene como propósito compartir contigo una serie de herramientas de control y auditoría que han permitido a empresas similares a la tuya <strong>profesionalizar su gestión</strong> de manera inmediata. Entendemos que en el entorno empresarial actual, la <strong>transparencia técnica</strong> es un factor determinante para la <strong>sostenibilidad a largo plazo</strong>.</p>
-                    
-                    <p class="texto-normal" style="font-size: 17px; color: #333c4e;">
-                        <strong>¿Es tu gestión auditable, segura y 100% precisa en cada liquidación, o dependes de la revisión manual constante para evitar errores?</strong>
+                    <p class="texto-normal" style="margin-bottom: 16px;">
+                        ¿Dependes de la revisión manual constante para evitar errores en liquidaciones e historias clínicas? Le escribimos porque <span style="color: #ef4444; font-weight: 700;">la falta de automatización genera riesgos operativos y fugas de ingresos que limitan su crecimiento</span>.
                     </p>
-                    <p class="texto-normal">
-                        <span style="color: #ef4444; font-weight: 700;">La falta de automatización en los procesos clave genera desconfianza, fugas de dinero y riesgos operativos.</span> Sin una trazabilidad digital total desde el inicio, es imposible optimizar los márgenes de tu negocio o garantizar el cumplimiento de los estándares de mercado.
+                    <p class="texto-normal" style="margin-bottom: 24px;">
+                        Para una institución sólida, la seguridad de la información y la transparencia técnica son innegociables. Con Clinic Mentor le ayudamos a <span style="color: #1bde5d; font-weight: 700;">blindar su operación mediante procesos completamente auditables</span> y bajo su estricto control.
                     </p>
 
-                    <hr style="border: none; margin: 16px 0;">
+                    <hr style="border: none; border-top: 1px solid #e2e8f0; margin: 16px 0;">
 
-                    <p class="texto-normal">
-                        Nuestra tecnología profesionaliza tu operación, garantizando que cada proceso administrativo sea auditable, transparente y orientado a la excelencia.
+                    <p class="texto-normal" style="margin-top: 16px; margin-bottom: 24px;">
+                        Nuestra tecnología profesionaliza tu operación, garantizando que cada proceso administrativo sea rastreable y orientado a resultados.
                     </p>
                     
                     <p class="titulo-seccion">Controla tu negocio con:</p>
                     
-                    <div class="tarjeta-beneficio tarjeta-verde" style="background-color: #f0fff4;">
+                    <div class="tarjeta-beneficio tarjeta-verde" style="background-color: #fafffb;">
                         <span class="titulo-beneficio">Auditoría Financiera Continua</span>
                         <p class="texto-beneficio">Trazabilidad absoluta de cobros, y flujos de caja. Elimine los reparos operativos y fuga de ingresos.</p>
                     </div>
                     
-                    <div class="tarjeta-beneficio tarjeta-cyan" style="background-color: #e6fcff;">
+                    <div class="tarjeta-beneficio tarjeta-cyan" style="background-color: #f8fdff;">
                         <span class="titulo-beneficio">Liquidación Transparente</span>
                         <p class="texto-beneficio">Cálculo exacto de pagos. Refuerce la confianza técnica de tu staff administrativo al instante.</p>
                     </div>
                     
-                    <div class="tarjeta-beneficio tarjeta-navy" style="margin-bottom: 16px; background-color: #f0f4ff;">
+                    <div class="tarjeta-beneficio tarjeta-navy" style="margin-bottom: 16px; background-color: #f9faff;">
                         <span class="titulo-beneficio">Seguridad de Datos Protegidos</span>
                         <p class="texto-beneficio">Control de accesos y registros de auditoría en la nube. Cumpla con las normativas de privacidad más exigentes.</p>
                     </div>
@@ -314,30 +305,24 @@
                         <tr>
                             <td align="center" bgcolor="#1e53dd" style="border-radius: 8px; padding: 12px 25px; box-shadow: 0 4px 8px rgba(30, 83, 221, 0.15);">
                                 <a href="{{CTA_Link}}?utm_source=partnertech&utm_medium=correo&utm_campaign={{Campana}}&utm_content=high_fidelity_c&utm_term={{Email_Hash}}"
-                                   style="color: #ffffff !important; text-decoration: none; font-family: 'Poppins', sans-serif; font-size: 15px; font-weight: 700; white-space: nowrap; display: inline-block; vertical-align: middle;">
+                                   style="color: #ffffff !important; text-decoration: none; font-family: 'Poppins', Arial, Helvetica, sans-serif; font-size: 15px; font-weight: 700; white-space: nowrap; display: inline-block; vertical-align: middle;">
                                     <table align="center" cellpadding="0" cellspacing="0" border="0" style="border-collapse: collapse; width: auto;">
                                         <tr>
                                             <td style="vertical-align: middle; padding-right: 8px; font-size: 18px; line-height: 1.2; color: #ffffff !important; font-family: Arial, sans-serif;">🛡️</td>
-                                            <td style="vertical-align: middle; font-family: 'Poppins', sans-serif; font-size: 15px; font-weight: 700; color: #ffffff !important; white-space: nowrap; line-height: 1.2;">ASEGURAR MI GESTIÓN AHORA</td>
+                                            <td style="vertical-align: middle; font-family: 'Poppins', Arial, Helvetica, sans-serif; font-size: 15px; font-weight: 700; color: #ffffff !important; white-space: nowrap; line-height: 1.2;">SOLICITAR DIAGNÓSTICO TÉCNICO</td>
                                         </tr>
                                     </table>
                                 </a>
                             </td>
                         </tr>
                     </table>
-                    <p class="texto-ps" style="font-size: 14px; text-align: left; margin-top: 24px; font-style: normal; color: #555555;">
-                        <strong>¿Qué garantizamos con esta auditoría digital?</strong> No solo el cumplimiento normativo, sino una visibilidad de 360 grados sobre cada centavo y cada acceso en tu sistema. Queremos eliminar la incertidumbre administrativa y permitirte liderar con una gestión <strong>100% auditable</strong> y basada en la <strong>excelencia operativa</strong>. Esta es la oportunidad de blindar tu negocio contra errores que hoy podrían estar costándote miles de soles en reparos o fugas de ingresos.
+                    <p class="texto-ps" style="font-size: 16px; text-align: left; margin-top: 40px; font-style: normal; color: #64748b; line-height: 1.62; font-weight: 400;">
+                        <strong>¿Qué resolvemos?</strong> Identificamos los principales riesgos en sus cobros y registros para mostrarle cómo establecer una <span style="color: #1bde5d; font-weight: 700;">gestión clínica totalmente blindada contra el error humano</span>.
                     </p>
 
                 </td>
             </tr>
-            <tr>
-                <td class="espaciado-cuerpo" style="padding-top: 16px; padding-bottom: 0;">
-                    <p style="font-size: 16px; color: #64748b; line-height: 1.62; margin-bottom: 16px;">
-                        Estamos a tu disposición para cualquier consulta. Puedes agendar una llamada breve con nosotros o responder directamente a este correo.
-                    </p>
-                </td>
-            </tr>
+
             <tr>
                 <td class="seccion-firma">
                     <table width="100%" cellpadding="0" cellspacing="0">
@@ -355,7 +340,7 @@
                                     </p>
                                     <a href="https://api.whatsapp.com/send/?phone=51933820255"
                                         style="background-color: #1bde5d; color: #ffffff; padding: 10px 24px; text-decoration: none; border-radius: 8px; font-size: 14px; font-weight: 700; display: inline-block; white-space: nowrap;">
-                                        <span style="vertical-align: middle; font-family: 'Poppins', sans-serif;">+51 933 820 255</span>
+                                        <span style="vertical-align: middle; font-family: 'Poppins', Arial, Helvetica, sans-serif;">+51 933 820 255</span>
                                     </a>
                                 </div>
                             </td>
@@ -365,7 +350,7 @@
                                     <img src="cid:Logo_Color" alt="Partner Tech" height="35" style="margin-bottom: 12px;">
                                     <p style="margin: 0; font-size: 13px; color: #718096; line-height: 1.5;">
                                         <a href="https://partnertech.pe"
-                                            style="color: #001556; text-decoration: none; font-weight: 700;">www.partnertech.pe</a><br>
+                                            style="color: #1e53dd; text-decoration: none;">www.partnertech.pe</a><br>
                                         negocios@partnertech.pe<br>
                                         Av. Malachowsky 340, San Borja, Lima
                                     </p>

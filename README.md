@@ -115,6 +115,35 @@ Este proyecto representa una implementación de alta complejidad que integra inv
 | **Activos Premium** | **Iconos Circulares 2026** | Generación de activos custom circulares para máxima estética. |
 | **Base de Conocimientos** | **+160k Caracteres** | Volumen total de investigación y fundamento técnico procesado. |
 
+### 📅 Cronograma Detallado por Fases
+
+El desarrollo se estructuró en 5 fases críticas, cada una enfocada en elevar el estándar de calidad y efectividad del producto final:
+
+#### 🟢 Fase I: Análisis Estratégico & Benchmarking (12h)
+- Auditoría profunda de 11 rubros industriales y 10 benchmarks competitivos.
+- Definición de 21 contextos de producto únicos para personalización B2B.
+- Creación de la base de conocimientos técnica y estratégica.
+
+#### 🔵 Fase II: Ingeniería de Software & Backend (15h)
+- Arquitectura del motor de envío en Python y base de datos SQLite.
+- Implementación de lógica de enfriamiento, rotación de plantillas y gestión de copias.
+- Desarrollo del sistema de validación de destinatarios y prevención de spam.
+
+#### 🎨 Fase III: Diseño de Experiencia (UX) & Mailings (18h)
+- Creación de más de 70 versiones de plantillas HTML responsivas (v1-v7).
+- Diseño de la guía de estilo unificada (`DESIGN_GUIDELINES.md`) y paleta de colores.
+- Generación de activos premium custom y optimización de visualización mediante CIDs.
+
+#### 📊 Fase IV: Analytics & Trazabilidad (10h)
+- Integración avanzada con Google Analytics 4 vía Measurement Protocol.
+- Implementación de hashing MD5 para privacidad de datos y eventos de rastreo.
+- Configuración de tableros de control para métricas de conversión.
+
+#### 🛡️ Fase V: Aseguramiento de Calidad (QA) & Despliegue (7h)
+- Pruebas intensivas en múltiples bandejas de entrada (Outlook, Gmail, Zoho).
+- Optimización de carga de activos y refinamiento de tiempos de envío SMTP.
+- Finalización de documentación técnica y preparación del entorno de despliegue.
+
 ### 🛠️ Desafíos de Alta Complejidad Superados
 1.  **Ingeniería de Entregabilidad**: Implementación de lógica **CID (Content-ID)** y rotación de plantillas para evadir filtros de spam y asegurar la visualización de imágenes sin acción del usuario.
 2.  **Arquitectura de Datos (SQLite)**: Desarrollo de un sistema de "memoria histórica" para el control de duplicados y periodos de enfriamiento, garantizando la reputación del dominio remitente.

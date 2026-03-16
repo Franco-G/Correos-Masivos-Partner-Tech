@@ -13,7 +13,8 @@ Este documento establece los estándares obligatorios para la creación y modifi
 | **Dolor / Alerta** | `#ef4444` | 🔴 | Rojo para resaltar puntos de dolor o problemas. |
 | **Fondo Wrapper** | `#f0f7ff` | 🔘 | Celeste muy ligero para el fondo exterior. |
 | **Cuerpo (Contenedor)** | `#ffffff` | ⚪ | Fondo blanco para asegurar limpieza y legibilidad (Cuerpo y Redes Sociales). |
-| **Texto General** | `#555555` | 🌚 | Gris para el cuerpo de texto general. |
+| **Texto General** | `#64748b` | 🌚 | Gris pizarra (Slate) para cuerpo, saludos, despedidas y post-CTA. |
+| **Texto de Cierre / Legal** | `#94a3b8` | 🌑 | Gris claro para pies de página y textos de baja jerarquía (Legal). |
 
 ## 2. Tipografía y Jerarquía (Poppins Only)
 
@@ -22,7 +23,8 @@ Este documento establece los estándares obligatorios para la creación y modifi
 - **Jerarquía:**
   - **Títulos (H1/H2):** Peso `800` (Extra Bold).
   - **Subtítulos/Botones:** Peso `700` (Bold).
-  - **Cuerpo:** Peso `400` (Regular) o `300` (Light) según el contexto.
+  - **Párrafos (Cuerpo, Saludo, Despedida, Post-CTA):** Tamaño `16px`, Color `#64748b`, Peso `400` (Regular).
+  - **Textos Secundarios (Legal/Footer):** Tamaño `11px`, Color `#cbd5e0`.
 
 ## 3. Logotipos y Encabezado
 
@@ -72,7 +74,25 @@ Todos los correos deben incluir obligatoriamente en el pie de página:
 ## 8. Resaltado de Texto Estratégico (HTML Nativo)
 
 - **Negritas (Strong Highlights):** Es obligatorio resaltar en **negrita** las frases clave dentro de los párrafos para guiar el "escaneo" del lector.
-  - **REGLA TÉCNICA CRÍTICA:** Se debe utilizar exclusivamente la etiqueta HTML nativa `<strong>` para las negritas. **Queda terminantemente prohibido el uso de asteriscos (`**`)** en las plantillas HTML, ya que los clientes de correo no procesan Markdown y los mostrarían como texto plano.
+- **Resaltado Positivo:** Usar `Verde Institucional (#1bde5d)` en negrita para frases de éxito o soluciones.
+- **Títulos en Tarjetas con Fondo:** No usar azul marino sobre fondos de color. Usar un tono neutro oscuro `#1a1a1a` para asegurar contraste y sobriedad.
+- **Negritas:** Usar la etiqueta `<strong>` o `<span>` con `font-weight: 700`. Prohibido el uso de asteriscos (`**`) en el código HTML.
 - **Puntos de Dolor (Negativo):** Resaltar en **Rojo** (`#ef4444`).
-- **Soluciones (Positivo):** Resaltar en **Azul Corporativo**.
+- **Soluciones (Positivo):** Resaltar en **Verde Institucional** (`#1bde5d`).
 - **Limitación:** El resaltado de color es para palabras clave o frases cortas, no para párrafos enteros.
+
+## 9. Estándares de Redacción Persuasiva
+
+Para maximizar la conversión, la redacción debe seguir marcos psicológicos y de venta directa validados:
+
+- **Marcos de Redacción:**
+  - **PAS (Problem-Agitate-Solution):** Identificar el problema (fugas de ingresos), agitarlo (costo de la ineficiencia) y presentar la solución (Clinic Mentor). Ideal para la Base A.
+  - **Soberanía Tecnológica:** Enfocarse en la propiedad de la data y la eliminación de rentas perpetuas. Ideal para perfiles estratégicos (Base B).
+  - **Gobernanza y Transparencia:** Orientado a la auditabilidad y seguridad técnica. Ideal para perfiles administrativos rigurosos (Base C).
+- **Principios de Estilo:**
+  - **Clarity over Cleverness:** Priorizar que se entienda el beneficio inmediato sobre frases "creativas" pero vagas.
+  - **Benefits over Features:** No vender "una agenda", sino "eliminar el ausentismo y recuperar citas perdidas".
+  - **Tono Directo:** Eliminar el relleno corporativo. Ir al punto con preguntas que resalten la ineficiencia actual.
+- **Micro-Copy de CTAs:**
+  - Evitar verbos genéricos como "Empezar" o "Ver más".
+  - Usar CTAs de alto valor: "Obtener Diagnóstico Estratégico", "Asegurar mi Gestión Ahora", "Agendar Consulta Técnica".
