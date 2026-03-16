@@ -96,9 +96,9 @@ def send_email(template_config, dest_email):
             ("assets/icons/custom/history_navy.png", "minimalist_history_navy"),
             ("assets/icons/custom/finance_navy.png", "minimalist_finance_navy"),
             ("assets/icons/custom/whatsapp_white.png", "whatsapp_blanco"),
-            ("assets/icons/icomoon/401-facebook.png", "soc_fb"),
-            ("assets/icons/icomoon/403-instagram.png", "soc_ig"),
-            ("assets/icons/icomoon/458-linkedin.png", "soc_li")
+            ("assets/icons/icomoon/401-facebook-circle.png", "soc_fb"),
+            ("assets/icons/icomoon/403-instagram-circle.png", "soc_ig"),
+            ("assets/icons/icomoon/458-linkedin-circle.png", "soc_li")
         ]
 
         for path, cid in assets:

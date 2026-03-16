@@ -63,7 +63,7 @@ Queda prohibido el uso de archivos `.svg` y emojis en los beneficios o botones. 
 ## 5. Firma y Footer
 
 *   **Firma**: Fuera de bloques de color. Nombre en `#333c4e` (Bold), cargo en `#718096`. Logo a color (`cid:Logo_Color`) con altura máxima de `35px`.
-*   **Redes Sociales**: Bloque centrado inmediatamente antes del footer. Uso obligatorio de tabla con `align="center"` y ancho fijo (`160px`). Iconos de 28px con padding lateral.
+*   **Redes Sociales**: Bloque centrado inmediatamente antes del footer. Uso obligatorio de tabla con `align="center"` y ancho fijo (`160px`). Iconos circulares de 24px en gris premium.
 *   **Footer**: Texto `#cbd5e0` de `11px`, centrado, sobre fondo blanco absoluto. Incluye link de baja y mención a la CCL.
 
 ## 6. Placeholders y Rastreo

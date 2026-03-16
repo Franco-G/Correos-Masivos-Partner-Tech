@@ -759,9 +759,9 @@ class CorreoApp:
                     'minimalist_agenda_navy': os.path.join('assets', 'icons', 'custom', 'agenda_navy'),
                     'minimalist_history_navy': os.path.join('assets', 'icons', 'custom', 'history_navy'),
                     'minimalist_finance_navy': os.path.join('assets', 'icons', 'custom', 'finance_navy'),
-                    'soc_fb': os.path.join('assets', 'icons', 'icomoon', '401-facebook'),
-                    'soc_ig': os.path.join('assets', 'icons', 'icomoon', '403-instagram'),
-                    'soc_li': os.path.join('assets', 'icons', 'icomoon', '458-linkedin')
+                    'soc_fb': os.path.join('assets', 'icons', 'icomoon', '401-facebook-circle'),
+                    'soc_ig': os.path.join('assets', 'icons', 'icomoon', '403-instagram-circle'),
+                    'soc_li': os.path.join('assets', 'icons', 'icomoon', '458-linkedin-circle')
                 }
 
                 for cid_name, base_path in iconos_mapeo.items():
