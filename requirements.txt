@@ -1,3 +1,4 @@
 pandas
 email-validator
 tkinterweb
+openpyxl
