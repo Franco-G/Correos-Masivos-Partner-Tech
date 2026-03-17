@@ -66,6 +66,7 @@ class CorreoApp:
     lbl_stats: ttk.Label
     tree_destinatarios: ttk.Treeview
     ent_email_test: ttk.Entry
+    ent_nombre_test: ttk.Entry
     canvas_test: tk.Canvas
     scroll_test: ttk.Scrollbar
     frame_checkboxes: ttk.Frame
@@ -75,7 +76,9 @@ class CorreoApp:
     plantilla2_var: tk.StringVar
     plantilla3_var: tk.StringVar
     email_prueba_var: tk.StringVar
+    nombre_prueba_var: tk.StringVar
     plantillas_test_vars: dict[str, tk.BooleanVar]
+    lookup_correos: dict[str, str]
     contador_var: tk.StringVar
     enviando: bool
     archivo_excel_seleccionado: str
@@ -106,11 +109,16 @@ class CorreoApp:
         self.plantilla2_var = tk.StringVar(value="Ninguna")
         self.plantilla3_var = tk.StringVar(value="Ninguna")
         self.email_prueba_var = tk.StringVar()
+        self.nombre_prueba_var = tk.StringVar(value="Usuario Prueba")
+        self.lookup_correos = {}
         self.plantillas_test_vars = {} 
         self.contador_var = tk.StringVar(value="Ningún archivo seleccionado")
         self.enviando = False
         self.archivo_excel_seleccionado = ""
         self.dias_espera_var = tk.IntVar(value=15)
+        
+        # Configurar búsqueda automática para pruebas
+        self.email_prueba_var.trace_add("write", self.on_email_prueba_change)
         
         # Perfiles de Envío
         self.perfiles = {
@@ -270,8 +278,12 @@ class CorreoApp:
 
         ttk.Label(frame_test_config, text="Correo de Destino (Prueba):", style="Bold.TLabel").pack(anchor="w", pady=(0, 5))
         self.ent_email_test = ttk.Entry(frame_test_config, textvariable=self.email_prueba_var, font=("Segoe UI", 11))
-        self.ent_email_test.pack(fill="x", pady=(0, 15))
+        self.ent_email_test.pack(fill="x", pady=(0, 10))
         self.email_prueba_var.set("guerrerofranco1429@gmail.com")
+
+        ttk.Label(frame_test_config, text="Nombre del Destinatario:", style="Bold.TLabel").pack(anchor="w", pady=(0, 5))
+        self.ent_nombre_test = ttk.Entry(frame_test_config, textvariable=self.nombre_prueba_var, font=("Segoe UI", 11))
+        self.ent_nombre_test.pack(fill="x", pady=(0, 15))
 
         ttk.Label(frame_test_config, text="Seleccione Plantillas:", style="Bold.TLabel").pack(anchor="w", pady=(0, 5))
         
@@ -320,6 +332,13 @@ class CorreoApp:
         for var in self.plantillas_test_vars.values():
             var.set(False)
 
+    def on_email_prueba_change(self, *args):
+        email = self.email_prueba_var.get().strip().lower()
+        if email in self.lookup_correos:
+            self.nombre_prueba_var.set(self.lookup_correos[email])
+        else:
+            self.nombre_prueba_var.set("Usuario Prueba")
+
     def enviar_prueba_thread(self):
         destinatario = self.email_prueba_var.get().strip()
         plantillas_seleccionadas = [name for name, var in self.plantillas_test_vars.items() if var.get()]
@@ -338,10 +357,11 @@ class CorreoApp:
     def proceso_envio_prueba(self, destinatario, plantillas_seleccionadas):
         self.log_msg(f"--- INICIANDO PRUEBAS PARA: {destinatario} ---")
         total = len(plantillas_seleccionadas)
+        nombre_dest = self.nombre_prueba_var.get().strip() or "Usuario Prueba"
         
         for i, p_nombre in enumerate(plantillas_seleccionadas):
             self.status_var.set(f"Probando ({i+1}/{total}): {p_nombre}")
-            exito = self.enviar_correo("Usuario Prueba", destinatario, p_nombre)
+            exito = self.enviar_correo(nombre_dest, destinatario, p_nombre)
             resultado = "OK" if exito else "FALLÓ"
             self.log_msg(f"Prueba {p_nombre}: {resultado}")
             
@@ -604,6 +624,11 @@ class CorreoApp:
                 self.btn_iniciar.config(state="normal")
                 self.log_msg(f"Archivo cargado: {os.path.basename(self.archivo_excel_seleccionado)}")
                 
+                # Actualizar diccionario para búsqueda de nombres en pruebas
+                self.lookup_correos = {str(row['correo']).strip().lower(): str(row['nombre']).strip() for _, row in df.iterrows() if str(row['correo']).strip()}
+                # Disparar búsqueda para el correo actual de prueba
+                self.on_email_prueba_change()
+                
                 # Actualizar la lista visual de destinatarios
                 self.actualizar_lista_destinatarios(df)
                 
@@ -655,6 +680,7 @@ class CorreoApp:
             email_hash_preview = hashlib.md5(b"preview@admin.com").hexdigest()
 
             # Cargar HTML y aplicar reemplazos para la previsualización
+            cta_link = "https://cal.com/negocios-partner-tech/requerimientos-software-desarrollo"
             preview_content = content.replace('{{Nombre_Remitente}}', self.nombre_remitente_var.get())\
                                      .replace('{{Email_Remitente}}', self.email_remitente_var.get())\
                                      .replace('{{Cargo_Remitente}}', self.cargo_remitente_var.get())\
@@ -666,6 +692,7 @@ class CorreoApp:
                                      .replace('cid:Icon_Historia', icon_historia_uri)\
                                      .replace('cid:Icon_Liquidacion', icon_liquidacion_uri)\
                                      .replace('cid:Icon_Reunion', icon_reunion_uri)\
+                                     .replace('{{CTA_Link}}', cta_link)\
                                      .replace('{{MAX_WIDTH_PLACEHOLDER}}', 'max-width: none;')\
                                      .replace('{{Email_Hash}}', email_hash_preview)
             
