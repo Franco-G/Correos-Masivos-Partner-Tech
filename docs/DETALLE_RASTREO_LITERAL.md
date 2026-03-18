@@ -16,90 +16,55 @@ El píxel de rastreo está ubicado al final de cada correo. Los parámetros fijo
 | `ep.campana` | `campana_infrasys` | Identificador de campaña |
 | `cid` | `{{Email_Hash}}` | ID de cliente (Hash MD5 anónimo) |
 
-### Valores de Plantilla (`ep.plantilla`) por Aplicativo:
+## 3. Inventario de Plantillas Disponibles
+Existen 30 plantillas activas (3 por aplicativo). Cada apertura dispara un evento `apertura_correo` con un valor de `ep.plantilla` único:
 
-#### 1. CRM
-1. `v1_crm`
-2. `v2_crm`
-3. `v3_crm`
+| Aplicativo | Versión | ID de Plantilla (`ep.plantilla`) | Campaña Asociada (`ep.campana`) |
+| :--- | :--- | :--- | :--- |
+| **CRM** | v1 | `v1_crm` | `campana_crm` |
+| | v2 | `v2_crm` | `campana_crm` |
+| | v3 | `v3_crm` | `campana_crm` |
+| **Rankmi (HCM)** | v1 | `v1_hcm` | `campana_hcm` |
+| | v2 | `v2_hcm` | `campana_hcm` |
+| | v3 | `v3_hcm` | `campana_hcm` |
+| **Nextflow** | v1 | `v1_nextflow` | `campana_nextflow` |
+| | v2 | `v2_nextflow` | `campana_nextflow` |
+| | v3 | `v3_nextflow` | `campana_nextflow` |
+| **Partners Truck**| v1 | `v1_partnerstruck` | `campana_partnerstruck` |
+| | v2 | `v2_partnerstruck` | `campana_partnerstruck` |
+| | v3 | `v3_partnerstruck` | `campana_partnerstruck` |
+| **Smart Dent** | v1 | `v1_smartdent` | `campana_smartdent` |
+| | v2 | `v2_smartdent` | `campana_smartdent` |
+| | v3 | `v3_smartdent` | `campana_smartdent` |
+| **ERP** | v1 | `v1_erp` | `campana_erp` |
+| | v2 | `v2_erp` | `campana_erp` |
+| | v3 | `v3_erp` | `campana_erp` |
+| **Kardex** | v1 | `v1_kardex`# Plan de Acción: Auditoría Exhaustiva de UTMs
 
-#### 2. HCM (Rankmi)
-1. `v1_hcm`
-2. `v2_hcm`
-3. `v3_hcm`
+Este plan detalla la creación de un listado literal y completo de cada uno de los enlaces de rastreo generados para las 30 plantillas de la campaña Infrasys, utilizando el estándar de Google Analytics 4 (UTMs).
 
-#### 3. NEXTFLOW (BPM)
-1. `v1_nextflow`
-2. `v2_nextflow`
-3. `v3_nextflow`
+## Proposed Changes
 
-#### 4. PARTNERS TRUCK
-1. `v1_partnerstruck`
-2. `v2_partnerstruck`
-3. `v3_partnerstruck`
+### 1. [MODIFICAR] Documentación Técnica Literal
+Actualizaremos el documento maestro de auditoría para que no sea solo una guía de "lógica", sino un listado real de todos los valores posibles.
 
-#### 5. SMARTDENT
-1. `v1_smartdent`
-2. `v2_smartdent`
-3. `v3_smartdent`
+#### [MODIFY] docs/DETALLE_RASTREO_LITERAL.md
+- **Contenido Exhaustivo:** Listaremos cada aplicativo (CRM, HCM, ERP, etc.) y sus versiones (v1, v2, v3).
+- **Desglose de Enlaces:** Para cada plantilla, listaremos literalmente los 11 tipos de `utm_content` que el script puede generar.
+- **Formato:** Utilizaremos un formato de tabla o lista multinivel clara para que el usuario pueda copiar y pegar cualquier valor en los filtros de GA4.
 
-#### 6. ERP
-1. `v1_erp`
-2. `v2_erp`
-3. `v3_erp`
+## User Review Required
 
-#### 7. KARDEX
-1. `v1_kardex`
-2. `v2_kardex`
-3. `v3_kardex`
+> [!NOTE]
+> **Extensión del Documento**
+> El listado final contendrá aproximadamente 330 entradas técnicas (30 plantillas x 11 tipos de enlace). Confirmar si el usuario prefiere este listado en un solo documento largo o dividido por aplicativos.
 
-#### 8. GEMP (Gestión Empresarial Participativa)
-1. `v1_gem`
-2. `v2_gem`
-3. `v3_gem`
+## Verification Plan
 
-#### 9. CLINIC MENTOR
-1. `v1_mentor`
-2. `v2_mentor`
-3. `v3_mentor`
-
-## 3. Rastreo de Clics (Etiquetas UTM)
-Todos los enlaces incluyen los parámetros base: `utm_source=partnertech`, `utm_medium=correo`, `utm_term={{Email_Hash}}`.
-
-### Valores de Campaña (`utm_campaign`) por Aplicativo:
-- **CRM**: `campana_crm`
-- **HCM**: `campana_hcm`
-- **Nextflow**: `campana_nextflow`
-- **Partners Truck**: `campana_partnerstruck`
-- **SmartDent**: `campana_smartdent`
-- **ERP**: `campana_erp`
-- **Kardex**: `campana_kardex`
-- **GEMP**: `campana_gem`
-- **Clinic Mentor**: `campana_mentor`
-
-### Ejemplos en Código (Anatomía del Enlace)
-
-Todos los enlaces en los correos HTML siguen esta estructura de etiquetas UTM estándar:
-
-```html
-<a href="https://[URL_DESTINO]?utm_source=partnertech&utm_medium=correo&utm_campaign=campana_[APP]&utm_content=[PLANTILLA]_[ELEMENTO]&utm_term={{Email_Hash}}">
-```
-
-**Ejemplo - Botón Principal (CRM v1):**
-```html
-<a href="{{CTA_Link}}?utm_source=partnertech&utm_medium=correo&utm_campaign=campana_crm&utm_content=v1_crm_boton_principal&utm_term={{Email_Hash}}">
-```
-
-**Ejemplo - Red Social LinkedIn (HCM v2):**
-```html
-<a href="https://linkedin.com/company/partner-tech?utm_source=partnertech&utm_medium=correo&utm_campaign=campana_hcm&utm_content=v2_hcm_red_linkedin&utm_term={{Email_Hash}}">
-```
-
-**Ejemplo - Enlace de Cancelar Suscripción (Kardex v3):**
-```html
-<a href="mailto:remover@partner-tech.com?utm_source=partnertech&utm_medium=correo&utm_campaign=campana_kardex&utm_content=v3_kardex_enlace_remover&utm_term={{Email_Hash}}">
-```
+### Manual Verification
+- Revisaremos que los 330 valores técnicos coincidan exactamente con la lógica programada en `update_tracking_tags.py`.
+- Validaremos que el formato sea legible y fácil de navegar. Inyectado:**
+`https://[DESTINO]?utm_source=partnertech&utm_medium=correo&utm_campaign=[CAMPANA]&utm_content=[PLANTILLA]_[ELEMENTO]&utm_term={{Email_Hash}}`
 
 ---
-Última actualización: 18 de marzo de 2026. (Estandarización UTM GA4)
-
+Última actualización: 18 de marzo de 2026. (Reporte de Auditoría Final)
