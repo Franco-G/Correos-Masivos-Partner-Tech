@@ -35,8 +35,6 @@ def get_app_info(folder, filename):
     
     return campana, plantilla
 
-REDIRECTOR_BASE_URL = "http://localhost:8000"  # ¡CAMBIAR POR EL DOMINIO FINAL DEL SERVIDOR EN PRODUCCIÓN!
-
 def add_utms(url, campana, plantilla, elemento):
     url = url.replace("&amp;", "&")
     # if it's Jinja like {{CTA_Link}}, let's treat it carefully
@@ -52,7 +50,7 @@ def add_utms(url, campana, plantilla, elemento):
 
     params = dict(parse_qsl(query_str))
     
-    # Overwrite tracking params (Mantenemos UTMs estándar como respaldo)
+    # Overwrite tracking params
     params['utm_source'] = 'partnertech'
     params['utm_medium'] = 'correo'
     params['utm_campaign'] = campana
@@ -61,34 +59,10 @@ def add_utms(url, campana, plantilla, elemento):
     
     new_query = "&amp;".join([f"{k}={v}" for k, v in params.items()])
     if base_url == "{{CTA_Link}}":
-        final_url_with_utms = f"{base_url}?{new_query}"
-    else:
-        parsed = urlparse(url)
-        final_url_with_utms = urlunparse((parsed.scheme, parsed.netloc, parsed.path, parsed.params, new_query, parsed.fragment))
-
-    # Parámetros para el Redirector y Measurement Protocol
-    redirector_params = {
-        'url': final_url_with_utms,
-        'cid': '{{Email_Hash}}',
-        'campana': campana,
-        'plantilla': plantilla,
-        'contenido': f'{plantilla}_{elemento}'
-    }
+        return f"{base_url}?{new_query}"
     
-    from urllib.parse import quote
-    # Codificar solo la variable URL, las variables Jinja no deben codificarse (%7B%7B...) porque fallan al procesar la plantilla
-    redir_query_parts = []
-    for k, v in redirector_params.items():
-        if k == 'url':
-            # Codificamos la url pero ignoramos los caracteres {{ }} de Jinja para que no se arruinen
-            quoted_url = quote(v, safe='{}')
-            redir_query_parts.append(f"{k}={quoted_url}")
-        else:
-            redir_query_parts.append(f"{k}={v}")
-            
-    redir_query = "&amp;".join(redir_query_parts)
-    
-    return f"{REDIRECTOR_BASE_URL}/clic?{redir_query}"
+    parsed = urlparse(url)
+    return urlunparse((parsed.scheme, parsed.netloc, parsed.path, parsed.params, new_query, parsed.fragment))
 
 def process_file(filepath):
     folder = os.path.basename(os.path.dirname(filepath))

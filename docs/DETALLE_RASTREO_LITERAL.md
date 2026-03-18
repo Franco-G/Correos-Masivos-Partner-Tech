@@ -77,16 +77,29 @@ Todos los enlaces incluyen los parámetros base: `utm_source=partnertech`, `utm_
 - **GEMP**: `campana_gem`
 - **Clinic Mentor**: `campana_mentor`
 
-### Valores de Contenido (`utm_content`) por Enlace:
-Formato: `{plantilla}_{elemento}`. Fiel a las directrices, todo elemento cliqueable está etiquetado:
+### Ejemplos en Código (Anatomía del Enlace)
 
-- **Botón principal (CTA):** `{plantilla}_boton_[accion]` (ej: `v1_crm_boton_agendar`)
-- **Redes Sociales:** `{plantilla}_red_[red_social]` (ej: `v1_crm_red_linkedin`, `v1_crm_red_youtube`, `v1_crm_red_facebook`, `v1_crm_red_instagram`, `v1_crm_red_tiktok`, `v1_crm_red_twitter`)
-- **Enlace a la web:** `{plantilla}_enlace_web` (ej: `v1_crm_enlace_web`)
-- **Correo emisor:** `{plantilla}_enlace_correo` (ej: `v1_crm_enlace_correo`)
-- **Enlace de remover:** `{plantilla}_enlace_remover` (ej: `v1_crm_enlace_remover`)
-- **Vínculos de textos específicos:** `{plantilla}_texto_[referencia]` (ej: `v1_crm_texto_conoce_mas`)
+Todos los enlaces en los correos HTML siguen esta estructura de etiquetas UTM estándar:
+
+```html
+<a href="https://[URL_DESTINO]?utm_source=partnertech&utm_medium=correo&utm_campaign=campana_[APP]&utm_content=[PLANTILLA]_[ELEMENTO]&utm_term={{Email_Hash}}">
+```
+
+**Ejemplo - Botón Principal (CRM v1):**
+```html
+<a href="{{CTA_Link}}?utm_source=partnertech&utm_medium=correo&utm_campaign=campana_crm&utm_content=v1_crm_boton_principal&utm_term={{Email_Hash}}">
+```
+
+**Ejemplo - Red Social LinkedIn (HCM v2):**
+```html
+<a href="https://linkedin.com/company/partner-tech?utm_source=partnertech&utm_medium=correo&utm_campaign=campana_hcm&utm_content=v2_hcm_red_linkedin&utm_term={{Email_Hash}}">
+```
+
+**Ejemplo - Enlace de Cancelar Suscripción (Kardex v3):**
+```html
+<a href="mailto:remover@partner-tech.com?utm_source=partnertech&utm_medium=correo&utm_campaign=campana_kardex&utm_content=v3_kardex_enlace_remover&utm_term={{Email_Hash}}">
+```
 
 ---
-Última actualización: 12 de marzo de 2026.
+Última actualización: 18 de marzo de 2026. (Estandarización UTM GA4)
 
