@@ -12,7 +12,7 @@ Busca estos datos en tus reportes de eventos:
 | :--- | :--- | :--- |
 | **Nombre del Evento (`en`)** | `apertura_correo` | Filtro principal para ver quién abrió correos. |
 | **Campaña (`ep.campana`)** | `campana_infrasys`, `campana_crm`, `campana_hcm`, `campana_nextflow`, `campana_truck`, `campana_smartdent`, `campana_erp`, `campana_kardex`, `campana_gem`, `campana_clinic` | Agrupa todas las aperturas de la campaña respectiva. |
-| **Plantilla (`ep.plantilla`)** | Ej: `v1_excel`, `v1_centralizacion`, `v2_nomina`, `v3_procesos` | Identifica qué diseño específico fue abierto. |
+| **Plantilla (`ep.plantilla`)** | Ej: `v1_crm`, `v2_hcm`, `v3_erp`, `v4_partnerstruck` | Identifica qué diseño específico fue abierto. |
 | **ID de Usuario (`cid`)** | `[HASH_MD5]` | Identificador anónimo del cliente. |
 
 ## 3. Rastreo de Clics (Etiquetas UTM)
@@ -23,7 +23,7 @@ Datos registrados cuando el cliente interactúa con los botones o enlaces:
 | **Fuente (`utm_source`)** | `partnertech` | Origen del tráfico. |
 | **Medio (`utm_medium`)** | `correo` | Clasificación del tráfico. |
 | **Campaña (`utm_campaign`)** | `campana_{app}` | Agrupación por campaña de aplicativo. |
-| **Contenido (`utm_content`)** | `{v_slug}_boton_agendar`, `{v_slug}_enlace_web` | Saber dónde hicieron clic exactamente. |
+| **Contenido (`utm_content`)** | `{plantilla}_boton_agendar`, `{plantilla}_red_linkedin`, `{plantilla}_enlace_remover` | Saber dónde hicieron clic exactamente. |
 | **Término (`utm_term`)** | `[HASH_MD5]` | ID anónimo del cliente que hizo clic. |
 
 ---
@@ -44,7 +44,7 @@ Para que GA4 reconozca los datos del píxel de apertura (como el nombre de la pl
 1. Ve a **Informes** > **Adquisición** > **Adquisición de tráfico**.
 2. En la tabla, selecciona como dimensión principal **Fuente/medio de la sesión** (verás `partnertech / correo`).
 3. Haz clic en el botón **"+"** azul al lado de la columna actual y busca **"Contenido del anuncio manual"**.
-4. Ahora verás los valores tipo `v1_excel_boton_agendar` junto al tráfico.
+4. Ahora verás los valores tipo `v1_crm_boton_agendar` o `v2_hcm_red_linkedin` junto al tráfico.
 
 ### Paso C: Crear Informe de Aperturas (Exploración)
 1. Ve a **Explorar** > **Exploración en blanco**.
