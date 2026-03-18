@@ -1,6 +1,6 @@
 import os
 import re
-from urllib.parse import urlparse, urlencode, parse_qsl, urlunparse
+from urllib.parse import urlparse, parse_qsl, urlunparse, urlencode
 
 def get_app_info(folder, filename):
     mapping = {
@@ -35,34 +35,52 @@ def get_app_info(folder, filename):
     
     return campana, plantilla
 
-def add_utms(url, campana, plantilla, elemento):
-    url = url.replace("&amp;", "&")
-    # if it's Jinja like {{CTA_Link}}, let's treat it carefully
+def clean_and_add_utms(url, campana, plantilla, elemento):
+    # 1. Limpiar envolturas de localhost si existen
+    from urllib.parse import unquote
+    while "localhost:8000/clic?url=" in url:
+        match = re.search(r'url=([^&]+)', url)
+        if match:
+            url = unquote(match.group(1))
+        else:
+            break
+            
+    # 2. Separar base y query
     if url.startswith("{{CTA_Link}}"):
         base_url = "{{CTA_Link}}"
-        query_str = url[len(base_url):]
-        if query_str.startswith("?"):
-            query_str = query_str[1:]
+        query_str = ""
     else:
+        # Normalizar separadores antes de parsear
+        url = url.replace("&amp;", "&").replace("&amp%3B", "&").replace("%3B", "&")
         parsed = urlparse(url)
         base_url = urlunparse((parsed.scheme, parsed.netloc, parsed.path, parsed.params, '', parsed.fragment))
         query_str = parsed.query
 
-    params = dict(parse_qsl(query_str))
+    # 3. Filtrar parámetros (eliminar UTMs previos y otros rastreos sucios)
+    prev_params = parse_qsl(query_str)
+    keep_params = []
+    for k, v in prev_params:
+        if k.startswith('utm_') or k in ['cid', 'campana', 'plantilla', 'contenido']:
+            continue
+        keep_params.append((k, v))
+        
+    # 4. Añadir UTMs frescos
+    keep_params.append(('utm_source', 'partnertech'))
+    keep_params.append(('utm_medium', 'correo'))
+    keep_params.append(('utm_campaign', campana))
+    keep_params.append(('utm_content', f'{plantilla}_{elemento}'))
+    keep_params.append(('utm_term', '{{Email_Hash}}'))
     
-    # Overwrite tracking params
-    params['utm_source'] = 'partnertech'
-    params['utm_medium'] = 'correo'
-    params['utm_campaign'] = campana
-    params['utm_content'] = f'{plantilla}_{elemento}'
-    params['utm_term'] = '{{Email_Hash}}'
+    # 5. Reconstruir
+    new_query = urlencode(keep_params, safe='{}') # Mantener llaves Jinja sin codificar si es posible
     
-    new_query = "&amp;".join([f"{k}={v}" for k, v in params.items()])
+    # URL final (usamos &amp; para HTML)
+    final_query = new_query.replace("&", "&amp;")
+    
     if base_url == "{{CTA_Link}}":
-        return f"{base_url}?{new_query}"
+        return f"{base_url}?{final_query}"
     
-    parsed = urlparse(url)
-    return urlunparse((parsed.scheme, parsed.netloc, parsed.path, parsed.params, new_query, parsed.fragment))
+    return f"{base_url}?{final_query}"
 
 def process_file(filepath):
     folder = os.path.basename(os.path.dirname(filepath))
@@ -73,33 +91,38 @@ def process_file(filepath):
     with open(filepath, 'r', encoding='utf-8') as f:
         content = f.read()
     
-    # Update Pixel
-    pixel_pattern = r'(https://www\.google-analytics\.com/g/collect\?v=2&amp;tid=G-FLPG7XG57W&amp;cid={{Email_Hash}}&amp;en=apertura_correo&amp;ep\.campana=)([^&]+)(&amp;ep\.plantilla=)([^"]+)(")'
+    # Limpieza inicial de cualquier residuo visual
+    content = content.replace("http://localhost:8000/clic?url=", "")
+    
+    # Actualizar Píxel de Apertura (Simplificado y limpio)
+    pixel_pattern = r'(https://www\.google-analytics\.com/g/collect\?v=2&tid=G-FLPG7XG57W&cid={{Email_Hash}}&en=apertura_correo&ep\.campana=)([^&]+)(&ep\.plantilla=)([^"]+)(")'
     content = re.sub(pixel_pattern, rf'\g<1>{campana}\g<3>{plantilla}\g<5>', content)
     
-    # Update all anchor tags
-    a_tag_pattern = re.compile(r'<a\s+[^>]*href=["\']([^"\']+)["\'][^>]*>')
+    # Actualizar enlaces <a>
+    # Buscamos el href y capturamos todo el tag para contexto (como el estilo del botón WA)
+    a_tag_pattern = re.compile(r'(<a\s+[^>]*href=["\'])([^"\']+)(["\'][^>]*>)')
     
     def replace_href(match):
+        prefix = match.group(1)
+        href = match.group(2)
+        suffix = match.group(3)
         full_tag = match.group(0)
-        href = match.group(1)
         
-        # Determine element type
+        # Auditoría de Redes Reales (Solo estas 3 existen según auditoría)
         elemento = 'enlace_general'
-        if 'facebook.com' in href or 'fb.com' in href:
+        if 'facebook.com' in href:
             elemento = 'red_facebook'
         elif 'instagram.com' in href:
             elemento = 'red_instagram'
         elif 'linkedin.com' in href:
             elemento = 'red_linkedin'
-        elif 'tiktok.com' in href:
-            elemento = 'red_tiktok'
-        elif 'youtube.com' in href:
-            elemento = 'red_youtube'
-        elif 'whatsapp.com' in href:
-            elemento = 'enlace_whatsapp'
+        elif 'whatsapp.com' in href or 'api.whatsapp' in href:
+            if 'background-color: #1bde5d' in full_tag or 'background-color:#1bde5d' in full_tag:
+                elemento = 'boton_whatsapp'
+            else:
+                elemento = 'enlace_whatsapp'
         elif 'mailto' in href:
-            if 'Remover' in href or 'remover' in href:
+            if 'Remover' in href or 'remover' in href or 'subject=Remover' in href:
                 elemento = 'enlace_remover'
             else:
                 elemento = 'enlace_correo'
@@ -108,15 +131,13 @@ def process_file(filepath):
         elif 'partnertech.pe' in href:
             elemento = 'enlace_web'
         
-        new_href = add_utms(href, campana, plantilla, elemento)
-        return full_tag.replace(href, new_href)
+        new_href = clean_and_add_utms(href, campana, plantilla, elemento)
+        return f"{prefix}{new_href}{suffix}"
         
     content = a_tag_pattern.sub(replace_href, content)
 
     with open(filepath, 'w', encoding='utf-8') as f:
         f.write(content)
-    
-    print(f"Updated: {filepath}")
 
 def main():
     templates_dir = os.path.join(os.path.dirname(__file__), 'templates')
