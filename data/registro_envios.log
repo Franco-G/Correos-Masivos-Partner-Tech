@@ -974,3 +974,9 @@
 2026-03-18 14:43:10,412 - INFO - Esperando 12.11s para siguiente prueba...
 2026-03-18 14:43:23,945 - INFO - Prueba smart_dent/correo_smart_dent_v3_crecimiento.html: OK
 2026-03-18 14:43:23,947 - INFO - --- PRUEBAS FINALIZADAS ---
+2026-03-18 15:53:46,990 - INFO - --- INICIANDO PRUEBAS PARA: fguerrero@partnertech.pe ---
+2026-03-18 15:53:48,885 - INFO - Prueba crm/correo_crm_v1_centralizacion.html: OK
+2026-03-18 15:53:48,886 - INFO - --- PRUEBAS FINALIZADAS ---
+2026-03-18 15:54:03,124 - INFO - --- INICIANDO PRUEBAS PARA: negocios@partnertech.pe ---
+2026-03-18 15:54:04,553 - INFO - Prueba erp/correo_erp_v1_datos.html: OK
+2026-03-18 15:54:04,554 - INFO - --- PRUEBAS FINALIZADAS ---

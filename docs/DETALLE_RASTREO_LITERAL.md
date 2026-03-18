@@ -79,11 +79,56 @@ Para cualquier plantilla (ej: `v1_crm`), los enlaces son:
 
 ---
 
+## 5. Relación de Variables (Apertura vs Clic)
+
+Para que el seguimiento sea coherente en GA4, usamos la misma lógica de nombres tanto en la apertura como en el clic:
+
+| Concepto | Apertura (Evento `apertura_correo`) | Clic (Enlace con UTMs) | Dimensión en GA4 |
+| :--- | :--- | :--- | :--- |
+| **Campaña** | `ep.campana` | `utm_campaign` | Nombre de campaña manual de la sesión |
+| **Plantilla** | `ep.plantilla` | Prefijo de `utm_content` | Contenido de anuncio manual de la sesión |
+| **Elemento** | N/A | Sufijo de `utm_content` | Contenido de anuncio manual de la sesión |
+| **Usuario** | `cid` | `utm_term` | Término manual de la sesión |
+
+### Diferencia Fundamental:
+*   **Evento (Apertura)**: Se dispara automáticamente al abrir el correo (vía píxel invisible). No requiere interacción activa más allá de la lectura. Se registra como un "suceso" independiente en GA4.
+*   **UTM (Clic)**: Se registra **solo si el usuario hace clic** en un enlace. Su función principal es "etiquetar" la sesión del usuario en tu web, permitiendo saber de qué correo vino originalmente.
+
+> [!TIP]
+> Si tienes 1000 aperturas y 100 clics, GA4 te mostrará 1000 eventos `apertura_correo` y 100 sesiones con la campaña `campana_crm`.
+
+---
+
 ## 5. Guía de Uso en GA4
 1.  **Apertura**: Usa los parámetros `ep.plantilla` y `ep.campana` del evento `apertura_correo`.
 2.  **Clics**: 
     *   **Campaña**: La dimensión "**Nombre de campaña manual de la sesión**" corresponde al parámetro `utm_campaign`. Su valor es exactamente el mismo listado como "Campaña (`ep.campana`)" en la tabla de la Sección 3 (ej: `campana_crm`, `campana_hcm`, etc.).
     *   **Enlace Específico**: La dimensión "**Contenido de anuncio manual de la sesión**" corresponde a `utm_content`. Úsala para filtrar por los valores listados en la Sección 4 (ej: Filtrar por `contiene "boton_whatsapp"` para ver efectividad del botón verde de contacto).
+
+## 6. Glosario de Variables y Parámetros
+Detalle de cada variable incluida en las URLs de seguimiento:
+
+| Variable | Origen / Valor | Descripción |
+| :--- | :--- | :--- |
+| `utm_source` | `partnertech` | Identifica a Partner Tech como la fuente del tráfico. |
+| `utm_medium` | `correo` | Identifica el medio como correo electrónico. |
+| `utm_campaign` | Dinámico (Sección 3) | Nombre de la campaña (ej: `campana_crm`). |
+| `utm_content` | Dinámico (Sección 4) | Identificador único del enlace/botón clickeado. |
+| `utm_term` | `{{Email_Hash}}` | Hash anónimo del correo para seguimiento individual. |
+| `duration` | Parámetro Externo | (Si aplica) Duración de la sesión reservada (ej: 15, 30 min). |
+| `overlayCalendar` | Parámetro Externo | (Si aplica) Indica si el calendario se abre sobrepuesto (`true/false`). |
+
+## 7. Requerimientos de Datos Sugeridos
+Para que el motor de envío y el rastreo funcionen al 100%, cada correo debe contar con los siguientes datos/etiquetas:
+
+| Dato / Tag | Función | Obligatorio |
+| :--- | :--- | :--- |
+| `{{Email_Hash}}` | Identificador anónimo del usuario (Píxel y UTMs). | SÍ |
+| `{{CTA_Link}}` | URL del botón principal de la campaña. | SÍ |
+| `{{Campana}}` | Nombre dinámico de la campaña (en plantillas base). | SÍ |
+| **Píxel de Apertura** | Código invisible de GA4 al final del HTML. | SÍ |
+| **UTMs Estándar** | Etiquetas de rastreo en cada enlace `<a>`. | SÍ |
+| **Header/Footer** | Logos, redes sociales y links legales (remover). | SÍ |
 
 ---
 Última actualización: 18 de marzo de 2026. (Reporte Maestro Consolidado y Limpio)
