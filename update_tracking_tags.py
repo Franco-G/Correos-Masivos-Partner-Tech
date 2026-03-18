@@ -35,7 +35,7 @@ def get_app_info(folder, filename):
     
     return campana, plantilla
 
-def clean_and_add_utms(url, campana, plantilla, elemento):
+def clean_and_add_utms(url, app_campaign, elemento):
     # 1. Limpiar envolturas de localhost si existen
     from urllib.parse import unquote
     while "localhost:8000/clic?url=" in url:
@@ -50,13 +50,12 @@ def clean_and_add_utms(url, campana, plantilla, elemento):
         base_url = "{{CTA_Link}}"
         query_str = ""
     else:
-        # Normalizar separadores antes de parsear
         url = url.replace("&amp;", "&").replace("&amp%3B", "&").replace("%3B", "&")
         parsed = urlparse(url)
         base_url = urlunparse((parsed.scheme, parsed.netloc, parsed.path, parsed.params, '', parsed.fragment))
         query_str = parsed.query
 
-    # 3. Filtrar parámetros (eliminar UTMs previos y otros rastreos sucios)
+    # 3. Filtrar parámetros previos
     prev_params = parse_qsl(query_str)
     keep_params = []
     for k, v in prev_params:
@@ -64,17 +63,25 @@ def clean_and_add_utms(url, campana, plantilla, elemento):
             continue
         keep_params.append((k, v))
         
-    # 4. Añadir UTMs frescos
+    # 4. Determinar Campaña y Content (Estrategia Universal)
+    final_campaign = app_campaign
+    
+    if elemento in ['red_facebook', 'red_instagram', 'red_linkedin']:
+        final_campaign = 'redes_sociales'
+    elif elemento == 'enlace_web':
+        final_campaign = 'sitio_web'
+    elif elemento == 'enlace_remover':
+        final_campaign = 'legal'
+    # WhatsApp y boton_cta mantienen final_campaign = app_campaign (fijado arriba)
+        
     keep_params.append(('utm_source', 'partnertech'))
     keep_params.append(('utm_medium', 'correo'))
-    keep_params.append(('utm_campaign', campana))
-    keep_params.append(('utm_content', f'{plantilla}_{elemento}'))
+    keep_params.append(('utm_campaign', final_campaign))
+    keep_params.append(('utm_content', elemento))
     keep_params.append(('utm_term', '{{Email_Hash}}'))
     
     # 5. Reconstruir
-    new_query = urlencode(keep_params, safe='{}') # Mantener llaves Jinja sin codificar si es posible
-    
-    # URL final (usamos &amp; para HTML)
+    new_query = urlencode(keep_params, safe='{}')
     final_query = new_query.replace("&", "&amp;")
     
     if base_url == "{{CTA_Link}}":
@@ -86,20 +93,18 @@ def process_file(filepath):
     folder = os.path.basename(os.path.dirname(filepath))
     filename = os.path.basename(filepath)
     
-    campana, plantilla = get_app_info(folder, filename)
+    app_campaign, plantilla = get_app_info(folder, filename)
     
     with open(filepath, 'r', encoding='utf-8') as f:
         content = f.read()
     
-    # Limpieza inicial de cualquier residuo visual
     content = content.replace("http://localhost:8000/clic?url=", "")
     
-    # Actualizar Píxel de Apertura (Simplificado y limpio)
+    # Píxel de Apertura: Sigue usando la del aplicativo para no perder el dato de qué producto están abriendo
     pixel_pattern = r'(https://www\.google-analytics\.com/g/collect\?v=2&tid=G-FLPG7XG57W&cid={{Email_Hash}}&en=apertura_correo&ep\.campana=)([^&]+)(&ep\.plantilla=)([^"]+)(")'
-    content = re.sub(pixel_pattern, rf'\g<1>{campana}\g<3>{plantilla}\g<5>', content)
+    content = re.sub(pixel_pattern, rf'\g<1>{app_campaign}\g<3>{plantilla}\g<5>', content)
     
     # Actualizar enlaces <a>
-    # Buscamos el href y capturamos todo el tag para contexto (como el estilo del botón WA)
     a_tag_pattern = re.compile(r'(<a\s+[^>]*href=["\'])([^"\']+)(["\'][^>]*>)')
     
     def replace_href(match):
@@ -108,7 +113,6 @@ def process_file(filepath):
         suffix = match.group(3)
         full_tag = match.group(0)
         
-        # Auditoría de Redes Reales (Solo estas 3 existen según auditoría)
         elemento = 'enlace_general'
         if 'facebook.com' in href:
             elemento = 'red_facebook'
@@ -127,11 +131,11 @@ def process_file(filepath):
             else:
                 elemento = 'enlace_correo'
         elif '{{CTA_Link}}' in href:
-            elemento = 'boton_principal'
+            elemento = 'boton_cta' # Anteriormente boton_principal
         elif 'partnertech.pe' in href:
             elemento = 'enlace_web'
         
-        new_href = clean_and_add_utms(href, campana, plantilla, elemento)
+        new_href = clean_and_add_utms(href, app_campaign, elemento)
         return f"{prefix}{new_href}{suffix}"
         
     content = a_tag_pattern.sub(replace_href, content)
