@@ -35,7 +35,7 @@ def get_app_info(folder, filename):
     
     return campana, plantilla
 
-def clean_and_add_utms(url, app_campaign, elemento):
+def clean_and_add_utms(url, app_campaign, plantilla, elemento):
     # 1. Limpiar envolturas de localhost si existen
     from urllib.parse import unquote
     while "localhost:8000/clic?url=" in url:
@@ -74,10 +74,15 @@ def clean_and_add_utms(url, app_campaign, elemento):
         final_campaign = 'legal'
     # WhatsApp y boton_cta mantienen final_campaign = app_campaign (fijado arriba)
         
+    # Si es universal no le ponemos el prefijo de plantilla, pero si es del aplicativo sí
+    final_content = elemento
+    if final_campaign == app_campaign:
+        final_content = f"{plantilla}_{elemento}"
+        
     keep_params.append(('utm_source', 'partnertech'))
     keep_params.append(('utm_medium', 'correo'))
     keep_params.append(('utm_campaign', final_campaign))
-    keep_params.append(('utm_content', elemento))
+    keep_params.append(('utm_content', final_content))
     keep_params.append(('utm_term', '{{Email_Hash}}'))
     
     # 5. Reconstruir
@@ -135,13 +140,14 @@ def process_file(filepath):
         elif 'partnertech.pe' in href:
             elemento = 'enlace_web'
         
-        new_href = clean_and_add_utms(href, app_campaign, elemento)
+        new_href = clean_and_add_utms(href, app_campaign, plantilla, elemento)
         return f"{prefix}{new_href}{suffix}"
         
     content = a_tag_pattern.sub(replace_href, content)
 
     with open(filepath, 'w', encoding='utf-8') as f:
         f.write(content)
+
 
 def main():
     templates_dir = os.path.join(os.path.dirname(__file__), 'templates')
