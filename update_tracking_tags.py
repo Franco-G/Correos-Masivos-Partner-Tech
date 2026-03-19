@@ -72,6 +72,8 @@ def clean_and_add_utms(url, app_campaign, plantilla, elemento):
         final_campaign = 'sitio_web'
     elif elemento == 'enlace_remover':
         final_campaign = 'legal'
+    elif elemento == 'enlace_correo_empresa':
+        final_campaign = 'correo_empresa'
     # WhatsApp y boton_cta mantienen final_campaign = app_campaign (fijado arriba)
         
     # Si es universal no le ponemos el prefijo de plantilla, pero si es del aplicativo sí

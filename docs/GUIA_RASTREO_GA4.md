@@ -22,9 +22,9 @@ Datos registrados cuando el cliente interactúa con los botones o enlaces:
 | :--- | :--- | :--- |
 | **Fuente (`utm_source`)** | `partnertech` | Origen del tráfico. |
 | **Medio (`utm_medium`)** | `correo` | Clasificación del tráfico. |
-| **Campaña (`utm_campaign`)** | `campana_{app}` | Agrupación por campaña de aplicativo. |
-| **Contenido (`utm_content`)** | `{plantilla}_boton_agendar`, `{plantilla}_red_linkedin`, `{plantilla}_enlace_remover` | Saber dónde hicieron clic exactamente. |
-| **Término (`utm_term`)** | `[HASH_MD5]` | ID anónimo del cliente que hizo clic. |
+| **Campaña (`utm_campaign`)** | Ej: `campana_{app}`, `correo_empresa`, `redes_sociales`, `sitio_web`, `legal` | Agrupa el tráfico por campaña de producto o un canal global. |
+| **Contenido (`utm_content`)** | Ej: `{plantilla}_boton_cta`, `{plantilla}_boton_whatsapp`, `{plantilla}_enlace_correo_emisor`, `enlace_correo_empresa` | Segmentación estricta para saber qué elemento interactivo se presionó, vinculado a un diseño o global. |
+| **Término (`utm_term`)** | `[HASH_MD5]` | ID anónimo del cliente que hizo clic, inyectado por `main.py`. |
 
 ---
 
@@ -44,7 +44,7 @@ Para que GA4 reconozca los datos del píxel de apertura (como el nombre de la pl
 1. Ve a **Informes** > **Adquisición** > **Adquisición de tráfico**.
 2. En la tabla, selecciona como dimensión principal **Fuente/medio de la sesión** (verás `partnertech / correo`).
 3. Haz clic en el botón **"+"** azul al lado de la columna actual y busca **"Contenido del anuncio manual"**.
-4. Ahora verás los valores tipo `v1_crm_boton_agendar` o `v2_hcm_red_linkedin` junto al tráfico.
+4. Ahora verás los valores tipo `v1_crm_boton_cta`, `v2_hcm_boton_whatsapp` o `enlace_correo_empresa` junto al tráfico.
 
 ### Paso C: Crear Informe de Aperturas (Exploración)
 1. Ve a **Explorar** > **Exploración en blanco**.

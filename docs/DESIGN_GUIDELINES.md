@@ -70,6 +70,10 @@ Todos los correos deben incluir obligatoriamente en el pie de página:
 2.  **Mención de origen de datos:** "Esta información ha sido obtenida de la base de datos de la **Cámara de Comercio de Lima (CCL)**".
 3.  **Link de baja de suscripción:** Claramente visible.
 4.  **Estética:** Texto `#cbd5e0` sobre fondo blanco, sin líneas divisorias superiores.
+5.  **Regla Estricta de Enlaces (Rastreo UTM):** 
+    - **Solo debe existir un Botón de WhatsApp**, rastreado globalmente como `boton_whatsapp`.
+    - **El correo corporativo de Partner Tech** (`negocios@partnertech.pe`) debe estar envuelto en una etiqueta `<a>` con `mailto:`. Esto derivará a la campaña universal `correo_empresa`.
+    - **El correo del receptor** (`{{Email_Destinatario}}`) **NUNCA** debe ser clickeable ni llevar etiqueta `<a>`, ya que arruina el esquema de analítica. Únicamente usar `<span>`.
 
 ## 8. Resaltado de Texto Estratégico (HTML Nativo)
 
