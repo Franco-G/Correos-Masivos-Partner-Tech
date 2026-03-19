@@ -126,15 +126,14 @@ def process_file(filepath):
         elif 'linkedin.com' in href:
             elemento = 'red_linkedin'
         elif 'whatsapp.com' in href or 'api.whatsapp' in href:
-            if 'background-color: #1bde5d' in full_tag or 'background-color:#1bde5d' in full_tag:
-                elemento = 'boton_whatsapp'
-            else:
-                elemento = 'enlace_whatsapp'
+            elemento = 'boton_whatsapp'
         elif 'mailto' in href:
             if 'Remover' in href or 'remover' in href or 'subject=Remover' in href:
                 elemento = 'enlace_remover'
+            elif 'negocios@partnertech.pe' in href:
+                elemento = 'enlace_correo_empresa'
             else:
-                elemento = 'enlace_correo'
+                elemento = 'enlace_correo_emisor'
         elif '{{CTA_Link}}' in href:
             elemento = 'boton_cta' # Anteriormente boton_principal
         elif 'partnertech.pe' in href:
