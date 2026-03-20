@@ -980,3 +980,132 @@
 2026-03-18 15:54:03,124 - INFO - --- INICIANDO PRUEBAS PARA: negocios@partnertech.pe ---
 2026-03-18 15:54:04,553 - INFO - Prueba erp/correo_erp_v1_datos.html: OK
 2026-03-18 15:54:04,554 - INFO - --- PRUEBAS FINALIZADAS ---
+2026-03-20 11:22:47,363 - INFO - Archivo cargado: Correos.xlsx
+2026-03-20 11:23:49,658 - INFO - Archivo cargado: Correos.xlsx
+2026-03-20 11:24:03,027 - INFO - --- INICIANDO ENVÍO MASIVO ---
+2026-03-20 11:24:11,171 - ERROR - Error con guerrerofranco1429@gmail.com: (535, b'Incorrect authentication data')
+2026-03-20 11:24:11,179 - INFO - FALLÓ (partners_truck/correo_partners_truck_v1_telematico.html): guerrerofranco1429@gmail.com
+2026-03-20 11:24:11,185 - INFO - Esperando 13.74s...
+2026-03-20 11:24:29,574 - ERROR - Error con guerrerofranco1429@gmail.com: (535, b'Incorrect authentication data')
+2026-03-20 11:24:29,587 - INFO - FALLÓ (smart_dent/correo_smart_dent_v1_agenda.html): guerrerofranco1429@gmail.com
+2026-03-20 11:24:29,596 - INFO - Esperando 14.04s...
+2026-03-20 11:24:48,275 - ERROR - Error con guerrerofranco1429@gmail.com: (535, b'Incorrect authentication data')
+2026-03-20 11:24:48,285 - INFO - FALLÓ (crm/correo_crm_v1_centralizacion.html): guerrerofranco1429@gmail.com
+2026-03-20 11:24:48,291 - INFO - Esperando 12.54s...
+2026-03-20 11:25:05,530 - ERROR - Error con guerrerofranco1429@gmail.com: (535, b'Incorrect authentication data')
+2026-03-20 11:25:05,540 - INFO - FALLÓ (partners_truck/correo_partners_truck_v1_telematico.html): guerrerofranco1429@gmail.com
+2026-03-20 11:25:05,546 - INFO - Esperando 11.97s...
+2026-03-20 11:26:43,122 - INFO - Archivo cargado: Correos.xlsx
+2026-03-20 11:26:47,052 - INFO - --- INICIANDO ENVÍO MASIVO ---
+2026-03-20 11:26:55,275 - ERROR - Error con guerrerofranco1429@gmail.com: (535, b'Incorrect authentication data')
+2026-03-20 11:26:55,287 - INFO - FALLÓ (crm/correo_crm_v1_centralizacion.html): guerrerofranco1429@gmail.com
+2026-03-20 11:26:55,290 - INFO - Esperando 10.79s...
+2026-03-20 11:27:27,141 - ERROR - Error con guerrerofranco1429@gmail.com: [WinError 10060] Se produjo un error durante el intento de conexión ya que la parte conectada no respondió adecuadamente tras un periodo de tiempo, o bien se produjo un error en la conexión establecida ya que el host conectado no ha podido responder
+2026-03-20 11:27:27,145 - INFO - FALLÓ (hcm/correo_hcm_v1_fugas.html): guerrerofranco1429@gmail.com
+2026-03-20 11:27:27,149 - INFO - Esperando 10.52s...
+2026-03-20 11:27:58,767 - ERROR - Error con guerrerofranco1429@gmail.com: [WinError 10060] Se produjo un error durante el intento de conexión ya que la parte conectada no respondió adecuadamente tras un periodo de tiempo, o bien se produjo un error en la conexión establecida ya que el host conectado no ha podido responder
+2026-03-20 11:27:58,775 - INFO - FALLÓ (kardex/correo_kardex_v1_control.html): guerrerofranco1429@gmail.com
+2026-03-20 11:27:58,782 - INFO - Esperando 11.70s...
+2026-03-20 14:15:01,659 - INFO - Archivo cargado: Correos.xlsx
+2026-03-20 14:15:02,800 - INFO - --- INICIANDO ENVÍO MASIVO ---
+2026-03-20 14:15:24,124 - ERROR - Error con guerrerofranco1429@gmail.com: [WinError 10060] Se produjo un error durante el intento de conexión ya que la parte conectada no respondió adecuadamente tras un periodo de tiempo, o bien se produjo un error en la conexión establecida ya que el host conectado no ha podido responder
+2026-03-20 14:15:24,137 - INFO - FALLÓ (clinic_mentor/correo_clinic_mentor_v2_seguridad.html): guerrerofranco1429@gmail.com
+2026-03-20 14:15:24,140 - INFO - Esperando 12.36s...
+2026-03-20 14:15:57,562 - ERROR - Error con guerrerofranco1429@gmail.com: [WinError 10060] Se produjo un error durante el intento de conexión ya que la parte conectada no respondió adecuadamente tras un periodo de tiempo, o bien se produjo un error en la conexión establecida ya que el host conectado no ha podido responder
+2026-03-20 14:15:57,571 - INFO - FALLÓ (erp/correo_erp_v2_financiero.html): guerrerofranco1429@gmail.com
+2026-03-20 14:15:57,581 - INFO - Esperando 14.49s...
+2026-03-20 14:16:33,158 - ERROR - Error con guerrerofranco1429@gmail.com: [WinError 10060] Se produjo un error durante el intento de conexión ya que la parte conectada no respondió adecuadamente tras un periodo de tiempo, o bien se produjo un error en la conexión establecida ya que el host conectado no ha podido responder
+2026-03-20 14:16:33,172 - INFO - FALLÓ (partners_truck/correo_partners_truck_v3_mantenimiento.html): guerrerofranco1429@gmail.com
+2026-03-20 14:16:33,193 - INFO - Esperando 11.90s...
+2026-03-20 14:17:06,187 - ERROR - Error con guerrerofranco1429@gmail.com: [WinError 10060] Se produjo un error durante el intento de conexión ya que la parte conectada no respondió adecuadamente tras un periodo de tiempo, o bien se produjo un error en la conexión establecida ya que el host conectado no ha podido responder
+2026-03-20 14:17:06,200 - INFO - FALLÓ (clinic_mentor/correo_clinic_mentor_v2_seguridad.html): guerrerofranco1429@gmail.com
+2026-03-20 14:17:06,210 - INFO - Esperando 11.56s...
+2026-03-20 14:17:38,873 - ERROR - Error con guerrerofranco1429@gmail.com: [WinError 10060] Se produjo un error durante el intento de conexión ya que la parte conectada no respondió adecuadamente tras un periodo de tiempo, o bien se produjo un error en la conexión establecida ya que el host conectado no ha podido responder
+2026-03-20 14:17:38,888 - INFO - FALLÓ (erp/correo_erp_v2_financiero.html): guerrerofranco1429@gmail.com
+2026-03-20 14:17:38,904 - INFO - Esperando 12.08s...
+2026-03-20 14:18:12,074 - ERROR - Error con guerrerofranco1429@gmail.com: [WinError 10060] Se produjo un error durante el intento de conexión ya que la parte conectada no respondió adecuadamente tras un periodo de tiempo, o bien se produjo un error en la conexión establecida ya que el host conectado no ha podido responder
+2026-03-20 14:18:12,091 - INFO - FALLÓ (partners_truck/correo_partners_truck_v3_mantenimiento.html): guerrerofranco1429@gmail.com
+2026-03-20 14:18:12,110 - INFO - --- PROCESO FINALIZADO ---
+2026-03-20 14:18:18,642 - INFO - --- INICIANDO ENVÍO MASIVO ---
+2026-03-20 14:18:39,754 - ERROR - Error con guerrerofranco1429@gmail.com: [WinError 10060] Se produjo un error durante el intento de conexión ya que la parte conectada no respondió adecuadamente tras un periodo de tiempo, o bien se produjo un error en la conexión establecida ya que el host conectado no ha podido responder
+2026-03-20 14:18:39,769 - INFO - FALLÓ (clinic_mentor/correo_clinic_mentor_v2_seguridad.html): guerrerofranco1429@gmail.com
+2026-03-20 14:18:39,784 - INFO - Esperando 11.97s...
+2026-03-20 14:19:12,844 - ERROR - Error con guerrerofranco1429@gmail.com: [WinError 10060] Se produjo un error durante el intento de conexión ya que la parte conectada no respondió adecuadamente tras un periodo de tiempo, o bien se produjo un error en la conexión establecida ya que el host conectado no ha podido responder
+2026-03-20 14:19:12,858 - INFO - FALLÓ (erp/correo_erp_v2_financiero.html): guerrerofranco1429@gmail.com
+2026-03-20 14:19:12,869 - INFO - Esperando 10.96s...
+2026-03-20 14:19:44,923 - ERROR - Error con guerrerofranco1429@gmail.com: [WinError 10060] Se produjo un error durante el intento de conexión ya que la parte conectada no respondió adecuadamente tras un periodo de tiempo, o bien se produjo un error en la conexión establecida ya que el host conectado no ha podido responder
+2026-03-20 14:19:44,932 - INFO - FALLÓ (partners_truck/correo_partners_truck_v3_mantenimiento.html): guerrerofranco1429@gmail.com
+2026-03-20 14:19:44,940 - INFO - Esperando 12.08s...
+2026-03-20 14:20:18,107 - ERROR - Error con guerrerofranco1429@gmail.com: [WinError 10060] Se produjo un error durante el intento de conexión ya que la parte conectada no respondió adecuadamente tras un periodo de tiempo, o bien se produjo un error en la conexión establecida ya que el host conectado no ha podido responder
+2026-03-20 14:20:18,118 - INFO - FALLÓ (clinic_mentor/correo_clinic_mentor_v2_seguridad.html): guerrerofranco1429@gmail.com
+2026-03-20 14:20:18,129 - INFO - Esperando 11.17s...
+2026-03-20 14:20:50,360 - ERROR - Error con guerrerofranco1429@gmail.com: [WinError 10060] Se produjo un error durante el intento de conexión ya que la parte conectada no respondió adecuadamente tras un periodo de tiempo, o bien se produjo un error en la conexión establecida ya que el host conectado no ha podido responder
+2026-03-20 14:20:50,372 - INFO - FALLÓ (erp/correo_erp_v2_financiero.html): guerrerofranco1429@gmail.com
+2026-03-20 14:20:50,380 - INFO - Esperando 10.54s...
+2026-03-20 14:21:22,003 - ERROR - Error con guerrerofranco1429@gmail.com: [WinError 10060] Se produjo un error durante el intento de conexión ya que la parte conectada no respondió adecuadamente tras un periodo de tiempo, o bien se produjo un error en la conexión establecida ya que el host conectado no ha podido responder
+2026-03-20 14:21:22,015 - INFO - FALLÓ (partners_truck/correo_partners_truck_v3_mantenimiento.html): guerrerofranco1429@gmail.com
+2026-03-20 14:21:22,025 - INFO - --- PROCESO FINALIZADO ---
+2026-03-20 14:25:42,304 - INFO - Archivo cargado: Correos.xlsx
+2026-03-20 14:25:46,170 - INFO - --- INICIANDO ENVÍO MASIVO ---
+2026-03-20 14:26:07,259 - ERROR - Error con guerrerofranco1429@gmail.com: [WinError 10060] Se produjo un error durante el intento de conexión ya que la parte conectada no respondió adecuadamente tras un periodo de tiempo, o bien se produjo un error en la conexión establecida ya que el host conectado no ha podido responder
+2026-03-20 14:26:07,263 - INFO - FALLÓ (kardex/correo_kardex_v3_valorizacion.html): guerrerofranco1429@gmail.com
+2026-03-20 14:26:07,271 - INFO - Esperando 10.69s...
+2026-03-20 14:26:39,060 - ERROR - Error con guerrerofranco1429@gmail.com: [WinError 10060] Se produjo un error durante el intento de conexión ya que la parte conectada no respondió adecuadamente tras un periodo de tiempo, o bien se produjo un error en la conexión establecida ya que el host conectado no ha podido responder
+2026-03-20 14:26:39,066 - INFO - FALLÓ (crm/correo_crm_v2_memoria.html): guerrerofranco1429@gmail.com
+2026-03-20 14:26:39,075 - INFO - Esperando 14.27s...
+2026-03-20 14:27:14,419 - ERROR - Error con guerrerofranco1429@gmail.com: [WinError 10060] Se produjo un error durante el intento de conexión ya que la parte conectada no respondió adecuadamente tras un periodo de tiempo, o bien se produjo un error en la conexión establecida ya que el host conectado no ha podido responder
+2026-03-20 14:27:14,434 - INFO - FALLÓ (smart_dent/correo_smart_dent_v2_fidelizacion.html): guerrerofranco1429@gmail.com
+2026-03-20 14:27:14,446 - INFO - Esperando 12.20s...
+2026-03-20 14:27:47,752 - ERROR - Error con guerrerofranco1429@gmail.com: [WinError 10060] Se produjo un error durante el intento de conexión ya que la parte conectada no respondió adecuadamente tras un periodo de tiempo, o bien se produjo un error en la conexión establecida ya que el host conectado no ha podido responder
+2026-03-20 14:27:47,761 - INFO - FALLÓ (kardex/correo_kardex_v3_valorizacion.html): guerrerofranco1429@gmail.com
+2026-03-20 14:27:47,776 - INFO - Esperando 11.95s...
+2026-03-20 14:28:20,809 - ERROR - Error con guerrerofranco1429@gmail.com: [WinError 10060] Se produjo un error durante el intento de conexión ya que la parte conectada no respondió adecuadamente tras un periodo de tiempo, o bien se produjo un error en la conexión establecida ya que el host conectado no ha podido responder
+2026-03-20 14:28:20,816 - INFO - FALLÓ (crm/correo_crm_v2_memoria.html): guerrerofranco1429@gmail.com
+2026-03-20 14:28:20,825 - INFO - Esperando 13.55s...
+2026-03-20 14:28:55,462 - ERROR - Error con guerrerofranco1429@gmail.com: [WinError 10060] Se produjo un error durante el intento de conexión ya que la parte conectada no respondió adecuadamente tras un periodo de tiempo, o bien se produjo un error en la conexión establecida ya que el host conectado no ha podido responder
+2026-03-20 14:28:55,485 - INFO - FALLÓ (smart_dent/correo_smart_dent_v2_fidelizacion.html): guerrerofranco1429@gmail.com
+2026-03-20 14:28:55,498 - INFO - --- PROCESO FINALIZADO ---
+2026-03-20 16:13:42,866 - INFO - Archivo cargado: Correos.xlsx
+2026-03-20 16:13:44,236 - INFO - --- INICIANDO ENVÍO MASIVO ---
+2026-03-20 16:14:05,348 - ERROR - Error con guerrerofranco1429@gmail.com: [WinError 10060] Se produjo un error durante el intento de conexión ya que la parte conectada no respondió adecuadamente tras un periodo de tiempo, o bien se produjo un error en la conexión establecida ya que el host conectado no ha podido responder
+2026-03-20 16:14:05,359 - INFO - FALLÓ (crm/correo_crm_v2_memoria.html): guerrerofranco1429@gmail.com
+2026-03-20 16:14:05,364 - INFO - Esperando 14.95s...
+2026-03-20 16:20:47,829 - INFO - Archivo cargado: Correos.xlsx
+2026-03-20 16:20:48,692 - INFO - --- INICIANDO ENVÍO MASIVO ---
+2026-03-20 16:21:09,809 - ERROR - Error con guerrerofranco1429@gmail.com: [WinError 10060] Se produjo un error durante el intento de conexión ya que la parte conectada no respondió adecuadamente tras un periodo de tiempo, o bien se produjo un error en la conexión establecida ya que el host conectado no ha podido responder
+2026-03-20 16:21:09,825 - INFO - FALLÓ (clinic_mentor/correo_clinic_mentor_v3_paciente.html): guerrerofranco1429@gmail.com
+2026-03-20 16:21:09,846 - INFO - Esperando 13.58s...
+2026-03-20 16:21:44,523 - ERROR - Error con guerrerofranco1429@gmail.com: [WinError 10060] Se produjo un error durante el intento de conexión ya que la parte conectada no respondió adecuadamente tras un periodo de tiempo, o bien se produjo un error en la conexión establecida ya que el host conectado no ha podido responder
+2026-03-20 16:21:44,533 - INFO - FALLÓ (erp/correo_erp_v3_operaciones.html): guerrerofranco1429@gmail.com
+2026-03-20 16:21:44,549 - INFO - Esperando 14.79s...
+2026-03-20 16:22:20,414 - ERROR - Error con guerrerofranco1429@gmail.com: [WinError 10060] Se produjo un error durante el intento de conexión ya que la parte conectada no respondió adecuadamente tras un periodo de tiempo, o bien se produjo un error en la conexión establecida ya que el host conectado no ha podido responder
+2026-03-20 16:22:20,423 - INFO - FALLÓ (partners_truck/correo_partners_truck_v2_costos.html): guerrerofranco1429@gmail.com
+2026-03-20 16:22:20,430 - INFO - Esperando 10.13s...
+2026-03-20 17:12:05,709 - INFO - Archivo cargado: Correos.xlsx
+2026-03-20 17:12:06,750 - INFO - --- INICIANDO ENVÍO MASIVO ---
+2026-03-20 17:12:10,752 - INFO - OK (clinic_mentor/correo_clinic_mentor_v3_paciente.html): guerrerofranco1429@gmail.com
+2026-03-20 17:12:10,758 - INFO - Esperando 11.32s...
+2026-03-20 17:12:26,246 - INFO - OK (hcm/correo_hcm_v2_trazabilidad.html): guerrerofranco1429@gmail.com
+2026-03-20 17:12:26,249 - INFO - Esperando 13.54s...
+2026-03-20 17:12:43,572 - INFO - OK (partners_truck/correo_partners_truck_v3_mantenimiento.html): guerrerofranco1429@gmail.com
+2026-03-20 17:12:43,578 - INFO - Esperando 11.49s...
+2026-03-20 17:12:58,818 - INFO - OK (clinic_mentor/correo_clinic_mentor_v3_paciente.html): guerrerofranco1429@gmail.com
+2026-03-20 17:12:58,823 - INFO - Esperando 13.23s...
+2026-03-20 17:13:16,221 - INFO - OK (hcm/correo_hcm_v2_trazabilidad.html): guerrerofranco1429@gmail.com
+2026-03-20 17:13:16,229 - INFO - Esperando 10.47s...
+2026-03-20 17:13:30,527 - INFO - OK (partners_truck/correo_partners_truck_v3_mantenimiento.html): guerrerofranco1429@gmail.com
+2026-03-20 17:13:30,540 - INFO - --- PROCESO FINALIZADO ---
+2026-03-20 17:30:40,541 - INFO - Archivo cargado: Correos.xlsx
+2026-03-20 17:31:22,373 - INFO - --- INICIANDO ENVÍO MASIVO ---
+2026-03-20 17:31:27,317 - INFO - OK (kardex/correo_kardex_v1_control.html): guerrerofranco1429@gmail.com
+2026-03-20 17:31:27,319 - INFO - Esperando 11.08s...
+2026-03-20 17:31:42,809 - INFO - OK (nextflow/correo_nextflow_v3_soberania.html): guerrerofranco1429@gmail.com
+2026-03-20 17:31:42,816 - INFO - Esperando 11.26s...
+2026-03-20 17:31:57,921 - INFO - OK (smart_dent/correo_smart_dent_v3_crecimiento.html): guerrerofranco1429@gmail.com
+2026-03-20 17:31:57,934 - INFO - Esperando 13.57s...
+2026-03-20 17:32:16,210 - INFO - OK (kardex/correo_kardex_v1_control.html): guerrerofranco1429@gmail.com
+2026-03-20 17:32:16,216 - INFO - Esperando 13.13s...
+2026-03-20 17:32:33,328 - INFO - OK (nextflow/correo_nextflow_v3_soberania.html): guerrerofranco1429@gmail.com
+2026-03-20 17:32:33,338 - INFO - Esperando 14.60s...
+2026-03-20 17:32:52,503 - INFO - OK (smart_dent/correo_smart_dent_v3_crecimiento.html): guerrerofranco1429@gmail.com
+2026-03-20 17:32:52,513 - INFO - --- PROCESO FINALIZADO ---

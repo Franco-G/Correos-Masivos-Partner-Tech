@@ -43,11 +43,9 @@ logging.basicConfig(
     format='%(asctime)s - %(levelname)s - %(message)s'
 )
 
-# --- CONFIGURACIÓN ---
-smtp_server = "mail.partnertech.pe"
-smtp_port = 465
-sender_email = "fguerrero@partnertech.pe"
-password_email = "Franco001"
+# --- CONFIGURACIÓN SMTP (Gmail Relay) ---
+smtp_server = "smtp.gmail.com"
+smtp_port = 587
 
 class CorreoApp:
     # Type hints for Pyre2
@@ -125,12 +123,16 @@ class CorreoApp:
             "Franco Guerrero": {
                 "email": "fguerrero@partnertech.pe",
                 "pass": "Franco001",
-                "cargo": "Sub-Gerente Comercial"
+                "cargo": "Sub-Gerente Comercial",
+                "gmail_email": "fguerrero.partnertech@gmail.com",
+                "gmail_app_pass": "ptno nqhw mfff rpjb"            # App Password Franco
             },
             "Alexandra Cardozo": {
                 "email": "acardozo@partnertech.pe",
                 "pass": "acardozo001",
-                "cargo": "Chief Business Officer<br>Directora de Negocios"
+                "cargo": "Chief Business Officer<br>Directora de Negocios",
+                "gmail_email": "fguerrero.partnertech@gmail.com",
+                "gmail_app_pass": "ptno nqhw mfff rpjb"            # App Password compartida
             }
         }
         
@@ -725,9 +727,37 @@ class CorreoApp:
             # Hash del email destino para GA4 Client ID
             email_hash = hashlib.md5(email_destinatario.encode('utf-8')).hexdigest()
 
+            # Lógica de rastreo dinámico según la estructura de carpetas
+            # archivo_html_nombre viene como "aplicativo/archivo.html" (ej: "crm/correo_v1.html")
+            partes_ruta = archivo_html_nombre.split('/')
+            app_folder = partes_ruta[0] if len(partes_ruta) > 1 else "general"
+            
+            # Mapeo de carpeta a nombre de campaña oficial (según docs/GUIA_RASTREO_GA4.md)
+            mapeo_campanas = {
+                "crm": "campana_crm",
+                "hcm": "campana_hcm",
+                "erp": "campana_erp",
+                "gem": "campana_gem",
+                "mentor": "campana_mentor",
+                "infrasys": "campana_infrasys",
+                "kardex": "campana_kardex",
+                "nextflow": "campana_nextflow",
+                "partnerstruck": "campana_partnerstruck",
+                "smartdent": "campana_smartdent"
+            }
+            campana = mapeo_campanas.get(app_folder, "campana_general")
+            
+            # Nombre corto de la plantilla (ej: v1_crm) extraído del nombre del archivo
+            # Si el archivo es "correo_crm_v1_centralizacion.html", buscamos el prefijo de versión
+            nombre_archivo = partes_ruta[-1].replace(".html", "")
+            plantilla_id = nombre_archivo # Valor por defecto
+            if "v1" in nombre_archivo: plantilla_id = f"v1_{app_folder}"
+            elif "v2" in nombre_archivo: plantilla_id = f"v2_{app_folder}"
+            elif "v3" in nombre_archivo: plantilla_id = f"v3_{app_folder}"
+
             # Reemplazos en HTML
             cta_link = "https://cal.com/negocios-partner-tech/requerimientos-software-desarrollo"
-            campana = "produccion_ccl_v1"
+            
             html_content = html_content.replace('{{Nombre_Contacto}}', nombre)\
                                        .replace('{{Email_Destinatario}}', email_destinatario)\
                                        .replace('{{Nombre_Remitente}}', remitente_nombre)\
@@ -736,7 +766,7 @@ class CorreoApp:
                                        .replace('{{Email_Hash}}', email_hash)\
                                        .replace('{{CTA_Link}}', cta_link)\
                                        .replace('{{Campana}}', campana)\
-                                       .replace('{{Titulo_Pagina}}', 'Partner Tech | Tu Socio Estratégico')
+                                       .replace('{{Plantilla}}', plantilla_id)
             
             message = MIMEMultipart("related")
             message["Subject"] = asunto_template.replace('{{Nombre_Contacto}}', nombre)\
@@ -817,11 +847,17 @@ class CorreoApp:
             except Exception as e:
                 self.log_msg(f"No se pudo adjuntar activos: {e}", "WARNING")
             
+            # Credenciales Gmail para relay (según perfil seleccionado)
+            perfil_actual = self.perfil_seleccionado.get()
+            gmail_email = self.perfiles.get(perfil_actual, {}).get("gmail_email", "")
+            gmail_app_pass = self.perfiles.get(perfil_actual, {}).get("gmail_app_pass", "")
+
             context = ssl.create_default_context()
-            context.check_hostname = False
-            context.verify_mode = ssl.CERT_NONE
-            with smtplib.SMTP_SSL(smtp_server, smtp_port, context=context) as server:
-                server.login(remitente_email, remitente_pass)
+            with smtplib.SMTP(smtp_server, smtp_port) as server:
+                server.ehlo()
+                server.starttls(context=context)
+                server.ehlo()
+                server.login(gmail_email, gmail_app_pass)
                 server.sendmail(remitente_email, email_destinatario, message.as_string())
             return True
         except Exception as e:
