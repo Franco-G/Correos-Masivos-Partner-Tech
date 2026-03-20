@@ -1,0 +1,25 @@
+# Entornos Virtuales
+.venv/
+venv/
+ENV/
+env/
+
+# Variables de Entorno (SECRETOS)
+.env
+
+# Archivos de PyInstaller
+build/
+dist/
+*.spec
+
+# Logs
+*.log
+registro_envios.csv
+
+# Binarios y Excel de Datos (Personal)
+Correos.xlsx
+Base_Mailing_V6_Nombres_Comerciales.xlsx
+
+# Cache
+__pycache__/
+*.pyc

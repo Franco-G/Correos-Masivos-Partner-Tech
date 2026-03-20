@@ -15,8 +15,12 @@ from email.utils import formatdate, make_msgid
 import logging
 from email_validator import validate_email, EmailNotValidError
 from tkinterweb import HtmlFrame
+from dotenv import load_dotenv
 import sys
 import pathlib
+
+# Carga variables de entorno desde el archivo .env
+load_dotenv()
 
 # --- FUNCIÓN PARA MANEJAR RUTAS EN PYINSTALLER ---
 def resource_path(relative_path):
@@ -37,10 +41,10 @@ logging.basicConfig(
 
 # --- CONFIGURACIÓN ---
 archivo_excel = resource_path('Correos.xlsx')
-smtp_server = "mail.partnertech.pe"
-smtp_port = 465
-sender_email = "fguerrero@partnertech.pe"
-password_email = "Franco001"
+smtp_server = os.getenv("SMTP_SERVER", "mail.partnertech.pe")
+smtp_port = int(os.getenv("SMTP_PORT", 465))
+sender_email = os.getenv("SENDER_EMAIL", "fguerrero@partnertech.pe")
+password_email = os.getenv("SENDER_PASS", "")
 
 class CorreoApp:
     def __init__(self, root):
@@ -57,26 +61,29 @@ class CorreoApp:
         self.contador_var = tk.StringVar(value="Cargando destinatarios...")
         self.enviando = False
         
-        # Perfiles de Envío
-        self.perfiles = {
-            "Franco Guerrero": {
-                "email": "fguerrero@partnertech.pe",
-                "pass": "Franco001",
-                "cargo": "Sub-Gerente Comercial"
-            },
-            "Alexandra Cardozo": {
-                "email": "acardozo@partnertech.pe",
-                "pass": "acardozo001",
-                "cargo": "Gerente Comercial"
-            }
-        }
+        # --- CONFIGURACIÓN DE PERFILES DE ENVÍO ---
+        self.perfiles = {}
+        # Cargamos hasta 5 perfiles desde el entorno (ampliable)
+        for i in range(1, 6):
+            nombre = os.getenv(f"PERFIL_{i}_NOMBRE")
+            if nombre:
+                self.perfiles[nombre] = {
+                    "email": os.getenv(f"PERFIL_{i}_EMAIL", ""),
+                    "pass": os.getenv(f"PERFIL_{i}_PASS", ""),
+                    "cargo": os.getenv(f"PERFIL_{i}_CARGO", "Colaborador")
+                }
         
-        # Variables de Remitente (Inicializar con el primero)
-        self.perfil_seleccionado = tk.StringVar(value="Franco Guerrero")
-        self.nombre_remitente_var = tk.StringVar(value="Franco Guerrero")
-        self.cargo_remitente_var = tk.StringVar(value=self.perfiles["Franco Guerrero"]["cargo"])
-        self.email_remitente_var = tk.StringVar(value=self.perfiles["Franco Guerrero"]["email"])
-        self.pass_remitente_var = tk.StringVar(value=self.perfiles["Franco Guerrero"]["pass"])
+        # Validación: Si no hay perfiles en el .env, cargar uno por defecto (vacío) para evitar errores en UI
+        if not self.perfiles:
+            self.perfiles["Sin Configuración"] = {"email": "", "pass": "", "cargo": "N/A"}
+        
+        # Variables de Remitente (Inicializar con el primer perfil disponible)
+        p_inicial = list(self.perfiles.keys())[0]
+        self.perfil_seleccionado = tk.StringVar(value=p_inicial)
+        self.nombre_remitente_var = tk.StringVar(value=p_inicial)
+        self.cargo_remitente_var = tk.StringVar(value=self.perfiles[p_inicial]["cargo"])
+        self.email_remitente_var = tk.StringVar(value=self.perfiles[p_inicial]["email"])
+        self.pass_remitente_var = tk.StringVar(value=self.perfiles[p_inicial]["pass"])
         self.asunto_var = tk.StringVar()
 
         # --- UI LAYOUT ---
