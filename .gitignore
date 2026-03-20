@@ -1,0 +1,30 @@
+# Entornos Virtuales
+.venv/
+venv/
+ENV/
+env/
+
+# Variables de Entorno (SECRETOS)
+.env
+.env.example # Si no quieres que se suba, aunque suele subirse como plantilla.
+# Mejor subir .env.example y borrar .env
+
+# Archivos de PyInstaller
+build/
+dist/
+*.spec
+
+# Logs
+*.log
+registro_envios.csv
+data/registro_envios.log
+
+# Binarios y Excel de Datos (Personal)
+Correos.xlsx
+Base_Mailing_V6_Nombres_Comerciales.xlsx
+*.xlsx
+*.csv
+
+# Cache
+__pycache__/
+*.pyc

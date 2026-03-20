@@ -21,6 +21,10 @@ import base64
 import io
 import sqlite3
 from datetime import datetime, timedelta
+from dotenv import load_dotenv
+
+# Carga variables de entorno para seguridad de secretos
+load_dotenv()
 
 
 
@@ -44,8 +48,8 @@ logging.basicConfig(
 )
 
 # --- CONFIGURACIÓN SMTP (Gmail Relay) ---
-smtp_server = "smtp.gmail.com"
-smtp_port = 587
+smtp_server = os.getenv("SMTP_SERVER", "smtp.gmail.com")
+smtp_port = int(os.getenv("SMTP_PORT", 587))
 
 class CorreoApp:
     # Type hints for Pyre2
@@ -118,29 +122,31 @@ class CorreoApp:
         # Configurar búsqueda automática para pruebas
         self.email_prueba_var.trace_add("write", self.on_email_prueba_change)
         
-        # Perfiles de Envío
-        self.perfiles = {
-            "Franco Guerrero": {
-                "email": "fguerrero@partnertech.pe",
-                "pass": "Franco001",
-                "cargo": "Sub-Gerente Comercial",
-                "gmail_email": "fguerrero.partnertech@gmail.com",
-                "gmail_app_pass": "ptno nqhw mfff rpjb"            # App Password Franco
-            },
-            "Alexandra Cardozo": {
-                "email": "acardozo@partnertech.pe",
-                "pass": "acardozo001",
-                "cargo": "Chief Business Officer<br>Directora de Negocios",
-                "gmail_email": "fguerrero.partnertech@gmail.com",
-                "gmail_app_pass": "ptno nqhw mfff rpjb"            # App Password compartida
-            }
-        }
+        # --- CONFIGURACIÓN DE PERFILES DE ENVÍO ---
+        self.perfiles = {}
+        # Cargamos hasta 5 perfiles desde el entorno (ampliable)
+        for i in range(1, 6):
+            nombre = os.getenv(f"PERFIL_{i}_NOMBRE")
+            if nombre:
+                self.perfiles[nombre] = {
+                    "email": os.getenv(f"PERFIL_{i}_EMAIL", ""),
+                    "pass": os.getenv(f"PERFIL_{i}_PASS", ""),
+                    "cargo": os.getenv(f"PERFIL_{i}_CARGO", "Colaborador"),
+                    "gmail_email": os.getenv(f"PERFIL_{i}_GMAIL_EMAIL", ""),
+                    "gmail_app_pass": os.getenv(f"PERFIL_{i}_GMAIL_APP_PASS", "")
+                }
         
-        self.perfil_seleccionado = tk.StringVar(value="Alexandra Cardozo")
-        self.nombre_remitente_var = tk.StringVar(value="Alexandra Cardozo")
-        self.cargo_remitente_var = tk.StringVar(value=self.perfiles["Alexandra Cardozo"]["cargo"])
-        self.email_remitente_var = tk.StringVar(value=self.perfiles["Alexandra Cardozo"]["email"])
-        self.pass_remitente_var = tk.StringVar(value=self.perfiles["Alexandra Cardozo"]["pass"])
+        # Validación: Si no hay perfiles en el .env, cargar uno genérico
+        if not self.perfiles:
+            self.perfiles["Sin Configuración"] = {"email": "", "pass": "", "cargo": "N/A", "gmail_email": "", "gmail_app_pass": ""}
+        
+        # Seleccionar perfil por defecto (si existe)
+        p_inicial = list(self.perfiles.keys())[0]
+        self.perfil_seleccionado = tk.StringVar(value=p_inicial)
+        self.nombre_remitente_var = tk.StringVar(value=p_inicial)
+        self.cargo_remitente_var = tk.StringVar(value=self.perfiles[p_inicial]["cargo"])
+        self.email_remitente_var = tk.StringVar(value=self.perfiles[p_inicial]["email"])
+        self.pass_remitente_var = tk.StringVar(value=self.perfiles[p_inicial]["pass"])
         self.asunto_var = tk.StringVar()
 
         # DB Setup
