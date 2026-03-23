@@ -1,0 +1,14 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(python:*)",
+      "Bash(wc -l .claude/output/*.md)",
+      "Skill(humanizer)"
+    ]
+  },
+  "enabledPlugins": {
+    "marketing-skills@marketingskills": true,
+    "context7@claude-plugins-official": true,
+    "superpowers@claude-plugins-official": true
+  }
+}
