@@ -1,3 +1,7 @@
+---
+trigger: always_on
+---
+
 # Reglas del Proyecto: Correos Masivos Partner Tech
 
 ## Automatización de Pruebas
