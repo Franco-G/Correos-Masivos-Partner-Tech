@@ -1109,3 +1109,20 @@
 2026-03-20 17:32:33,338 - INFO - Esperando 14.60s...
 2026-03-20 17:32:52,503 - INFO - OK (smart_dent/correo_smart_dent_v3_crecimiento.html): guerrerofranco1429@gmail.com
 2026-03-20 17:32:52,513 - INFO - --- PROCESO FINALIZADO ---
+2026-03-23 11:01:20,360 - INFO - Archivo cargado: Correos.xlsx
+2026-03-23 11:01:25,274 - INFO - --- INICIANDO ENVÍO MASIVO ---
+2026-03-23 11:04:14,313 - ERROR - Error con guerrerofranco1429@gmail.com: Connection unexpectedly closed
+2026-03-23 11:04:14,329 - INFO - FALLÓ (crm/correo_crm_v1_centralizacion.html): guerrerofranco1429@gmail.com
+2026-03-23 11:04:14,333 - INFO - Esperando 13.15s...
+2026-03-23 11:07:12,756 - ERROR - Error con guerrerofranco1429@gmail.com: Connection unexpectedly closed
+2026-03-23 11:07:12,761 - INFO - FALLÓ (nextflow/correo_nextflow_v3_soberania.html): guerrerofranco1429@gmail.com
+2026-03-23 11:07:12,766 - INFO - Esperando 12.08s...
+2026-03-23 11:10:10,116 - ERROR - Error con guerrerofranco1429@gmail.com: Connection unexpectedly closed
+2026-03-23 11:10:10,130 - INFO - FALLÓ (partners_truck/correo_partners_truck_v3_mantenimiento.html): guerrerofranco1429@gmail.com
+2026-03-23 11:10:10,135 - INFO - Esperando 14.12s...
+2026-03-23 11:13:09,597 - ERROR - Error con guerrerofranco1429@gmail.com: Connection unexpectedly closed
+2026-03-23 11:13:09,627 - INFO - FALLÓ (crm/correo_crm_v1_centralizacion.html): guerrerofranco1429@gmail.com
+2026-03-23 11:13:09,660 - INFO - Esperando 11.72s...
+2026-03-23 11:16:06,764 - ERROR - Error con guerrerofranco1429@gmail.com: Connection unexpectedly closed
+2026-03-23 11:16:06,771 - INFO - FALLÓ (nextflow/correo_nextflow_v3_soberania.html): guerrerofranco1429@gmail.com
+2026-03-23 11:16:06,784 - INFO - Esperando 10.98s...

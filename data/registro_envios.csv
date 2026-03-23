@@ -115,3 +115,8 @@ Nombre,Correo,Plantilla,Fecha,Estado
 "Franco","guerrerofranco1429@gmail.com","kardex/correo_kardex_v1_control.html","2026-03-20 17:32:16","Enviado"
 "Franco","guerrerofranco1429@gmail.com","nextflow/correo_nextflow_v3_soberania.html","2026-03-20 17:32:33","Enviado"
 "Franco","guerrerofranco1429@gmail.com","smart_dent/correo_smart_dent_v3_crecimiento.html","2026-03-20 17:32:52","Enviado"
+"Franco","guerrerofranco1429@gmail.com","crm/correo_crm_v1_centralizacion.html","2026-03-23 11:04:14","Fallido"
+"Franco","guerrerofranco1429@gmail.com","nextflow/correo_nextflow_v3_soberania.html","2026-03-23 11:07:12","Fallido"
+"Franco","guerrerofranco1429@gmail.com","partners_truck/correo_partners_truck_v3_mantenimiento.html","2026-03-23 11:10:10","Fallido"
+"Franco","guerrerofranco1429@gmail.com","crm/correo_crm_v1_centralizacion.html","2026-03-23 11:13:09","Fallido"
+"Franco","guerrerofranco1429@gmail.com","nextflow/correo_nextflow_v3_soberania.html","2026-03-23 11:16:06","Fallido"
