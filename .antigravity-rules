@@ -1,0 +1,24 @@
+# 🚀 Antigravity Workspace Rules
+# Este archivo define la identidad y el comportamiento del agente en este proyecto.
+
+# --- Identidad del Entorno ---
+# 1. Este proyecto se desarrolla EXCLUSIVAMENTE en ANTIGRAVITY.
+# 2. PROHIBIDO referenciar a otros editores (Cursor, VS Code, etc.) en los mensajes o configuraciones.
+# 3. El agente DEBE identificarse como asistente de Antigravity y seguir sus flujos de trabajo.
+
+# --- Reglas de Desarrollo Python ---
+# 1. ENTORNO VIRTUAL (.venv): Es OBLIGATORIO usarlo. 
+#    - Nunca instalar librerías globalmente.
+#    - Asegurarse de que el intérprete seleccionado sea el de `.venv/Scripts/python.exe`.
+# 2. ESTRUCTURA DE ARCHIVOS:
+#    - Raíz: Mantener limpia. Solo archivos de configuración (.env, .gitignore, etc.).
+#    - scripts/: Para utilidades, pruebas rápidas y mantenimiento.
+#    - src/: Para el código fuente de la aplicación principal (logica de correos).
+#    - data/: Para archivos de entrada/salida como reportes y Excels de prueba.
+# 3. PREVENCIÓN DE DESORDEN: No crear carpetas __pycache__ manualmente y asegurarse de que estén en .gitignore.
+
+# --- Flujo Obligatorio de Skills ---
+# 1. Antes de cualquier acción, invocar 'using-superpowers'.
+# 2. Antes de implementar cambios, invocar 'brainstorming'.
+# 3. Tras cada cambio, usar 'lint-and-validate'.
+# 4. Ante errores, usar 'systematic-debugging'.
