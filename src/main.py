@@ -1,3 +1,8 @@
+# Script principal para el envío de correos masivos
+import sys
+import os
+
+# --- IMPORTACIONES DINÁMICAS ---
 import pandas as pd
 import smtplib
 import ssl
@@ -7,6 +12,7 @@ import glob
 import os
 import threading
 import hashlib
+
 import tkinter as tk
 from tkinter import ttk, messagebox, filedialog
 from tkinter import scrolledtext
@@ -22,6 +28,8 @@ import io
 import sqlite3
 from datetime import datetime, timedelta
 from dotenv import load_dotenv
+
+# --- CONFIGURACIÓN DE ENTORNO ---
 
 # Carga variables de entorno para seguridad de secretos
 load_dotenv()
