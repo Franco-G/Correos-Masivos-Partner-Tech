@@ -2,3 +2,4 @@ pandas
 email-validator
 tkinterweb
 openpyxl
+python-dotenv
