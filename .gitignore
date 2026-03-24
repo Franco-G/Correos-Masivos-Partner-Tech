@@ -28,3 +28,4 @@ Base_Mailing_V6_Nombres_Comerciales.xlsx
 # Cache
 __pycache__/
 *.pyc
+/.claude/skills
